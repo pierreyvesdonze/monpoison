@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+
+    <a href="{{ path('delete_user') }}" class="btn btn-danger" onclick="return confirm('Supprimer définitivement le compte ?')">Supprimer mon compte</a>
+
+{% endblock %}

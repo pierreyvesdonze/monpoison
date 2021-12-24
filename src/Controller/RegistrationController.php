@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,10 +18,15 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 class RegistrationController extends AbstractController
 {
     private EmailVerifier $emailVerifier;
+    private $em;
 
-    public function __construct(EmailVerifier $emailVerifier)
+    public function __construct(
+        EmailVerifier $emailVerifier,
+        EntityManagerInterface $em
+        )
     {
         $this->emailVerifier = $emailVerifier;
+        $this->em = $em;
     }
 
     /**
@@ -43,9 +49,8 @@ class RegistrationController extends AbstractController
 
             $user->setRoles($user->getRoles());
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $this->em->persist($user);
+            $this->em->flush();
 
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation(
@@ -59,7 +64,7 @@ class RegistrationController extends AbstractController
             );
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('_profiler_home');
+            return $this->redirectToRoute('login');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -87,5 +92,19 @@ class RegistrationController extends AbstractController
         $this->addFlash('success', 'Your email address has been verified.');
 
         return $this->redirectToRoute('app_register');
+    }
+
+    /**
+     * @Route("/user/delete", name="delete_user")
+     */
+    public function deleteUser(): Response
+    {
+        $this->em->remove($this->getUser());
+        $this->em->flush();
+        
+        $this->container->get('security.token_storage')->setToken(null);
+        $this->addFlash('success', 'Votre compte a bien été supprimé !');
+
+        return $this->redirectToRoute('logout');
     }
 }
