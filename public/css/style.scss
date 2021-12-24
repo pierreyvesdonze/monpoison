@@ -1,0 +1,59 @@
+@import "./responsive";
+@import "./pattern-1";
+
+:root {
+    --body-bg: radial-gradient(circle, rgba(243, 245, 199, 1) 11%, rgba(227, 227, 199, 1) 83%);
+    --paper-btn-primary: #4b3b18;
+    --paper-btn-primary-hover: #776c5313;
+    --transparent: rgba(255, 255, 255, 0);
+    --margin-line: #941c5a;
+    --lines: #1d97b8;
+    --bg-color: #e5e6c4;
+    --font-color: #4a4a4a;
+    --hover-color: #188dff;
+}
+
+* {
+   font-family: 'Comfortaa', cursive;
+}
+
+body {
+    height: 100vh;
+    background: var(--body-bg);
+}
+
+ul li {
+    list-style-type: none;
+}
+
+.hr-white {
+    border: 0;
+    height: 1px;
+    width: 400px;
+    background: rgb(255, 254, 254);
+    background-image: linear-gradient(to right, #ccc, rgb(255, 255, 255), #ccc);
+}
+
+.menu-button {
+    position: absolute;
+    top: 1%;
+    left: 1%;
+}
+
+.menu-settings {
+    position: absolute;
+    top: 1%;
+    left: 6%;
+}
+
+.trash {
+    position: absolute;
+    top: 1%;
+    left: 10%;
+}
+
+.print {
+    position: absolute;
+    top: 1%;
+    left: 14%;
+}
