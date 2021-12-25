@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title %}Test de consommation{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1>Test d'évaluation de degré de dépendance</h1>
+    {{ form_start(form) }}
+    {{ form_label(form.sex) }} 
+    <br>
+    {{ form_widget(form.sex) }}
+    <br>
+    <br>
+    {{ form_label(form.age) }} 
+    <br>
+    {{ form_widget(form.age) }}
+    <br>
+    <br>
+    {{ form_label(form.weight) }} 
+    <br>
+    {{ form_widget(form.weight) }}
+    <br>
+    <br>
+    {{ form_label(form.lastDay) }} 
+    <br>
+    {{ form_widget(form.lastDay) }}
+    <br>
+    <br>
+    {{ form_label(form.lastDrink) }} 
+    <br>
+    {{ form_widget(form.lastDrink) }}
+    <br>
+    <br>
+    {{ form_label(form.money) }} 
+    <br>
+    {{ form_widget(form.money) }}
+    <br>
+    <br>
+    {{ form_row(form.submit) }}
+    {{ form_end(form) }}
+</div>
+
+
+{% endblock %}
