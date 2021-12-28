@@ -20,9 +20,14 @@
     <script src="https://kit.fontawesome.com/0fef8733fc.js" crossorigin="anonymous"></script>
 
     {% block stylesheets %}
-    {{ encore_entry_link_tags('app') }}
-    {% endblock %}
 
+    {% endblock %}
+</head>
+
+
+<!--***************************BODY****************************-->
+
+<body>
     {# Flash messages #}
     <div class="flash-container">
         {% for label, messages in app.flashes %}
@@ -34,12 +39,15 @@
         {% endfor %}
         {% endfor %}
     </div>
-
     {# NAV #}
     {% include("menu/nav.html.twig") %}
 
+    {% block body %}
+    {% endblock %}
+
 
     {# JS #}
+    {% block javascripts %}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
         crossorigin="anonymous"></script>
@@ -55,14 +63,8 @@
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
 
-
-    {% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
     {% endblock %}
-</head>
 
-<body>
-    {% block body %}{% endblock %}
 </body>
 
 </html>

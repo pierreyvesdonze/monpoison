@@ -37,6 +37,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Drink::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $drinks;
+
+    public function __construct()
+    {
+        $this->drinks = new ArrayCollection();
+    }
+
     public function __toString()
     {
         return $this->email;
@@ -129,5 +139,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection|Drink[]
+     */
+    public function getDrinks(): Collection
+    {
+        return $this->drinks;
+    }
+
+    public function addDrink(Drink $drink): self
+    {
+        if (!$this->drinks->contains($drink)) {
+            $this->drinks[] = $drink;
+            $drink->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDrink(Drink $drink): self
+    {
+        if ($this->drinks->removeElement($drink)) {
+            // set the owning side to null (unless already changed)
+            if ($drink->getUser() === $this) {
+                $drink->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

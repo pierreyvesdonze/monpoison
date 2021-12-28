@@ -8,7 +8,7 @@ var app = {
         * L I S T E N E R S
         * *****************************
         */
-        
+        console.log('init');
        
     },
 
