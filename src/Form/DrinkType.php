@@ -19,17 +19,27 @@ class DrinkType extends AbstractType
     {
         $builder
             ->add('alcool', EntityType::class, [
-                'class' => Alcool::class
+                'class' => Alcool::class,
+                'attr' => [
+                    'class' => 'input'
+                ]
             ])
             ->add('quantity', IntegerType::class, [
-                'label' => 'Quantité'
+                'label' => "Quantité (en unités d'alcool)",
+                'attr' => [
+                    'class' => 'input'
+                ]
             ])
-            ->add('date', DateType::class)
+            ->add('date', DateType::class, [
+                'attr' => [
+                    'class' => 'input'
+                ]
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer',
                 'attr' => [
                     'class' => 'btn btn-primary'
-                    ]
+                ]
             ]);
     }
 

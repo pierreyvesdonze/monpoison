@@ -1,175 +1,75 @@
+console.log("Reloaded");
 
+// dom variables
+var msf_getFsTag = document.getElementsByTagName("fieldset");
 
-//Educations
-var $addEducationButton = $('<button type="button" class="add-education-link"><i class="fas fa-plus-circle fa-2x"></button>');
-var $newEducationLinkLi = $('<li></li>').append($addEducationButton);
+// declaring the active fieldset & the total fieldset count
+var msf_form_nr = 0;
+var fieldset = msf_getFsTag[msf_form_nr];
+fieldset.className = "msf_show";
 
-//Skills
-var $addSkillButton = $('<button type="button" class="add-skill-link"><i class="fas fa-plus-circle fa-2x"></button>');
-var $newSkillLinkLi = $('<li></li>').append($addSkillButton);
+// creates and stores a number of bullets
+var msf_bullet_nr = "<div class='msf_bullet'></div>";
+var msf_length = msf_getFsTag.length;
+for (var i = 1; i < msf_length; ++i) {
+    msf_bullet_nr += "<div class='msf_bullet'></div>";
+};
+// injects bullets
+var msf_bullet_o = document.getElementsByClassName("msf_bullet_o");
+for (var i = 0; i < msf_bullet_o.length; ++i) {
+    var msf_b_item = msf_bullet_o[i];
+    msf_b_item.innerHTML = msf_bullet_nr;
+};
 
-//XP
-var $addXpButton = $('<button type="button" class="add-experience-link"><i class="fas fa-plus-circle fa-2x"></button>');
-var $newXpLinkLi = $('<li></li>').append($addXpButton);
+// removes the first back button & the last next button
+document.getElementsByName("back")[0].className = "msf_hide";
+document.getElementsByName("next")[msf_bullet_o.length - 1].className = "msf_hide";
 
-//INTERESTS
-var $addInterestButton = $('<button type="button" class="add-interest-link"><i class="fas fa-plus-circle fa-2x"></button>');
-var $newInterestLinkLi = $('<li></li>').append($addInterestButton);
+// Makes the first dot active
+var msf_bullets = document.getElementsByClassName("msf_bullet");
+msf_bullets[msf_form_nr].className += " msf_bullet_active";
 
+// Validation loop & goes to the next step
+function msf_btn_next() {
+    var msf_val = true;
 
-jQuery(document).ready(function () {
+    var msf_fs = document.querySelectorAll("fieldset")[msf_form_nr];
+    var msf_fs_i_count = msf_fs.querySelectorAll("input").length;
 
-    //Educations
-    $educationCollectionHolder = $('ul.educations');
-    $educationCollectionHolder.find('.li-education').each(function () {
-        addEducationFormDeleteLink($(this));
-    });
-    $educationCollectionHolder.append($newEducationLinkLi);
-    $educationCollectionHolder.data('index', $educationCollectionHolder.find(':input').length);
-    $addEducationButton.on('click', function (e) {
-        addEducationForm($educationCollectionHolder, $newEducationLinkLi);
-    });
+    for (i = 0; i < msf_fs_i_count; ++i) {
+        var msf_input_s = msf_fs.querySelectorAll("input")[i];
+        if (msf_input_s.getAttribute("type") === "button") {
+            // nothing happens
+        } else {
+            if (msf_input_s.value === "") {
+                msf_input_s.style.backgroundColor = "pink";
+                msf_val = false;
+            } else {
+                if (msf_val === false) { } else {
+                    msf_val = true;
+                    msf_input_s.style.backgroundColor = "lime";
+                }
+            }
+        };
+    };
+    if (msf_val === true) {
+        // goes to the next step
+        var selection = msf_getFsTag[msf_form_nr];
+        selection.className = "msf_hide";
+        msf_form_nr = msf_form_nr + 1;
+        var selection = msf_getFsTag[msf_form_nr];
+        selection.className = "msf_show";
+        // refreshes the bullet
+        var msf_bullets_a = msf_form_nr * msf_length + msf_form_nr;
+        msf_bullets[msf_bullets_a].className += " msf_bullet_active";
+    }
+};
 
-    //Skills
-    $skillCollectionHolder = $('ul.skills');
-    $skillCollectionHolder.find('.li-skill').each(function () {
-        addSkillFormDeleteLink($(this));
-    });
-    $skillCollectionHolder.append($newSkillLinkLi);
-    $skillCollectionHolder.data('index', $skillCollectionHolder.find(':input').length);
-    $addSkillButton.on('click', function (e) {
-        addSkillForm($skillCollectionHolder, $newSkillLinkLi);
-    });
+// goes one step back
+function msf_btn_back() {
+    msf_getFsTag[msf_form_nr].className = "msf_hide";
+    msf_form_nr = msf_form_nr - 1;
+    msf_getFsTag[msf_form_nr].className = "msf_showhide";
+};
 
-    //XP
-    $xpCollectionHolder = $('ul.experiences');
-    $xpCollectionHolder.find('.li-experience').each(function () {
-        addXpFormDeleteLink($(this));
-    });
-    $xpCollectionHolder.append($newXpLinkLi);
-    $xpCollectionHolder.data('index', $xpCollectionHolder.find(':input').length);
-    $addXpButton.on('click', function (e) {
-        addXpForm($xpCollectionHolder, $newXpLinkLi);
-    });
-
-    //INTERESTS
-    $interestCollectionHolder = $('ul.interests');
-    $interestCollectionHolder.find('.li-interest').each(function () {
-        addInterestFormDeleteLink($(this));
-    });
-    $interestCollectionHolder.append($newInterestLinkLi);
-    $interestCollectionHolder.data('index', $interestCollectionHolder.find(':input').length);
-    $addInterestButton.on('click', function (e) {
-        addInterestForm($interestCollectionHolder, $newInterestLinkLi);
-    });
-
-});
-
-// Educations
-function addEducationForm($educationCollectionHolder, $newEducationLinkLi) {
-
-    var prototype = $educationCollectionHolder.data('prototype');
-    var index = $educationCollectionHolder.data('index');
-    var newForm = prototype;
-
-    newForm = newForm.replace(/__name__/g, index);
-
-    $educationCollectionHolder.data('index', index + 1);
-
-    var $newFormLi = $('<li class="li-education"></li>').append(newForm);
-    $newEducationLinkLi.before($newFormLi);
-
-    // add a delete link to the new form
-    addEducationFormDeleteLink($newFormLi);
-}
-
-function addEducationFormDeleteLink($educationFormLi) {
-    var $removeFormButton = $('<button type="button" class="remove-education-link"><i class="fas fa-minus-circle fa-2x"></button>');
-    $educationFormLi.append($removeFormButton);
-
-    $removeFormButton.on('click', function (e) {
-        $educationFormLi.remove();
-    });
-}
-
-
-// Skills
-function addSkillForm($skillCollectionHolder, $newSkillLinkLi) {
-
-    var prototype = $skillCollectionHolder.data('prototype');
-    var index = $skillCollectionHolder.data('index');
-    var newForm = prototype;
-
-    newForm = newForm.replace(/__name__/g, index);
-
-    $skillCollectionHolder.data('index', index + 1);
-
-    var $newFormLi = $('<li class="li-skill"></li>').append(newForm);
-    $newSkillLinkLi.before($newFormLi);
-
-    // add a delete link to the new form
-    addSkillFormDeleteLink($newFormLi);
-}
-
-function addSkillFormDeleteLink($skillFormLi) {
-    var $removeFormButton = $('<button type="button" class="remove-skill-link"><i class="fas fa-minus-circle fa-2x"></button>');
-    $skillFormLi.append($removeFormButton);
-
-    $removeFormButton.on('click', function (e) {
-        $skillFormLi.remove();
-    });
-}
-
-// XP
-function addXpForm($xpCollectionHolder, $newXpLinkLi) {
-
-    var prototype = $xpCollectionHolder.data('prototype');
-    var index = $xpCollectionHolder.data('index');
-    var newForm = prototype;
-
-    newForm = newForm.replace(/__name__/g, index);
-
-    $xpCollectionHolder.data('index', index + 1);
-
-    var $newFormLi = $('<li class="li-experience"></li>').append(newForm);
-    $newXpLinkLi.before($newFormLi);
-
-    // add a delete link to the new form
-    addXpFormDeleteLink($newFormLi);
-}
-
-function addXpFormDeleteLink($xpFormLi) {
-    var $removeFormButton = $('<button type="button" class="remove-experience-link"><i class="fas fa-minus-circle fa-2x"></button>');
-    $xpFormLi.append($removeFormButton);
-
-    $removeFormButton.on('click', function (e) {
-        $xpFormLi.remove();
-    });
-}
-
-//INTERESTS
-function addInterestForm($interestCollectionHolder, $newInterestLinkLi) {
-
-    var prototype = $interestCollectionHolder.data('prototype');
-    var index = $interestCollectionHolder.data('index');
-    var newForm = prototype;
-
-    newForm = newForm.replace(/__name__/g, index);
-
-    $interestCollectionHolder.data('index', index + 1);
-
-    var $newFormLi = $('<li class="li-interest"></li>').append(newForm);
-    $newInterestLinkLi.before($newFormLi);
-
-    // add a delete link to the new form
-    addInterestFormDeleteLink($newFormLi);
-}
-
-function addInterestFormDeleteLink($interestFormLi) {
-    var $removeFormButton = $('<button type="button" class="remove-interest-link"><i class="fas fa-minus-circle fa-2x"></button>');
-    $interestFormLi.append($removeFormButton);
-
-    $removeFormButton.on('click', function (e) {
-        $interestFormLi.remove();
-    });
-}
+console.log("loaded");

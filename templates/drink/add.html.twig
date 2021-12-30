@@ -3,10 +3,48 @@
 {% block title %}Hello DrinkController!{% endblock %}
 
 {% block body %}
-<div class="row">
+
+<div class="container">
+
     <div class="container-center">
-        {{ form(form) }}
+        {{ form_start(form) }}
+        <div class="form_wrapper">
+            <fieldset class="msf_hide">
+                <h2>Quel type d'alcool avez-vous bu ?</h2>
+                <div>
+                    {{ form_row(form.alcool) }}
+                </div>
+
+                <input type="button" name="next" value="Suivant" onclick="msf_btn_next()">
+                <input type="button" name="back" value="Précédent" onclick="msf_btn_back()">
+                <div class="msf_bullet_o"></div>
+
+            </fieldset>
+
+            <fieldset class="msf_hide">
+                <h2>Quelle quantité avez-vous bu ?</h2>
+                <div>
+                    {{ form_row(form.quantity) }}
+                </div>
+
+                <input type="button" name="next" value="Suivant" onclick="msf_btn_next()">
+                <input type="button" name="back" value="Précédent" onclick="msf_btn_back()">
+                <div class="msf_bullet_o"></div>
+            </fieldset>
+
+            <fieldset class="msf_hide">
+                <h2>Date de cette consommation ?</h2>
+                <div>
+                    {{ form_row(form.date) }}
+                </div>
+
+                <input type="button" name="next" value="Suivant" onclick="msf_btn_next()">
+                {{ form_row(form.submit) }}
+                <div class="msf_bullet_o"></div>
+            </fieldset>
+        </div>
+
+        {{ form_end(form) }}
     </div>
 </div>
-    
 {% endblock %}
