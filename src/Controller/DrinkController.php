@@ -38,7 +38,6 @@ class DrinkController extends AbstractController
      */
     public function addDrink(Request $request)
     {
-
         $form = $this->createForm(DrinkType::class);
         $form->handleRequest($request);
 
@@ -56,12 +55,39 @@ class DrinkController extends AbstractController
 
             return $this->redirectToRoute('drink_calendar');
         }
-        
+
         return $this->render('drink/add.html.twig', [
             'form' => $form->createView()
         ]);
     }
-    
+
+    /**
+     * @Route("/drink/update/{id}", name="drink_update")
+     */
+    public function drinkUpdate(
+        Drink $drink,
+        Request $request
+    ) {
+        $form = $this->createForm(DrinkType::class, $drink);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $drink->setAlcool($form->get('alcool')->getData());
+            $drink->setDate($form->get('date')->getData());
+            $drink->setQuantity($form->get('quantity')->getData());
+
+            $this->entityManager->flush();
+            $this->addFlash('success', 'Consommation mise à jour !');
+
+            return $this->redirectToRoute('drink_calendar');
+        }
+
+        return $this->render('drink/add.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
     /**
      * @Route("/drink/delete/{id}", name="drink_delete")
      */
@@ -69,7 +95,7 @@ class DrinkController extends AbstractController
     {
         $this->entityManager->remove($drink);
         $this->entityManager->flush();
-        
+
         $this->addFlash('success', 'La consommation a été supprimée !');
 
         return $this->redirectToRoute('drink_calendar');
