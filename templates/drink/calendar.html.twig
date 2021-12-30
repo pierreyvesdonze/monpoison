@@ -8,7 +8,7 @@
 
     <h1>Mes consommations</h1>
 
-    <a href="{{ path('drink_add') }}" class="btn btn-primary">Ajouter une consommation</a>
+    <a href="{{ path('drink_add') }}" class="btn btn-secondary">Ajouter une consommation</a>
 
     <hr>
 
@@ -24,7 +24,7 @@
                         <img src="{{ asset(drink.alcool.imgPath) }}" class="alcool-png">
                     </h6>
                     <p class="card-text">{{ drink.quantity }} unitées d'alcool consommées</p>
-                    <a href="{{ path('drink_update', {'id': drink.id}) }}" class="btn btn-primary">Editer</a>
+                    <a href="{{ path('drink_update', {'id': drink.id}) }}" class="btn btn-secondary">Editer</a>
                     <a href="{{ path('drink_delete', {'id':drink.id}) }}" class="btn btn-danger"
                         onclick="return confirm('Voulez-vous supprimer cette consommation ?') ">Supprimer</a>
                 </div>

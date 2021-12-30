@@ -1,4 +1,4 @@
-<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+<button class="btn btn-dark main-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
     aria-controls="offcanvasExample">
     |||
 </button>
@@ -13,7 +13,7 @@
         <h2>Vous êtes connecté en tant que {{ app.user.email }}</h2>
         {% else %}
         <h2>Vous nêtes pas connecté</h2>
-        <a href="{{path('login')}}" type="button" class="btn btn-primary">Se connecter</a>
+        <a href="{{path('login')}}" type="button" class="btn btn-secondary">Se connecter</a>
         <a href="{{path('app_register')}}" type="button" class="btn btn-primary">s'enregistrer</a>
         {% endif %}
 
