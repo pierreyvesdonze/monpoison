@@ -28,6 +28,15 @@ ul li {
   list-style-type: none;
 }
 
+.container-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 .alcool-png {
   width: 35px;
 }

@@ -21,7 +21,9 @@ class DrinkType extends AbstractType
             ->add('alcool', EntityType::class, [
                 'class' => Alcool::class
             ])
-            ->add('quantity', IntegerType::class)
+            ->add('quantity', IntegerType::class, [
+                'label' => 'Quantité'
+            ])
             ->add('date', DateType::class)
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer',

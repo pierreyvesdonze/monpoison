@@ -25,6 +25,11 @@ ul li {
     list-style-type: none;
 }
 
+.container-center {
+    display: flex;
+    justify-content: space-between;
+}
+
 .alcool-png {
     width: 35px;
 }

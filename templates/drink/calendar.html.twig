@@ -3,46 +3,47 @@
 
 {% block body %}
 
+<div class="container">
 
-<h1>Mes consommations</h1>
 
-<a href="{{ path('drink_add') }}" class="btn btn-primary">Ajouter une consommation</a>
+    <h1>Mes consommations</h1>
 
-<hr>
+    <a href="{{ path('drink_add') }}" class="btn btn-primary">Ajouter une consommation</a>
 
-{% if app.user is not null and app.user.drinks is not empty %}
-<ul>
-    {% for drink in drinks %}
-    <li>
-        Date : {{ drink.date|date('d/m/y') }}
-    </li>
-    <li>
-        Alcool : 
-        {% set alcoolImg = null %}
-        {% dump(drink.alcool.title) %}
-   
-        <img src="{{ asset(drink.alcool.imgPath) }}" class="alcool-png">
-    </li>
-    <li>
-        Quantité : {{ drink.quantity }}
-    </li>
-    <a href="{{ path('drink_delete', {'id':drink.id}) }}" class="btn btn-danger" onclick="return confirm('Voulez-vous supprimer cette consommation ?') ">Supprimer</a>
-    <br>
-    <br>
-    {% endfor %}
-</ul>
-<ul>
-    <li>
+    <hr>
+
+    {% if app.user is not null and app.user.drinks is not empty %}
+
+    <div class="container-center">
+        {% for drink in drinks %}
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ drink.date|date('d/m/y') }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <img src="{{ asset(drink.alcool.imgPath) }}" class="alcool-png">
+                    </h6>
+                    <p class="card-text">{{ drink.quantity }} unitées d'alcool consommées</p>
+                    <a href="{{ path('drink_delete', {'id':drink.id}) }}" class="btn btn-danger"
+                        onclick="return confirm('Voulez-vous supprimer cette consommation ?') ">Supprimer</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <hr>
+    <div class="container-center">
         Total : {{ drinks|reduce((carry, projet) => carry + projet.quantity) }} unités d'alcool consommées
+    </div>
 
-    </li>
-</ul>
+    {% else %}
 
-{% else %}
-
-Vous n'avez aucune consommation enregistrée pour le moment.
-
-{% endif %}
-
+    <div class="container">
+        <p>
+            Vous n'avez aucune consommation enregistrée pour le moment.
+        </p>
+    </div>
+    {% endif %}
+</div>
 
 {% endblock %}
