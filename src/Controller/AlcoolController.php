@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\AlcoolTestType;
+use App\Repository\DrinkRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -73,13 +74,5 @@ class AlcoolController extends AbstractController
             'message' => $message,
             'score'   => $score
         ]);
-    }
-
-    /**
-     * @Route("/alcool/calendar", name="alcool_calendar")
-     */
-    public function getCalendar()
-    {
-        return $this->render('alcool/calendar.html.twig');
     }
 }

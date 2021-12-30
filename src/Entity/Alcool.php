@@ -32,6 +32,16 @@ class Alcool
      */
     private $degree;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $imgPath;
+
+    public function __toString()
+    {
+        return $this->title;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +79,18 @@ class Alcool
     public function setDegree(string $degree): self
     {
         $this->degree = $degree;
+
+        return $this;
+    }
+
+    public function getImgPath(): ?string
+    {
+        return $this->imgPath;
+    }
+
+    public function setImgPath(string $imgPath): self
+    {
+        $this->imgPath = $imgPath;
 
         return $this;
     }

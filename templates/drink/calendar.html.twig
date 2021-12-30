@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block title %}Test de consommation{% endblock %}
+
+{% block body %}
+
+
+<h1>Mes consommations</h1>
+
+<a href="{{ path('drink_add') }}" class="btn btn-primary">Ajouter une consommation</a>
+
+<hr>
+
+{% if app.user is not null and app.user.drinks is not empty %}
+<ul>
+    {% for drink in drinks %}
+    <li>
+        Date : {{ drink.date|date('d/m/y') }}
+    </li>
+    <li>
+        Alcool : 
+        {% set alcoolImg = null %}
+        {% dump(drink.alcool.title) %}
+   
+        <img src="{{ asset(drink.alcool.imgPath) }}" class="alcool-png">
+    </li>
+    <li>
+        Quantité : {{ drink.quantity }}
+    </li>
+    <a href="{{ path('drink_delete', {'id':drink.id}) }}" class="btn btn-danger" onclick="return confirm('Voulez-vous supprimer cette consommation ?') ">Supprimer</a>
+    <br>
+    <br>
+    {% endfor %}
+</ul>
+<ul>
+    <li>
+        Total : {{ drinks|reduce((carry, projet) => carry + projet.quantity) }} unités d'alcool consommées
+
+    </li>
+</ul>
+
+{% else %}
+
+Vous n'avez aucune consommation enregistrée pour le moment.
+
+{% endif %}
+
+
+{% endblock %}

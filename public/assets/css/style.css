@@ -28,36 +28,7 @@ ul li {
   list-style-type: none;
 }
 
-.hr-white {
-  border: 0;
-  height: 1px;
-  width: 400px;
-  background: #fffefe;
-  background-image: -webkit-gradient(linear, left top, right top, from(#ccc), color-stop(white), to(#ccc));
-  background-image: linear-gradient(to right, #ccc, white, #ccc);
-}
-
-.menu-button {
-  position: absolute;
-  top: 1%;
-  left: 1%;
-}
-
-.menu-settings {
-  position: absolute;
-  top: 1%;
-  left: 6%;
-}
-
-.trash {
-  position: absolute;
-  top: 1%;
-  left: 10%;
-}
-
-.print {
-  position: absolute;
-  top: 1%;
-  left: 14%;
+.alcool-png {
+  width: 35px;
 }
 /*# sourceMappingURL=style.css.map */
