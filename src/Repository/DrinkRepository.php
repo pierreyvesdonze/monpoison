@@ -36,12 +36,13 @@ class DrinkRepository extends ServiceEntityRepository
     public function findLastWeek($user): ?Drink
     {
         return $this->createQueryBuilder('d')
+            ->select('COUNT(d.quantity)')
             ->where('d.user = :user')
             ->andWhere('d.date BETWEEN :begin AND :end')
             ->setParameter('begin', new \DateTime('now'))
             ->setParameter('end', new \DateTime('-7 days'))
             ->setParameter('user', $user)
             ->getQuery()
-            ->getArrayResult();
+            ->getScalarResult();
     }
 }

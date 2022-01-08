@@ -18,6 +18,9 @@
                 <th>
                     Unités d'alcool consommées
                 </th>
+                <th>
+                    Argent dépensé
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -27,8 +30,12 @@
                     <a href="{{ path('alcool_test') }}">Faire le test</a>
                     {% endif %}
                 </td>
-                <td>{{ drinks|reduce((carry, projet) => carry + projet.quantity) }}</td>
-                <td>&nbsp;</td>
+                <td>
+                    {{ drinks|reduce((q, drink) => q + drink.quantity) }}
+                </td>
+                <td>
+                    {{ drinks|reduce((c, drink) => c + drink.cost) }} €
+                </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>

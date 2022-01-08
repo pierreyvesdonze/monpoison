@@ -24,6 +24,7 @@
                         <img src="{{ asset(drink.alcool.imgPath) }}" class="alcool-png">
                     </h6>
                     <p class="card-text">{{ drink.quantity }} unitées d'alcool consommées</p>
+                    <p class="card-text"><b>{{ drink.cost }} €</b> dépensés</p>
                     <a href="{{ path('drink_update', {'id': drink.id}) }}" class="btn btn-secondary">Editer</a>
                     <a href="{{ path('drink_delete', {'id':drink.id}) }}" class="btn btn-danger"
                         onclick="return confirm('Voulez-vous supprimer cette consommation ?') ">Supprimer</a>
@@ -33,9 +34,6 @@
         {% endfor %}
     </div>
     <hr>
-    <div class="container-center">
-        Total : {{ drinks|reduce((carry, projet) => carry + projet.quantity) }} unités d'alcool consommées
-    </div>
 
     {% else %}
 

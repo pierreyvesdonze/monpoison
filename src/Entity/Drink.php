@@ -39,6 +39,11 @@ class Drink
      */
     private $date;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $cost;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -88,6 +93,18 @@ class Drink
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getCost(): ?int
+    {
+        return $this->cost;
+    }
+
+    public function setCost(int $cost): self
+    {
+        $this->cost = $cost;
 
         return $this;
     }

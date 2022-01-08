@@ -24,7 +24,9 @@ class UserController extends AbstractController
     public function index(DrinkRepository $drinkRepository): Response
     {
         $user = $this->getUser();
-        //$lastWeekDrink = $drinkRepository->findLastWeek($user);  
+        // $lastWeekDrink = $drinkRepository->findLastWeek($user);  
+
+        // dump($lastWeekDrink);
 
         $drinks = $drinkRepository->findByUser($user);
 
