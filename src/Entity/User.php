@@ -42,6 +42,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $drinks;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $alcoolScore;
+
     public function __construct()
     {
         $this->drinks = new ArrayCollection();
@@ -167,6 +172,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $drink->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAlcoolScore(): ?int
+    {
+        return $this->alcoolScore;
+    }
+
+    public function setAlcoolScore(?int $alcoolScore): self
+    {
+        $this->alcoolScore = $alcoolScore;
 
         return $this;
     }

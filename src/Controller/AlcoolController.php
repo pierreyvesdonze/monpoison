@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\AlcoolTestType;
 use App\Repository\DrinkRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,6 +12,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AlcoolController extends AbstractController
 {
+    private $entityManager;
+
+    public function __construct(
+        EntityManagerInterface $entityManager
+    ) {
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * @Route("/alcool/test", name="alcool_test")
      */
@@ -34,7 +43,14 @@ class AlcoolController extends AbstractController
                 $sexFactor = 1;
             }
 
-            $score += round(($ageFactor - $weightFactor + ($lastDayFactor *= 10) + $lastDrinkFactor + ($moneyFactor/2)) * $sexFactor);
+            $score += round(($ageFactor + $weightFactor + ($lastDayFactor *= 10) + $lastDrinkFactor + ($moneyFactor/2)) * $sexFactor);
+
+            $user = $this->getUSer();
+            if (null != $user) {
+                $user->setAlcoolScore($score);
+
+                $this->entityManager->flush();
+            }
             
             return $this->redirectToRoute('alcool_test_result', [
                 'score' => $score
@@ -56,13 +72,13 @@ class AlcoolController extends AbstractController
          */
         $message = null;
 
-        if ($score <= 50 && $score > 0) {
+        if ($score <= 80 && $score > 0) {
             $message = "Votre consommation d'alcool est modérée, ne dépassez pas ce stade sous risque de voir votre dépendance au produit augmenter";
-        } elseif($score >= 50 && $score <= 70) {
+        } elseif($score >= 80 && $score <= 110) {
             $message = "Votre consommation d'alccol est nettement supérieure aux recommandations de l'OMS. Rappelons que selon celles-ci, il est préférable de limiter la consommation d'alcool à 2 verres par jour pour une femme et 3 verres pour un homme, avec au moins 2 jours d'abstinence dans la semaine";
-        } elseif ($score >= 71 && $score <= 100) {
+        } elseif ($score >= 111 && $score <= 130) {
             $message = "Attention, votre consommation d'alcool dépasse les recommandations établies par l'OMS. À ce stade vous présentez un risque de dépendance à l'alcool moyennement prononcé, il serait recommandé de réduire vos consommations.";
-        } elseif ($score >= 101 && $score <= 150) {
+        } elseif ($score >= 131 && $score <= 150) {
             $message = "Votre consommation dépasse largement les recommandations de l'OMS. Vous présentez des signes de dépendance à l'alcool et il serait sage de réduire la cadence sous peine de devenir addict au produit et de voir des problèmes de santé arriver...";
         } elseif ($score > 151) {
             $message = "Alerte ! Votre niveau de consommation d'alcool est bien au delà du raisonnable. À ce stade le risque de dépendance est extrêmement élevé et sur la durée votre santé générale va se dégrader, votre moral va significativement baisser, ainsi vous risquez de nombreux problèmes à tous les niveaux ! Rapprochez-vous de votre médecin pour vous faire aider sans plus attendre !";

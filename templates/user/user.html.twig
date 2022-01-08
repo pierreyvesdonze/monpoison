@@ -4,6 +4,53 @@
 
 {% block body %}
 
-    <a href="{{ path('delete_user') }}" class="btn btn-danger" onclick="return confirm('Supprimer définitivement le compte ?')">Supprimer mon compte</a>
 
+<div class="container">
+
+
+    <h1>Mes statistiques</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Score de dépendance
+                </th>
+                <th>
+                    Unités d'alcool consommées
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    {% if user.alcoolScore is not null %} {{user.alcoolScore }} {% else %}
+                    <a href="{{ path('alcool_test') }}">Faire le test</a>
+                    {% endif %}
+                </td>
+                <td>{{ drinks|reduce((carry, projet) => carry + projet.quantity) }}</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('delete_user') }}" class="btn btn-danger"
+        onclick="return confirm('Supprimer définitivement votre compte ?')">Supprimer mon compte</a>
+
+</div>
 {% endblock %}

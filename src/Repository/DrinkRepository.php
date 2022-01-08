@@ -33,16 +33,15 @@ class DrinkRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-
-    /*
-    public function findOneBySomeField($value): ?Drink
+    public function findLastWeek($user): ?Drink
     {
         return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
+            ->where('d.user = :user')
+            ->andWhere('d.date BETWEEN :begin AND :end')
+            ->setParameter('begin', new \DateTime('now'))
+            ->setParameter('end', new \DateTime('-7 days'))
+            ->setParameter('user', $user)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getArrayResult();
     }
-    */
 }
