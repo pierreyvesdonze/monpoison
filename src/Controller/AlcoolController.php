@@ -74,7 +74,7 @@ class AlcoolController extends AbstractController
 
         if ($score <= 80 && $score > 0) {
             $message = "Votre consommation d'alcool est modérée, ne dépassez pas ce stade au risque de voir votre dépendance au produit augmenter";
-        } elseif($score >= 80 && $score <= 110) {
+        } elseif($score >= 81 && $score <= 110) {
             $message = "Votre consommation d'alccol est nettement supérieure aux recommandations de l'OMS. Rappelons que selon celles-ci, il est préférable de limiter la consommation d'alcool à 2 verres par jour pour une femme et 3 verres pour un homme, avec au moins 2 jours d'abstinence dans la semaine";
         } elseif ($score >= 111 && $score <= 130) {
             $message = "Attention, votre consommation d'alcool dépasse les recommandations établies par l'OMS. À ce stade vous présentez un risque de dépendance à l'alcool moyennement prononcé, il serait recommandé de réduire vos consommations.";

@@ -4,7 +4,6 @@
 
 {% block body %}
 
-
 <div class="container">
     <h1>Mon profil</h1>
     <hr>
@@ -15,7 +14,18 @@
                 Score de dépendance :
             </td>
             <td>
-                {% if user.alcoolScore is not null %} {{user.alcoolScore }} {% else %}
+                {% set score = user.alcoolScore %}
+                {% if score is not null %}
+                    {% if score > 0 and score <= 80 %}
+                    <span class="greenScore">Faible</span>
+                    {% elseif score >= 81 and score <= 110 %}
+                    <span class="middleScore">Moyen</span>
+                    {% elseif score >= 111 and score <= 150 %}
+                    <span class="hardScore">Elevé</span>
+                    {% elseif score >= 151 %}
+                    <span class="dangerScore">Danger !</span>
+                    {% endif %}
+                {% else %}
                 <a href="{{ path('alcool_test') }}">Faire le test</a>
                 {% endif %}
             </td>

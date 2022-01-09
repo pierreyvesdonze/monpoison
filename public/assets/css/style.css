@@ -185,4 +185,22 @@ h2 {
   height: 600px !important;
   margin: inherit;
 }
+
+/*SCORES*/
+.greenScore {
+  color: green;
+}
+
+.middleScore {
+  color: orange;
+}
+
+.hardScore {
+  color: red;
+}
+
+.dangerScore {
+  color: black;
+  font-weight: bold;
+}
 /*# sourceMappingURL=style.css.map */
