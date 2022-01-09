@@ -35,6 +35,11 @@ class DrinkType extends AbstractType
                     'class' => 'input'
                 ]
             ])
+            ->add('cost', IntegerType::class, [
+                'attr' => [
+                    'class' => 'input'
+                ]
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer',
                 'attr' => [

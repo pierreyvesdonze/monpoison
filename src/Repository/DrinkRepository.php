@@ -33,16 +33,29 @@ class DrinkRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findLastWeek($user): ?Drink
+    public function findLastWeekDrinks($user)
     {
         return $this->createQueryBuilder('d')
-            ->select('COUNT(d.quantity)')
             ->where('d.user = :user')
             ->andWhere('d.date BETWEEN :begin AND :end')
-            ->setParameter('begin', new \DateTime('now'))
-            ->setParameter('end', new \DateTime('-7 days'))
+            ->setParameter('begin', new \DateTime('-1 week'))
+            ->setParameter('end', new \DateTime('now'))
             ->setParameter('user', $user)
+            ->select('SUM(d.quantity)')
             ->getQuery()
-            ->getScalarResult();
+            ->getOneOrNullResult();
+    }
+
+    public function findLastWeekCost($user)
+    {
+        return $this->createQueryBuilder('d')
+            ->where('d.user = :user')
+            ->andWhere('d.date BETWEEN :begin AND :end')
+            ->setParameter('begin', new \DateTime('-1 week'))
+            ->setParameter('end', new \DateTime('now'))
+            ->setParameter('user', $user)
+            ->select('SUM(d.cost)')
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }

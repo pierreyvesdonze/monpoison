@@ -9,26 +9,35 @@
 
 
     <h1>Mes statistiques</h1>
-    <table>
+    <h2>Score de dépendance : {% if user.alcoolScore is not null %} {{user.alcoolScore }} {% else %}
+        <a href="{{ path('alcool_test') }}">Faire le test</a>
+        {% endif %}
+    </h2>
+    <table class="table" data-qty="{% for qty in drinks %} {{ qty.quantity }} {% endfor %}"
+        data-date="{% for date in drinks %} {{ date.date|date('d/m/y') }} {% endfor %}">
         <thead>
             <tr>
                 <th>
-                    Score de dépendance
+                    Boissons consommées sur 7 jours
                 </th>
                 <th>
-                    Unités d'alcool consommées
+                    Argent dépensé sur 7 jours
                 </th>
                 <th>
-                    Argent dépensé
+                    Boissons consommées au total
+                </th>
+                <th>
+                    Boissons consommées au total
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>
-                    {% if user.alcoolScore is not null %} {{user.alcoolScore }} {% else %}
-                    <a href="{{ path('alcool_test') }}">Faire le test</a>
-                    {% endif %}
+                    {{ lastWeekDrinks[1] }}
+                </td>
+                <td>
+                    {{ lastWeekCost[1] }} €
                 </td>
                 <td>
                     {{ drinks|reduce((q, drink) => q + drink.quantity) }}

@@ -45,6 +45,7 @@ class DrinkController extends AbstractController
             $drink = new Drink;
             $drink->setUser($this->getUser());
             $drink->setAlcool($form->get('alcool')->getData());
+            $drink->setCost($form->get('cost')->getData());
             $drink->setDate($form->get('date')->getData());
             $drink->setQuantity($form->get('quantity')->getData());
 

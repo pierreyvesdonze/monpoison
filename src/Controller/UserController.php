@@ -24,18 +24,15 @@ class UserController extends AbstractController
     public function index(DrinkRepository $drinkRepository): Response
     {
         $user = $this->getUser();
-        // $lastWeekDrink = $drinkRepository->findLastWeek($user);  
-
-        // dump($lastWeekDrink);
-
-        $drinks = $drinkRepository->findByUser($user);
-
-         // $qb = $this->entityManager->createQuery('SELECT count(d) FROM drink where d.user = $user and d.date > :date');
-        // $qb->setParameter('date', new \DateTime('-1 week'));
+        $lastWeekDrinks = $drinkRepository->findLastWeekDrinks($user);
+        $lastWeekCost   = $drinkRepository->findLastWeekCost($user);
+        $drinks         = $drinkRepository->findByUser($user);
 
         return $this->render('user/user.html.twig', [
-            'user' => $user,
-            'drinks' => $drinks
+            'user'           => $user,
+            'drinks'         => $drinks,
+            'lastWeekDrinks' => $lastWeekDrinks,
+            'lastWeekCost'   => $lastWeekCost
         ]);
     }
 }

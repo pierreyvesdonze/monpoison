@@ -33,6 +33,17 @@
             </fieldset>
 
             <fieldset class="msf_hide">
+                <h2>Combien avez-vous dépensé ?</h2>
+                <div>
+                    {{ form_row(form.cost) }}
+                </div>
+            
+                <input type="button" name="next" value="Suivant" onclick="msf_btn_next()">
+                <input type="button" name="back" value="Précédent" onclick="msf_btn_back()">
+                <div class="msf_bullet_o"></div>
+            </fieldset>
+
+            <fieldset class="msf_hide">
                 <h2>Date de cette consommation ?</h2>
                 <div>
                     {{ form_row(form.date) }}
