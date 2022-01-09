@@ -6,22 +6,30 @@
 
 
 <div class="container">
-    <h1>Mes statistiques</h1>
-    <h2>Score de dépendance : {% if user.alcoolScore is not null %} {{user.alcoolScore }} {% else %}
-        <a href="{{ path('alcool_test') }}">Faire le test</a>
-        {% endif %}
-    </h2>
+    <h1>Mon profil</h1>
+    <hr>
+    <h2>Statistiques</h2>
     <table class="table">
         <tr>
             <td>
-                Boissons consommées sur 7 jours
+                Score de dépendance :
+            </td>
+            <td>
+                {% if user.alcoolScore is not null %} {{user.alcoolScore }} {% else %}
+                <a href="{{ path('alcool_test') }}">Faire le test</a>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Boissons consommées sur 7 jours :
             </td>
             <td>
                 {{ lastWeekDrinks[1] }}
             </td>
         <tr>
             <td>
-                Argent dépensé sur 7 jours
+                Argent dépensé sur 7 jours :
             </td>
             <td>
                 {{ lastWeekCost[1] }} €
@@ -29,7 +37,7 @@
         </tr>
         <tr>
             <td>
-                Boissons consommées au total
+                Boissons consommées au total :
             </td>
             <td>
                 {{ drinks|reduce((q, drink) => q + drink.quantity) }}
@@ -37,13 +45,16 @@
         </tr>
         <tr>
             <td>
-                Argent dépensé au total
+                Argent dépensé au total :
             </td>
             <td>
                 {{ drinks|reduce((c, drink) => c + drink.cost) }} €
             </td>
         </tr>
     </table>
+
+    <br>
+    <br>
 
     <canvas id="myChart" width="400" height="400"></canvas>
     <input type="hidden" data-beer="{{ xBeer }}" id="xBeer">
@@ -63,7 +74,7 @@
                         'Alcool fort'
                     ],
                     datasets: [{
-                        label: 'My First Dataset',
+                        label: 'Répartition des alcools',
                         data: [
                             $("#xBeer").data('beer'),
                             $('#xWine').data('wine'),
@@ -76,12 +87,27 @@
                         ],
                         hoverOffset: 4
                     }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            labels: {
+                                // This more specific font property overrides the global property
+                                font: {
+                                    size: 24,
+                                    position: 'center'
+                                }
+                            }
+                        }
+                    }
                 }
             })
         });
     </script>
 
     <hr>
+
+    <h2>Options</h2>
 
     <a href="{{ path('delete_user') }}" class="btn btn-danger"
         onclick="return confirm('Supprimer définitivement votre compte ?')">Supprimer mon compte</a>
