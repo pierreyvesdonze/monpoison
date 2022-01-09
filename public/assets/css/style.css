@@ -16,7 +16,7 @@ MEDIA QUERIES
 }
 
 * {
-  font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
 }
 
 body {
@@ -28,8 +28,21 @@ ul li {
   list-style-type: none;
 }
 
-table tr th, table tr td {
-  padding: 10px;
+table tr td {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  table tr td {
+    font-size: 1.5em;
+  }
+}
+
+@media (min-width: 300px) and (max-width: 576px) {
+  table tr td {
+    font-size: 1.5em;
+  }
 }
 
 .main-button {
@@ -136,7 +149,8 @@ input[type="text"]:focus {
   opacity: 0.5;
 }
 
-input[type="button"], input[type="submit"] {
+input[type="button"],
+input[type="submit"] {
   margin-top: 20px !important;
   cursor: pointer;
   outline: none;
@@ -150,7 +164,8 @@ input[type="button"], input[type="submit"] {
           box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 5px;
 }
 
-input[type="button"]:hover, input[type="submit"]:hover {
+input[type="button"]:hover,
+input[type="submit"]:hover {
   background-color: darkgrey;
   color: white;
 }
@@ -163,4 +178,6 @@ h2 {
   display: block;
   margin-bottom: 25px !important;
 }
+
+/*MYCHART*/
 /*# sourceMappingURL=style.css.map */

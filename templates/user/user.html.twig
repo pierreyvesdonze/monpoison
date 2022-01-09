@@ -6,64 +6,82 @@
 
 
 <div class="container">
-
-
     <h1>Mes statistiques</h1>
     <h2>Score de dépendance : {% if user.alcoolScore is not null %} {{user.alcoolScore }} {% else %}
         <a href="{{ path('alcool_test') }}">Faire le test</a>
         {% endif %}
     </h2>
-    <table class="table" data-qty="{% for qty in drinks %} {{ qty.quantity }} {% endfor %}"
-        data-date="{% for date in drinks %} {{ date.date|date('d/m/y') }} {% endfor %}">
-        <thead>
-            <tr>
-                <th>
-                    Boissons consommées sur 7 jours
-                </th>
-                <th>
-                    Argent dépensé sur 7 jours
-                </th>
-                <th>
-                    Boissons consommées au total
-                </th>
-                <th>
-                    Boissons consommées au total
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    {{ lastWeekDrinks[1] }}
-                </td>
-                <td>
-                    {{ lastWeekCost[1] }} €
-                </td>
-                <td>
-                    {{ drinks|reduce((q, drink) => q + drink.quantity) }}
-                </td>
-                <td>
-                    {{ drinks|reduce((c, drink) => c + drink.cost) }} €
-                </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-        </tbody>
+    <table class="table">
+        <tr>
+            <td>
+                Boissons consommées sur 7 jours
+            </td>
+            <td>
+                {{ lastWeekDrinks[1] }}
+            </td>
+        <tr>
+            <td>
+                Argent dépensé sur 7 jours
+            </td>
+            <td>
+                {{ lastWeekCost[1] }} €
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Boissons consommées au total
+            </td>
+            <td>
+                {{ drinks|reduce((q, drink) => q + drink.quantity) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Argent dépensé au total
+            </td>
+            <td>
+                {{ drinks|reduce((c, drink) => c + drink.cost) }} €
+            </td>
+        </tr>
     </table>
+
+    <canvas id="myChart" width="400" height="400"></canvas>
+    <input type="hidden" data-beer="{{ xBeer }}" id="xBeer">
+    <input type="hidden" data-wine="{{ xWine }}" id="xWine">
+    <input type="hidden" data-spiritus="{{ xSpiritus }}" id="xSpiritus">
+
+    <script>
+        window.addEventListener("DOMContentLoaded", (event) => {
+            console.log($('.table').data('drinks'));
+            const ctx = document.getElementById('myChart');
+            const myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: [
+                        'Bière',
+                        'Vin',
+                        'Alcool fort'
+                    ],
+                    datasets: [{
+                        label: 'My First Dataset',
+                        data: [
+                            $("#xBeer").data('beer'),
+                            $('#xWine').data('wine'),
+                            $('#xSpiritus').data('spiritus')
+                        ],
+                        backgroundColor: [
+                            'rgb(255, 205, 86)',
+                            'rgb(115, 18, 18, 1)',
+                            'rgb(250, 122, 3, 1)'
+                        ],
+                        hoverOffset: 4
+                    }]
+                }
+            })
+        });
+    </script>
+
+    <hr>
 
     <a href="{{ path('delete_user') }}" class="btn btn-danger"
         onclick="return confirm('Supprimer définitivement votre compte ?')">Supprimer mon compte</a>

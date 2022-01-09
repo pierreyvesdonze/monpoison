@@ -58,4 +58,40 @@ class DrinkRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    public function findTotalBeer($user)
+    {
+        return $this->createQueryBuilder('d')
+            ->where('d.user = :user')
+            ->andWhere('d.alcool = :beer')
+            ->setParameter('user', $user)
+            ->setParameter('beer', 4)
+            ->select('SUM(d.quantity)')
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function findTotalWine($user)
+    {
+        return $this->createQueryBuilder('d')
+            ->where('d.user = :user')
+            ->andWhere('d.alcool = :wine')
+            ->setParameter('user', $user)
+            ->setParameter('wine', 5)
+            ->select('SUM(d.quantity)')
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function findTotalSpiritus($user)
+    {
+        return $this->createQueryBuilder('d')
+            ->where('d.user = :user')
+            ->andWhere('d.alcool = :spiritus')
+            ->setParameter('user', $user)
+            ->setParameter('spiritus', 6)
+            ->select('SUM(d.quantity)')
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

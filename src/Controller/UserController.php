@@ -24,15 +24,28 @@ class UserController extends AbstractController
     public function index(DrinkRepository $drinkRepository): Response
     {
         $user = $this->getUser();
+
         $lastWeekDrinks = $drinkRepository->findLastWeekDrinks($user);
         $lastWeekCost   = $drinkRepository->findLastWeekCost($user);
         $drinks         = $drinkRepository->findByUser($user);
+        $totalBeer      = $drinkRepository->findTotalBeer($user)[1];
+        $totalWine      = $drinkRepository->findTotalWine($user)[1];
+        $totalSpiritus  = $drinkRepository->findTotalSpiritus($user)[1];
 
+        $totalDrink = (int)$totalBeer + (int)$totalWine + (int)$totalSpiritus;
+
+        $xBeer     = ((int)$totalBeer * 100) / $totalDrink;
+        $xWine     = ((int)$totalWine * 100) / $totalDrink;
+        $xSpiritus = ((int)$totalSpiritus * 100) / $totalDrink;
+       
         return $this->render('user/user.html.twig', [
             'user'           => $user,
             'drinks'         => $drinks,
             'lastWeekDrinks' => $lastWeekDrinks,
-            'lastWeekCost'   => $lastWeekCost
+            'lastWeekCost'   => $lastWeekCost,
+            'xBeer'          => $xBeer,
+            'xWine'          => $xWine,
+            'xSpiritus'      => $xSpiritus
         ]);
     }
 }
