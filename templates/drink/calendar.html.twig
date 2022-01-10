@@ -5,10 +5,43 @@
 
 <div class="container">
 
+    <!-- Modal -->
+    <div class="modal fade" id="infoConso" tabindex="-1" aria-labelledby="infoConsolLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-dark">
+                    <h5 class="modal-title" id="infoConsolLabel">Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <p>
+                        Une unité d'alcool correspond à : <br>
+                    <ul>
+                        <li>
+                            - 25cl de bière à 5.5°
+                        </li>
+                        ou
+                        <li>
 
+                            - 12cl de vin à 12 °
+                        </li>
+                        ou
+                        <li>
+                            - 4cl d'alcool fort à 40°
+                        </li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
     <h1>Mes consommations</h1>
 
     <a href="{{ path('drink_add') }}" class="btn btn-secondary">Ajouter une consommation</a>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#infoConso">
+        <i class="fas fa-info-circle fa-2x"></i>
+    </button>
 
     <hr>
 
@@ -27,7 +60,7 @@
                 <div class="d-flex justify-content-between">
                     <a href="{{ path('drink_update', {'id': drink.id}) }}" class="btn btn-secondary">Editer</a>
                     <a href="{{ path('drink_delete', {'id':drink.id}) }}" class="btn btn-danger"
-                    onclick="return confirm('Voulez-vous supprimer cette consommation ?') ">Supprimer</a>
+                        onclick="return confirm('Voulez-vous supprimer cette consommation ?') ">Supprimer</a>
                 </div>
             </div>
         </div>
