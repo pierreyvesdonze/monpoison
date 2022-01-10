@@ -97,8 +97,32 @@ CONTAINER
 	flex-wrap: wrap;
 }
 
+/**********************
+ICON
+**********************/
 .alcool-png {
 	width: 35px;
+}
+
+/**********************
+HOMEPAGE
+**********************/
+.big-text {
+	width: 60%;
+	margin-top: 2em;
+}
+
+.big-text p {
+	font-size: 8em;
+	text-transform: uppercase;
+	line-height: 1.1em;
+	font-weight: bold;
+	@include xs {
+		font-size: 3em;
+	}
+	@include sm {
+		font-size: 3em;
+	}
 }
 
 /**********************
