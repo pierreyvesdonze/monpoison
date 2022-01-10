@@ -6,7 +6,8 @@
             |||
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav">
+
                 {% if app.user %}
 
                 <li class="nav-item dropdown">
@@ -17,9 +18,31 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{{ path('user_account') }}">Tableau de bord</a></li>
                         <li><a class="dropdown-item" href="{{ path('drink_calendar') }}">Mes consommations</a></li>
-
+                        <li>
+                            <a class="dropdown-item" aria-current="page" href="{{ path('logout') }}">Se
+                                déconnecter</a>
+                        </li>
                     </ul>
-                    {% endif %}
+                </li>
+
+                {% else %}
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Mon profil
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a href="{{path('login')}}" type="button" class="dropdown-item">Se connecter</a>
+                        </li>
+                        <li>
+                            <a href="{{path('app_register')}}" type="button" class="dropdown-item">S'enregistrer</a>
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('alcool_test') }}">Test de dépendance</a>
                 </li>
@@ -27,12 +50,7 @@
                     <a class="nav-link" href="#">L'alcool en chiffres</a>
                 </li>
                 <li class="nav-item">
-                    {% if app.user %}
-                    <a class="nav-link active" aria-current="page" href="{{ path('logout') }}">Se déconnecter</a>
-                    {% else %}
-                    <a href="{{path('login')}}" type="button" class="btn btn-secondary">Se connecter</a>
-                    <a href="{{path('app_register')}}" type="button" class="btn btn-primary">s'enregistrer</a>
-                    {% endif %}
+
                 </li>
             </ul>
         </div>

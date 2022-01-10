@@ -56,11 +56,15 @@ table tr td {
 NAV MENU
 *********************/
 .navbar {
-  background-color: #3f3f3fd2 !important;
+  background-color: #3f3f3f40 !important;
 }
 
 .dropdown-menu {
   background-color: #303030 !important;
+}
+
+.nav-item {
+  margin-left: 50px;
 }
 
 .nav-item,
