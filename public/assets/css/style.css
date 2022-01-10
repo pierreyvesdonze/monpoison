@@ -27,8 +27,20 @@ body {
   background: url("../images/cocktail-bg.jpg") no-repeat fixed;
 }
 
+@media (min-width: 300px) and (max-width: 576px) {
+  body {
+    background: url("../images/cocktail-bg-small.jpg") no-repeat fixed;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  body {
+    background: url("../images/cocktail-bg-small.jpg") no-repeat fixed;
+  }
+}
+
 .alert-success {
-  font-size: 1.8em;
+  background-color: rgba(68, 68, 68, 0.692);
 }
 
 ul li {
@@ -63,7 +75,8 @@ NAV MENU
   background-color: #303030 !important;
 }
 
-.nav-item, .dropdown-item {
+.nav-item,
+.dropdown-item {
   margin-bottom: 2em !important;
   font-size: 1.3em;
 }
@@ -84,18 +97,6 @@ CONTAINER
           justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-}
-
-@media (min-width: 300px) and (max-width: 576px) {
-  .container-center {
-    margin-top: 50%;
-  }
-}
-
-@media (min-width: 576px) and (max-width: 768px) {
-  .container-center {
-    margin-top: 50%;
-  }
 }
 
 .alcool-png {
@@ -121,7 +122,8 @@ form[name="alcool_test"] {
   }
 }
 
-select, select option {
+select,
+select option {
   background: rgba(3, 3, 3, 0.849);
 }
 
@@ -174,7 +176,6 @@ form[name="drink"] {
 
 .form_wrapper {
   min-width: 300px;
-  line-height: 5em;
 }
 
 fieldset {
@@ -202,7 +203,7 @@ fieldset {
 
 input {
   display: block;
-  height: 60px;
+  width: 100%;
   margin: 15px 0px;
   background-color: rgba(0, 0, 0, 0);
 }
