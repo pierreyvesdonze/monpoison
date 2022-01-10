@@ -140,13 +140,13 @@ HOMEPAGE
 
 @media (min-width: 300px) and (max-width: 576px) {
   .big-text p {
-    font-size: 3em;
+    font-size: 3.2em;
   }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
   .big-text p {
-    font-size: 3em;
+    font-size: 3.2em;
   }
 }
 
