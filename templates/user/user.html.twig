@@ -16,18 +16,15 @@
             <td>
                 {% set score = user.alcoolScore %}
                 {% if score is not null %}
-                    {% if score > 0 and score <= 5 %}
-                    <span class="greenScore">Faible</span>
-                    {% elseif score >= 6 and score <= 8 %}
-                    <span class="middleScore">Moyen</span>
-                    {% elseif score >= 9 and score <= 15 %}
-                    <span class="hardScore">Elevé</span>
-                    {% elseif score > 16 %}
-                    <span class="dangerScore">Danger !</span>
-                    {% endif %}
-                {% else %}
-                <a href="{{ path('alcool_test') }}">Faire le test</a>
-                {% endif %}
+                {% if score > 0 and score <= 5 %} <span class="greenScore">Faible</span>
+                    {% elseif score >= 6 and score <= 8 %} <span class="middleScore">Moyen</span>
+                        {% elseif score >= 9 and score <= 15 %} <span class="hardScore">Elevé</span>
+                            {% elseif score > 16 %}
+                            <span class="dangerScore">Danger !</span>
+                            {% endif %}
+                            {% else %}
+                            <a href="{{ path('alcool_test') }}">Faire le test</a>
+                            {% endif %}
             </td>
         </tr>
         <tr>
@@ -35,14 +32,23 @@
                 Boissons consommées sur 7 jours :
             </td>
             <td>
+                {% if lastWeekDrinks[1] is not empty %}
                 {{ lastWeekDrinks[1] }}
+                {% else %}
+                Aucun enregistrement
+                {% endif %}
+
             </td>
         <tr>
             <td>
                 Argent dépensé sur 7 jours :
             </td>
             <td>
+                {% if lastWeekCost[1] is not empty %}
                 {{ lastWeekCost[1] }} €
+                {% else %}
+                Aucun enregistrement
+                {% endif %}
             </td>
         </tr>
         <tr>
@@ -50,7 +56,12 @@
                 Boissons consommées au total :
             </td>
             <td>
+                {% if drinks is not empty %}
                 {{ drinks|reduce((q, drink) => q + drink.quantity) }}
+                {% else %}
+                Aucun enregistrement
+                {% endif %}
+
             </td>
         </tr>
         <tr>
@@ -58,7 +69,12 @@
                 Argent dépensé au total :
             </td>
             <td>
+                {% if drinks is not empty %}
                 {{ drinks|reduce((c, drink) => c + drink.cost) }} €
+                {% else %}
+                Aucun enregistrement
+                {% endif %}
+
             </td>
         </tr>
     </table>
