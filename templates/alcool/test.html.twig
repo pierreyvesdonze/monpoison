@@ -1,44 +1,53 @@
 {% extends 'base.html.twig' %}
-{% block title %}Test de consommation{% endblock %}
+{% block title %}Test d'évaluation de dépendance{% endblock %}
 
 {% block body %}
 
 <div class="container">
-    <h1>Test d'évaluation de degré de dépendance</h1>
+    <h1>Test d'évaluation de dépendance</h1>
     {{ form_start(form) }}
-    {{ form_label(form.sex) }} 
+    {{ form_label(form.frequencyComsumption) }}
     <br>
-    {{ form_widget(form.sex) }}
-    <br>
-    <br>
-    {{ form_label(form.age) }} 
-    <br>
-    {{ form_widget(form.age) }}
+    {{ form_widget(form.frequencyComsumption) }}
     <br>
     <br>
-    {{ form_label(form.weight) }} 
+    {{ form_label(form.drinkByDay) }} 
     <br>
-    {{ form_widget(form.weight) }}
-    <br>
-    <br>
-    {{ form_label(form.lastDay) }} 
-    <br>
-    {{ form_widget(form.lastDay) }}
+    {{ form_widget(form.drinkByDay) }}
     <br>
     <br>
-    {{ form_label(form.lastDrink) }} 
+    {{ form_label(form.fiveDrinksFrequency) }} 
     <br>
-    {{ form_widget(form.lastDrink) }}
+    {{ form_widget(form.fiveDrinksFrequency) }}
     <br>
     <br>
-    {{ form_label(form.money) }} 
+    {{ form_label(form.stopControl) }} 
     <br>
-    {{ form_widget(form.money) }}
+    {{ form_widget(form.stopControl) }}
+    <br>
+    <br>
+    {{ form_label(form.failAttempt) }} 
+    <br>
+    {{ form_widget(form.failAttempt) }}
+    <br>
+    <br>
+    {{ form_label(form.needFirstDrink) }} 
+    <br>
+    {{ form_widget(form.needFirstDrink) }}
+    <br>
+    <br>
+    {{ form_label(form.regrets) }} 
+    <br>
+    {{ form_widget(form.regrets) }}
+    <br>
+    <br>
+    {{ form_label(form.noMemory) }} 
+    <br>
+    {{ form_widget(form.noMemory) }}
     <br>
     <br>
     {{ form_row(form.submit) }}
     {{ form_end(form) }}
 </div>
-
 
 {% endblock %}

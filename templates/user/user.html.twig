@@ -16,13 +16,13 @@
             <td>
                 {% set score = user.alcoolScore %}
                 {% if score is not null %}
-                    {% if score > 0 and score <= 80 %}
+                    {% if score > 0 and score <= 5 %}
                     <span class="greenScore">Faible</span>
-                    {% elseif score >= 81 and score <= 110 %}
+                    {% elseif score >= 6 and score <= 8 %}
                     <span class="middleScore">Moyen</span>
-                    {% elseif score >= 111 and score <= 150 %}
+                    {% elseif score >= 9 and score <= 15 %}
                     <span class="hardScore">Elevé</span>
-                    {% elseif score >= 151 %}
+                    {% elseif score > 16 %}
                     <span class="dangerScore">Danger !</span>
                     {% endif %}
                 {% else %}

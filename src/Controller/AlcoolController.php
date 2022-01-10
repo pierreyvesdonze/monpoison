@@ -30,20 +30,17 @@ class AlcoolController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             
-            $score           = 0;
-            $ageFactor       = $form->get('age')->getData();
-            $weightFactor    = $form->get('weight')->getData();
-            $lastDayFactor   = count($form->get('lastDay')->getData());
-            $lastDrinkFactor = (int)$form->get('lastDrink')->getData();
-            $moneyFactor     = (int)$form->get('money')->getData();
+            $score                   = 0;
+            $frequencyComsumption    = ($form->get('frequencyComsumption')->getData());
+            $drinkByDay              = $form->get('drinkByDay')->getData();
+            $fiveDrinksFrequency     = $form->get('fiveDrinksFrequency')->getData();
+            $stopControl             = $form->get('stopControl')->getData();
+            $failAttempt             = $form->get('failAttempt')->getData();
+            $needFirstDrink          = $form->get('needFirstDrink')->getData();
+            $regrets                 = $form->get('regrets')->getData();
+            $noMemory                = $form->get('noMemory')->getData();
 
-            if (0 === $form->get('sex')->getData()) {
-                $sexFactor = 1.2;
-            } else {
-                $sexFactor = 1;
-            }
-
-            $score += round(($ageFactor + $weightFactor + ($lastDayFactor *= 10) + $lastDrinkFactor + ($moneyFactor/2)) * $sexFactor);
+            $score += $frequencyComsumption + $drinkByDay + $fiveDrinksFrequency + $stopControl + $failAttempt + $needFirstDrink + $regrets + $noMemory;
 
             $user = $this->getUSer();
             if (null != $user) {
@@ -72,19 +69,21 @@ class AlcoolController extends AbstractController
          */
         $message = null;
 
-        if ($score <= 80 && $score > 0) {
+        dump($score);
+
+        if ($score === 0) {
+            $message = "Votre consommation d'alcool est nulle ou raisonnable, vous ne courez pas ou très peu de risque de dépendance.";
+        } elseif ($score <= 4 && $score > 0) {
             $message = "Votre consommation d'alcool est modérée, ne dépassez pas ce stade au risque de voir votre dépendance au produit augmenter";
-        } elseif($score >= 81 && $score <= 110) {
+        } elseif($score >= 5 && $score <= 8) {
             $message = "Votre consommation d'alccol est nettement supérieure aux recommandations de l'OMS. Rappelons que selon celles-ci, il est préférable de limiter la consommation d'alcool à 2 verres par jour pour une femme et 3 verres pour un homme, avec au moins 2 jours d'abstinence dans la semaine";
-        } elseif ($score >= 111 && $score <= 130) {
+        } elseif ($score >= 9 && $score <= 12) {
             $message = "Attention, votre consommation d'alcool dépasse les recommandations établies par l'OMS. À ce stade vous présentez un risque de dépendance à l'alcool moyennement prononcé, il serait recommandé de réduire vos consommations.";
-        } elseif ($score >= 131 && $score <= 150) {
+        } elseif ($score >= 12 && $score <= 16) {
             $message = "Votre consommation dépasse largement les recommandations de l'OMS. Vous présentez des signes de dépendance à l'alcool et il serait sage de réduire la cadence sous peine de devenir addict au produit et de voir des problèmes de santé arriver...";
-        } elseif ($score > 151) {
+        } elseif ($score > 16) {
             $message = "Alerte ! Votre niveau de consommation d'alcool est bien au delà du raisonnable. À ce stade le risque de dépendance est extrêmement élevé et sur la durée votre santé générale va se dégrader, votre moral va significativement baisser, ainsi vous risquez de nombreux problèmes à tous les niveaux ! Rapprochez-vous de votre médecin pour vous faire aider sans plus attendre !";
-        } elseif ($score == 0) {
-            $message = "Si vous ne consommez pas d'alcool du tout, vous n'avez aucun risque de devenir dépendant !";
-        }
+        } 
 
         return $this->render('alcool/test.result.html.twig', [
             'message' => $message,
