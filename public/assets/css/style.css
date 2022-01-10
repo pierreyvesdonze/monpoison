@@ -85,6 +85,22 @@ CONTAINER
   text-align: center;
 }
 
+.logo-alcool-info img {
+  width: 50%;
+}
+
+@media (min-width: 300px) and (max-width: 576px) {
+  .logo-alcool-info img {
+    width: 70%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .logo-alcool-info img {
+    width: 70%;
+  }
+}
+
 .container {
   background-color: #3f3f3f40;
 }

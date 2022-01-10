@@ -77,6 +77,16 @@ CONTAINER
 	text-align: center;
 }
 
+.logo-alcool-info img {
+	width: 50%;
+	@include xs {
+		width: 70%;
+	}
+	@include sm {
+		width: 70%;
+	}
+}
+
 .container {
 	background-color: #3f3f3f40;
 }
