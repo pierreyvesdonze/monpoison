@@ -42,7 +42,6 @@ class UserController extends AbstractController
             $xBeer = $xWine = $xSpiritus = 0;
         }
 
-       
         return $this->render('user/user.html.twig', [
             'user'           => $user,
             'drinks'         => $drinks,

@@ -82,6 +82,9 @@
     <br>
     <br>
 
+    {% if drinks is not empty %}
+
+
     <canvas id="myChart" width="400" height="400"></canvas>
     <input type="hidden" data-beer="{{ xBeer }}" id="xBeer">
     <input type="hidden" data-wine="{{ xWine }}" id="xWine">
@@ -131,6 +134,7 @@
         });
     </script>
 
+    {% endif %}
     <hr>
 
     <h2>Options</h2>
