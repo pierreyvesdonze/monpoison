@@ -31,12 +31,14 @@ body {
 @media (min-width: 300px) and (max-width: 576px) {
   body {
     background: url("../images/cocktail-bg-small.jpg") no-repeat fixed;
+    background-size: cover;
   }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
   body {
     background: url("../images/cocktail-bg-small.jpg") no-repeat fixed;
+    background-size: cover;
   }
 }
 
@@ -61,7 +63,7 @@ NAV MENU
 }
 
 .dropdown-menu {
-  background-color: #303030 !important;
+  background-color: #30303000 !important;
 }
 
 .nav-item {

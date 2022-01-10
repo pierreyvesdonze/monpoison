@@ -26,9 +26,11 @@ body {
 	background-size: cover;
 	@include xs {
 		background: url("../images/cocktail-bg-small.jpg") no-repeat fixed;
+		background-size: cover;
 	}
 	@include sm {
 		background: url("../images/cocktail-bg-small.jpg") no-repeat fixed;
+		background-size: cover;
 	}
 }
 
@@ -53,7 +55,7 @@ NAV MENU
 }
 
 .dropdown-menu {
-	background-color: #303030 !important;
+	background-color: #30303000 !important;
 }
 
 .nav-item {
