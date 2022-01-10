@@ -72,6 +72,9 @@ NAV MENU
   background-color: #1d1d1d !important;
 }
 
+/**********************
+CONTAINER
+**********************/
 .container-center {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -201,6 +204,7 @@ input {
   display: block;
   height: 60px;
   margin: 15px 0px;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .input[type="text"],
@@ -226,7 +230,6 @@ input[type="submit"] {
   border: none;
   padding: 15px !important;
   line-height: 0px;
-  background-color: #fff;
   -webkit-transition: all 150ms;
   transition: all 150ms;
   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 5px;
