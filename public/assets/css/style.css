@@ -51,15 +51,15 @@ table tr td {
 }
 
 .offcanvas {
-  width: 80%;
+  width: 80% !important;
 }
 
 .offcanvas-body ul li {
-  padding-bottom: 1.5em;
+  padding-bottom: 1.5em !important;
 }
 
 .offcanvas-body ul li a {
-  font-size: 1.5em;
+  font-size: 1.5em !important;
   text-decoration: none;
 }
 
