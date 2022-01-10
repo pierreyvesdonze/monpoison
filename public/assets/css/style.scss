@@ -23,6 +23,7 @@ body {
 	height: 100vh;
 	//background: var(--body-bg);
 	background: url("../images/cocktail-bg.jpg") no-repeat fixed;
+	background-size: cover;
 	@include xs {
 		background: url("../images/cocktail-bg-small.jpg") no-repeat fixed;
 	}
