@@ -34,12 +34,20 @@ class UserController extends AbstractController
 
         $totalDrink = (int)$totalBeer + (int)$totalWine + (int)$totalSpiritus;
 
-        if(null !== $totalBeer && null !== $totalWine && null !== $totalSpiritus) {
+        if (null !== $totalBeer) {
             $xBeer     = ((int)$totalBeer * 100) / $totalDrink;
+        } else {
+            $xBeer = 0;
+        }
+        if (null !== $totalWine) {
             $xWine     = ((int)$totalWine * 100) / $totalDrink;
+        } else {
+            $xWine = 0;
+        }
+        if (null !== $totalSpiritus) {
             $xSpiritus = ((int)$totalSpiritus * 100) / $totalDrink;
         } else {
-            $xBeer = $xWine = $xSpiritus = 0;
+            $xSpiritus = 0;
         }
 
         return $this->render('user/user.html.twig', [
