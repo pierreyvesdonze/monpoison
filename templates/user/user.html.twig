@@ -20,7 +20,7 @@
                     {% elseif score >= 6 and score <= 8 %} <span class="middleScore">Moyen</span>
                         {% elseif score >= 9 and score <= 15 %} <span class="hardScore">Elevé</span>
                             {% elseif score > 16 %}
-                            <span class="dangerScore">Danger !</span>
+                            <span class="dangerScore">Danger</span>
                             {% endif %}
                             {% else %}
                             <a href="{{ path('alcool_test') }}">Faire le test</a>

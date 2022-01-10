@@ -52,18 +52,6 @@ table tr td {
   font-weight: bold;
 }
 
-@media (min-width: 576px) and (max-width: 768px) {
-  table tr td {
-    font-size: 1.5em;
-  }
-}
-
-@media (min-width: 300px) and (max-width: 576px) {
-  table tr td {
-    font-size: 1.5em;
-  }
-}
-
 /*********************
 NAV MENU
 *********************/
@@ -258,6 +246,20 @@ MYCHART
   width: 600px !important;
   height: 600px !important;
   margin: inherit;
+}
+
+@media (min-width: 300px) and (max-width: 576px) {
+  #myChart {
+    width: 350px !important;
+    height: 350px !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  #myChart {
+    width: 350px !important;
+    height: 350px !important;
+  }
 }
 
 /*SCORES*/

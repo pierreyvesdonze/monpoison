@@ -42,12 +42,6 @@ ul li {
 table tr td {
 	font-size: 1.3em;
 	font-weight: bold;
-	@include sm {
-		font-size: 1.5em;
-	}
-	@include xs {
-		font-size: 1.5em;
-	}
 }
 
 /*********************
@@ -203,6 +197,14 @@ MYCHART
 	width: 600px !important;
 	height: 600px !important;
 	margin: inherit;
+	@include xs {
+		width: 350px !important;
+		height: 350px !important;
+	}
+	@include sm {
+		width: 350px !important;
+		height: 350px !important;
+	}
 }
 
 /*SCORES*/
