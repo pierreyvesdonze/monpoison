@@ -16,18 +16,18 @@
 
     <div class="container-center">
         {% for drink in drinks %}
-        <div class="col-sm-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ drink.date|date('d/m/y') }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">
-                        <img src="{{ asset(drink.alcool.imgPath) }}" class="alcool-png">
-                    </h6>
-                    <p class="card-text">{{ drink.quantity }} unités</p>
-                    <p class="card-text"><b>{{ drink.cost }} €</b> dépensés</p>
+        <div class="card">
+            <h5 class="card-header">{{ drink.date|date('d/m/y') }}</h5>
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">
+                    <img src="{{ asset(drink.alcool.imgPath) }}" class="alcool-png">
+                </h6>
+                <p class="card-text">{{ drink.quantity }} unités</p>
+                <p class="card-text"><b>{{ drink.cost }} €</b> dépensés</p>
+                <div class="d-flex justify-content-between">
                     <a href="{{ path('drink_update', {'id': drink.id}) }}" class="btn btn-secondary">Editer</a>
                     <a href="{{ path('drink_delete', {'id':drink.id}) }}" class="btn btn-danger"
-                        onclick="return confirm('Voulez-vous supprimer cette consommation ?') ">Supprimer</a>
+                    onclick="return confirm('Voulez-vous supprimer cette consommation ?') ">Supprimer</a>
                 </div>
             </div>
         </div>
