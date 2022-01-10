@@ -53,15 +53,15 @@ class RegistrationController extends AbstractController
             $this->em->flush();
 
             // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation(
-                'app_verify_email',
-                $user,
-                (new TemplatedEmail())
-                    ->from(new Address('admin@monpoison.frr', 'pyd'))
-                    ->to($user->getEmail())
-                    ->subject("NE PAS REPONDRE confirmation d'email")
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
-            );
+            // $this->emailVerifier->sendEmailConfirmation(
+            //     'app_verify_email',
+            //     $user,
+            //     (new TemplatedEmail())
+            //         ->from(new Address('admin@monpoison.frr', 'pyd'))
+            //         ->to($user->getEmail())
+            //         ->subject("NE PAS REPONDRE confirmation d'email")
+            //         ->htmlTemplate('registration/confirmation_email.html.twig')
+            // );
             // do anything else you need here, like send an email
 
             return $this->redirectToRoute('login');
