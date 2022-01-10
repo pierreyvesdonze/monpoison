@@ -23,7 +23,7 @@
                     <h6 class="card-subtitle mb-2 text-muted">
                         <img src="{{ asset(drink.alcool.imgPath) }}" class="alcool-png">
                     </h6>
-                    <p class="card-text">{{ drink.quantity }} unitées d'alcool consommées</p>
+                    <p class="card-text">{{ drink.quantity }} unités</p>
                     <p class="card-text"><b>{{ drink.cost }} €</b> dépensés</p>
                     <a href="{{ path('drink_update', {'id': drink.id}) }}" class="btn btn-secondary">Editer</a>
                     <a href="{{ path('drink_delete', {'id':drink.id}) }}" class="btn btn-danger"

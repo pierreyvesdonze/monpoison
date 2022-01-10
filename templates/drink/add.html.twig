@@ -12,7 +12,9 @@
             <fieldset class="msf_hide">
                 <h2>Quel type d'alcool avez-vous bu ?</h2>
                 <div>
-                    {{ form_row(form.alcool) }}
+                    {{ form_label(form.alcool) }}
+                    <br>
+                    {{ form_widget(form.alcool) }}
                 </div>
 
                 <input type="button" name="next" value="Suivant" onclick="msf_btn_next()">
@@ -24,7 +26,9 @@
             <fieldset class="msf_hide">
                 <h2>Quelle quantité avez-vous bu ?</h2>
                 <div>
-                    {{ form_row(form.quantity) }}
+                    {{ form_label(form.quantity) }}
+                    <br>
+                    {{ form_widget(form.quantity) }}
                 </div>
 
                 <input type="button" name="next" value="Suivant" onclick="msf_btn_next()">
@@ -35,7 +39,9 @@
             <fieldset class="msf_hide">
                 <h2>Combien avez-vous dépensé ?</h2>
                 <div>
-                    {{ form_row(form.cost) }}
+                    {{ form_label(form.cost) }}
+                    <br>
+                    {{ form_widget(form.cost) }}
                 </div>
             
                 <input type="button" name="next" value="Suivant" onclick="msf_btn_next()">
@@ -46,7 +52,9 @@
             <fieldset class="msf_hide">
                 <h2>Date de cette consommation ?</h2>
                 <div>
-                    {{ form_row(form.date) }}
+                    {{ form_label(form.date) }}
+                    <br>
+                    {{ form_widget(form.date) }}
                 </div>
 
                 <input type="button" name="next" value="Suivant" onclick="msf_btn_next()">

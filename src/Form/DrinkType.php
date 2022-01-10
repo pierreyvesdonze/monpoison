@@ -36,6 +36,7 @@ class DrinkType extends AbstractType
                 ]
             ])
             ->add('cost', IntegerType::class, [
+                'label' => 'Argent dépensé',
                 'attr' => [
                     'class' => 'input'
                 ]
