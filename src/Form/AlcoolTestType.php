@@ -116,7 +116,7 @@ class AlcoolTestType extends AbstractType
 
         $builder
             ->add('submit', SubmitType::class, [
-                'attr' => ['class' => 'btn btn-secondary'],
+                'attr' => ['class' => 'custom-btn'],
                 'label' => 'Enregistrer'
             ]);
     }

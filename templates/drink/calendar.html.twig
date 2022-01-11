@@ -37,7 +37,7 @@
     </div>
     <h1>Mes consommations</h1>
 
-    <a href="{{ path('drink_add') }}" class="btn btn-secondary">Ajouter une consommation</a>
+    <a href="{{ path('drink_add') }}" class="custom-btn">Ajouter une consommation</a>
     <!-- Button trigger modal -->
     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#infoConso">
         <i class="fas fa-info-circle fa-2x"></i>
@@ -58,7 +58,7 @@
                 <p class="card-text">{{ drink.quantity }} unités</p>
                 <p class="card-text"><b>{{ drink.cost }} €</b> dépensés</p>
                 <div class="d-flex justify-content-between">
-                    <a href="{{ path('drink_update', {'id': drink.id}) }}" class="btn btn-secondary">Editer</a>
+                    <a href="{{ path('drink_update', {'id': drink.id}) }}" class="custom-btn">Editer</a>
                     <a href="{{ path('drink_delete', {'id':drink.id}) }}" class="btn btn-danger"
                         onclick="return confirm('Voulez-vous supprimer cette consommation ?') ">Supprimer</a>
                 </div>

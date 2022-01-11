@@ -69,8 +69,6 @@ class AlcoolController extends AbstractController
          */
         $message = null;
 
-        dump($score);
-
         if ($score === 0) {
             $message = "Votre consommation d'alcool est nulle ou raisonnable, vous ne courez pas ou très peu de risque de dépendance.";
         } elseif ($score <= 4 && $score > 0) {
