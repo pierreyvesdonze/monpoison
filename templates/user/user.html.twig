@@ -105,9 +105,9 @@
                     datasets: [{
                         label: 'Répartition des alcools',
                         data: [
-                            $("#xBeer").data('beer'),
-                            $('#xWine').data('wine'),
-                            $('#xSpiritus').data('spiritus')
+                            document.getElementById("xBeer").dataset.beer,
+                            document.getElementById('xWine').dataset.wine,
+                            document.getElementById('xSpiritus').dataset.spiritus
                         ],
                         backgroundColor: [
                             'rgb(255, 205, 86)',

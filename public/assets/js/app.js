@@ -1,6 +1,5 @@
 var app = {
 
-    
     init: function () {
 
         /**
@@ -10,9 +9,8 @@ var app = {
         */
         console.log('init');
         
-        
         /*Scroll to top button*/
-        var btn = $('#toTop');
+        let btn = $('#toTop');
 
         $(window).scroll(function () {
             if ($(window).scrollTop() > 300) {
@@ -27,7 +25,6 @@ var app = {
             $('html, body').animate({ scrollTop: 0 }, '300');
         });
     },
-
 }
 
 document.addEventListener('DOMContentLoaded', app.init)
