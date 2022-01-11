@@ -33,6 +33,11 @@ body {
 	background-color: rgba(68, 68, 68, 0.692);
 }
 
+#remember_me,
+#registration_form_agreeTerms {
+	width: inherit !important;
+}
+
 ul li {
 	list-style-type: none;
 	margin-bottom: 5px;
