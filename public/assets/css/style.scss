@@ -90,7 +90,42 @@ BUTTONS
   }
 }
 
-
+#toTop {
+  display: inline-block;
+  background-color: var(--hover-color);
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 4px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition: background-color .3s, 
+    opacity .5s, visibility .5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+#toTop::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 50px;
+  color: #fff;
+}
+#toTop:hover {
+  cursor: pointer;
+  background-color: #333;
+}
+#toTop:active {
+  background-color: #555;
+}
+#toTop.show {
+  opacity: 1;
+  visibility: visible;
+}
 
 
 /*********************
@@ -142,6 +177,9 @@ CONTAINER
 
 .container {
 	background-color: #3f3f3f40;
+	backdrop-filter: blur(4px);
+	border-radius: 15px;
+    padding: 20px;
 }
 
 .container-center {
@@ -165,7 +203,7 @@ HOMEPAGE
 	margin-top: 2em;
 }
 
-.big-text p {
+.big-text h1 {
 	font-size: 8em;
 	text-transform: uppercase;
 	line-height: 1.1em;
@@ -176,6 +214,11 @@ HOMEPAGE
 	@include sm {
 		font-size: 3.2em;
 	}
+}
+
+.home-text {
+	text-align: justify;
+	font-size: 1.2em;
 }
 
 /**********************
