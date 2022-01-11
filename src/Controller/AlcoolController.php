@@ -21,7 +21,7 @@ class AlcoolController extends AbstractController
     }
 
     /**
-     * @Route("/alcool/test", name="alcool_test")
+     * @Route("/alcool/test/addiction", name="alcool_test")
      */
     public function setScore(Request $request): Response
     {
@@ -60,7 +60,7 @@ class AlcoolController extends AbstractController
     }
 
     /**
-     * @Route("/alcool/test/result/{score}", name="alcool_test_result")
+     * @Route("/alcool/test/addiction/result/{score}", name="alcool_test_result")
      */
     public function getResult(int $score)
     {
