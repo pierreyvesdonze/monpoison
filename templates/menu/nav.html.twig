@@ -18,10 +18,10 @@
                         Mon profil
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ path('user_account') }}">Tableau de bord</a></li>
-                        <li><a class="dropdown-item" href="{{ path('drink_calendar') }}">Mes consommations</a></li>
+                        <li><a class="dropdown-item" href="{{ path('user_account') }}" title="Tableau de bord de mes consommations">Tableau de bord</a></li>
+                        <li><a class="dropdown-item" href="{{ path('drink_calendar') }}" title="Suivi de mes consommations">Mes consommations</a></li>
                         <li>
-                            <a class="dropdown-item" aria-current="page" href="{{ path('logout') }}">Se
+                            <a class="dropdown-item" aria-current="page" href="{{ path('logout') }}" title="Déconnexion">Se
                                 déconnecter</a>
                         </li>
                     </ul>
@@ -36,20 +36,20 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
-                            <a href="{{path('login')}}" type="button" class="dropdown-item">Se connecter</a>
+                            <a href="{{path('login')}}" type="button" class="dropdown-item" title="Se connecter">Se connecter</a>
                         </li>
                         <li>
-                            <a href="{{path('app_register')}}" type="button" class="dropdown-item">S'enregistrer</a>
+                            <a href="{{path('app_register')}}" type="button" class="dropdown-item" title="S'enregistrer">S'enregistrer</a>
                         </li>
                     </ul>
                 </li>
                 {% endif %}
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('alcool_test') }}">Test de dépendance</a>
+                    <a class="nav-link" href="{{ path('alcool_test') }}" title="Test de dépendance">Test de dépendance</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('alcool_stats') }}">L'alcool en chiffres</a>
+                    <a class="nav-link" href="{{ path('alcool_stats') }}" title="Quelques chiffres sur l'alcool">L'alcool en chiffres</a>
                 </li>
                 <li class="nav-item">
 

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon compte{% endblock %}
+{% block title %}Mon tableau de bord{% endblock %}
 
 {% block body %}
 
@@ -23,7 +23,7 @@
                             <span class="dangerScore">Danger</span>
                             {% endif %}
                             {% else %}
-                            <a href="{{ path('alcool_test') }}">Faire le test</a>
+                            <a href="{{ path('alcool_test') }}" title="Test de dépendance à l'alcool">Faire le test</a>
                             {% endif %}
             </td>
         </tr>
@@ -140,7 +140,7 @@
 
     <h2>Options</h2>
 
-    <a href="{{ path('delete_user') }}" class="btn btn-danger"
+    <a href="{{ path('delete_user') }}" title="Supprimer mon compte" class="btn btn-danger"
         onclick="return confirm('Supprimer définitivement votre compte ?')">Supprimer mon compte</a>
 
 </div>
