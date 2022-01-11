@@ -62,7 +62,7 @@ class AlcoolController extends AbstractController
     /**
      * @Route("/alcool/test/result/{score}", name="alcool_test_result")
      */
-    public function getRestult(int $score)
+    public function getResult(int $score)
     {
         /**
          * @var string
@@ -87,5 +87,13 @@ class AlcoolController extends AbstractController
             'message' => $message,
             'score'   => $score
         ]);
+    }
+
+    /**
+     * @Route("alcool/stats", name="alcool_stats")
+     */
+    public function alcoolStats() 
+    {
+        return $this->render('alcool/stats.html.twig');
     }
 }
