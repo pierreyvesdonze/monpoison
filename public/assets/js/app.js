@@ -8,10 +8,15 @@ var app = {
         * *****************************
         */
         console.log('init');
-        
+
+        /**
+        * *****************************
+        * SCROLL TO TOP BUTTON
+        * *****************************
+        */
         const showButton = () => document.querySelector("#toTop").classList.add("show");
         const hideButton = () => document.querySelector("#toTop").classList.remove("show");
-        document.addEventListener("scroll", (e) => window.scrollY < 100 ? hideButton() : showButton());
+        document.addEventListener("scroll", (e) => window.scrollY < 200 ? hideButton() : showButton());
 
         document.querySelector('#toTop').addEventListener('click', function (e) {
             e.preventDefault();

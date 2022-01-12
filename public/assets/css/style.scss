@@ -102,11 +102,12 @@ BUTTONS
 
 #toTop {
 	display: inline-block;
+	text-decoration: none;
 	background-color: var(--hover-color);
 	width: 50px;
 	height: 50px;
 	text-align: center;
-	border-radius: 4px;
+	border-radius: 50%;
 	position: fixed;
 	bottom: 30px;
 	right: 30px;
@@ -116,8 +117,7 @@ BUTTONS
 	z-index: 1000;
 }
 #toTop::after {
-	content: "\f077";
-	font-family: FontAwesome;
+	content: "\2191";
 	font-weight: normal;
 	font-style: normal;
 	font-size: 2em;
