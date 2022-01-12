@@ -17,4 +17,12 @@ class HomeController extends AbstractController
             '' => '',
         ]);
     }
+
+    /**
+     * @Route("/conditions/générales/utilisation", name="cgu")
+     */
+    public function cgu(): Response
+    {
+        return $this->render('cgu/cgu.html.twig');
+    }
 }

@@ -6,6 +6,7 @@ MEDIA QUERIES
 :root {
   --body-bg: radial-gradient(circle, rgb(46, 46, 46) 11%, rgb(39, 39, 39) 83%);
   --transparent: rgba(255, 255, 255, 0);
+  --semi-transparent: #3f3f3f40;
   --btn-color: #685641;
   --hover-color: #e78d06;
 }
@@ -38,7 +39,7 @@ body {
 }
 
 .alert-success {
-  background-color: rgba(68, 68, 68, 0.692);
+  background-color: var(--semi-transparent);
 }
 
 #remember_me,
@@ -54,6 +55,10 @@ ul li {
 table tr td {
   font-size: 1.3em;
   font-weight: bold;
+}
+
+a:hover {
+  color: var(--hover-color) !important;
 }
 
 /*********************
@@ -137,7 +142,7 @@ BUTTONS
 
 #toTop:hover {
   cursor: pointer;
-  background-color: #333;
+  background-color: var(--semi-transparent);
 }
 
 #toTop:active {
@@ -153,11 +158,11 @@ BUTTONS
 NAV MENU
 *********************/
 .navbar {
-  background-color: #3f3f3f40 !important;
+  background-color: var(--semi-transparent) !important;
 }
 
 .dropdown-menu {
-  background-color: #303030d9 !important;
+  background-color: rgba(0, 0, 0, 0.726) !important;
 }
 
 .nav-item {
@@ -201,7 +206,7 @@ CONTAINER
 }
 
 .container {
-  background-color: #3f3f3f40;
+  background-color: var(--semi-transparent);
   -webkit-backdrop-filter: blur(4px);
           backdrop-filter: blur(4px);
   border-radius: 15px;
@@ -361,14 +366,14 @@ input {
   display: block;
   width: 100%;
   margin: 15px 0px;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: var(--semi-transparent);
 }
 
 .input[type="text"],
 .input[type="password"] {
   outline: none;
   border: none;
-  background-color: rgba(0, 0, 0, 0.534);
+  background-color: var(--semi-transparent);
   padding: 5px 0px !important;
   text-align: center;
   -webkit-transition: all 250ms;
@@ -474,6 +479,17 @@ REGISTRATION & LOGIN
 *********************/
 #registration_form_email,
 #registration_form_plainPassword {
-  background: rgba(0, 0, 0, 0);
+  background: var(--semi-transparent);
+}
+
+/*********************
+FOOTER
+*********************/
+footer {
+  width: 100%;
+  height: 110px;
+  background-color: var(--semi-transparent);
+  margin-top: 50px;
+  position: relative;
 }
 /*# sourceMappingURL=style.css.map */

@@ -12,7 +12,9 @@
         {{ form_label(registrationForm.plainPassword) }}
         {{ form_widget(registrationForm.plainPassword) }}
 
-        {{ form_label(registrationForm.agreeTerms) }}
+        
+            {{ form_label(registrationForm.agreeTerms) }}
+            <a href="{{ path('cgu') }}" title="cgu" target="_blank">Voir les CGU</a>
 
         <br>
 
