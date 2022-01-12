@@ -31,11 +31,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
     {% block stylesheets %}
 
     {% endblock %}
 </head>
+
+
 
 
 <!--***************************BODY****************************-->
@@ -89,7 +92,28 @@
     <script src="{{ asset('assets/js/app.js') }}" defer></script>
     <script src="{{ asset('assets/js/functions.js') }}" defer></script>
 
+    <!-- COOKIES CONSENT-->
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+    <script>
+        window.cookieconsent.initialise({
+            "palette": {
+                "popup": {
+                    "background": "#000"
+                },
+                "button": {
+                    "background": "#f1d600"
+                }
+            },
+            "content": {
+                "message": "Ce site web utilise des cookies.",
+                "dismiss": "Ok merci de m'avoir informé !",
+                "link": "En savoir plus"
+            }
+        });
+    </script>
+
     {% endblock %}
+
 </body>
 
 </html>
