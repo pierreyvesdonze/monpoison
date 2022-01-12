@@ -9,7 +9,8 @@
         <div class="modal-content">
             <div class="modal-header bg-dark">
                 <h5 class="modal-title" id="infoConsolLabel">Information</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" name="close modal"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    name="close modal"></button>
             </div>
             <div class="modal-body bg-dark">
                 <p>
@@ -40,7 +41,8 @@
     <a href="{{ path('drink_add') }}" title="Ajouter une consommation" class="custom-btn">Ajouter une consommation</a>
     <!-- Button trigger modal -->
     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#infoConso" name="open modal">
-        <i class="fas fa-info-circle fa-2x"></i>
+        {# <i class="fas fa-info-circle fa-2x"></i> #}
+        <img src="{{ asset('assets/images/info.png') }}" alt="information">
     </button>
 
     <hr>

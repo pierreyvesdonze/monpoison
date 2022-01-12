@@ -58,7 +58,7 @@ table tr td {
 }
 
 a:hover {
-  color: var(--hover-color) !important;
+  color: white !important;
 }
 
 /*********************
