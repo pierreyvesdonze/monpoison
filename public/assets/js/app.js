@@ -9,20 +9,13 @@ var app = {
         */
         console.log('init');
         
-        /*Scroll to top button*/
-        let btn = $('#toTop');
+        const showButton = () => document.querySelector("#toTop").classList.add("show");
+        const hideButton = () => document.querySelector("#toTop").classList.remove("show");
+        document.addEventListener("scroll", (e) => window.scrollY < 100 ? hideButton() : showButton());
 
-        $(window).scroll(function () {
-            if ($(window).scrollTop() > 300) {
-                btn.addClass('show');
-            } else {
-                btn.removeClass('show');
-            }
-        });
-
-        btn.on('click', function (e) {
+        document.querySelector('#toTop').addEventListener('click', function (e) {
             e.preventDefault();
-            $('html, body').animate({ scrollTop: 0 }, '300');
+            window.scroll({ top: 0, left: 0, behavior: 'smooth' });
         });
     },
 }
