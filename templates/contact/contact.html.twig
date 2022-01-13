@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<br><br>
+
+<div class="container">
+    <div class="infos">
+    <span>Merci</span> de me contacter via ce formulaire pour toute demande.
+    <br />
+  </div>
+  
+  <div class="contact-form">
+    {{ form_start(form) }}<br>
+    {{ form_label(form.email) }}<br>
+    {{ form_widget(form.email) }}<br>
+    {{ form_label(form.subject) }}<br>
+    {{ form_widget(form.subject) }}<br>
+    {{ form_label(form.text) }}<br>
+    {{ form_widget(form.text) }}<br>
+    {{ form_label(form.captcha) }}<br>
+    {{ form_widget(form.captcha) }}<br>
+    {{ form_label(form.save) }}<br>
+    {{ form_widget(form.save) }}<br>
+    {{ form_end(form) }}<br>
+  </div>
+</div>
+
+{% endblock %}
