@@ -19,6 +19,7 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email')
+            ->add('pseudo')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'label' => "Accepter les conditions d'utilisation du site",
@@ -49,7 +50,7 @@ class RegistrationFormType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => "S'enregistrer",
                 'attr' => [
-                    'class' => "btn btn-secondary"
+                    'class' => "custom-btn"
                 ]
             ])
         ;

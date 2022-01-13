@@ -3,25 +3,29 @@
 {% block title %}S'enregistrer{% endblock %}
 
 {% block body %}
-    <h1>S'enregistrer</h1>
+<h1>S'enregistrer</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_label(registrationForm.email) }}
-        {{ form_widget(registrationForm.email) }}
+{{ form_start(registrationForm) }}
 
-        {{ form_label(registrationForm.plainPassword) }}
-        {{ form_widget(registrationForm.plainPassword) }}
+{{ form_label(registrationForm.email) }}
+{{ form_widget(registrationForm.email) }}
 
-        
-            {{ form_label(registrationForm.agreeTerms) }}
-            <a href="{{ path('cgu') }}" title="cgu" target="_blank">Voir les CGU</a>
+{{ form_label(registrationForm.pseudo) }}
+{{ form_widget(registrationForm.pseudo) }}
 
-        <br>
+{{ form_label(registrationForm.plainPassword) }}
+{{ form_widget(registrationForm.plainPassword) }}
 
-        {{ form_widget(registrationForm.agreeTerms) }}
 
-        {{ form_row(registrationForm.submit) }}
+{{ form_label(registrationForm.agreeTerms) }}
+<a href="{{ path('cgu') }}" title="cgu" target="_blank">Voir les CGU</a>
 
-    {{ form_end(registrationForm) }}
+<br>
+
+{{ form_widget(registrationForm.agreeTerms) }}
+
+{{ form_row(registrationForm.submit) }}
+
+{{ form_end(registrationForm) }}
 
 {% endblock %}

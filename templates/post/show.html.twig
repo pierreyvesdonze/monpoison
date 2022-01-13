@@ -43,7 +43,8 @@
 
     {% for comment in comments %}
     <p>
-        <i>{{ comment.date|date('d/m/y') }} - {{ comment.user }}</i>
+        <i>{{ comment.user.pseudo }} - {{ comment.date|date('d/m/y') }}</i>
+        <br>
         <br>
         {{ comment }}
     </p>

@@ -15,6 +15,9 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/commentaire')]
 class CommentController extends AbstractController
 {
+    public function __construct(private EntityManagerInterface $em)
+    {}
+
     #[Route('/', name: 'comment_index', methods: ['GET'])]
     public function index(CommentRepository $commentRepository): Response
     {
@@ -26,7 +29,6 @@ class CommentController extends AbstractController
     #[Route('/ajouter/{id}', name: 'comment_new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
-        EntityManagerInterface $entityManager,
         Post $post
         ): Response
     {
@@ -38,10 +40,12 @@ class CommentController extends AbstractController
             $comment->setUser($this->getUser());
             $comment->setPost($post);
             $comment->setDate(new \DateTime('now'));
-            $entityManager->persist($comment);
-            $entityManager->flush();
+            $this->em->persist($comment);
+            $this->em->flush();
 
-            return $this->redirectToRoute('comment_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('post_show', [
+                'id' => $post->getId()
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('comment/new.html.twig', [
@@ -59,13 +63,16 @@ class CommentController extends AbstractController
     }
 
     #[Route('/{id}/editer', name: 'comment_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Comment $comment, EntityManagerInterface $entityManager): Response
+    public function edit(
+        Request $request,
+        Comment $comment
+        ): Response
     {
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            $this->em->flush();
 
             return $this->redirectToRoute('comment_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -77,11 +84,13 @@ class CommentController extends AbstractController
     }
 
     #[Route('/supprimer/{id}', name: 'comment_delete', methods: ['POST'])]
-    public function delete(Request $request, Comment $comment, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request,
+    Comment $comment
+    ): Response
     {
         if ($this->isCsrfTokenValid('delete'.$comment->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($comment);
-            $entityManager->flush();
+            $this->em->remove($comment);
+            $this->em->flush();
         }
 
         return $this->redirectToRoute('comment_index', [], Response::HTTP_SEE_OTHER);
