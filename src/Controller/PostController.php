@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -50,10 +51,16 @@ class PostController extends AbstractController
     }
 
     #[Route('/voir/{id}', name: 'post_show', methods: ['GET'])]
-    public function show(Post $post): Response
+    public function show(
+        Post $post,
+        CommentRepository $commentRepository
+        ): Response
     {
+        $comments = $commentRepository->findCommentsByPost($post);
+
         return $this->render('post/show.html.twig', [
             'post' => $post,
+            'comments' => $comments
         ]);
     }
 

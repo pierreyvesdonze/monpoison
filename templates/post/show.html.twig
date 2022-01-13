@@ -19,9 +19,16 @@
     </p>
 
     <br>
+    {% if app.user %}
+    <a href="{{ path('comment_new', {'id':post.id}) }}" class="custom-btn">Commenter</a>
+    {% endif %}
+    <br>
+    <br>
+
     <a href="{{ path('post_index') }}">Retour à la liste des articles</a>
 
     <br>
+
     {% if is_granted('ROLE_ADMIN') %}
 
     <a href="{{ path('post_edit', {'id': post.id}) }}" class="custom-btn">edit</a>
@@ -29,12 +36,19 @@
     <br>
 
     {{ include('post/_delete_form.html.twig') }}
-
     {% endif %}
 
-    {% if app.user %}
-    pouet
-    {% endif %}
-    
+    <hr>
+    <h2>Commentaires</h2>
+
+    {% for comment in comments %}
+    <p>
+        <i>{{ comment.date|date('d/m/y') }} - {{ comment.user }}</i>
+        <br>
+        {{ comment }}
+    </p>
+    <hr>
+    {% endfor %}
+
 </div>
 {% endblock %}
