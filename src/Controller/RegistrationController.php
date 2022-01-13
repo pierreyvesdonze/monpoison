@@ -17,16 +17,10 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 class RegistrationController extends AbstractController
 {
-    private EmailVerifier $emailVerifier;
-    private $em;
-
     public function __construct(
-        EmailVerifier $emailVerifier,
-        EntityManagerInterface $em
-        )
-    {
-        $this->emailVerifier = $emailVerifier;
-        $this->em = $em;
+        private EmailVerifier $emailVerifier,
+        private EntityManagerInterface $em
+    ) {
     }
 
     /**
@@ -101,7 +95,7 @@ class RegistrationController extends AbstractController
     {
         $this->em->remove($this->getUser());
         $this->em->flush();
-        
+
         $this->container->get('security.token_storage')->setToken(null);
         $this->addFlash('success', 'Votre compte a bien été supprimé !');
 

@@ -12,12 +12,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AlcoolController extends AbstractController
 {
-    private $entityManager;
-
     public function __construct(
-        EntityManagerInterface $entityManager
+        private EntityManagerInterface $entityManager
     ) {
-        $this->entityManager = $entityManager;
     }
 
     /**
@@ -29,7 +26,7 @@ class AlcoolController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             $score                   = 0;
             $frequencyComsumption    = ($form->get('frequencyComsumption')->getData());
             $drinkByDay              = $form->get('drinkByDay')->getData();
@@ -48,11 +45,11 @@ class AlcoolController extends AbstractController
 
                 $this->entityManager->flush();
             }
-            
+
             return $this->redirectToRoute('alcool_test_result', [
                 'score' => $score
             ]);
-        }     
+        }
 
         return $this->render('alcool/test.html.twig', [
             'form' => $form->createView()
@@ -73,7 +70,7 @@ class AlcoolController extends AbstractController
             $message = "Votre consommation d'alcool est nulle ou raisonnable, vous ne courez pas ou très peu de risque de dépendance.";
         } elseif ($score <= 4 && $score > 0) {
             $message = "Votre consommation d'alcool est modérée, ne dépassez pas ce stade au risque de voir votre dépendance au produit augmenter";
-        } elseif($score >= 5 && $score <= 8) {
+        } elseif ($score >= 5 && $score <= 8) {
             $message = "Votre consommation d'alccol est nettement supérieure aux recommandations de l'OMS. Rappelons que selon celles-ci, il est préférable de limiter la consommation d'alcool à 2 verres par jour pour une femme et 3 verres pour un homme, avec au moins 2 jours d'abstinence dans la semaine";
         } elseif ($score >= 9 && $score <= 12) {
             $message = "Attention, votre consommation d'alcool dépasse les recommandations établies par l'OMS. À ce stade vous présentez un risque de dépendance à l'alcool moyennement prononcé, il serait recommandé de réduire vos consommations.";
@@ -81,7 +78,7 @@ class AlcoolController extends AbstractController
             $message = "Votre consommation dépasse largement les recommandations de l'OMS. Vous présentez des signes de dépendance à l'alcool et il serait sage de réduire la cadence sous peine de devenir addict au produit et de voir des problèmes de santé arriver...";
         } elseif ($score > 16) {
             $message = "Alerte ! Votre niveau de consommation d'alcool est bien au delà du raisonnable. À ce stade le risque de dépendance est extrêmement élevé et sur la durée votre santé générale va se dégrader, votre moral va significativement baisser, ainsi vous risquez de nombreux problèmes à tous les niveaux ! Rapprochez-vous de votre médecin pour vous faire aider sans plus attendre !";
-        } 
+        }
 
         return $this->render('alcool/test.result.html.twig', [
             'message' => $message,
@@ -92,7 +89,7 @@ class AlcoolController extends AbstractController
     /**
      * @Route("alcool/stats", name="alcool_stats")
      */
-    public function alcoolStats() 
+    public function alcoolStats()
     {
         return $this->render('alcool/stats.html.twig');
     }

@@ -13,13 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DrinkController extends AbstractController
 {
-    private $entityManager;
-
     public function __construct(
-        EntityManagerInterface $entityManager
-    ) {
-        $this->entityManager = $entityManager;
-    }
+       private  EntityManagerInterface $entityManager
+    ) {}
 
     /**
      * @Route("/drink/calendar", name="drink_calendar")
