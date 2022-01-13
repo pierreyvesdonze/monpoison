@@ -50,7 +50,7 @@ class HomeController extends AbstractController
             $message = (new TemplatedEmail())
                 ->from($sender)
                 ->to(
-                    'pyd3.14@gmail.com@gmail.com',
+                    'pyd3.14@gmail.com',
                 )
                 ->subject('De la part de ' . $sender . ' !')
                 ->htmlTemplate('email/contact.notification.html.twig')
