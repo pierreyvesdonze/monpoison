@@ -1,4 +1,8 @@
-// dom variables
+/**
+*****************************
+* ADD DRINK FORM
+*****************************
+*/
 var msf_getFsTag = document.getElementsByTagName("fieldset");
 
 // declaring the active fieldset & the total fieldset count

@@ -10,14 +10,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
-
-
     public function __construct(
        private EntityManagerInterface $entityManager
     ) {}
 
     /**
-     * @Route("/user", name="user_account")
+     * @Route("/user/profile", name="user_account")
      */
     public function index(DrinkRepository $drinkRepository): Response
     {
