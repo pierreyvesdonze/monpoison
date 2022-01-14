@@ -26,18 +26,18 @@
                 </td>
                 <td>
                     {% if post.isPublished == 0 %}
-                    <a href="{{ path('edit_post_status_publish', {'id':post.id}) }}" class="custom-btn"
+                    <a href="{{ path('edit_post_status_publish', {'id':post.id, type:'publish'}) }}" class="custom-btn"
                         title="modifier statut de l'article">Publier
                     </a>
                     {% elseif post.isPublished == 1 %}
-                    <a href="{{ path('edit_post_status_remove', {'id':post.id}) }}" class="custom-btn"
+                    <a href="{{ path('edit_post_status_publish', {'id':post.id, type:'remove'}) }}" class="custom-btn"
                         title="modifier statut de l'article">Retirer
                     </a>
                     {% endif %}
                 </td>
             </tr>
+            {% endfor %}
         </tbody>
-        {% endfor %}
     </table>
 </div>
 
