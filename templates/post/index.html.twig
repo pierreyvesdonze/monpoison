@@ -9,6 +9,8 @@
 <div class="container">
 
     {% for post in posts %}
+    {% if post.isPublished == 1 %}
+
     <h1>
         {{ post.title }}
     </h1>
@@ -16,20 +18,19 @@
     <p>
         {{ post.content|slice(0, 250)|raw }} ...
     </p>
-   
+
     <a href="{{ path('post_show', {'id': post.id}) }}">Lire plus...</a>
     <br>
     <hr>
 
     {% if is_granted('ROLE_ADMIN') %}
 
-    <a href="{{ path('post_edit', {'id': post.id}) }}">edit</a>
+    <a href="{{ path('post_edit', {'id': post.id}) }}" class="custom-btn" title="modifier l'article">Modifier</a>
     <br>
-    <a href="{{ path('post_new') }}">Create new</a>
 
     <hr>
     {% endif %}
-    
+    {% endif %}
     {% endfor %}
 </div>
 

@@ -16,7 +16,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class CommentController extends AbstractController
 {
     public function __construct(private EntityManagerInterface $em)
-    {}
+    {
+    }
 
     #[Route('/', name: 'comment_index', methods: ['GET'])]
     public function index(CommentRepository $commentRepository): Response
@@ -30,8 +31,7 @@ class CommentController extends AbstractController
     public function new(
         Request $request,
         Post $post
-        ): Response
-    {
+    ): Response {
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
@@ -66,8 +66,7 @@ class CommentController extends AbstractController
     public function edit(
         Request $request,
         Comment $comment
-        ): Response
-    {
+    ): Response {
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
@@ -86,14 +85,13 @@ class CommentController extends AbstractController
     }
 
     #[Route('/supprimer/{id}', name: 'comment_delete', methods: ['POST', 'GET'])]
-    public function delete(Request $request,
-    Comment $comment
-    ): Response
-    {
-        
-            $this->em->remove($comment);
-            $this->em->flush();
-        
+    public function delete(
+        Request $request,
+        Comment $comment
+    ): Response {
+
+        $this->em->remove($comment);
+        $this->em->flush();
 
         return $this->redirectToRoute('post_show', [
             'id' => $comment->getPost()->getId()

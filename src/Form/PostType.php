@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -27,9 +28,15 @@ class PostType extends AbstractType
                     ]
                 ])
             ->add('date', DateType::class)
+            ->add('isPublished', ChoiceType::class, [
+                'choices' => [
+                    'Oui' => 0,
+                    'Non' => 1
+                ]
+            ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-secondary'
+                    'class' => 'custom-btn'
                 ]
             ])
         ;

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Status des articles{% endblock %}
+
+{% block body %}
+
+<br><br>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Est publié</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <td>
+                    {{ post.title }}
+                </td>
+                <td>
+                    {{ post.isPublished }}
+                </td>
+                <td>
+                    {% if post.isPublished == 0 %}
+                    <a href="{{ path('edit_post_status', {'id':post.id}) }}" class="custom-btn"
+                        title="modifier statut de l'article">Publier</a>
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

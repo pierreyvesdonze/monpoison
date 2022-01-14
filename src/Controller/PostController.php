@@ -16,6 +16,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/article')]
 class PostController extends AbstractController
 {
+    public function __construct(
+        private EntityManagerInterface $em
+    ) {
+    }
+
     #[Route('s', name: 'post_index', methods: ['GET'])]
     public function index(PostRepository $postRepository): Response
     {
@@ -25,11 +30,39 @@ class PostController extends AbstractController
     }
 
     /**
+     * @Route("/status", name="post_status", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function postStatus(PostRepository $postRepository): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        $posts = $postRepository->findAll();
+
+        return $this->render('post/status.html.twig', [
+            'posts' => $posts
+        ]);
+    }
+
+    /**
+     * @Route("/modifier/status/{id}", name="edit_post_status", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function editPostStatus(Post $post)
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $post->setIsPublished(1);
+        $this->em->flush();
+        $this->addFlash('success', 'Article publié !');
+
+        return $this->redirectToRoute('post_status', []);
+    }
+
+    /**
      * @Route("/nouveau", name="post_new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
-     * 
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
@@ -38,8 +71,8 @@ class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($post);
-            $entityManager->flush();
+            $this->em->persist($post);
+            $this->em->flush();
 
             return $this->redirectToRoute('post_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -54,8 +87,7 @@ class PostController extends AbstractController
     public function show(
         Post $post,
         CommentRepository $commentRepository
-        ): Response
-    {
+    ): Response {
         $comments = $commentRepository->findCommentsByPost($post);
 
         return $this->render('post/show.html.twig', [
@@ -64,14 +96,21 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/editer', name: 'post_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Post $post, EntityManagerInterface $entityManager): Response
-    {
+    /**
+     * @Route("/{id}/editer", name="post_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function edit(
+        Request $request,
+        Post $post
+    ): Response {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            $this->em->flush();
 
             return $this->redirectToRoute('post_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -82,12 +121,19 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/supprimer/{id}', name: 'post_delete', methods: ['POST'])]
-    public function delete(Request $request, Post $post, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$post->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($post);
-            $entityManager->flush();
+    /**
+     * @Route("/supprimer/{id}"), name="post_delete", methods={'POST'})
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function delete(
+        Request $request,
+        Post $post
+    ): Response {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        if ($this->isCsrfTokenValid('delete' . $post->getId(), $request->request->get('_token'))) {
+            $this->em->remove($post);
+            $this->em->flush();
         }
 
         return $this->redirectToRoute('post_index', [], Response::HTTP_SEE_OTHER);
