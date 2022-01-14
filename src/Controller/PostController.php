@@ -132,6 +132,12 @@ class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $isPublished = $form->get('isPublished')->getData();
+            if ($isPublished === 0) {
+                $post->setIsPublished(1);
+            } else {
+                $post->setIsPublished(0);
+            }
             $this->em->flush();
 
             return $this->redirectToRoute('post_index', [], Response::HTTP_SEE_OTHER);
