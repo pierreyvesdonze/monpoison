@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Se connecter{% endblock %}
+
 {% block body %}
 {% if error %}
 <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -8,18 +10,21 @@
 <br><br>
 
 <div class="container">
+
+    <h1>Se connecter</h1>
+
     <form action="{{ path('login') }}" method="post" class="form">
         <label for="username">Email:</label>
         <input type="text" id="username" name="_username" value="{{ last_username }}" class="input" />
 
-        <label for="password">Password:</label>
+        <label for="password">Mot de passe:</label>
         <input type="password" id="password" name="_password" class="input" />
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
         <label for="remember_me">Se souvenir de moi</label>
         <input type="checkbox" id="remember_me" name="_remember_me" checked /class="checkbox">
 
-        <button type="submit" class="btn btn-secondary" name="connexion">Connexion</button>
+        <button type="submit" class="custom-btn" name="connexion">Connexion</button>
         <br>
 
         <a href="{{ path('app_forgot_password_request') }}" title="mot de passe oublié">Mot de passe oublié</a>

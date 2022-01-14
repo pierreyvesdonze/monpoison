@@ -122,7 +122,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/supprimer/{id}"), name="post_delete", methods={'POST'})
+     * @Route("/supprimer/{id}", name="post_delete",  methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
      */
     public function delete(
