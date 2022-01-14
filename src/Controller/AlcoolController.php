@@ -69,15 +69,15 @@ class AlcoolController extends AbstractController
         if ($score === 0) {
             $message = "Votre consommation d'alcool est nulle ou raisonnable, vous ne courez pas ou très peu de risque de dépendance.";
         } elseif ($score <= 4 && $score > 0) {
-            $message = "Votre consommation d'alcool est modérée, ne dépassez pas ce stade au risque de voir votre dépendance au produit augmenter";
+            $message = "Votre consommation d'alcool est modérée, boire davantage et/ou plus souvent peut induire une forme légère de dépendance.";
         } elseif ($score >= 5 && $score <= 8) {
-            $message = "Votre consommation d'alccol est nettement supérieure aux recommandations de l'OMS. Rappelons que selon celles-ci, il est préférable de limiter la consommation d'alcool à 2 verres par jour pour une femme et 3 verres pour un homme, avec au moins 2 jours d'abstinence dans la semaine";
+            $message = "Votre consommation d'alccol est nettement supérieure aux recommandations de l'OMS. Selon celles-ci, il est préférable de limiter la consommation d'alcool à 2 verres par jour pour une femme et 3 verres pour un homme, avec au moins 2 jours d'abstinence dans la semaine";
         } elseif ($score >= 9 && $score <= 12) {
-            $message = "Attention, votre consommation d'alcool dépasse les recommandations établies par l'OMS. À ce stade vous présentez un risque de dépendance à l'alcool moyennement prononcé, il serait recommandé de réduire vos consommations.";
+            $message = "Attention, votre consommation d'alcool dépasse sensiblement les recommandations établies par l'OMS. À ce stade le risque de dépendance à l'alcool est moyennement prononcé, réduire ses consommations est conseillé.";
         } elseif ($score >= 12 && $score <= 16) {
-            $message = "Votre consommation dépasse largement les recommandations de l'OMS. Vous présentez des signes de dépendance à l'alcool et il serait sage de réduire la cadence sous peine de devenir addict au produit et de voir des problèmes de santé arriver...";
+            $message = "A ce stade les consommations d'alcool sont classées parmis des consommations à risque. Le niveau de dépendance peut s'élever insinueusement mais rapidement. Saviez-vous que 7.1% à 12.6 de la population consommait quotidiennement de l'alcool ? Ce site existe afin d'apporter des solutions pour suivre et ajuster ses consommations et ainsi les contrôler.";
         } elseif ($score > 16) {
-            $message = "Alerte ! Votre niveau de consommation d'alcool est bien au delà du raisonnable. À ce stade le risque de dépendance est extrêmement élevé et sur la durée votre santé générale va se dégrader, votre moral va significativement baisser, ainsi vous risquez de nombreux problèmes à tous les niveaux ! Rapprochez-vous de votre médecin pour vous faire aider sans plus attendre !";
+            $message = "Attention ! Votre niveau de consommation d'alcool est à un niveau au delà du raisonnable. À ce stade le risque de dépendance est extrêmement élevé. Sur la durée votre santé générale a de grands risques de se dégrader, votre socialisation peut être malmenée et votre moral peut significativement baisser. Rapprochez-vous de votre médecin ou d'un addictologue pour vous permettre d'obtenir des conseils et de l'aide pour garder le contrôle. Plus tôt arrive la conscience que l'on est en danger, plus facilement on peut corriger le tir.";
         }
 
         return $this->render('alcool/test.result.html.twig', [
