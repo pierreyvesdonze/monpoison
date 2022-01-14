@@ -7,7 +7,7 @@ MEDIA QUERIES
   --body-bg: radial-gradient(circle, rgb(46, 46, 46) 11%, rgb(39, 39, 39) 83%);
   --transparent: rgba(255, 255, 255, 0);
   --semi-transparent: #3f3f3f40;
-  --btn-color: #5d564d;
+  --btn-color: #312e29a4;
   --hover-color: #e78d06;
 }
 
@@ -77,6 +77,8 @@ BUTTONS
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   position: relative;
+  -webkit-box-shadow: black 0 0 5px 3px;
+          box-shadow: black 0 0 5px 3px;
   z-index: 1;
 }
 
@@ -100,14 +102,16 @@ BUTTONS
   width: 0%;
   height: 100%;
   background-color: var(--hover-color);
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
   border-radius: 10rem;
   z-index: -1;
 }
 
 .custom-btn:hover {
   color: #fff;
+  -webkit-box-shadow: black 0 0 2px 1px;
+          box-shadow: black 0 0 2px 1px;
 }
 
 .custom-btn:hover:before {
@@ -226,11 +230,32 @@ CONTAINER
 }
 
 /**********************
-ICON
+ICON & DIV ICON
 **********************/
 .alcool-png {
   width: 35px;
   height: 35px;
+}
+
+.social-img {
+  width: 62px;
+  height: 62px;
+}
+
+.social-div {
+  background: #00000082;
+  width: 166px;
+  height: 64px;
+  border-radius: 20px;
+  margin: auto;
+  -webkit-box-shadow: inset black 0 0 5px 3px;
+          box-shadow: inset black 0 0 5px 3px;
+  -webkit-transition: ease-in-out .2s;
+  transition: ease-in-out .2s;
+}
+
+.social-div:hover {
+  background: #20180382;
 }
 
 /**********************

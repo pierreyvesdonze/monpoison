@@ -4,7 +4,7 @@
 	--body-bg: radial-gradient(circle, rgb(46, 46, 46) 11%, rgb(39, 39, 39) 83%);
 	--transparent: rgba(255, 255, 255, 0);
 	--semi-transparent: #3f3f3f40;
-	--btn-color: #5d564d;
+	--btn-color: #312e29a4;
 	--hover-color: #e78d06;
 }
 
@@ -69,6 +69,7 @@ BUTTONS
 	letter-spacing: 0.15rem;
 	transition: all 0.3s;
 	position: relative;
+	box-shadow: black 0 0 5px 3px;
 	z-index: 1;
 	&:after {
 		content: "";
@@ -89,12 +90,13 @@ BUTTONS
 		width: 0%;
 		height: 100%;
 		background-color: var(--hover-color);
-		transition: all 0.3s;
+		transition: all 0.2s;
 		border-radius: 10rem;
 		z-index: -1;
 	}
 	&:hover {
 		color: #fff;
+		box-shadow: black 0 0 2px 1px;
 		&:before {
 			width: 100%;
 		}
@@ -198,11 +200,29 @@ CONTAINER
 }
 
 /**********************
-ICON
+ICON & DIV ICON
 **********************/
 .alcool-png {
 	width: 35px;
 	height: 35px;
+}
+
+.social-img {
+	width: 62px;
+	height: 62px;
+}
+
+.social-div {
+	background: #00000082;
+	width: 166px;
+	height: 64px;
+	border-radius: 20px;
+	margin: auto;
+	box-shadow: inset black 0 0 5px 3px;
+	transition: ease-in-out .2s;
+	&:hover {
+		background: #20180382;
+	}
 }
 
 /**********************
@@ -430,7 +450,6 @@ footer div {
 		flex-direction: column;
 	}
 }
-
 
 /**********************
 LOADING ANIMATION
