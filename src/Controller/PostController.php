@@ -45,15 +45,29 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/modifier/status/{id}", name="edit_post_status", methods={"GET","POST"})
+     * @Route("/publier/status/{id}", name="edit_post_status_publish", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function editPostStatus(Post $post)
+    public function publishPostStatus(Post $post)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $post->setIsPublished(1);
         $this->em->flush();
         $this->addFlash('success', 'Article publié !');
+
+        return $this->redirectToRoute('post_status', []);
+    }
+
+    /**
+     * @Route("/retirer/status/{id}", name="edit_post_status_remove", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function removePostStatus(Post $post)
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $post->setIsPublished(0);
+        $this->em->flush();
+        $this->addFlash('success', 'Article dépublié !');
 
         return $this->redirectToRoute('post_status', []);
     }
