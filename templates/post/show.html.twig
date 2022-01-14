@@ -18,6 +18,14 @@
         Article rédigé le {{ post.date ? post.date|date('d/m/y') : '' }}
     </p>
 
+    <hr>
+    <!-- Facebook -->
+    <a href="http://www.facebook.com/sharer.php?u=https://monpoison.fr/public/article/voir/{{ post.id }}" target="_blank">Share to FaceBook</a>
+    
+    <!-- Twitter -->
+    <a href="http://twitter.com/share?url=https://monpoison.fr/public/article/voir/{{ post.id }}&text=Simple Share Buttons&hashtags=simplesharebuttons"
+        target="_blank">Twitter</a>
+
     <br>
     {% if app.user %}
     <a href="{{ path('comment_new', {'id':post.id}) }}" class="custom-btn">Commenter</a>
