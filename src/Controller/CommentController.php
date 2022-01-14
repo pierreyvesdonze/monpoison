@@ -74,7 +74,9 @@ class CommentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
 
-            return $this->redirectToRoute('comment_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('post_show', [
+                'id' => $comment->getPost()->getId()
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('comment/edit.html.twig', [
@@ -83,16 +85,18 @@ class CommentController extends AbstractController
         ]);
     }
 
-    #[Route('/supprimer/{id}', name: 'comment_delete', methods: ['POST'])]
+    #[Route('/supprimer/{id}', name: 'comment_delete', methods: ['POST', 'GET'])]
     public function delete(Request $request,
     Comment $comment
     ): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$comment->getId(), $request->request->get('_token'))) {
+        
             $this->em->remove($comment);
             $this->em->flush();
-        }
+        
 
-        return $this->redirectToRoute('comment_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('post_show', [
+            'id' => $comment->getPost()->getId()
+        ], Response::HTTP_SEE_OTHER);
     }
 }
