@@ -78,7 +78,7 @@ BUTTONS
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-color: var(--btn-color);
+		background: var(--btn-color);
 		border-radius: 10rem;
 		z-index: -2;
 	}
@@ -101,6 +101,11 @@ BUTTONS
 			width: 100%;
 		}
 	}
+}
+
+button[type="submit"],
+button.custom-btn {
+	background-color: var(--btn-color);
 }
 
 #toTop {
