@@ -49,13 +49,13 @@ class CommentController extends AbstractController
             $message = (new TemplatedEmail())
                 ->from($this->getUser()->getEmail())
                 ->to(
-                    'pyd3.14@gmail.com',
+                    'contact@monpoison.fr',
                 )
-                ->subject('De la part de ' . $this->getUser()->getPseudo() . ' !')
+                ->subject('De la part de ' . $this->getUser()->getPseudo() . ' ! de monpoison.fr')
                 ->htmlTemplate('email/comment.notification.html.twig')
                 ->context([
                     'sender'  => $this->getUSer()->getEmail(),
-                    'text' => $post
+                    'text' => $comment
                 ]);
 
             $mailer->send($message);
