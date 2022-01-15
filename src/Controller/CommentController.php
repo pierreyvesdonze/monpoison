@@ -7,9 +7,11 @@ use App\Entity\Post;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/commentaire')]
@@ -30,7 +32,8 @@ class CommentController extends AbstractController
     #[Route('/ajouter/{id}', name: 'comment_new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
-        Post $post
+        Post $post,
+        MailerInterface $mailer
     ): Response {
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
@@ -42,6 +45,20 @@ class CommentController extends AbstractController
             $comment->setDate(new \DateTime('now'));
             $this->em->persist($comment);
             $this->em->flush();
+
+            $message = (new TemplatedEmail())
+                ->from($this->getUser())
+                ->to(
+                    'pyd3.14@gmail.com',
+                )
+                ->subject('De la part de ' . $$this->getUser() . ' !')
+                ->htmlTemplate('email/comment.notification.html.twig')
+                ->context([
+                    'sender'  => $$this->getUSer(),
+                    'text' => $post
+                ]);
+
+            $mailer->send($message);
 
             return $this->redirectToRoute('post_show', [
                 'id' => $post->getId()
