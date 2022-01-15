@@ -198,6 +198,10 @@ CONTAINER
 	padding: 20px;
 }
 
+.container p img {
+	width: -webkit-fill-available !important;
+}
+
 .container-center {
 	display: flex;
 	justify-content: space-between;
