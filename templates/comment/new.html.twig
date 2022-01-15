@@ -9,6 +9,10 @@
     <h1>Ajouter un commentaire</h1>
     
     {{ include('comment/_form.html.twig') }}
+
+    <br>
+
+    <a href="{{ path('post_show', {'id':post.id}) }}" title="Retourner à la liste d'articles">Retourner à l'article</a>
 </div>
 
 {% endblock %}

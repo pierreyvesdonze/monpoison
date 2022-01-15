@@ -149,6 +149,7 @@ NAV MENU
 *********************/
 .navbar {
 	background-color: var(--semi-transparent) !important;
+	box-shadow: black 0 0 7px 1px;
 }
 
 .dropdown-menu {
@@ -193,6 +194,7 @@ CONTAINER
 
 .container {
 	background-color: var(--semi-transparent);
+	box-shadow: black 0 0 7px 1px;
 	backdrop-filter: blur(4px);
 	border-radius: 15px;
 	padding: 20px;
@@ -447,6 +449,7 @@ footer {
 	width: 100%;
 	height: auto;
 	background-color: var(--semi-transparent);
+	box-shadow: black 0 0 7px 1px;
 	margin-top: 50px;
 	position: relative;
 }
