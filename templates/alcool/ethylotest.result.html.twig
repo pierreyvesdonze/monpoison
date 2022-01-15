@@ -10,7 +10,7 @@
     {% set message = null %}
     {% if score > 0.8 %}
         {% set scoreStatus = 'hardScore' %}
-        {% set message = "Selon l’article L243-1 du Code de la route, conduire un véhicule avec ce taux d'alcoolémie est passible de deux ans d'emprisonnement, 45000€ d'amende et la peine complémentaire encourue peut être une suspension du permis de conduire pour une durée de trois an au plus." %}
+        {% set message = "Selon l’article L243-1 du Code de la route, conduire un véhicule avec ce taux d'alcoolémie est passible de deux ans d'emprisonnement, 45000€ d'amende et la peine complémentaire encourue peut être une suspension du permis de conduire pour une durée de trois ans au plus." %}
     {% elseif score >= 0.5 and score < 0.8 %}
         {% set scoreStatus = 'middleScore' %}
         {% set message = "Conduire avec ce taux d'alcoolémie entraîne une contravention de quatrième classe assortie d'un retrait de six points sur le permis de conduire." %}
