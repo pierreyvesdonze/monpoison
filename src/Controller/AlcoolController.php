@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\AlcoolTestType;
+use App\Form\EthylotestType;
 use App\Repository\DrinkRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -57,9 +58,9 @@ class AlcoolController extends AbstractController
     }
 
     /**
-     * @Route("/alcool/test/addiction/result/{score}", name="alcool_test_result")
+     * @Route("/alcool/test/addiction/resultat/{score}", name="alcool_test_result")
      */
-    public function getResult(int $score)
+    public function getAddictResultScore(int $score)
     {
         /**
          * @var string
@@ -87,10 +88,51 @@ class AlcoolController extends AbstractController
     }
 
     /**
-     * @Route("alcool/stats", name="alcool_stats")
+     * @Route("alcool/statistiques", name="alcool_stats")
      */
     public function alcoolStats()
     {
         return $this->render('alcool/stats.html.twig');
+    }
+
+    /**
+     * @Route("/alcool/test/alcoolemie", name="ethylotest")
+     */
+    public function setEthyloTestScore(Request $request): Response
+    {
+        $form = $this->createForm(EthylotestType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $sex      = $form->get('sex')->getData();
+            $weight   = $form->get('weight')->getData();
+            $quantity = $form->get('quantity')->getData();
+            $degree   = $form->get('degree')->getData();
+            
+            if (0 === $sex) {
+                $score = ((($quantity *10) * $degree * 0.8) / ($weight * 0.7)) / 52.5;
+            
+            } else {
+                $score = ((($quantity * 10) * $degree * 0.8) / ($weight * 0.6)) / 36;
+            }
+
+            return $this->redirectToRoute('ethylotest_result', [
+                'score' => $score
+            ]);
+        }
+
+        return $this->render('alcool/ethylotest.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/ethylotest/{score}", name="ethylotest_result")
+     */
+    public function ethylotestResult($score) :Response
+    {
+        return $this->render('alcool/ethylotest.result.html.twig', [
+            'score' => $score
+        ]);
     }
 }

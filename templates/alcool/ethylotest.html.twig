@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block title %} Ethylotest en ligne {% endblock %}
+
+{% block body %}
+
+<br><br>
+
+<div class="container">
+    <h1>Ethylotest en ligne</h1>
+    {{ form_start(form) }}
+    {{ form_label(form.sex) }}
+    <br>
+    {{ form_widget(form.sex) }}
+    <br>
+    <br>
+    {{ form_label(form.weight) }}
+    <br>
+    {{ form_widget(form.weight) }}
+    <br>
+    <br>
+    {{ form_label(form.quantity) }}
+    <br>
+    {{ form_widget(form.quantity) }}
+    <br>
+    <br>
+    {{ form_label(form.degree) }}
+    <br>
+    {{ form_widget(form.degree) }}
+    <br>
+    <br>
+    {{ form_row(form.submit) }}
+    {{ form_end(form) }}
+</div>
+
+{% endblock %}

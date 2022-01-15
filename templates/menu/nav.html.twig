@@ -67,9 +67,19 @@
                 </li>
                 {% endif %}
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('alcool_test') }}" title="Test de dépendance">Test de
-                        dépendance</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTest" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Tests
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownTest">
+                        <li>
+                            <a class="dropdown-item" href="{{ path('alcool_test') }}" title="aTest de dépendance">Test de dépendance</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ethylotest') }}" type="button" class="dropdown-item" title="ethylotest">Ethylotest en ligne</a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('alcool_stats') }}"
