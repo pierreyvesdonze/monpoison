@@ -574,6 +574,26 @@ footer div {
 }
 
 /**********************
-LOADING ANIMATION
+PAGINATOR
 **********************/
+.pagination {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.first,
+.current,
+.page,
+.next,
+.previous,
+.last {
+  padding-right: .6em;
+  padding-left: .6em;
+  font-size: 1.4em;
+}
+
+.current {
+  font-size: 2em !important;
+}
 /*# sourceMappingURL=style.css.map */
