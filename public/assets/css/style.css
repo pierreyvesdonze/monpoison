@@ -61,6 +61,10 @@ a:hover {
   color: white !important;
 }
 
+.span-italic {
+  font-style: italic;
+}
+
 /*********************
 BUTTONS
 *********************/
