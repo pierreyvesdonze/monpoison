@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Testimonials;
 use App\Form\TestimonialsType;
 use App\Repository\TestimonialsRepository;
+use App\Service\MailService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +28,11 @@ class TestimonialsController extends AbstractController
     }
 
     #[Route('/ajouter', name: 'testimonials_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        MailService $mailService
+        ): Response
     {
         $testimonial = new Testimonials();
         $form = $this->createForm(TestimonialsType::class, $testimonial);
@@ -40,6 +45,11 @@ class TestimonialsController extends AbstractController
             $this->addFlash('success', 'Votre témoignage a bien été enregistré !');
 
             return $this->redirectToRoute('testimonials', [], Response::HTTP_SEE_OTHER);
+
+            // Send notification to contact@monpoison.fr
+            $mailService->sendContactMail(
+                $form->get('pseudo')->getData(),
+                $form->get('content')->getData());
         }
 
         return $this->renderForm('testimonials/new.html.twig', [

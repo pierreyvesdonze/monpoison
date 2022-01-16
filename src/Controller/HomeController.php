@@ -35,10 +35,9 @@ class HomeController extends AbstractController
     public function contact(
         Request $request,
         MailService $mailer
-        )
-    {
+    ) {
 
-     $form = $this->createForm(ContactType::class);
+        $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -56,5 +55,4 @@ class HomeController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
 }

@@ -14,6 +14,9 @@ class MailService
         $this->mailer = $mailer;
     }
 
+    /**
+     * @Param object $user
+     */
     public function sendCommentMail($comment, $user) {
 
         $message = (new TemplatedEmail())
@@ -31,6 +34,9 @@ class MailService
         $this->mailer->send($message);
     }
 
+    /**
+     * @Param string $user
+     */
     public function sendContactMail($comment, $user)
     {
         $message = (new TemplatedEmail())
@@ -47,4 +53,6 @@ class MailService
 
         $this->mailer->send($message);
     }
+
+    public function testimonialMail($text, $pseudo)
 }
