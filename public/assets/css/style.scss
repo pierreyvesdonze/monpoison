@@ -250,8 +250,18 @@ CONTAINER
 }
 
 /**********************
-ICON & DIV ICON
+SOCIAL ICON & DIV ICON
 **********************/
+.social-wrapper {
+	display: flex;
+	@include xs {
+		flex-direction: column;
+	}
+	@include sm {
+		flex-direction: column;
+	}
+}
+
 .alcool-png {
 	width: 35px;
 	height: 35px;
@@ -271,7 +281,8 @@ ICON & DIV ICON
 	box-shadow: inset black 0 0 5px 3px;
 	transition: ease-in-out .2s;
 	&:hover {
-		background: #20180382;
+		background: var(--hover-color);
+		box-shadow: inset black 0 0 1px 1px;
 	}
 }
 

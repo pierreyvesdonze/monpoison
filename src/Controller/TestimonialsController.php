@@ -50,7 +50,6 @@ class TestimonialsController extends AbstractController
                 $form->get('pseudo')->getData()
             );
 
-
             return $this->redirectToRoute('testimonials', [], Response::HTTP_SEE_OTHER);
         }
 
