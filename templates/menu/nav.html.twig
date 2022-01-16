@@ -74,16 +74,26 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownTest">
                         <li>
-                            <a class="dropdown-item" href="{{ path('alcool_test') }}" title="aTest de dépendance">Test de dépendance</a>
+                            <a class="dropdown-item" href="{{ path('alcool_test') }}" title="Test de dépendance">Test de dépendance</a>
                         </li>
                         <li>
                             <a href="{{ path('ethylotest') }}" type="button" class="dropdown-item" title="ethylotest">Ethylotest en ligne</a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('alcool_stats') }}"
-                        title="Quelques chiffres sur l'alcool">L'alcool en chiffres</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownHelp" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Se faire aider
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownHelp">
+                        <li>
+                            <a class="dropdown-item" href="{{ path('alcool_stats') }}" title="L'alcool en chiffres">L'alcool en chiffres</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('testimonials') }}" class="dropdown-item" title="temoignages">Témoignages</a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('post_index') }}" title="blog">Blog</a>
