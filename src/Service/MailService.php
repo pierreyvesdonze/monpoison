@@ -53,6 +53,4 @@ class MailService
 
         $this->mailer->send($message);
     }
-
-    public function testimonialMail($text, $pseudo)
 }
