@@ -39,7 +39,7 @@ class MailService
                 'contact@monpoison.fr',
             )
             ->subject('De la part de ' . $user . ' ! de monpoison.fr')
-            ->htmlTemplate('email/comment.notification.html.twig')
+            ->htmlTemplate('email/contact.notification.html.twig')
             ->context([
                 'sender'  => $user,
                 'text' => $comment
