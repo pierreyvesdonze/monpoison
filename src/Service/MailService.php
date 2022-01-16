@@ -73,4 +73,23 @@ class MailService
 
         $this->mailer->send($message);
     }
+
+    /**
+     * @Param string $user
+     */
+    public function subscribeNotification($user)
+    {
+        $message = (new TemplatedEmail())
+            ->from($user->getEmail())
+            ->to(
+                'contact@monpoison.fr',
+            )
+            ->subject('De la part de ' . $user->getPseudo() . ' ! de monpoison.fr')
+            ->htmlTemplate('email/subscribe.notification.html.twig')
+            ->context([
+                'sender'  => $user->getEmail()
+            ]);
+
+        $this->mailer->send($message);
+    }
 }

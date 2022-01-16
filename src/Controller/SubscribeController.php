@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\MailService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,7 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class SubscribeController extends AbstractController
 {
     public function __construct(
-        private EntityManagerInterface $em
+        private EntityManagerInterface $em,
+        private MailService $mailService
     ) {
     }
 
@@ -22,6 +24,7 @@ class SubscribeController extends AbstractController
         if(!false == $this->getUSer()) {
             $this->getUser()->setIsSubscribed(true);
             $this->em->flush();
+            $this->mailService->subscribeNotification($this->getUser());
         }
         
         return $this->render('subscribe/thanks.html.twig');
