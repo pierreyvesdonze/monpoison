@@ -29,7 +29,7 @@ class PostController extends AbstractController
         PaginatorInterface $paginator
         ): Response
     {
-        $data = $postRepository->findBy([], ['id' => 'desc']);
+        $data = $postRepository->findBy([], ['date' => 'desc']);
         $posts = $paginator->paginate(
             $data,
             $request->query->getInt('page', 1),

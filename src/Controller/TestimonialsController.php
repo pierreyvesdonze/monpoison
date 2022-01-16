@@ -37,6 +37,8 @@ class TestimonialsController extends AbstractController
             $entityManager->persist($testimonial);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Votre témoignage a bien été enregistré !');
+
             return $this->redirectToRoute('testimonials', [], Response::HTTP_SEE_OTHER);
         }
 
