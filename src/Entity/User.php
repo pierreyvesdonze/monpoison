@@ -68,6 +68,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $isDeleted;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isSubscribed;
+
     public function __construct()
     {
         $this->drinks = new ArrayCollection();
@@ -260,6 +265,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsDeleted(bool $isDeleted): self
     {
         $this->isDeleted = $isDeleted;
+
+        return $this;
+    }
+
+    public function getIsSubscribed(): ?bool
+    {
+        return $this->isSubscribed;
+    }
+
+    public function setIsSubscribed(bool $isSubscribed): self
+    {
+        $this->isSubscribed = $isSubscribed;
 
         return $this;
     }

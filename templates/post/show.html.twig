@@ -22,8 +22,15 @@
     <div class="social-wrapper">
         <!--subscribe-->
         <div class="social-div">
-            <a href="#"> <img src="{{ asset('assets/images/subscribe.png') }}" alt="s'abonner aux articles"
-                    class="social-img">S'abonner</a>
+            {% if app.user.isSubscribed == false %}
+            <a href="{{ path('subscribe_articles') }}"><img src="{{ asset('assets/images/subscribe.png') }}"
+                    alt="s'abonner aux articles" class="social-img"
+                    onclick="return confirm('Abonnement aux articles')">S'abonner</a>
+            {% else %}
+            <a href="{{ path('unsubscribe_articles') }}"><img src="{{ asset('assets/images/subscribe.png') }}"
+                    alt="s'abonner aux articles" class="social-img"
+                    onclick="return confirm('Abonnement aux articles')">Se désabonner</a>
+            {% endif %}
         </div>
         <!-- share Facebook -->
         <div class="social-div">

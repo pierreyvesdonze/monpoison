@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Souscription aux articles désactivées{% endblock %}
+
+{% block body %}
+
+<br><br>
+
+<div class="container">
+    <h1>Vous êtes désormais déabonné(e) !</h1>
+    <p>
+        Vous ne serez désormais plus notifié par email à chaque publication d'un nouvel article. S'il s'agit d'une erreur, vous pouvez vous réabonner à tout moment en cliquant <a href="{{ path('subscribe_articles') }}" title="S'abonner aux articles">ici</a> !
+    </p>
+    <a href="{{ path('post_index') }}" class="custom-btn">Retourner à la liste d'articles</a>
+</div>
+
+{% endblock %}

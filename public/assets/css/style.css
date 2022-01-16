@@ -322,7 +322,9 @@ SOCIAL ICON & DIV ICON
 
 .social-div {
   background: #00000082;
-  width: 166px;
+  width: auto;
+  padding-left: 10px;
+  padding-right: 10px;
   height: 64px;
   border-radius: 20px;
   margin: auto;
