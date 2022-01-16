@@ -17,7 +17,7 @@ class MailService
     public function sendCommentMail($comment, $user) {
 
         $message = (new TemplatedEmail())
-            ->from($user)
+            ->from($user->getEmail())
             ->to(
                 'contact@monpoison.fr',
             )
@@ -28,6 +28,6 @@ class MailService
                 'text' => $comment
             ]);
 
-        $mailer->send($message);
+        $this->mailer->send($message);
     }
 }
