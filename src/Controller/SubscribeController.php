@@ -17,9 +17,9 @@ class SubscribeController extends AbstractController
     }
 
     /**
-     * @Route("articles/abonnement", name="subscribe_articles")
+     * @Route("articles/abonnement/{articleId}", name="subscribe_articles")
      */
-    public function subscribeToArticles() :Response
+    public function subscribeToArticles($articleId) :Response
     {
         $user = $this->getUser();
 
@@ -30,7 +30,8 @@ class SubscribeController extends AbstractController
         }
         
         return $this->render('subscribe/thanks.html.twig', [
-            'user' => $user
+            'user' => $user,
+            'articleId' => $articleId
         ]);
     }
 

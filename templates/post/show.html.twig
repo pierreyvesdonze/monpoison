@@ -17,13 +17,13 @@
     <p>
         Article rédigé le {{ post.date ? post.date|date('d/m/y') : '' }}
     </p>
-
     <hr>
     <div class="social-wrapper">
+        {% set articleId = app.request.uri|split('/')|last %}
         <!--subscribe-->
         <div class="social-div">
             {% if app.user.isSubscribed == false %}
-            <a href="{{ path('subscribe_articles') }}"><img src="{{ asset('assets/images/subscribe.png') }}"
+            <a href="{{ path('subscribe_articles', {'articleId':articleId}) }}"><img src="{{ asset('assets/images/subscribe.png') }}"
                     alt="s'abonner aux articles" class="social-img"
                     onclick="return confirm('Abonnement aux articles')">S'abonner</a>
             {% else %}
