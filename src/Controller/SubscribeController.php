@@ -21,13 +21,17 @@ class SubscribeController extends AbstractController
      */
     public function subscribeToArticles() :Response
     {
-        if(!false == $this->getUSer()) {
+        $user = $this->getUser();
+
+        if(!false == $user) {
             $this->getUser()->setIsSubscribed(true);
             $this->em->flush();
-            $this->mailService->subscribeNotification($this->getUser());
+            $this->mailService->subscribeNotification($user);
         }
         
-        return $this->render('subscribe/thanks.html.twig');
+        return $this->render('subscribe/thanks.html.twig', [
+            'user' => $user
+        ]);
     }
 
     /**
