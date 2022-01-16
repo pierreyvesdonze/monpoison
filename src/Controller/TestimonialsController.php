@@ -46,9 +46,10 @@ class TestimonialsController extends AbstractController
 
             // Send notification to contact@monpoison.fr
             $mailService->sendTestimonialMail(
-                $form->get('pseudo')->getData(),
-                $form->get('content')->getData()
+                $form->get('content')->getData(),
+                $form->get('pseudo')->getData()
             );
+
 
             return $this->redirectToRoute('testimonials', [], Response::HTTP_SEE_OTHER);
         }
