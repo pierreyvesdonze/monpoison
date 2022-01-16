@@ -38,6 +38,12 @@ body {
   }
 }
 
+body,
+html {
+  position: relative;
+  height: 100%;
+}
+
 .alert-success {
   background-color: var(--semi-transparent);
 }
@@ -63,6 +69,10 @@ a:hover {
 
 .span-italic {
   font-style: italic;
+}
+
+p {
+  word-wrap: break-word;
 }
 
 /*********************
@@ -538,13 +548,15 @@ REGISTRATION & LOGIN
 FOOTER
 *********************/
 footer {
+  position: relative;
+  bottom: 0;
+  clear: both;
   width: 100%;
   height: auto;
   background-color: var(--semi-transparent);
   -webkit-box-shadow: black 0 0 7px 1px;
           box-shadow: black 0 0 7px 1px;
   margin-top: 50px;
-  position: relative;
 }
 
 footer div {
@@ -557,6 +569,7 @@ footer div {
 
 @media (min-width: 300px) and (max-width: 576px) {
   footer div {
+    position: relative;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -566,6 +579,7 @@ footer div {
 
 @media (min-width: 576px) and (max-width: 768px) {
   footer div {
+    position: relative;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
