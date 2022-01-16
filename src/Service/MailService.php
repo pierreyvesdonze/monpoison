@@ -30,4 +30,22 @@ class MailService
 
         $this->mailer->send($message);
     }
+
+    public function sendContactMail($comment, $user)
+    {
+
+        $message = (new TemplatedEmail())
+            ->from($user)
+            ->to(
+                'contact@monpoison.fr',
+            )
+            ->subject('De la part de ' . $user->getPseudo() . ' ! de monpoison.fr')
+            ->htmlTemplate('email/comment.notification.html.twig')
+            ->context([
+                'sender'  => $user->getEmail(),
+                'text' => $comment
+            ]);
+
+        $this->mailer->send($message);
+    }
 }

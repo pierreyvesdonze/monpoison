@@ -47,7 +47,7 @@ class HomeController extends AbstractController
             $text = $form->get('text')->getData();
 
             // Send email to contact@monpoison.fr
-            $mailer->sendCommentMail($text, $sender);
+            $mailer->sendContactMail($text, $sender);
 
             $this->addFlash('success', 'Votre message a bien été envoyé ! Je vous recontacte dès que possible.');
         }
