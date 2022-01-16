@@ -17,9 +17,9 @@ class SubscribeController extends AbstractController
     }
 
     /**
-     * @Route("articles/abonnement/{articleId}", name="subscribe_articles")
+     * @Route("articles/abonnement/{postId}", name="subscribe_posts")
      */
-    public function subscribeToArticles($articleId) :Response
+    public function subscribeToPosts($postId) :Response
     {
         $user = $this->getUser();
 
@@ -31,14 +31,14 @@ class SubscribeController extends AbstractController
         
         return $this->render('subscribe/thanks.html.twig', [
             'user' => $user,
-            'articleId' => $articleId
+            'postId' => $postId
         ]);
     }
 
     /**
-     * @Route("articles/désabonnement", name="unsubscribe_articles")
+     * @Route("articles/désabonnement", name="unsubscribe_posts")
      */
-    public function unSubscribeToArticles(): Response
+    public function unSubscribeToPosts(): Response
     {
         if (!false == $this->getUSer()) {
             $this->getUser()->setIsSubscribed(false);

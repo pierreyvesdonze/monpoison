@@ -19,15 +19,15 @@
     </p>
     <hr>
     <div class="social-wrapper">
-        {% set articleId = app.request.uri|split('/')|last %}
+        {% set postId = app.request.uri|split('/')|last %}
         <!--subscribe-->
         <div class="social-div">
             {% if app.user.isSubscribed == false %}
-            <a href="{{ path('subscribe_articles', {'articleId':articleId}) }}"><img src="{{ asset('assets/images/subscribe.png') }}"
+            <a href="{{ path('subscribe_posts', {'postId':postID}) }}"><img src="{{ asset('assets/images/subscribe.png') }}"
                     alt="s'abonner aux articles" class="social-img"
                     onclick="return confirm('Abonnement aux articles')">S'abonner</a>
             {% else %}
-            <a href="{{ path('unsubscribe_articles') }}"><img src="{{ asset('assets/images/subscribe.png') }}"
+            <a href="{{ path('unsubscribe_posts') }}"><img src="{{ asset('assets/images/subscribe.png') }}"
                     alt="s'abonner aux articles" class="social-img"
                     onclick="return confirm('Abonnement aux articles')">Se désabonner</a>
             {% endif %}
