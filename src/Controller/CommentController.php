@@ -8,11 +8,9 @@ use App\Form\CommentType;
 use App\Repository\CommentRepository;
 use App\Service\MailService;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/commentaire')]
@@ -47,7 +45,7 @@ class CommentController extends AbstractController
             $this->em->persist($comment);
             $this->em->flush();
 
-            // Send comment to admin by email
+            // Send comment to contact@monpoison.fr by email
             $mailService->sendCommentMail($comment, $this->getUser());
 
             return $this->redirectToRoute('post_show', [
