@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("testimonial")
+ * @Route("temoignage")
  */
 class TestimonialsController extends AbstractController
 {
@@ -26,7 +26,7 @@ class TestimonialsController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'testimonials_new', methods: ['GET', 'POST'])]
+    #[Route('/ajouter', name: 'testimonials_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $testimonial = new Testimonials();
