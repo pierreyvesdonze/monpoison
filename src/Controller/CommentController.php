@@ -6,6 +6,7 @@ use App\Entity\Comment;
 use App\Entity\Post;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
+use App\Service\MailService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,7 +34,7 @@ class CommentController extends AbstractController
     public function new(
         Request $request,
         Post $post,
-        MailerInterface $mailer
+        MailService $mailService
     ): Response {
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
@@ -46,19 +47,8 @@ class CommentController extends AbstractController
             $this->em->persist($comment);
             $this->em->flush();
 
-            $message = (new TemplatedEmail())
-                ->from($this->getUser()->getEmail())
-                ->to(
-                    'contact@monpoison.fr',
-                )
-                ->subject('De la part de ' . $this->getUser()->getPseudo() . ' ! de monpoison.fr')
-                ->htmlTemplate('email/comment.notification.html.twig')
-                ->context([
-                    'sender'  => $this->getUSer()->getEmail(),
-                    'text' => $comment
-                ]);
-
-            $mailer->send($message);
+            // Send comment to admin by email
+            $mailService->sendCommentMail($comment);
 
             return $this->redirectToRoute('post_show', [
                 'id' => $post->getId()
