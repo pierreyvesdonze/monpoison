@@ -23,7 +23,7 @@
         <!--subscribe-->
         <div class="social-div">
             {% if app.user.isSubscribed == false %}
-            <a href="{{ path('subscribe_posts', {'postId':postID}) }}"><img src="{{ asset('assets/images/subscribe.png') }}"
+            <a href="{{ path('subscribe_posts', {'postId':postId}) }}"><img src="{{ asset('assets/images/subscribe.png') }}"
                     alt="s'abonner aux articles" class="social-img"
                     onclick="return confirm('Abonnement aux articles')">S'abonner</a>
             {% else %}
