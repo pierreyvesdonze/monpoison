@@ -87,7 +87,7 @@ class MailService
             ->subject('De la part de ' . $user->getPseudo() . ' ! de monpoison.fr')
             ->htmlTemplate('email/subscribe.notification.html.twig')
             ->context([
-                'sender'  => $user->getEmail()
+                'user'  => $user->getEmail()
             ]);
 
         $this->mailer->send($message);
