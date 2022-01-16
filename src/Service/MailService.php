@@ -53,4 +53,24 @@ class MailService
 
         $this->mailer->send($message);
     }
+
+    /**
+     * @Param contact@monpoison.fr $user
+     */
+    public function sendTestimonialMail($comment, $user)
+    {
+        $message = (new TemplatedEmail())
+            ->from('contact@monpoison.fr')
+            ->to(
+                'contact@monpoison.fr',
+            )
+            ->subject('De la part de ' . $user . ' ! de monpoison.fr')
+            ->htmlTemplate('email/contact.notification.html.twig')
+            ->context([
+                'sender'  => $user,
+                'text' => $comment
+            ]);
+
+        $this->mailer->send($message);
+    }
 }
