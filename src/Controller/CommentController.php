@@ -48,7 +48,7 @@ class CommentController extends AbstractController
             $this->em->flush();
 
             // Send comment to admin by email
-            $mailService->sendCommentMail($comment);
+            $mailService->sendCommentMail($comment, $this->getUser());
 
             return $this->redirectToRoute('post_show', [
                 'id' => $post->getId()

@@ -7,18 +7,24 @@ use Symfony\Component\Mailer\MailerInterface;
 
 class MailService
 {
-    public function sendCommentMail($comment) {
-        $mailer = new MailerInterface();
+    private $mailer;
+
+    public function __construct(MailerInterface $mailer)
+    {
+        $this->mailer = $mailer;
+    }
+
+    public function sendCommentMail($comment, $user) {
 
         $message = (new TemplatedEmail())
-            ->from($this->getUser()->getEmail())
+            ->from($user)
             ->to(
                 'contact@monpoison.fr',
             )
-            ->subject('De la part de ' . $this->getUser()->getPseudo() . ' ! de monpoison.fr')
+            ->subject('De la part de ' . $user->getPseudo() . ' ! de monpoison.fr')
             ->htmlTemplate('email/comment.notification.html.twig')
             ->context([
-                'sender'  => $this->getUSer()->getEmail(),
+                'sender'  => $user->getEmail(),
                 'text' => $comment
             ]);
 
