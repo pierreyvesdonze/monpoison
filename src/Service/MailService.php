@@ -33,16 +33,15 @@ class MailService
 
     public function sendContactMail($comment, $user)
     {
-
         $message = (new TemplatedEmail())
             ->from($user)
             ->to(
                 'contact@monpoison.fr',
             )
-            ->subject('De la part de ' . $user->getPseudo() . ' ! de monpoison.fr')
+            ->subject('De la part de ' . $user . ' ! de monpoison.fr')
             ->htmlTemplate('email/comment.notification.html.twig')
             ->context([
-                'sender'  => $user->getEmail(),
+                'sender'  => $user,
                 'text' => $comment
             ]);
 
