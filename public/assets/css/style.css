@@ -156,7 +156,8 @@ BUTTONS
 }
 
 .custom-btn-left,
-.custom-btn-right {
+.custom-btn-right,
+.twitter-share-button {
   padding: 0;
 }
 

@@ -29,15 +29,20 @@ app.request.attributes.get('_route_params')) %}
     <div class="social-wrapper">
         <!--subscribe-->
         <div class="">
-            <a type="button" data-bs-toggle="modal" data-bs-target="#subscribeModal" class="custom-btn custom-btn-left" id='subscribe-btn'><img
-                    src="{{ asset('assets/images/subscribe.png') }}" alt="s'abonner aux articles"
+            <a type="button" data-bs-toggle="modal" data-bs-target="#subscribeModal" class="custom-btn custom-btn-left"
+                id='subscribe-btn'><img src="{{ asset('assets/images/subscribe.png') }}" alt="s'abonner aux articles"
                     class="social-img"></a>
 
         </div>
+
+        <!-- share Twitter -->
         <div>
-            <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{ post.title }}&url=https://monpoison.fr/public/article/voir/{{ postId  }}&hashtags=craving,7façons,alcool">
-                Tweet</a>
+            <a class="custom-btn twitter-share-button"
+                href="https://twitter.com/intent/tweet?text={{ post.title }}&url=https://monpoison.fr/public/article/voir/{{ postId  }}&hashtags=craving,7façons,alcool">
+                <img src="{{ asset('assets/images/twitter-share-icon.png') }}" alt="Partager sur Twitter"
+                    class="social-img"></a>
         </div>
+
         <!-- share Facebook -->
         <div class="">
             <a href="http://www.facebook.com/sharer.php?u=https://monpoison.fr/public/article/voir/{{ post.id }}"
