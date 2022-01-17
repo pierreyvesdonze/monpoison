@@ -12,8 +12,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     public function __construct(
-       private EntityManagerInterface $entityManager
-    ) {}
+        private EntityManagerInterface $entityManager
+    ) {
+    }
 
     /**
      * @Route("/user/profile", name="user_account")
@@ -21,8 +22,7 @@ class UserController extends AbstractController
     public function index(
         DrinkRepository $drinkRepository,
         SoberRepository $soberRepository
-        ): Response
-    {
+    ): Response {
         $user = $this->getUser();
 
         $lastWeekDrinks = $drinkRepository->findLastWeekDrinks($user);
@@ -36,25 +36,29 @@ class UserController extends AbstractController
 
         $total = (int)$totalBeer + (int)$totalWine + (int)$totalSpiritus + (int)$sobers;
 
-        if (null !== $sobers) {
-            $xSober    = ((int)$sobers * 100) / $total;
+        if (0 !== $total) {
+            if (null !== $sobers) {
+                $xSober    = ((int)$sobers * 100) / $total;
+            } else {
+                $xSober = 0;
+            }
+            if (null !== $totalBeer) {
+                $xBeer     = ((int)$totalBeer * 100) / $total;
+            } else {
+                $xBeer = 0;
+            }
+            if (null !== $totalWine) {
+                $xWine     = ((int)$totalWine * 100) / $total;
+            } else {
+                $xWine = 0;
+            }
+            if (null !== $totalSpiritus) {
+                $xSpiritus = ((int)$totalSpiritus * 100) / $total;
+            } else {
+                $xSpiritus = 0;
+            }
         } else {
-            $xSober = 0;
-        }
-        if (null !== $totalBeer) {
-            $xBeer     = ((int)$totalBeer * 100) / $total;
-        } else {
-            $xBeer = 0;
-        }
-        if (null !== $totalWine) {
-            $xWine     = ((int)$totalWine * 100) / $total;
-        } else {
-            $xWine = 0;
-        }
-        if (null !== $totalSpiritus) {
-            $xSpiritus = ((int)$totalSpiritus * 100) / $total;
-        } else {
-            $xSpiritus = 0;
+            $xSober = $xBeer = $xWine = $xSpiritus = 0;
         }
 
         return $this->render('user/user.html.twig', [

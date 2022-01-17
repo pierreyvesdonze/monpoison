@@ -96,7 +96,6 @@
 
     <script>
         window.addEventListener("DOMContentLoaded", (event) => {
-            console.log($('.table').data('drinks'));
             const ctx = document.getElementById('myChart');
             const myChart = new Chart(ctx, {
                 type: 'pie',
@@ -149,7 +148,7 @@
         <br>
         <br>
         <a href="{{ path('delete_user') }}" title="Supprimer mon compte" class="btn btn-danger"
-        onclick="return confirm('Supprimer définitivement votre compte ?')">Supprimer mon compte</a>
+        onclick="return confirm('Supprimer définitivement votre compte et vos enregistrements ?')">Supprimer mon compte</a>
     </p>
         
 </div>
