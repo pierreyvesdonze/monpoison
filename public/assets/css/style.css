@@ -372,13 +372,13 @@ CONTAINER
 
 @media (min-width: 300px) and (max-width: 576px) {
   .container p img {
-    width: 100% !important;
+    width: 320px !important;
   }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
   .container p img {
-    width: 100% !important;
+    width: 320px !important;
   }
 }
 

@@ -306,11 +306,11 @@ CONTAINER
 	height: auto;
 	box-shadow: black 0 0 7px 1px;
 	@include xs {
-		width: 100% !important;
+		width: 320px !important;
 	}
 
 	@include sm {
-		width: 100% !important;
+		width: 320px !important;
 	}
 }
 
