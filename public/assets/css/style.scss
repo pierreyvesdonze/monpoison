@@ -145,6 +145,7 @@ BUTTONS
 	padding: 0;
 }
 
+
 button[type="submit"],
 button.custom-btn {
 	background-color: var(--btn-color);
@@ -241,7 +242,7 @@ SOCIALS ICONS
 .social-icons {
 	position: fixed;
 	margin: 1.5%;
-	top: 80%;
+	top: 70%;
 	z-index: 600;
 	display: flex;
 	flex-direction: column;
@@ -273,6 +274,17 @@ SOCIALS ICONS
 		justify-content: space-evenly;
 		flex-direction: row;
 	}
+}
+
+.social-twitter-img,
+.social-fb-img {
+	transition: ease-in-out 0.2s;
+}
+.social-twitter-img:hover,
+.social-fb-img:hover 
+{
+	transform: rotate(45deg);
+	transition: ease-in-out 0.2s;
 }
 
 /**********************

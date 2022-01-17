@@ -266,7 +266,7 @@ SOCIALS ICONS
 .social-icons {
   position: fixed;
   margin: 1.5%;
-  top: 80%;
+  top: 70%;
   z-index: 600;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -326,6 +326,20 @@ SOCIALS ICONS
         -ms-flex-direction: row;
             flex-direction: row;
   }
+}
+
+.social-twitter-img,
+.social-fb-img {
+  -webkit-transition: ease-in-out 0.2s;
+  transition: ease-in-out 0.2s;
+}
+
+.social-twitter-img:hover,
+.social-fb-img:hover {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  -webkit-transition: ease-in-out 0.2s;
+  transition: ease-in-out 0.2s;
 }
 
 /**********************
