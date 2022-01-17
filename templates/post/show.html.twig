@@ -3,8 +3,11 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block body %}
-
+{% set postId = app.request.uri|split('/')|last %}
 <br><br>
+
+{# modal subscribe #}
+{% include('subscribe/_new.html.twig') %}
 
 <div class="container">
 
@@ -19,24 +22,20 @@
     </p>
     <hr>
     <div class="social-wrapper">
-        {% set postId = app.request.uri|split('/')|last %}
         <!--subscribe-->
-        <div class="social-div">
-            {% if app.user.isSubscribed == false %}
-            <a href="{{ path('subscribe_posts', {'postId':postId}) }}"><img src="{{ asset('assets/images/subscribe.png') }}"
-                    alt="s'abonner aux articles" class="social-img"
-                    onclick="return confirm('Abonnement aux articles')">S'abonner</a>
-            {% else %}
-            <a href="{{ path('unsubscribe_posts') }}"><img src="{{ asset('assets/images/subscribe.png') }}"
-                    alt="s'abonner aux articles" class="social-img"
-                    onclick="return confirm('Abonnement aux articles')">Se désabonner</a>
-            {% endif %}
+        <div class="">
+
+            <a type="button" data-bs-toggle="modal" data-bs-target="#subscribeModal" class="custom-btn"><img
+                    src="{{ asset('assets/images/subscribe.png') }}" alt="s'abonner aux articles"
+                    class="social-img"></a>
+
         </div>
         <!-- share Facebook -->
-        <div class="social-div">
+        <div class="">
             <a href="http://www.facebook.com/sharer.php?u=https://monpoison.fr/public/article/voir/{{ post.id }}"
-                target="_blank"><img src="{{ asset('assets/images/fb-share-icon.png') }}" alt="partager sur facebook"
-                    class="social-img">Partager</a>
+                title="Partager sur Facebook" class="custom-btn" target="_blank">
+                <img src="{{ asset('assets/images/fb-share-icon.png') }}" alt="partager sur facebook"
+                    class="social-img"></a>
         </div>
     </div>
 
