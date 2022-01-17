@@ -365,6 +365,7 @@ CONTAINER
   width: -webkit-fill-available;
   width: -moz-available;
   width: fill-available;
+  height: auto;
   -webkit-box-shadow: black 0 0 7px 1px;
           box-shadow: black 0 0 7px 1px;
 }
