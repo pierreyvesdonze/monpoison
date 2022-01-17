@@ -229,13 +229,16 @@ SOCIALS ICONS
 	flex-direction: column;
 	img {
 		width: 65px;
+		height: 65px;
 		@include xs {
 			width: 35px;
+			height: 35px;
 			margin: -2%;
 			filter: invert(1);
 		}
 		@include sm {
 			width: 35px;
+			height: 35px;
 			margin: -2%;
 			filter: invert(1);
 		}

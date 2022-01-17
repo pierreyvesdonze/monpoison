@@ -256,11 +256,13 @@ SOCIALS ICONS
 
 .social-icons img {
   width: 65px;
+  height: 65px;
 }
 
 @media (min-width: 300px) and (max-width: 576px) {
   .social-icons img {
     width: 35px;
+    height: 35px;
     margin: -2%;
     -webkit-filter: invert(1);
             filter: invert(1);
@@ -270,6 +272,7 @@ SOCIALS ICONS
 @media (min-width: 576px) and (max-width: 768px) {
   .social-icons img {
     width: 35px;
+    height: 35px;
     margin: -2%;
     -webkit-filter: invert(1);
             filter: invert(1);
