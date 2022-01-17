@@ -94,7 +94,7 @@ class MailService
         $this->mailer->send($message);
     }
 
-    public function sendSubscribersNewPost($recipients)
+    public function sendSubscribersNewPost($recipients, $postId)
     {
         $message = (new TemplatedEmail())
             ->from('contact@monpoison.fr')
@@ -103,7 +103,7 @@ class MailService
             )
             ->subject('Nouvel article sur monpoison.fr')
             ->htmlTemplate('email/new.post.html.twig')
-            ->context([]);
+            ->context(['postId'=>$postId]);
 
         $this->mailer->send($message);
     }

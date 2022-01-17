@@ -79,7 +79,7 @@ class PostController extends AbstractController
             $subscribers = $subscriberRepository->findAll();
 
             foreach ($subscribers as $recipient) {
-                $mailService->sendSubscribersNewPost($recipient->getEmail());
+                $mailService->sendSubscribersNewPost($recipient->getEmail(), $post->getId());
             }
          
         } elseif ('remove' === $type) {
