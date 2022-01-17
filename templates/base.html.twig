@@ -65,12 +65,14 @@
     <a id="toTop"></a>
     
     <!-- SOCIAL ICONS -->
+    {% block aside %}
     <aside>
         <div class="social-icons">
             <img src="{{ asset('assets/images/twitter.png') }}">
             <img src="{{ asset('assets/images/facebook.png') }}">
         </div>
     </aside>
+    {% endblock %}
 
     {% block body %}
     {% endblock %}
