@@ -216,6 +216,29 @@ NAV MENU
           box-shadow: black 0 0 7px 1px;
 }
 
+.navbar-toggler {
+  color: white !important;
+  outline: none !important;
+  border: none !important;
+  -webkit-transition: ease .2s;
+  transition: ease .2s;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.collapsed {
+  -webkit-transform: rotate(90deg) !important;
+          transform: rotate(90deg) !important;
+  -webkit-transition: ease .2s;
+  transition: ease .2s;
+}
+
 .dropdown-menu {
   background-color: rgba(0, 0, 0, 0.726) !important;
 }

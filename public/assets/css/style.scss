@@ -193,6 +193,24 @@ NAV MENU
 	background-color: var(--semi-transparent) !important;
 	box-shadow: black 0 0 7px 1px;
 }
+.navbar-toggler {
+	color: white !important;
+	outline: none !important;
+	border: none !important;
+	transition: ease .2s;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.collapsed {
+	transform: rotate(90deg) !important;
+	transition: ease .2s;
+}
 
 .dropdown-menu {
 	background-color: rgba(0, 0, 0, 0.726) !important;
