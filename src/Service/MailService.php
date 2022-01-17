@@ -94,7 +94,7 @@ class MailService
         $this->mailer->send($message);
     }
 
-    public function sensendSubscribersNewPost($recipients)
+    public function sendSubscribersNewPost($recipients)
     {
         $message = (new TemplatedEmail())
             ->from('contact@monpoison.fr')
