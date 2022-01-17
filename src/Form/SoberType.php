@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use App\Entity\Alcool;
 use App\Entity\Sober;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -16,13 +15,6 @@ class SoberType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('sober', EntityType::class, [
-                'label' => 'Ajouter un jour de sobriété',
-                'class' => Alcool::class,
-                'attr' => [
-                    'class' => 'input'
-                ]
-            ])
             ->add('date', DateType::class, [
                 'label' => 'Date de la conso évitée',
                 'attr' => [

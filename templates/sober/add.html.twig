@@ -5,6 +5,12 @@
 {% block body %}
 <br><br>
 <div class="container">
-    {{ form(form) }}
+    {{ form_start(form) }}
+    {{ form_label(form.date) }}
+    <br>
+    {{ form_widget(form.date) }}
+    <br>
+    {{ form_widget(form.submit) }}
+    {{ form_end(form) }}
 </div>
 {% endblock %}

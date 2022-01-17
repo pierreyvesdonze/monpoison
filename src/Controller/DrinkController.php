@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Drink;
 use App\Form\DrinkType;
 use App\Repository\DrinkRepository;
+use App\Repository\SoberRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,12 +21,17 @@ class DrinkController extends AbstractController
     /**
      * @Route("/consommations/voir", name="drink_calendar")
      */
-    public function getCalendar(DrinkRepository $drinkRepository)
+    public function getCalendar(
+        DrinkRepository $drinkRepository,
+        SoberRepository $soberRepository
+        )
     {
         $drinks = $drinkRepository->findByUser($this->getUser());
+        $sobers = $soberRepository->findByUser($this->getUser());
 
         return $this->render('drink/calendar.html.twig', [
-            'drinks' => $drinks
+            'drinks' => $drinks,
+            'sobers' => $sobers
         ]);
     }
 

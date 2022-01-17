@@ -526,6 +526,13 @@ select option {
 }
 
 /**********************
+SOBER
+**********************/
+.sober-card {
+  overflow-y: scroll;
+}
+
+/**********************
 DRINK FORM 
 **********************/
 form[name="drink"] {
@@ -699,6 +706,7 @@ MYCHART
 CARD CONSO
 *********************/
 .card {
+  height: 300px;
   margin-bottom: 25px;
   box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.75);

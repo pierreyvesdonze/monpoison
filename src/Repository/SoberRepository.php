@@ -19,32 +19,17 @@ class SoberRepository extends ServiceEntityRepository
         parent::__construct($registry, Sober::class);
     }
 
-    // /**
-    //  * @return Sober[] Returns an array of Sober objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+    /**
+     * @return Sober[] Returns an array of Drink objects
+     */
 
-    /*
-    public function findOneBySomeField($value): ?Sober
+    public function findByUser($user)
     {
         return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('s.user = :val')
+            ->setParameter('val', $user)
+            ->orderBy('s.date', 'DESC')
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getResult();
     }
-    */
 }
