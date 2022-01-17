@@ -187,6 +187,14 @@ button.custom-btn {
 	visibility: visible;
 }
 
+#btnWelcomeModal {
+	visibility: hidden;
+}
+
+#welcomeModal {
+	overflow-y: auto;
+}
+
 /*********************
 NAV MENU
 *********************/
@@ -371,6 +379,12 @@ HOMEPAGE
 .big-text {
 	width: 60%;
 	margin-top: 2em;
+	webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; 
 }
 
 .big-text h1 {

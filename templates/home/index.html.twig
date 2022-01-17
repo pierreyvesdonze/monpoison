@@ -3,8 +3,13 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
+
+{# SOCIAL ICONS DISABLED #}
 {% block aside %}
 {% endblock %}
+
+{# TOAST ENCOURAGEMENT #}
+{% include('home/_toast.html.twig') %}
 
 <div class="logo-alcool-info">
     <img src="{{ asset('assets/images/alcool-info-service-logo.png') }}" alt="">

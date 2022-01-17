@@ -18,7 +18,7 @@ class DrinkController extends AbstractController
     ) {}
 
     /**
-     * @Route("/drink/calendar", name="drink_calendar")
+     * @Route("/consommations/voir", name="drink_calendar")
      */
     public function getCalendar(DrinkRepository $drinkRepository)
     {
@@ -30,7 +30,7 @@ class DrinkController extends AbstractController
     }
 
     /**
-     * @Route("/drink/add", name="drink_add")
+     * @Route("/consommation/ajouter", name="drink_add")
      */
     public function addDrink(Request $request)
     {
@@ -59,7 +59,7 @@ class DrinkController extends AbstractController
     }
 
     /**
-     * @Route("/drink/update/{id}", name="drink_update")
+     * @Route("/consommation/editer/{id}", name="drink_update")
      */
     public function drinkUpdate(
         Drink $drink,
@@ -86,7 +86,7 @@ class DrinkController extends AbstractController
     }
 
     /**
-     * @Route("/drink/delete/{id}", name="drink_delete")
+     * @Route("/consommation/supprimer/{id}", name="drink_delete")
      */
     public function drinkDelete(Drink $drink)
     {

@@ -11,10 +11,13 @@ var app = {
         if (window.location.href.indexOf("article/voir") > -1) {
             document.querySelector('.submit-subscribe').addEventListener('click', app.subscribeToPosts);
         }
-            
-        document.querySelector('.navbar-toggler').addEventListener('click', app.disableSocialLinks)
 
-        console.log('ererrererzaerzerQSEZRF')
+        if (window.location.href.indexOf('public/') > -1) {
+            app.displayWelcomeModal();
+        }
+
+
+        document.querySelector('.navbar-toggler').addEventListener('click', app.disableSocialLinks)
 
         /**
         * *****************************
@@ -66,7 +69,15 @@ var app = {
     disableSocialLinks: function (params) {
         let $socialIcons = $('.social-icons')
         $('.navbar-toggler').hasClass('collapsed') ? $socialIcons.fadeIn('slow') : $socialIcons.fadeOut('fast');
-    }
+    },
+
+    displayWelcomeModal: function (params) {
+        $('#btnWelcomeModal').trigger('click');
+        setTimeout(function () {
+            $('.close-welcome-modal').trigger('click')
+        }, 1500);
+
+    },
 }
 
 document.addEventListener('DOMContentLoaded', app.init)
