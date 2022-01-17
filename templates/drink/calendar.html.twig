@@ -54,8 +54,8 @@
 
     <hr>
 
-    {% if app.user is not null and app.user.drinks is not empty %}
     <div class="container-center">
+        {% if app.user is not null and sobers is not empty %}
         <div class="card">
             <h5 class="card-header">{{ sobers|length }} jour(s) de sobriété</h5>
             <div class="card-body sober-card">
@@ -67,6 +67,8 @@
                 {% endfor %}
             </div>
         </div>
+        {% endif %}
+        {% if app.user is not null and app.user.drinks is not empty %}
         {% for drink in drinks %}
         <div class="card">
             <h5 class="card-header">{{ drink.date|date('d/m/y') }}</h5>
@@ -86,17 +88,19 @@
             </div>
         </div>
         {% endfor %}
-    </div>
-    <hr>
 
     {% else %}
-
+    
     <div class="container">
         <p>
             Vous n'avez aucune consommation enregistrée pour le moment.
         </p>
     </div>
-    {% endif %}
+        {% endif %}
+    </div>
+    <hr>
+
+   
 </div>
 
 {% endblock %}
