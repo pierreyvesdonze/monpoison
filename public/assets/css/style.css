@@ -91,11 +91,11 @@ p {
 }
 
 blockquote p::before {
-  content: '\201C';
+  content: "\201C";
 }
 
 blockquote p::after {
-  content: '\201D';
+  content: "\201D";
 }
 
 /*********************
@@ -237,6 +237,75 @@ NAV MENU
   background-color: #1d1d1d !important;
 }
 
+/*********************
+SOCIALS ICONS
+*********************/
+.social-icons {
+  position: fixed;
+  margin: 1.5%;
+  top: 80%;
+  z-index: 600;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.social-icons img {
+  width: 65px;
+}
+
+@media (min-width: 300px) and (max-width: 576px) {
+  .social-icons img {
+    width: 35px;
+    margin: -2%;
+    -webkit-filter: invert(1);
+            filter: invert(1);
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .social-icons img {
+    width: 35px;
+    margin: -2%;
+    -webkit-filter: invert(1);
+            filter: invert(1);
+  }
+}
+
+@media (min-width: 300px) and (max-width: 576px) {
+  .social-icons {
+    position: absolute;
+    top: 8.3%;
+    width: 100%;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .social-icons {
+    position: absolute;
+    top: 8.3%;
+    width: 100%;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
 /**********************
 CONTAINER
 **********************/
@@ -319,8 +388,8 @@ SOCIAL ICON & DIV ICON
   border-radius: 20px;
   -webkit-box-shadow: inset black 0 0 5px 3px;
           box-shadow: inset black 0 0 5px 3px;
-  -webkit-transition: ease-in-out .2s;
-  transition: ease-in-out .2s;
+  -webkit-transition: ease-in-out 0.2s;
+  transition: ease-in-out 0.2s;
 }
 
 .social-div:hover {
@@ -642,8 +711,8 @@ PAGINATOR
 .next,
 .previous,
 .last {
-  padding-right: .6em;
-  padding-left: .6em;
+  padding-right: 0.6em;
+  padding-left: 0.6em;
   font-size: 1.4em;
 }
 

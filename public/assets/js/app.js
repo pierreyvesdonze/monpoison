@@ -8,7 +8,13 @@ var app = {
         * L I S T E N E R S
         * *****************************
         */
-        document.querySelector('.submit-subscribe').addEventListener('click', app.subscribeToPosts)
+        if (window.location.href.indexOf("article/voir") > -1) {
+            document.querySelector('.submit-subscribe').addEventListener('click', app.subscribeToPosts);
+        }
+            
+        document.querySelector('.navbar-toggler').addEventListener('click', app.disableSocialLinks)
+
+        console.log('ererrererzaerzerQSEZRF')
 
         /**
         * *****************************
@@ -56,6 +62,11 @@ var app = {
             document.querySelector('.modal-subscribe-text').textContent = 'Veuillez rentrer une adresse email valide';
         }
     },
+
+    disableSocialLinks: function (params) {
+        let $socialIcons = $('.social-icons')
+        $('.navbar-toggler').hasClass('collapsed') ? $socialIcons.fadeIn('slow') : $socialIcons.fadeOut('fast');
+    }
 }
 
 document.addEventListener('DOMContentLoaded', app.init)

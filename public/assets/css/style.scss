@@ -46,7 +46,7 @@ body {
 }
 
 body,
-html{
+html {
 	position: relative;
 	height: 100%;
 }
@@ -83,11 +83,11 @@ p {
 }
 
 blockquote p::before {
-    content: '\201C';
+	content: "\201C";
 }
 
 blockquote p::after {
-    content: '\201D';
+	content: "\201D";
 }
 
 /*********************
@@ -144,7 +144,7 @@ BUTTONS
 .twitter-share-button {
 	padding: 0;
 }
- 
+
 button[type="submit"],
 button.custom-btn {
 	background-color: var(--btn-color);
@@ -217,6 +217,45 @@ NAV MENU
 	background-color: rgb(29, 29, 29) !important;
 }
 
+/*********************
+SOCIALS ICONS
+*********************/
+.social-icons {
+	position: fixed;
+	margin: 1.5%;
+	top: 80%;
+	z-index: 600;
+	display: flex;
+	flex-direction: column;
+	img {
+		width: 65px;
+		@include xs {
+			width: 35px;
+			margin: -2%;
+			filter: invert(1);
+		}
+		@include sm {
+			width: 35px;
+			margin: -2%;
+			filter: invert(1);
+		}
+	}
+	@include xs {
+		position: absolute;
+		top: 8.3%;
+		width: 100%;
+		justify-content: space-evenly;
+		flex-direction: row;
+	}
+	@include sm {
+		position: absolute;
+		top: 8.3%;
+		width: 100%;
+		justify-content: space-evenly;
+		flex-direction: row;
+	}
+}
+
 /**********************
 CONTAINER
 **********************/
@@ -280,7 +319,7 @@ SOCIAL ICON & DIV ICON
 	height: 64px;
 	border-radius: 20px;
 	box-shadow: inset black 0 0 5px 3px;
-	transition: ease-in-out .2s;
+	transition: ease-in-out 0.2s;
 	&:hover {
 		background: var(--hover-color);
 		box-shadow: inset black 0 0 1px 1px;
@@ -530,8 +569,8 @@ PAGINATOR
 .next,
 .previous,
 .last {
-	padding-right: .6em;
-	padding-left: .6em;
+	padding-right: 0.6em;
+	padding-left: 0.6em;
 	font-size: 1.4em;
 }
 
