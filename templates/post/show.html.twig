@@ -3,7 +3,12 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block body %}
+
+{# PARAMS #}
 {% set postId = app.request.uri|split('/')|last %}
+{% set currentPath = path(app.request.attributes.get('_route'),
+app.request.attributes.get('_route_params')) %}
+
 <br><br>
 
 {# modal subscribe #}
@@ -24,10 +29,14 @@
     <div class="social-wrapper">
         <!--subscribe-->
         <div class="">
-            <a type="button" data-bs-toggle="modal" data-bs-target="#subscribeModal" class="custom-btn custom-btn-left"><img
+            <a type="button" data-bs-toggle="modal" data-bs-target="#subscribeModal" class="custom-btn custom-btn-left" id='subscribe-btn'><img
                     src="{{ asset('assets/images/subscribe.png') }}" alt="s'abonner aux articles"
                     class="social-img"></a>
 
+        </div>
+        <div>
+            <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{ currentPath }}">
+                Tweet</a>
         </div>
         <!-- share Facebook -->
         <div class="">
