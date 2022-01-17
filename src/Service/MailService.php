@@ -94,24 +94,17 @@ class MailService
         $this->mailer->send($message);
     }
 
-    public function sensendSubscribersNewPost($subscribers)
+    public function sensendSubscribersNewPost($recipients)
     {
-        $subscribers = preg_split('/[;,]/', $_POST['recipients']);
-        foreach ($subscribers as $email) {
-            //check and trim the Data
-            $recipients[] = trim($email);
-            // do something else if valid
+        $message = (new TemplatedEmail())
+            ->from('contact@monpoison.fr')
+            ->to(
+                $recipients
+            )
+            ->subject('Nouvel article sur monpoison.fr')
+            ->htmlTemplate('email/new.post.html.twig')
+            ->context([]);
 
-            $message = (new TemplatedEmail())
-                ->from('contact@monpoison.fr')
-                ->to(
-                    $recipients
-                )
-                ->subject('Nouvel article sur monpoison.fr')
-                ->htmlTemplate('email/new.post.html.twig')
-                ->context([]);
-
-            $this->mailer->send($message);
-        }
+        $this->mailer->send($message);
     }
 }

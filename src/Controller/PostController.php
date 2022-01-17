@@ -74,10 +74,17 @@ class PostController extends AbstractController
         if ('publish' === $type) {
             $post->setIsPublished(1);
             $this->addFlash('success', 'Article publié !');
-            
+
             // Notify subscribers
-            $subsribers = $subscriberRepository->findAll();
-            $mailService->sensendSubscribersNewPost($subsribers);
+            $subscribers = $subscriberRepository->findAll();
+
+            foreach ($subscribers as $email) {
+                //check and trim the Data
+                $recipients[] = trim($email->getEmail()) . ', ';
+                // do something else if valid
+            }
+         
+            //$mailService->sensendSubscribersNewPost($recipients);
         } elseif ('remove' === $type) {
             $post->setIsPublished(0);
             $this->addFlash('success', 'Article dépublié !');
