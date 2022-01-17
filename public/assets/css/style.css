@@ -111,8 +111,8 @@ BUTTONS
   text-transform: uppercase;
   font-size: 1rem;
   letter-spacing: 0.15rem;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
   position: relative;
   -webkit-box-shadow: black 0 0 5px 3px;
           box-shadow: black 0 0 5px 3px;
@@ -139,8 +139,8 @@ BUTTONS
   width: 0%;
   height: 100%;
   background-color: var(--hover-color);
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
   border-radius: 10rem;
   z-index: -1;
 }
@@ -153,6 +153,11 @@ BUTTONS
 
 .custom-btn:hover:before {
   width: 100%;
+}
+
+.custom-btn-left,
+.custom-btn-right {
+  padding: 0;
 }
 
 button[type="submit"],
@@ -290,24 +295,8 @@ SOCIAL ICON & DIV ICON
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-
-@media (min-width: 300px) and (max-width: 576px) {
-  .social-wrapper {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-}
-
-@media (min-width: 576px) and (max-width: 768px) {
-  .social-wrapper {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .alcool-png {
