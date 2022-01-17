@@ -73,10 +73,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $isSubscribed;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Sober::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $date;
+
     public function __construct()
     {
         $this->drinks = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->date = new ArrayCollection();
     }
 
     public function __toString()
@@ -277,6 +283,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsSubscribed(bool $isSubscribed): self
     {
         $this->isSubscribed = $isSubscribed;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Sober[]
+     */
+    public function getDate(): Collection
+    {
+        return $this->date;
+    }
+
+    public function addDate(Sober $date): self
+    {
+        if (!$this->date->contains($date)) {
+            $this->date[] = $date;
+            $date->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDate(Sober $date): self
+    {
+        if ($this->date->removeElement($date)) {
+            // set the owning side to null (unless already changed)
+            if ($date->getUser() === $this) {
+                $date->setUser(null);
+            }
+        }
 
         return $this;
     }

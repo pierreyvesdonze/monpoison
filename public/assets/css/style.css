@@ -98,6 +98,10 @@ blockquote p::after {
   content: "\201D";
 }
 
+.modal-open {
+  color: wheat;
+}
+
 /*********************
 BUTTONS
 *********************/
