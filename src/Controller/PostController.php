@@ -6,6 +6,8 @@ use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
+use App\Repository\SubscriberRepository;
+use App\Service\MailService;
 use Knp\Component\Pager\PaginatorInterface; 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -60,13 +62,22 @@ class PostController extends AbstractController
      * @Route("/retirer/status/{type}{id}", name="edit_post_status_remove", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function publishPostStatus(Post $post, $type)
+    public function publishPostStatus(
+        Post $post,
+        $type,
+        SubscriberRepository $subscriberRepository,
+        MailService $mailService
+        )
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         if ('publish' === $type) {
             $post->setIsPublished(1);
             $this->addFlash('success', 'Article publié !');
+            
+            // Notify subscribers
+            $subsribers = $subscriberRepository->findAll();
+            $mailService->sensendSubscribersNewPost($subsribers);
         } elseif ('remove' === $type) {
             $post->setIsPublished(0);
             $this->addFlash('success', 'Article dépublié !');
@@ -95,7 +106,9 @@ class PostController extends AbstractController
      * @Route("/nouveau", name="post_new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function new(Request $request): Response
+    public function new(
+        Request $request
+        ): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
