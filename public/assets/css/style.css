@@ -220,8 +220,8 @@ NAV MENU
   color: white !important;
   outline: none !important;
   border: none !important;
-  -webkit-transition: ease .2s;
-  transition: ease .2s;
+  -webkit-transition: ease 0.2s;
+  transition: ease 0.2s;
 }
 
 .navbar-toggler:focus,
@@ -235,8 +235,8 @@ NAV MENU
 .collapsed {
   -webkit-transform: rotate(90deg) !important;
           transform: rotate(90deg) !important;
-  -webkit-transition: ease .2s;
-  transition: ease .2s;
+  -webkit-transition: ease 0.2s;
+  transition: ease 0.2s;
 }
 
 .dropdown-menu {
@@ -362,11 +362,23 @@ CONTAINER
 }
 
 .container p img {
-  width: -webkit-fill-available !important;
-  width: -moz-available !important;
-  width: fill-available !important;
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: fill-available;
   -webkit-box-shadow: black 0 0 7px 1px;
           box-shadow: black 0 0 7px 1px;
+}
+
+@media (min-width: 300px) and (max-width: 576px) {
+  .container p img {
+    width: 100% !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .container p img {
+    width: 100% !important;
+  }
 }
 
 .container-center {

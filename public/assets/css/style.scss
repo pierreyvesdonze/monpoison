@@ -197,19 +197,19 @@ NAV MENU
 	color: white !important;
 	outline: none !important;
 	border: none !important;
-	transition: ease .2s;
+	transition: ease 0.2s;
 }
 
 .navbar-toggler:focus,
 .navbar-toggler:active,
 .navbar-toggler-icon:focus {
-    outline: none;
-    box-shadow: none;
+	outline: none;
+	box-shadow: none;
 }
 
 .collapsed {
 	transform: rotate(90deg) !important;
-	transition: ease .2s;
+	transition: ease 0.2s;
 }
 
 .dropdown-menu {
@@ -301,9 +301,16 @@ CONTAINER
 }
 
 .container p img {
-	width: -webkit-fill-available !important;
-	width: fill-available !important;
+	width: -webkit-fill-available;
+	width: fill-available;
 	box-shadow: black 0 0 7px 1px;
+	@include xs {
+		width: 100% !important;
+	}
+
+	@include sm {
+		width: 100% !important;
+	}
 }
 
 .container-center {
