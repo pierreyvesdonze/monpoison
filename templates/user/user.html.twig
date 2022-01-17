@@ -30,6 +30,10 @@
             </td>
         </tr>
         <tr>
+            <td>Jours d'abstinence</td>
+            <td>{{ sobers }}</td>
+        </tr>
+        <tr>
             <td>
                 Boissons consommées sur 7 jours :
             </td>
@@ -87,6 +91,7 @@
     {% if drinks is not empty %}
 
     <canvas id="myChart" width="400" height="400"></canvas>
+    <input type="hidden" data-sober="{{ xSober }}" id="xSober">
     <input type="hidden" data-beer="{{ xBeer }}" id="xBeer">
     <input type="hidden" data-wine="{{ xWine }}" id="xWine">
     <input type="hidden" data-spiritus="{{ xSpiritus }}" id="xSpiritus">
@@ -99,6 +104,7 @@
                 type: 'pie',
                 data: {
                     labels: [
+                        'Abstinence',
                         'Bière',
                         'Vin',
                         'Alcool fort'
@@ -106,11 +112,13 @@
                     datasets: [{
                         label: 'Répartition des alcools',
                         data: [
+                            document.getElementById("xSober").dataset.sober,
                             document.getElementById("xBeer").dataset.beer,
                             document.getElementById('xWine').dataset.wine,
                             document.getElementById('xSpiritus').dataset.spiritus
                         ],
                         backgroundColor: [
+                            'green',
                             'rgb(255, 205, 86)',
                             'rgb(115, 18, 18, 1)',
                             'rgb(250, 122, 3, 1)'

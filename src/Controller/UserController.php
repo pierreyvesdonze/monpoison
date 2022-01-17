@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\DrinkRepository;
+use App\Repository\SoberRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +18,10 @@ class UserController extends AbstractController
     /**
      * @Route("/user/profile", name="user_account")
      */
-    public function index(DrinkRepository $drinkRepository): Response
+    public function index(
+        DrinkRepository $drinkRepository,
+        SoberRepository $soberRepository
+        ): Response
     {
         $user = $this->getUser();
 
@@ -28,20 +32,27 @@ class UserController extends AbstractController
         $totalWine      = $drinkRepository->findTotalWine($user)[1];
         $totalSpiritus  = $drinkRepository->findTotalSpiritus($user)[1];
 
-        $totalDrink = (int)$totalBeer + (int)$totalWine + (int)$totalSpiritus;
+        $sobers         = count($soberRepository->findByUser($user));
 
+        $total = (int)$totalBeer + (int)$totalWine + (int)$totalSpiritus + (int)$sobers;
+
+        if (null !== $sobers) {
+            $xSober    = ((int)$sobers * 100) / $total;
+        } else {
+            $xSober = 0;
+        }
         if (null !== $totalBeer) {
-            $xBeer     = ((int)$totalBeer * 100) / $totalDrink;
+            $xBeer     = ((int)$totalBeer * 100) / $total;
         } else {
             $xBeer = 0;
         }
         if (null !== $totalWine) {
-            $xWine     = ((int)$totalWine * 100) / $totalDrink;
+            $xWine     = ((int)$totalWine * 100) / $total;
         } else {
             $xWine = 0;
         }
         if (null !== $totalSpiritus) {
-            $xSpiritus = ((int)$totalSpiritus * 100) / $totalDrink;
+            $xSpiritus = ((int)$totalSpiritus * 100) / $total;
         } else {
             $xSpiritus = 0;
         }
@@ -49,11 +60,13 @@ class UserController extends AbstractController
         return $this->render('user/user.html.twig', [
             'user'           => $user,
             'drinks'         => $drinks,
+            'sobers'         => $sobers,
             'lastWeekDrinks' => $lastWeekDrinks,
             'lastWeekCost'   => $lastWeekCost,
             'xBeer'          => $xBeer,
             'xWine'          => $xWine,
-            'xSpiritus'      => $xSpiritus
+            'xSpiritus'      => $xSpiritus,
+            'xSober'         => $xSober
         ]);
     }
 }
