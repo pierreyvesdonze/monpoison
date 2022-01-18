@@ -60,8 +60,8 @@
             <h5 class="card-header">{{ sobers|length }} jour(s) de sobriété</h5>
             <div class="card-body sober-card">
                 {% for sober in sobers %}
-                <span class="card-subtitle mb-2 text-muted greenScore">
-                    {{ sober.date|date('d/m/y') }}
+                <span class="card-subtitle mb-2 text-muted greenScore d-flex justify-content-between">
+                    {{ sober.date|date('d/m/y') }} <a href="{{ path('sober_remove', {'soberId':sober.id}) }}" class="btn btn-danger btn-small">X</a>
                 </span>
                 <br>
                 {% endfor %}
