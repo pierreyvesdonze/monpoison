@@ -77,7 +77,6 @@
         {% if app.user is not null and app.user.drinks is not empty %}
         {% for drink in drinks %}
         <div class="card">
-
             <h5 class="card-header">{{ drink.date|date('d/m/y') }}</h5>
             <div class="card-body">
                 <h6 class="card-subtitle mb-2 text-muted">
@@ -89,7 +88,7 @@
                     <a href="{{ path('drink_update', {'id': drink.id}) }}" title="Mettre à jour une consommation"
                         class="custom-btn btn-settings">&olarr;</a>
                     <a href="{{ path('drink_delete', {'id':drink.id}) }}" title="Supprimer une consommation"
-                        class="btn btn-danger"
+                        class="btn btn-danger btn-settings"
                         onclick="return confirm('Voulez-vous supprimer cette consommation ?') ">&cross;</a>
                 </div>
             </div>

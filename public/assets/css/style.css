@@ -201,8 +201,8 @@ BUTTONS
 }
 
 .btn-settings,
-.btn-danger {
-  font-size: 2em;
+.btn-danger.btn-settings {
+  font-size: 2em !important;
 }
 
 button[type="submit"],
@@ -426,6 +426,18 @@ CONTAINER
   border-radius: 15px;
   padding: 20px;
   width: 82%;
+}
+
+@media (min-width: 300px) and (max-width: 576px) {
+  .container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
 }
 
 .container p img {

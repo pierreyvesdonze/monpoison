@@ -21,9 +21,7 @@ var app = {
             setTimeout(function () {
                  $('.alert').fadeOut('fast')
              }, 1500);
-
         }
-
 
         document.querySelector('.navbar-toggler').addEventListener('click', app.disableSocialLinks)
 
