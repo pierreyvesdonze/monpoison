@@ -412,18 +412,21 @@ CONTAINER
 }
 
 .logo-alcool-info img {
-  width: 50%;
+  width: 434px;
+  height: 106px;
 }
 
 @media (min-width: 300px) and (max-width: 576px) {
   .logo-alcool-info img {
-    width: 70%;
+    width: 320px;
+    height: 62px;
   }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
   .logo-alcool-info img {
-    width: 70%;
+    width: 320px;
+    height: 62px;
   }
 }
 

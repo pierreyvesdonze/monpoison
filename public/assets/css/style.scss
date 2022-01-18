@@ -30,6 +30,10 @@ table,
 select,
 ul li {
 	font-family: "Comfortaa", cursive;
+	// @font-face {
+	// 	font-family: "comfortaa";
+	// 	src: url('/public/assets/fonts/comfortaa2.woff');
+	// }
 	color: wheat !important;
 	text-shadow: 3px 1px 6px rgb(7, 7, 7);
 }
@@ -341,12 +345,15 @@ CONTAINER
 }
 
 .logo-alcool-info img {
-	width: 50%;
+	    width: 434px;
+		height: 106px;
 	@include xs {
-		width: 70%;
+		width: 320px;
+		height: 62px;
 	}
 	@include sm {
-		width: 70%;
+		width: 320px;
+		height: 62px;
 	}
 }
 
