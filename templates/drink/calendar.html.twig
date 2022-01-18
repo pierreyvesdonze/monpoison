@@ -14,7 +14,7 @@
             </div>
             <div class="modal-body bg-dark">
                 <p>
-                    Une unité d'alcool correspond à : <br>
+                    Une UA (unité d'alcool) correspond à : <br>
                 <ul>
                     <li>
                         - 25cl de bière à 5.5°
@@ -58,9 +58,9 @@
         {% if app.user is not null and sobers is not empty %}
         <div class="card">
             <h5 class="card-header">
-                {% if sobers|length <= 1 %} {{ sobers|length }} jour de sobriété</h5>
+                {% if sobers|length <= 1 %} {{ sobers|length }} jour sans alcool</h5>
                     {% else %}
-                    {{ sobers|length }} jours de sobriété</h5>
+                    {{ sobers|length }} jours sans alcool</h5>
             {% endif %}
 
             <div class="card-body sober-card">
@@ -77,16 +77,17 @@
         {% if app.user is not null and app.user.drinks is not empty %}
         {% for drink in drinks %}
         <div class="card">
+
             <h5 class="card-header">{{ drink.date|date('d/m/y') }}</h5>
             <div class="card-body">
                 <h6 class="card-subtitle mb-2 text-muted">
                     <img src="{{ asset(drink.alcool.imgPath) }}" class="alcool-png" alt="Icône alcool">
                 </h6>
-                <p class="card-text">{{ drink.quantity }} unités</p>
-                <p class="card-text"><b>{{ drink.cost }} €</b> dépensés</p>
-                <div class="d-flex justify-content-between">
+                <p class="card-text">{{ drink.quantity }} UA</p>
+                <p class="card-text"><b>{{ drink.cost }} €</b></p>
+                <div class="d-flex justify-content-around">
                     <a href="{{ path('drink_update', {'id': drink.id}) }}" title="Mettre à jour une consommation"
-                        class="custom-btn btn-settings">+/-</a>
+                        class="custom-btn btn-settings">&olarr;</a>
                     <a href="{{ path('drink_delete', {'id':drink.id}) }}" title="Supprimer une consommation"
                         class="btn btn-danger"
                         onclick="return confirm('Voulez-vous supprimer cette consommation ?') ">&cross;</a>

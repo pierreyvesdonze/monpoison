@@ -10,6 +10,7 @@ MEDIA QUERIES
   --alert: #0a0a0ad0;
   --btn-color: #312e29a4;
   --hover-color: #e78d06;
+  --card-header: #00000069;
 }
 
 p,
@@ -128,6 +129,12 @@ blockquote p::after {
 /*********************
 BUTTONS
 *********************/
+.btn:active,
+.btn:focus {
+  border: none;
+  outline: none;
+}
+
 .custom-btn,
 .btn-danger {
   display: inline-block;
@@ -741,7 +748,7 @@ CARD CONSO
 *********************/
 .card {
   height: 300px;
-  width: 300px;
+  width: 212px;
   margin-bottom: 25px;
   box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.75);
@@ -755,8 +762,30 @@ CARD CONSO
           box-shadow: 0px 0px 8px 6px rgba(0, 0, 0, 0.75);
 }
 
+@media (min-width: 300px) and (max-width: 576px) {
+  .card {
+    width: 250px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .card {
+    width: 250px;
+  }
+}
+
 .card-text {
   font-size: 1.5em;
+}
+
+.card-header {
+  border-radius: 0 17px 0 0 !important;
+  background: var(--card-header);
+}
+
+.card-header,
+.card-body {
+  text-align: center;
 }
 
 /*********************
