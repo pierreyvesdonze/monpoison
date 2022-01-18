@@ -353,7 +353,7 @@ SOCIALS ICONS
 @media (min-width: 300px) and (max-width: 576px) {
   .social-icons {
     position: absolute;
-    top: 7%;
+    top: 46px;
     width: 100%;
     -webkit-box-pack: space-evenly;
         -ms-flex-pack: space-evenly;
@@ -368,7 +368,7 @@ SOCIALS ICONS
 @media (min-width: 576px) and (max-width: 768px) {
   .social-icons {
     position: absolute;
-    top: 7%;
+    top: 46px;
     width: 100%;
     -webkit-box-pack: space-evenly;
         -ms-flex-pack: space-evenly;
