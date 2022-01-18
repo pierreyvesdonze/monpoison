@@ -34,19 +34,19 @@ ul li {
 	text-shadow: 3px 1px 6px rgb(7, 7, 7);
 }
 
-// body {
-// 	height: 100vh;
-// 	background: var(--body-bg);
-// 	background-size: cover;
-// 	@include xs {
-// 		background: var(--body-bg-small);
-// 		background-size: cover;
-// 	}
-// 	@include sm {
-// 		background: var(--body-bg-small);
-// 		background-size: cover;
-// 	}
-// }
+body {
+	height: 100vh;
+	background: var(--body-bg);
+	background-size: cover;
+	@include xs {
+		background: var(--body-bg-small);
+		background-size: cover;
+	}
+	@include sm {
+		background: var(--body-bg-small);
+		background-size: cover;
+	}
+}
 
 body,
 html {
@@ -707,21 +707,21 @@ PAGINATOR
 /**********************
 BG ANIM
 **********************/
-body {
-	background: linear-gradient(-45deg, #1d1714, #1b1115, #10171a, #0b0e0d);
-	background-size: 400% 400%;
-	animation: gradient 20s ease infinite;
-	height: 100vh;
-}
+// body {
+// 	background: linear-gradient(-45deg, #1d1714, #1b1115, #10171a, #0b0e0d);
+// 	background-size: 400% 400%;
+// 	animation: gradient 20s ease infinite;
+// 	height: 100vh;
+// }
 
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
+// @keyframes gradient {
+// 	0% {
+// 		background-position: 0% 50%;
+// 	}
+// 	50% {
+// 		background-position: 100% 50%;
+// 	}
+// 	100% {
+// 		background-position: 0% 50%;
+// 	}
+// }
