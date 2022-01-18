@@ -4,7 +4,8 @@ MEDIA QUERIES
 ***********************************
 */
 :root {
-  --body-bg: radial-gradient(circle, rgb(46, 46, 46) 11%, rgb(39, 39, 39) 83%);
+  --body-bg: url("../images/cocktail-bg.webp") no-repeat fixed;
+  --body-bg-small: url("../images/cocktail-bg-small.webp") no-repeat fixed;
   --transparent: rgba(255, 255, 255, 0);
   --semi-transparent: #3f3f3f40;
   --alert: #0a0a0ad0;
@@ -38,20 +39,20 @@ ul li {
 
 body {
   height: 100vh;
-  background: url("../images/cocktail-bg.webp") no-repeat fixed;
+  background: var(--body-bg);
   background-size: cover;
 }
 
 @media (min-width: 300px) and (max-width: 576px) {
   body {
-    background: url("../images/cocktail-bg-small.webp") no-repeat fixed;
+    background: var(--body-bg-small);
     background-size: cover;
   }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
   body {
-    background: url("../images/cocktail-bg-small.webp") no-repeat fixed;
+    background: var(--body-bg-small);
     background-size: cover;
   }
 }
@@ -717,21 +718,24 @@ h2 {
 /**********************
 MYCHART
 **********************/
-#myChart {
+#myChart,
+#myChart2 {
   width: 600px !important;
   height: 600px !important;
   margin: inherit;
 }
 
 @media (min-width: 300px) and (max-width: 576px) {
-  #myChart {
+  #myChart,
+  #myChart2 {
     width: 350px !important;
     height: 350px !important;
   }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
-  #myChart {
+  #myChart,
+  #myChart2 {
     width: 350px !important;
     height: 350px !important;
   }
@@ -838,6 +842,7 @@ footer div {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    padding: 1em;
   }
 }
 
@@ -848,6 +853,7 @@ footer div {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    padding: 1em;
   }
 }
 

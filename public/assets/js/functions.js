@@ -3,7 +3,6 @@
 * ADD DRINK FORM
 *****************************
 */
-
 // Restrict for unique route
 if (window.location.href.indexOf("consommation/ajouter") > -1) {
     var msf_getFsTag = document.getElementsByTagName("fieldset");

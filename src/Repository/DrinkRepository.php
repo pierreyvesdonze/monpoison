@@ -94,4 +94,16 @@ class DrinkRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    public function findByDay($user, $day)
+    {
+        return $this->createQueryBuilder('d')
+            ->where('d.user = :user')
+            ->andWhere('DayName(d.date) = :day')
+            ->setParameter('user', $user)
+            ->setParameter('day', $day)
+            ->select('SUM(d.quantity)')
+            ->getQuery()
+            ->getResult();
+    }
 }

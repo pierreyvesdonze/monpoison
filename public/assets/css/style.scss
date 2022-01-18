@@ -1,7 +1,8 @@
 @import "./responsive";
 
 :root {
-	--body-bg: radial-gradient(circle, rgb(46, 46, 46) 11%, rgb(39, 39, 39) 83%);
+	--body-bg: url("../images/cocktail-bg.webp") no-repeat fixed;
+	--body-bg-small: url("../images/cocktail-bg-small.webp") no-repeat fixed;
 	--transparent: rgba(255, 255, 255, 0);
 	--semi-transparent: #3f3f3f40;
 	--alert: #0a0a0ad0;
@@ -36,15 +37,14 @@ ul li
 
 body {
 	height: 100vh;
-	//background: var(--body-bg);
-	background: url("../images/cocktail-bg.webp") no-repeat fixed;
+	background: var(--body-bg);
 	background-size: cover;
 	@include xs {
-		background: url("../images/cocktail-bg-small.webp") no-repeat fixed;
+		background: var(--body-bg-small);
 		background-size: cover;
 	}
 	@include sm {
-		background: url("../images/cocktail-bg-small.webp") no-repeat fixed;
+		background: var(--body-bg-small);
 		background-size: cover;
 	}
 }
@@ -571,7 +571,8 @@ h2 {
 /**********************
 MYCHART
 **********************/
-#myChart {
+#myChart,
+#myChart2 {
 	width: 600px !important;
 	height: 600px !important;
 	margin: inherit;
@@ -668,10 +669,12 @@ footer div {
 	@include xs {
 		position: relative;
 		flex-direction: column;
+		padding: 1em;
 	}
 	@include sm {
 		position: relative;
 		flex-direction: column;
+		padding: 1em;
 	}
 }
 
