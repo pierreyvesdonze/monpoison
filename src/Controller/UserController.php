@@ -42,7 +42,7 @@ class UserController extends AbstractController
         $saturdayDrinks  = (int)$drinkRepository->findByDay($user, 'Saturday')[0][1];
         $sundayDrinks    = (int)$drinkRepository->findByDay($user, 'Sunday')[0][1];
 
-        $sobers         = count($soberRepository->findByUser($user));
+        $sobers          = count($soberRepository->findByUser($user));
 
         $total = (int)$totalBeer + (int)$totalWine + (int)$totalSpiritus + (int)$sobers;
  
@@ -87,7 +87,7 @@ class UserController extends AbstractController
             'thursdayDrinks' => $thursdayDrinks,
             'fridayDrinks'   => $fridayDrinks,
             'saturdayDrinks' => $saturdayDrinks,
-            'sundayDrinks'  => $sundayDrinks
+            'sundayDrinks'   => $sundayDrinks
         ]);
     }
 }
