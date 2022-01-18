@@ -21,12 +21,12 @@
                         Mon profil
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ path('user_account') }}"
+                        <li><a class="dropdown-item" rel="noreferrer" href="{{ path('user_account') }}"
                                 title="Tableau de bord de mes consommations">Tableau de bord</a></li>
-                        <li><a class="dropdown-item" href="{{ path('drink_calendar') }}"
+                        <li><a class="dropdown-item" rel="noreferrer" href="{{ path('drink_calendar') }}"
                                 title="Suivi de mes consommations">Mes consommations</a></li>
                         <li>
-                            <a class="dropdown-item" aria-current="page" href="{{ path('logout') }}"
+                            <a class="dropdown-item" rel="noreferrer" aria-current="page" href="{{ path('logout') }}"
                                 title="Déconnexion">Se
                                 déconnecter</a>
                         </li>
@@ -42,7 +42,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
-                            <a href="{{path('login')}}" type="button" class="dropdown-item" title="Se connecter">Se
+                            <a href="{{path('login')}}" type="button" class="dropdown-item" rel="noreferrer" title="Se connecter">Se
                                 connecter</a>
                         </li>
                         <li>
@@ -60,10 +60,10 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
                         <li>
-                            <a class="dropdown-item" href="{{ path('post_new') }}" title="ajouter un article">Nouvel article</a>
+                            <a class="dropdown-item" rel="noreferrer" href="{{ path('post_new') }}" title="ajouter un article">Nouvel article</a>
                         </li>
                         <li>
-                            <a href="{{ path('post_status') }}" type="button" class="dropdown-item" title="articles index">Index articles</a>
+                            <a href="{{ path('post_status') }}" type="button" class="dropdown-item" rel="noreferrer" title="articles index">Index articles</a>
                         </li>
                     </ul>
                 </li>
@@ -96,7 +96,7 @@
                             <a href="{{ path('testimonials') }}" class="dropdown-item" title="temoignages">Témoignages</a>
                         </li>
                         <li>
-                            <a href="https://annuaire.action-sociale.org/etablissements/readaptation-sociale/centre-de-soins-accompagnement-prevention-addictologie-197.html" title="centres csapa en France" class="dropdown-item" target='_blank'>Liste des csapa</a>
+                            <a href="https://annuaire.action-sociale.org/etablissements/readaptation-sociale/centre-de-soins-accompagnement-prevention-addictologie-197.html" title="centres csapa en France" class="dropdown-item"  target='_blank'>Liste des csapa</a>
                         </li>
                     </ul>
                 </li>
