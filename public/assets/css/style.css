@@ -27,7 +27,8 @@ input,
 .nav-link,
 .infos,
 table,
-select {
+select,
+ul li {
   font-family: "Comfortaa", cursive;
   color: wheat !important;
   text-shadow: 3px 1px 6px #070707;
