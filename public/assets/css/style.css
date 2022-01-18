@@ -37,26 +37,6 @@ ul li {
   text-shadow: 3px 1px 6px #070707;
 }
 
-body {
-  height: 100vh;
-  background: var(--body-bg);
-  background-size: cover;
-}
-
-@media (min-width: 300px) and (max-width: 576px) {
-  body {
-    background: var(--body-bg-small);
-    background-size: cover;
-  }
-}
-
-@media (min-width: 576px) and (max-width: 768px) {
-  body {
-    background: var(--body-bg-small);
-    background-size: cover;
-  }
-}
-
 body,
 html {
   position: relative;
@@ -888,5 +868,40 @@ PAGINATOR
 
 .current {
   font-size: 2em !important;
+}
+
+/**********************
+BG ANIM
+**********************/
+body {
+  background: linear-gradient(-45deg, #1d1714, #1b1115, #10171a, #0b0e0d);
+  background-size: 400% 400%;
+  -webkit-animation: gradient 20s ease infinite;
+          animation: gradient 20s ease infinite;
+  height: 100vh;
+}
+
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 /*# sourceMappingURL=style.css.map */
