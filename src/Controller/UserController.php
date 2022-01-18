@@ -42,9 +42,6 @@ class UserController extends AbstractController
         $saturdayDrinks  = (int)$drinkRepository->findByDay($user, 'Saturday')[0][1];
         $sundayDrinks    = (int)$drinkRepository->findByDay($user, 'Sunday')[0][1];
 
-        dump($mondayDrinks);
-     
-
         $sobers         = count($soberRepository->findByUser($user));
 
         $total = (int)$totalBeer + (int)$totalWine + (int)$totalSpiritus + (int)$sobers;
