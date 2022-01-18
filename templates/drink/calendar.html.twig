@@ -57,11 +57,17 @@
     <div class="container-center">
         {% if app.user is not null and sobers is not empty %}
         <div class="card">
-            <h5 class="card-header">{{ sobers|length }} jour(s) de sobriété</h5>
+            <h5 class="card-header">
+                {% if sobers|length <= 1 %}
+                {{ sobers|length }} jour de sobriété</h5>
+                {% else %}
+                {{ sobers|length }} jours de sobriété</h5>
+                {% endif %}
+                
             <div class="card-body sober-card">
                 {% for sober in sobers %}
                 <span class="card-subtitle mb-2 text-muted greenScore d-flex justify-content-between">
-                    {{ sober.date|date('d/m/y') }} <a href="{{ path('sober_remove', {'soberId':sober.id}) }}" class="btn btn-danger btn-small">X</a>
+                    {{ sober.date|date('d/m/y') }} <a href="{{ path('sober_remove', {'soberId':sober.id}) }}" class="btn btn-outline-danger">&Cross;</a>
                 </span>
                 <br>
                 {% endfor %}

@@ -686,7 +686,7 @@ MYCHART
 
 /*SCORES*/
 .greenScore {
-  color: green !important;
+  color: #0dbd0d !important;
 }
 
 .middleScore {
@@ -694,7 +694,7 @@ MYCHART
 }
 
 .hardScore {
-  color: red !important;
+  color: #ff3300 !important;
 }
 
 .dangerScore {

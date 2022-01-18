@@ -30,10 +30,13 @@ class SoberController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->getUser();
+
             $formDate = $form->get('date')->getData();
-            if ($formDate = $soberRepository->findOneBy([
-                'date' => $formDate
-            ])) {
+    
+            if ($formDate = $soberRepository->findByUserAndByDate($user,
+                $formDate
+            )) {
                 $this->addFlash('danger', 'Vous avez déjà été sobre ce jour là');
 
                 return $this->redirectToRoute('drink_calendar');
