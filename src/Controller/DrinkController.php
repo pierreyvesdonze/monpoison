@@ -74,6 +74,8 @@ class DrinkController extends AbstractController
         $form = $this->createForm(DrinkType::class, $drink);
         $form->handleRequest($request);
 
+        dump('pouet');
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $drink->setAlcool($form->get('alcool')->getData());
@@ -86,7 +88,7 @@ class DrinkController extends AbstractController
             return $this->redirectToRoute('drink_calendar');
         }
 
-        return $this->render('drink/add.html.twig', [
+        return $this->render('drink/edit.html.twig', [
             'form' => $form->createView()
         ]);
     }

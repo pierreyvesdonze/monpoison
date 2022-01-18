@@ -100,7 +100,8 @@ blockquote p::after {
 BUTTONS
 *********************/
 
-.custom-btn {
+.custom-btn,
+.btn-danger {
 	display: inline-block;
 	text-decoration: none;
 	border: none;
@@ -151,6 +152,10 @@ BUTTONS
 	padding: 0;
 }
 
+.btn-settings,
+.btn-danger {
+	font-size: 2em;
+}
 
 button[type="submit"],
 button.custom-btn {
@@ -588,7 +593,7 @@ CARD CONSO
 }
 
 .card-text {
-	font-size: 2em;
+	font-size: 1.5em;
 }
 
 /*********************

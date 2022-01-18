@@ -106,7 +106,8 @@ blockquote p::after {
 /*********************
 BUTTONS
 *********************/
-.custom-btn {
+.custom-btn,
+.btn-danger {
   display: inline-block;
   text-decoration: none;
   border: none;
@@ -124,7 +125,8 @@ BUTTONS
   z-index: 1;
 }
 
-.custom-btn:after {
+.custom-btn:after,
+.btn-danger:after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -136,7 +138,8 @@ BUTTONS
   z-index: -2;
 }
 
-.custom-btn:before {
+.custom-btn:before,
+.btn-danger:before {
   content: "";
   position: absolute;
   bottom: 0;
@@ -150,13 +153,15 @@ BUTTONS
   z-index: -1;
 }
 
-.custom-btn:hover {
+.custom-btn:hover,
+.btn-danger:hover {
   color: #fff;
   -webkit-box-shadow: black 0 0 2px 1px;
           box-shadow: black 0 0 2px 1px;
 }
 
-.custom-btn:hover:before {
+.custom-btn:hover:before,
+.btn-danger:hover:before {
   width: 100%;
 }
 
@@ -164,6 +169,11 @@ BUTTONS
 .custom-btn-right,
 .twitter-share-button {
   padding: 0;
+}
+
+.btn-settings,
+.btn-danger {
+  font-size: 2em;
 }
 
 button[type="submit"],
@@ -723,7 +733,7 @@ CARD CONSO
 }
 
 .card-text {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 /*********************
