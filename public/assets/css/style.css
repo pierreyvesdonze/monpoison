@@ -7,6 +7,7 @@ MEDIA QUERIES
   --body-bg: radial-gradient(circle, rgb(46, 46, 46) 11%, rgb(39, 39, 39) 83%);
   --transparent: rgba(255, 255, 255, 0);
   --semi-transparent: #3f3f3f40;
+  --alert: #0a0a0ad0;
   --btn-color: #312e29a4;
   --hover-color: #e78d06;
 }
@@ -60,8 +61,29 @@ html {
   height: 100%;
 }
 
+.alert,
 .alert-success {
-  background-color: var(--semi-transparent);
+  background-color: var(--alert);
+  border: none;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  z-index: 1200;
+  font-size: 2.5em;
+}
+
+@media (min-width: 300px) and (max-width: 576px) {
+  .alert,
+  .alert-success {
+    font-size: 1.8em;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .alert,
+  .alert-success {
+    font-size: 1.8em;
+  }
 }
 
 #remember_me,
@@ -396,6 +418,7 @@ CONTAINER
           backdrop-filter: blur(4px);
   border-radius: 15px;
   padding: 20px;
+  width: 82%;
 }
 
 .container p img {

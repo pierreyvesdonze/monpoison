@@ -73,9 +73,7 @@ class DrinkController extends AbstractController
     ) {
         $form = $this->createForm(DrinkType::class, $drink);
         $form->handleRequest($request);
-
-        dump('pouet');
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
 
             $drink->setAlcool($form->get('alcool')->getData());

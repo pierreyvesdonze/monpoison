@@ -16,6 +16,14 @@ var app = {
             app.displayWelcomeModal();
         }
 
+        // Fadeout flash message
+        if ($('.flash-container').find('.alert').length !== 0) {
+            setTimeout(function () {
+                 $('.alert').fadeOut('fast')
+             }, 1500);
+
+        }
+
 
         document.querySelector('.navbar-toggler').addEventListener('click', app.disableSocialLinks)
 
