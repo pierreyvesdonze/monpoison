@@ -8,7 +8,7 @@ use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
 use App\Repository\SubscriberRepository;
 use App\Service\MailService;
-use Knp\Component\Pager\PaginatorInterface; 
+use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -29,8 +29,7 @@ class PostController extends AbstractController
         PostRepository $postRepository,
         Request $request,
         PaginatorInterface $paginator
-        ): Response
-    {
+    ): Response {
         $data = $postRepository->findBy([], ['date' => 'desc']);
         $posts = $paginator->paginate(
             $data,
@@ -67,8 +66,7 @@ class PostController extends AbstractController
         $type,
         SubscriberRepository $subscriberRepository,
         MailService $mailService
-        )
-    {
+    ) {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         if ('publish' === $type) {
@@ -79,9 +77,10 @@ class PostController extends AbstractController
             $subscribers = $subscriberRepository->findAll();
 
             foreach ($subscribers as $recipient) {
-                $mailService->sendSubscribersNewPost($recipient->getEmail(), $post);
+                if ("production" === $this->getParameter('app.env')) {
+                    $mailService->sendSubscribersNewPost($recipient->getEmail(), $post);
+                }
             }
-         
         } elseif ('remove' === $type) {
             $post->setIsPublished(0);
             $this->addFlash('success', 'Article dépublié !');
@@ -112,8 +111,7 @@ class PostController extends AbstractController
      */
     public function new(
         Request $request
-        ): Response
-    {
+    ): Response {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $post = new Post();

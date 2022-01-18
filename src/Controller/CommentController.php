@@ -46,7 +46,10 @@ class CommentController extends AbstractController
             $this->em->flush();
 
             // Send comment to contact@monpoison.fr by email
-            $mailService->sendCommentMail($comment, $this->getUser());
+            if("production" === $this->getParameter('app.env'))
+            {
+                $mailService->sendCommentMail($comment, $this->getUser());
+            }
 
             return $this->redirectToRoute('post_show', [
                 'id' => $post->getId()

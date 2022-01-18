@@ -24,11 +24,10 @@ class SubscribeController extends AbstractController
      * @Route("articles/abonnement/{emailSubscriber}", name="subscribe_posts", options={"expose"=true})
      */
     public function subscribeToPosts(
-        $emailSubscriber, 
+        $emailSubscriber,
         Request $request,
         SubscriberRepository $subscriberRepository
-        )
-    {
+    ) {
         if ($request->isMethod('POST')) {
             $message = null;
             $existingSubscriber = $subscriberRepository->findOneBy([
@@ -38,7 +37,7 @@ class SubscribeController extends AbstractController
             if (false == $existingSubscriber) {
                 $newSubscriber = new Subscriber;
                 $newSubscriber->setEmail($emailSubscriber);
-                
+
                 $this->em->persist($newSubscriber);
                 $this->em->flush();
 
@@ -48,14 +47,17 @@ class SubscribeController extends AbstractController
             }
 
             $user = $this->getUser();
-            
-            if(!false == $user && $user->getEmail() == $emailSubscriber) {
+
+            if (!false == $user && $user->getEmail() == $emailSubscriber) {
                 $user->setIsSubscribed(true);
                 $this->em->flush();
-                $this->mailService->subscribeNotification($user);
+
+                if ("production" === $this->getParameter('app.env')) {
+                    $this->mailService->subscribeNotification($user);
+                }
             }
         }
-        
+
         return new JsonResponse($message);
     }
 
@@ -66,8 +68,7 @@ class SubscribeController extends AbstractController
         $postId,
         Request $request,
         SubscriberRepository $subscriberRepository
-        ): Response
-    {
+    ): Response {
         $isUnsubscribed = false;
 
         if ($request->isMethod('POST')) {
@@ -76,14 +77,14 @@ class SubscribeController extends AbstractController
                 'email' => $emailSubscriber
             ]);
 
-            if(!false == $existingSubscriber) {
+            if (!false == $existingSubscriber) {
                 $isUnsubscribed = true;
             }
 
-            if(false == preg_match('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/', $emailSubscriber)) {
+            if (false == preg_match('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/', $emailSubscriber)) {
                 $this->addFlash('danger', "Cette adresse mail est invalide");
                 $isUnsubscribed = false;
-            } elseif($existingSubscriber) {
+            } elseif ($existingSubscriber) {
                 $isUnsubscribed = true;
                 $this->em->remove($existingSubscriber);
                 $this->addFlash('success', 'Enregistré !');

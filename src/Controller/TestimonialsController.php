@@ -23,7 +23,9 @@ class TestimonialsController extends AbstractController
     public function index(TestimonialsRepository $testimonialsRepository): Response
     {
         return $this->render('testimonials/testimonials.html.twig', [
-            'testimonials' => $testimonialsRepository->findAll(),
+            'testimonials' => $testimonialsRepository->findBy([], [
+                'id' => 'DESC'
+            ]),
         ]);
     }
 
@@ -45,10 +47,12 @@ class TestimonialsController extends AbstractController
             $this->addFlash('success', 'Votre témoignage a bien été enregistré !');
 
             // Send notification to contact@monpoison.fr
-            $mailService->sendTestimonialMail(
-                $form->get('content')->getData(),
-                $form->get('pseudo')->getData()
-            );
+            if ("production" === $this->getParameter('app.env')) {
+                $mailService->sendTestimonialMail(
+                    $form->get('content')->getData(),
+                    $form->get('pseudo')->getData()
+                );
+            }
 
             return $this->redirectToRoute('testimonials', [], Response::HTTP_SEE_OTHER);
         }
