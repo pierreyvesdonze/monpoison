@@ -49,8 +49,7 @@ class PostController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        $posts = $postRepository->findAll();
-
+        $posts = $postRepository->findBy([], ['date' => 'desc']);
         return $this->render('post/status.html.twig', [
             'posts' => $posts
         ]);
