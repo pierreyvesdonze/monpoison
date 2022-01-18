@@ -296,6 +296,11 @@ NAV MENU
   background-color: rgba(0, 0, 0, 0.726) !important;
 }
 
+.dropdown-menu.show {
+  top: 57px;
+  border-radius: 0 0 20px 20px;
+}
+
 .nav-item {
   margin-left: 50px;
 }
@@ -311,6 +316,10 @@ NAV MENU
 
 .dropdown-item:hover {
   background-color: #1d1d1d !important;
+}
+
+.dropdown-toggle::after {
+  border-top: 0;
 }
 
 /*********************

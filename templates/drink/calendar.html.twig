@@ -3,40 +3,7 @@
 
 {% block body %}
 
-<!-- Modal -->
-<div class="modal fade" id="infoConso" tabindex="-1" aria-labelledby="infoConsolLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-dark">
-                <h5 class="modal-title" id="infoConsolLabel">Information</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    name="close modal"></button>
-            </div>
-            <div class="modal-body bg-dark">
-                <p>
-                    Une UA (unité d'alcool) correspond à : <br>
-                <ul>
-                    <li>
-                        - 25cl de bière à 5.5°
-                    </li>
-                    ou
-                    <li>
-
-                        - 12cl de vin à 12 °
-                    </li>
-                    ou
-                    <li>
-                        - 4cl d'alcool fort à 40°
-                    </li>
-                </ul>
-                </p>
-                <p>
-                    Une sobriété correspond à un jour où vous avez résisté à un craving, par exemple.
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+{% include('drink/modal.info.html.twig') %}
 
 <br><br>
 

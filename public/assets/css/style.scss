@@ -28,8 +28,7 @@ input,
 .infos,
 table,
 select,
-ul li
-{
+ul li {
 	font-family: "Comfortaa", cursive;
 	color: wheat !important;
 	text-shadow: 3px 1px 6px rgb(7, 7, 7);
@@ -59,11 +58,11 @@ html {
 .alert-success {
 	background-color: var(--alert);
 	border: none;
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    z-index: 1200;
-    font-size: 2.5em;
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	z-index: 1200;
+	font-size: 2.5em;
 	@include xs {
 		font-size: 1.8em;
 	}
@@ -71,7 +70,6 @@ html {
 		font-size: 1.8em;
 	}
 }
-
 
 #remember_me,
 #registration_form_agreeTerms {
@@ -174,7 +172,7 @@ BUTTONS
 }
 
 .btn-settings,
-.btn-danger.btn-settings{
+.btn-danger.btn-settings {
 	font-size: 2em !important;
 }
 
@@ -257,6 +255,11 @@ NAV MENU
 	background-color: rgba(0, 0, 0, 0.726) !important;
 }
 
+.dropdown-menu.show {
+	top: 57px;
+	border-radius: 0 0 20px 20px;
+}
+
 .nav-item {
 	margin-left: 50px;
 }
@@ -274,6 +277,10 @@ NAV MENU
 
 .dropdown-item:hover {
 	background-color: rgb(29, 29, 29) !important;
+}
+
+.dropdown-toggle::after {
+	border-top: 0;
 }
 
 /*********************
@@ -321,8 +328,7 @@ SOCIALS ICONS
 	transition: ease-in-out 0.2s;
 }
 .social-twitter-img:hover,
-.social-fb-img:hover 
-{
+.social-fb-img:hover {
 	transform: rotate(45deg);
 	transition: ease-in-out 0.2s;
 }
@@ -355,7 +361,7 @@ CONTAINER
 		width: 100%;
 	}
 	@include sm {
-		width: 100%
+		width: 100%;
 	}
 }
 
@@ -419,11 +425,11 @@ HOMEPAGE
 	width: 60%;
 	margin-top: 2em;
 	webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; 
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Old versions of Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none;
 }
 
 .big-text h1 {
@@ -466,9 +472,8 @@ select option {
 SOBER
 **********************/
 .sober-card {
-	overflow-y: scroll !important; 
+	overflow-y: scroll !important;
 }
-
 
 /**********************
 DRINK FORM 
