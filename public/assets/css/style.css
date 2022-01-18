@@ -530,7 +530,7 @@ select option {
 SOBER
 **********************/
 .sober-card {
-  overflow-y: scroll;
+  overflow-y: scroll !important;
 }
 
 /**********************
