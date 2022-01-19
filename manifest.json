@@ -1,6 +1,6 @@
 {
     "name": "Mon poison",
-    "shor_name": "Monpoison",
+    "short_name": "Monpoison",
     "icons": [
         {
             "src" : "/public/assets/images/icon512.png",
