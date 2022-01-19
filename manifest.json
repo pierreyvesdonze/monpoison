@@ -1,6 +1,12 @@
 {
     "name": "Mon poison",
+    "shor_name": "Monpoison",
     "icons": [
+        {
+            "src" : "/public/assets/images/icon512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        },
         {
             "src": "/public/assets/images/icon192.png",
             "type": "image/png",

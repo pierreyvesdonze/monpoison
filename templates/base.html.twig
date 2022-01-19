@@ -23,13 +23,7 @@
     {% block metadescription %}{% endblock %}
 
     <title>{% block title %}Arrêter l'alcool et sortir de la dépendance{% endblock %}</title>
-    <script>
-        window.addEventListener('load', () => {
-            if ("serviceWorker" in navigator) {
-                navigator.serviceWorker.register("/sw.js")
-            }
-        })
-    </script>
+
     <link rel="icon"
         href="{{ asset('assets/images/favicon.png') }}">
     <meta name="google-site-verification" content="Wug1WNXTFOb4DLNL5JstVtp3r1nRBv47FCgGvH8tVFQ" />
