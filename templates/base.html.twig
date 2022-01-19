@@ -3,7 +3,7 @@
 
 <head>
     {% if 'production' == app_env %}
-    
+
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
@@ -17,6 +17,15 @@
     {% endif %}
 
     <link rel="manifest" href="/manifest.json">
+    <script>
+        window.addEventListener('load', () => {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(function () { console.log('Enregistrement reussi.') })
+                    .catch(function (e) { console.error(e) });
+            }
+        })
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black">
@@ -24,8 +33,7 @@
 
     <title>{% block title %}Arrêter l'alcool et sortir de la dépendance{% endblock %}</title>
 
-    <link rel="icon"
-        href="{{ asset('assets/images/favicon.png') }}">
+    <link rel="icon" href="{{ asset('assets/images/favicon.png') }}">
     <meta name="google-site-verification" content="Wug1WNXTFOb4DLNL5JstVtp3r1nRBv47FCgGvH8tVFQ" />
 
     {#
