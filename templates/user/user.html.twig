@@ -74,10 +74,18 @@
                 {% endif %}
 
             </td>
-            <tr>
-                <td>Ratio <span class="greenScore">avantages</span>/<span class="hardScore">inconvénients</span></td>
-                <td>{{ xAdvantages|round }}% / {{ xInconvenients|round }}%</td>
-            </tr>
+        <tr>
+            <td>Ratio <span class="greenScore">avantages</span>/<span class="hardScore">inconvénients</span></td>
+            <td>
+                <span class="greenScore">
+                    {{ xAdvantages|round }}%
+                </span>
+                /
+                <span class="hardScore">
+                    {{ xInconvenients|round }}%
+            </td>
+            </span>
+        </tr>
         </tr>
         <tr>
             <td>
@@ -216,7 +224,8 @@
             });
         });
     </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
+        defer></script>
     <hr>
 
     <p>
