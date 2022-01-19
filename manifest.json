@@ -2,7 +2,7 @@
     "name": "Mon poison",
     "icons": [
         {
-            "src": "/public/assets/icon192.png",
+            "src": "/public/assets/images/icon192.png",
             "type": "image/png",
             "sizes": "192x192"
         }
