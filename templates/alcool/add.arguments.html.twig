@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %} Avantages et inconvénients à boire de l'alcool {% endblock %}
+
+{% block metadescription %}
+<meta name="description"
+    content="Ajouter un avantage ou un inconvénient à consommer de l'alcool">
+{% endblock %}
+
+{% block body %}
+
+{% include('alcool/modal.info.html.twig') %}
+
+<br><br>
+
+<div class="container">
+
+{{ form_start(form) }}
+{{ form_label(form.type) }}
+<br>
+{{ form_widget(form.type) }}
+<br><br>
+{{ form_label(form.content) }}
+<br>
+{{ form_widget(form.content) }}
+<br>
+<br>
+{{ form_row(form.submit) }}
+
+{{ form_end(form) }}
+
+</div>
+
+{% endblock %}

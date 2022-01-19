@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+{% block title %} Avantages et inconvénients à boire de l'alcool {% endblock %}
+
+{% block metadescription %}
+<meta name="description"
+    content="Estimez vous-mêmes quels sont les avantages et inconvénients à consommer de l'alcool.">
+{% endblock %}
+
+{% block body %}
+
+{% include('alcool/modal.info.html.twig') %}
+
+<br><br>
+
+<div class="container">
+    <h1>Avantages et inconvénients à consommer de l'alcool</h1>
+    <p>
+        Listez selon vous quels sont les avantages et les inconvénients à boire de l'alcool.
+    </p>
+
+    <!-- Button trigger modal exemples-->
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#infoArgument" name="open modal">
+        <img src="{{ asset('assets/images/info.png') }}" alt="information" class="info-icon">
+    </button>
+    <br>
+    <br>
+    <a href="{{ path('alcool_arguments_add') }}" class="custom-btn" title="Ajouter un argument">Ajouter un avantage ou un inconvénient</a>
+
+    <br><br>
+
+    <div class="flex-left-right">
+        <div class="left">
+            <h5>Avantages</h5>
+            <ul>
+                {% for arg in arguments %}
+                {% if arg.type == 0 %}
+                <li>
+                    {{ arg.content }} <a href="{{ path('alcool_arguments_remove', {'id':arg.id}) }}" title)"Retirer" class="btn btn-danger" onclick="return confirm('Supprimer ?')">&cross;</a>
+                </li>
+                <br>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="right">
+            <h5>Inconvénients</h5>
+            <ul>
+                {% for arg in arguments %}
+                {% if arg.type == 1 %}
+                <li>
+                    {{ arg.content }} <a href="{{ path('alcool_arguments_remove', {'id':arg.id}) }}" title)"Retirer" class="btn btn-danger" onclick="return confirm('Supprimer ?')">&cross;</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock %}

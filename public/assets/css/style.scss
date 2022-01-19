@@ -146,6 +146,7 @@ BUTTONS
 .btn-danger {
 	display: inline-block;
 	text-decoration: none;
+	text-align: center;
 	border: none;
 	padding: 0.45rem 0.45rem;
 	border-radius: 10rem;
@@ -740,24 +741,17 @@ PAGINATOR
 	font-size: 2em !important;
 }
 
-/**********************
-BG ANIM
-**********************/
-// body {
-// 	background: linear-gradient(-45deg, #1d1714, #1b1115, #10171a, #0b0e0d);
-// 	background-size: 400% 400%;
-// 	animation: gradient 20s ease infinite;
-// 	height: 100vh;
-// }
+/*********************
+ARGUMENTS
+*********************/
+.flex-left-right {
+	display: flex;
+	justify-content: space-around;
+	@include xs {
+		flex-direction: column;
+	}
+	@include sm {
+		flex-direction: column;
+	}
+}
 
-// @keyframes gradient {
-// 	0% {
-// 		background-position: 0% 50%;
-// 	}
-// 	50% {
-// 		background-position: 100% 50%;
-// 	}
-// 	100% {
-// 		background-position: 0% 50%;
-// 	}
-// }

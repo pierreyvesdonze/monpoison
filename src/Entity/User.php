@@ -78,11 +78,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $date;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ArgumentUser::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $argumentUsers;
+
     public function __construct()
     {
         $this->drinks = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->date = new ArrayCollection();
+        $this->argumentUsers = new ArrayCollection();
     }
 
     public function __toString()
@@ -311,6 +317,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($date->getUser() === $this) {
                 $date->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ArgumentUser[]
+     */
+    public function getArgumentUsers(): Collection
+    {
+        return $this->argumentUsers;
+    }
+
+    public function addArgumentUser(ArgumentUser $argumentUser): self
+    {
+        if (!$this->argumentUsers->contains($argumentUser)) {
+            $this->argumentUsers[] = $argumentUser;
+            $argumentUser->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArgumentUser(ArgumentUser $argumentUser): self
+    {
+        if ($this->argumentUsers->removeElement($argumentUser)) {
+            // set the owning side to null (unless already changed)
+            if ($argumentUser->getUser() === $this) {
+                $argumentUser->setUser(null);
             }
         }
 
