@@ -28,7 +28,33 @@ class ArgumentUserRepository extends ServiceEntityRepository
             ->andWhere('a.user = :val')
             ->setParameter('val', $user)
             ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return ArgumentUser[] Returns an array of ArgumentUser objects
+     */
+    public function findAdvantagesByUser($user)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.type = 0')
+            ->andWhere('a.user = :val')
+            ->setParameter('val', $user)
+            ->getQuery()
             ->getResult()
         ;
+    }
+
+    /**
+     * @return ArgumentUser[] Returns an array of ArgumentUser objects
+     */
+    public function findInconvenientsByUser($user)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.type = 1')
+            ->andWhere('a.user = :val')
+            ->setParameter('val', $user)
+            ->getQuery()
+            ->getResult();
     }
 }

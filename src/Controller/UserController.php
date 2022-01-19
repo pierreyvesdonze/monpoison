@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ArgumentUserRepository;
 use App\Repository\DrinkRepository;
 use App\Repository\SoberRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,18 +22,21 @@ class UserController extends AbstractController
      */
     public function index(
         DrinkRepository $drinkRepository,
-        SoberRepository $soberRepository
+        SoberRepository $soberRepository,
+        ArgumentUserRepository $argRepo,
     ): Response {
         $user = $this->getUser();
         $emConfig = $this->em->getConfiguration();
         $emConfig->addCustomDatetimeFunction('DAY', 'DoctrineExtensions\Query\Mysql\Day');
 
-        $lastWeekDrinks  = $drinkRepository->findLastWeekDrinks($user);
-        $lastWeekCost    = $drinkRepository->findLastWeekCost($user);
-        $drinks          = $drinkRepository->findByUser($user);
-        $totalBeer       = $drinkRepository->findTotalBeer($user)[1];
-        $totalWine       = $drinkRepository->findTotalWine($user)[1];
-        $totalSpiritus   = $drinkRepository->findTotalSpiritus($user)[1];
+        $lastWeekDrinks    = $drinkRepository->findLastWeekDrinks($user);
+        $lastWeekCost      = $drinkRepository->findLastWeekCost($user);
+        $drinks            = $drinkRepository->findByUser($user);
+        $totalBeer         = $drinkRepository->findTotalBeer($user)[1];
+        $totalWine         = $drinkRepository->findTotalWine($user)[1];
+        $totalSpiritus     = $drinkRepository->findTotalSpiritus($user)[1];
+        $advantagesUser    = $argRepo->findAdvantagesByUser($user);
+        $inconvenientsUser = $argRepo->findInconvenientsByUser($user);
 
         $mondayDrinks    = (int)$drinkRepository->findByDay($user, 'Monday')[0][1];
         $tuesdayDrinks   = (int)$drinkRepository->findByDay($user, 'Tuesday')[0][1];
@@ -42,10 +46,13 @@ class UserController extends AbstractController
         $saturdayDrinks  = (int)$drinkRepository->findByDay($user, 'Saturday')[0][1];
         $sundayDrinks    = (int)$drinkRepository->findByDay($user, 'Sunday')[0][1];
 
+        // Sobers Days
         $sobers          = count($soberRepository->findByUser($user));
 
+        // Total drinks
         $total = (int)$totalBeer + (int)$totalWine + (int)$totalSpiritus + (int)$sobers;
  
+        // ratio of drinks & sobers
         if (0 !== $total) {
             if (null !== $sobers) {
                 $xSober    = ((int)$sobers * 100) / $total;
@@ -71,6 +78,24 @@ class UserController extends AbstractController
             $xSober = $xBeer = $xWine = $xSpiritus = 0;
         }
 
+        // ratio of argumentsUsers
+        $totalArgUsers = count($advantagesUser) + count($inconvenientsUser);
+
+        if (0 !== $totalArgUsers) {
+            if (null !== count($advantagesUser)) {
+                $xAdvantageUser = count($advantagesUser) * 100 / $totalArgUsers;
+            } else {
+                $xAdvantageUser = 0;
+            }
+            if (null !== count($inconvenientsUser)) {
+                $xInconvenientUser = count($inconvenientsUser) * 100 / $totalArgUsers;
+            } else {
+                $xInconvenientUser = 0;
+            }
+        } else {
+            $xAdvantageUser = $xInconvenientUser = 0;
+        }
+
         return $this->render('user/user.html.twig', [
             'user'           => $user,
             'drinks'         => $drinks,
@@ -81,6 +106,8 @@ class UserController extends AbstractController
             'xWine'          => $xWine,
             'xSpiritus'      => $xSpiritus,
             'xSober'         => $xSober,
+            'xAdvantages'    => $xAdvantageUser,
+            'xInconvenients' => $xInconvenientUser,
             'mondayDrinks'   => $mondayDrinks,
             'tuesdayDrinks'  => $tuesdayDrinks,
             'wednesdayDrinks'=> $wednesdayDrinks,
