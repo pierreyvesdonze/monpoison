@@ -529,6 +529,11 @@ SOCIAL ICON & DIV ICON
           box-shadow: inset black 0 0 1px 1px;
 }
 
+.info-icon {
+  width: 40px;
+  height: 40px;
+}
+
 /**********************
 HOMEPAGE
 **********************/
