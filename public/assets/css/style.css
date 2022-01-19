@@ -14,6 +14,33 @@ MEDIA QUERIES
   --card-header: #00000069;
 }
 
+.big-text h1::first-letter {
+  -webkit-animation: rotating 22s linear infinite;
+  animation: rotating 22s linear infinite;
+}
+
+@-webkit-keyframes rotating {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotating {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
 p,
 a,
 span,
