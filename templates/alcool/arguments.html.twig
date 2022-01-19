@@ -34,7 +34,7 @@
             <ul>
                 {% for arg in arguments %}
                 {% if arg.type == 0 %}
-                <li>
+                <li class="greenScore">
                     {{ arg.content }} <a href="{{ path('alcool_arguments_remove', {'id':arg.id}) }}" title)"Retirer" class="btn btn-danger" onclick="return confirm('Supprimer ?')">&cross;</a>
                 </li>
                 <br>
@@ -47,7 +47,7 @@
             <ul>
                 {% for arg in arguments %}
                 {% if arg.type == 1 %}
-                <li>
+                <li class="hardScore">
                     {{ arg.content }} <a href="{{ path('alcool_arguments_remove', {'id':arg.id}) }}" title)"Retirer" class="btn btn-danger" onclick="return confirm('Supprimer ?')">&cross;</a>
                 </li>
                 {% endif %}
