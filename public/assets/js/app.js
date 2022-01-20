@@ -117,7 +117,7 @@ var app = {
     },
 
     registerServiceWorker: async function () {
-        const registration = await navigator.serviceWorker.register('../../sw.js');
+        const registration = await navigator.serviceWorker.register('sw.js');
         const subscription = await registration.pushManager.getSubscription();
         console.log(subscription)
     }
