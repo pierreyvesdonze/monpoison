@@ -100,16 +100,26 @@ var app = {
         if (
             (!permission &&
             (!'notification' in window) &&
-            (!'serviceWorker' in navigator)) ||
-            Notification.permission != 'default'
+                (!'serviceWorker' in navigator))
+            || Notification.permission != 'default'
         ) {
             return;
         }
     },
 
     askPermission: async function () {
-  
         const permission = await Notification.requestPermission()
+        if (permission == 'granted') {
+            alert('Notifications activées')
+            app.registerServiceWorker()
+        }
+        console.log(permission)
+    },
+
+    registerServiceWorker: async function () {
+        const registration = await navigator.serviceWorker.register('../../sw.js');
+        const subscription = await registration.pushManager.getSubscription();
+        console.log(subscription)
     }
 }
 
