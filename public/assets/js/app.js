@@ -3,14 +3,6 @@ var app = {
     init: function () {
 
         /**
-       * *****************************
-       * PUSH NOTIFS
-       * *****************************
-       */
-        app.mainPush();
-  
-
-        /**
         * *****************************
         * L I S T E N E R S
         * *****************************
@@ -94,33 +86,6 @@ var app = {
         }, 1500);
 
     },
-
-    mainPush: function () {
-        const permission = document.getElementById('push-permission');
-        if (
-            (!permission &&
-            (!'notification' in window) &&
-                (!'serviceWorker' in navigator))
-            || Notification.permission != 'default'
-        ) {
-            return;
-        }
-    },
-
-    askPermission: async function () {
-        const permission = await Notification.requestPermission()
-        if (permission == 'granted') {
-            alert('Notifications activées')
-            app.registerServiceWorker()
-        }
-        console.log(permission)
-    },
-
-    registerServiceWorker: async function () {
-        const registration = await navigator.serviceWorker.register('sw.js');
-        const subscription = await registration.pushManager.getSubscription();
-        console.log(subscription)
-    }
 }
 
 document.addEventListener('DOMContentLoaded', app.init)
