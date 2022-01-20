@@ -30,6 +30,9 @@ var app = {
              }, 1500);
         }
 
+        /**Push Notification btn */
+        $('#push-permission .custom-btn').on('click', app.askPermission)
+
         document.querySelector('.navbar-toggler').addEventListener('click', app.disableSocialLinks)
 
         /**
@@ -102,13 +105,10 @@ var app = {
         ) {
             return;
         }
-
-        const button = document.createElement('button')
-        button.innerText = "Recevoir les notifications"
-        button.addEventListener('click', app.askPermission)
     },
 
-    askPermission: async  function () {
+    askPermission: async function () {
+  
         const permission = await Notification.requestPermission()
     }
 }
