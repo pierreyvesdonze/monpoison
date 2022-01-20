@@ -14,12 +14,10 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-5VCZ92Z');</script>
     <!-- End Google Tag Manager -->
-  
     {% endif %}
-    <!-- Loading manifest & service Worker on prod only -->
-    <link rel="manifest" href="/manifest.json">
-    <script src="{{ asset('assets/js/script.js') }}"></script>
 
+    <link rel="manifest" href="/manifest.json">
+    <script src="../script.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black">

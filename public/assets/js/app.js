@@ -79,12 +79,15 @@ var app = {
         $('.navbar-toggler').hasClass('collapsed') ? $socialIcons.fadeIn('slow') : $socialIcons.fadeOut('fast');
     },
 
-    displayWelcomeModal: function (params) {
-        $('#btnWelcomeModal').trigger('click');
-        setTimeout(function () {
-            $('.close-welcome-modal').trigger('click')
-        }, 1500);
-
+    displayWelcomeModal: function () {
+        if (true != localStorage.getItem('showModal')) {
+            
+            $('#btnWelcomeModal').trigger('click');
+            setTimeout(function () {
+                $('.close-welcome-modal').trigger('click')
+            }, 1500);
+        }
+        localStorage.setItem('showModal', true);
     },
 }
 
