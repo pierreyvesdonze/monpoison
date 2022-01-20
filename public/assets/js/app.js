@@ -18,8 +18,8 @@ var app = {
         // Fadeout flash message
         if ($('.flash-container').find('.alert').length !== 0) {
             setTimeout(function () {
-                 $('.alert').fadeOut('fast')
-             }, 1500);
+                $('.alert').fadeOut('fast')
+            }, 1500);
         }
 
         /**Push Notification btn */
@@ -80,14 +80,15 @@ var app = {
     },
 
     displayWelcomeModal: function () {
-        if (true != localStorage.getItem('showModal')) {
+        let showModal = localStorage.getItem('showModal')
+        if (showModal != 'showModalTrue') {
             
             $('#btnWelcomeModal').trigger('click');
             setTimeout(function () {
                 $('.close-welcome-modal').trigger('click')
             }, 1500);
+            localStorage.setItem('showModal', 'showModalTrue');
         }
-        localStorage.setItem('showModal', true);
     },
 }
 
