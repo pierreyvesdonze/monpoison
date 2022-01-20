@@ -386,7 +386,7 @@ CONTAINER
 .container {
 	background-color: var(--semi-transparent);
 	box-shadow: black 0 0 7px 1px;
-	backdrop-filter: blur(4px);
+	// backdrop-filter: blur(4px);
 	border-radius: 15px;
 	padding: 20px;
 	width: 82%;
