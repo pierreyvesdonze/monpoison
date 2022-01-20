@@ -4,9 +4,10 @@ var app = {
 
         /**
        * *****************************
-       * SERVICE WORKER
+       * PUSH NOTIFS
        * *****************************
        */
+        app.mainPush();
   
 
         /**
@@ -90,6 +91,26 @@ var app = {
         }, 1500);
 
     },
+
+    mainPush: function () {
+        const permission = document.getElementById('push-permission');
+        if (
+            (!permission &&
+            (!'notification' in window) &&
+            (!'serviceWorker' in navigator)) ||
+            Notification.permission != 'default'
+        ) {
+            return;
+        }
+
+        const button = document.createElement('button')
+        button.innerText = "Recevoir les notifications"
+        button.addEventListener('click', app.askPermission)
+    },
+
+    askPermission: async  function () {
+        const permission = await Notification.requestPermission()
+    }
 }
 
 document.addEventListener('DOMContentLoaded', app.init)
