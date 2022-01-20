@@ -282,6 +282,7 @@ button.custom-btn {
 
 #btnWelcomeModal {
   visibility: hidden;
+  display: none;
 }
 
 #welcomeModal {
