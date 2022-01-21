@@ -1,10 +1,10 @@
 @import "./responsive";
 
 :root {
-	// --body-bg: url("../images/cocktail-bg.webp") no-repeat fixed;
-	// --body-bg-small: url("../images/cocktail-bg-small.webp") no-repeat fixed;
-	--body-bg: linear-gradient(90deg, rgba(21,30,34,1) 21%, rgba(20,27,28,1) 37%, rgba(20,21,23,1) 52%, rgba(23,19,16,1) 81%, rgba(1,1,1,1) 98%);
-	--body-bg-small: linear-gradient(90deg, rgba(21,30,34,1) 21%, rgba(20,27,28,1) 37%, rgba(20,21,23,1) 52%, rgba(23,19,16,1) 81%, rgba(1,1,1,1) 98%);
+	--body-bg: url("../images/texture.webp") no-repeat fixed;
+	--body-bg-small: url("../images/texture-small.webp") no-repeat fixed;
+	// --body-bg: linear-gradient(90deg, rgba(21,30,34,1) 21%, rgba(20,27,28,1) 37%, rgba(20,21,23,1) 52%, rgba(23,19,16,1) 81%, rgba(1,1,1,1) 98%);
+	//--body-bg-small: linear-gradient(90deg, rgba(21,30,34,1) 21%, rgba(20,27,28,1) 37%, rgba(20,21,23,1) 52%, rgba(23,19,16,1) 81%, rgba(1,1,1,1) 98%);
 	--transparent: rgba(255, 255, 255, 0);
 	--semi-transparent: #3f3f3f40;
 	--alert: #0a0a0ad0;
@@ -386,7 +386,7 @@ CONTAINER
 .container {
 	background-color: var(--semi-transparent);
 	box-shadow: black 0 0 7px 1px;
-	// backdrop-filter: blur(4px);
+	backdrop-filter: blur(4px);
 	border-radius: 15px;
 	padding: 20px;
 	width: 82%;

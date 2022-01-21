@@ -27,7 +27,7 @@ class TestimonialsType extends AbstractType
                 ]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Enregistrer',
+                'label' => 'Publier',
                 'attr' => [
                     'class' => 'custom-btn'
                 ]
