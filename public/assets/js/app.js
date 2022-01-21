@@ -48,6 +48,15 @@ var app = {
        */
         let deferredPrompt; // Allows to show the install prompt
         const installButton = document.getElementById("buttonInstallPwa");
+
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            app.installButton.hidden = true;
+        }
+        
+        window.addEventListener('appinstalled', () => {
+            app.installButton.hidden = true;
+        });
+
         installButton.addEventListener("click", app.installApp);
 
         window.addEventListener("beforeinstallprompt", e => {
