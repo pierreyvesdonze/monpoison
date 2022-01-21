@@ -40,7 +40,9 @@ class AlcoolController extends AbstractController
             $regrets                 = $form->get('regrets')->getData();
             $noMemory                = $form->get('noMemory')->getData();
 
-            $score += $frequencyComsumption + $drinkByDay + $fiveDrinksFrequency + $stopControl + $failAttempt + $needFirstDrink + $regrets + $noMemory;
+            $score += ($frequencyComsumption/2) + $drinkByDay + $fiveDrinksFrequency + $stopControl + $failAttempt + $needFirstDrink + $regrets + $noMemory;
+
+
 
             $user = $this->getUSer();
             if (null != $user) {
