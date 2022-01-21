@@ -10,9 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
-    public function __construct(
-        private EntityManagerInterface $em
-    ) {
+    public function __construct(private EntityManagerInterface $em) {
     }
 
     /**

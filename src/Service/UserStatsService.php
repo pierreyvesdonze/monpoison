@@ -133,6 +133,7 @@ class UserStatsService
         return $weekDrinks;
     }
 
+    // Get ratio of advantages and inconvenients
     public function getRatioAdvantageInconvenient($user)
     {
         $advantagesUser    = $this->argRepo->findAdvantagesByUser($user);
