@@ -33,7 +33,9 @@ class DrinkType extends AbstractType
             ->add('date', DateType::class, [
                 'attr' => [
                     'class' => 'input'
-                ]
+                ],
+            'data' => new \DateTime('now'),
+            'widget' => 'single_text'
             ])
             ->add('cost', IntegerType::class, [
                 'label' => 'Argent dépensé',

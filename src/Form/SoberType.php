@@ -19,7 +19,9 @@ class SoberType extends AbstractType
                 'label' => 'Date de la conso évitée',
                 'attr' => [
                     'class' => 'input'
-                ]
+                ],
+            'data' => new \DateTime('now'),
+            'widget' => 'single_text',
             ])
 
             ->add('submit', SubmitType::class, [

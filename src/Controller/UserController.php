@@ -49,6 +49,33 @@ class UserController extends AbstractController
         // Sobers Days
         $sobers          = count($soberRepository->findByUser($user));
 
+        // Get dates sorted by ASC to calculate longest period of sobriety
+        $sobersDates = $soberRepository->findDatesByUser($user);
+
+        $period = 0;
+        $periodMax = 0;
+        $previousDay = null;
+        $calculPreviousDay = null;
+   
+        foreach($sobersDates as $soberDate) {
+            $calculPreviousDay = clone $soberDate['date'];
+            $calculPreviousDay->modify('-1 day');
+
+            if($calculPreviousDay == $previousDay) {
+                $period ++;
+            } else {
+                if ($period > $periodMax) {
+                    $periodMax = $period;
+                }
+                $period = 1;
+            }
+            $previousDay = $soberDate['date'];
+        }
+
+        if ($period > $periodMax) {
+            $periodMax = $period;
+        }
+
         // Total drinks
         $total = (int)$totalBeer + (int)$totalWine + (int)$totalSpiritus + (int)$sobers;
  

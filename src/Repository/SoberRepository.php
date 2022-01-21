@@ -35,6 +35,20 @@ class SoberRepository extends ServiceEntityRepository
     /**
      * @return Sober[] Returns an array of Drink objects
      */
+    public function findDatesByUser($user)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.user = :val')
+            ->setParameter('val', $user)
+            ->select('s.date')
+            ->orderBy('s.date', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return Sober[] Returns an array of Drink objects
+     */
     public function findByUserAndByDate($user, $date)
     {
         return $this->createQueryBuilder('s')
