@@ -50,11 +50,11 @@ var app = {
         const installButton = document.getElementById("buttonInstallPwa");
 
         if (window.matchMedia('(display-mode: standalone)').matches) {
-            app.installButton.hidden = true;
+            app.installButton.style.display = "none";
         }
         
         window.addEventListener('appinstalled', () => {
-            app.installButton.hidden = true;
+            app.installButton.display = 'none';
         });
 
         installButton.addEventListener("click", app.installApp);
