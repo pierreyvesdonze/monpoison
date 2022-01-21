@@ -141,7 +141,8 @@ class UserController extends AbstractController
             'thursdayDrinks' => $thursdayDrinks,
             'fridayDrinks'   => $fridayDrinks,
             'saturdayDrinks' => $saturdayDrinks,
-            'sundayDrinks'   => $sundayDrinks
+            'sundayDrinks'   => $sundayDrinks,
+            'periodMax'      => $periodMax
         ]);
     }
 }
