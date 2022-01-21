@@ -6,7 +6,7 @@
 	--body-bg: linear-gradient(90deg, rgba(21,30,34,1) 21%, rgba(20,27,28,1) 37%, rgba(20,21,23,1) 52%, rgba(23,19,16,1) 81%, rgba(1,1,1,1) 98%);
 	--body-bg-small: linear-gradient(90deg, rgba(21,30,34,1) 21%, rgba(20,27,28,1) 37%, rgba(20,21,23,1) 52%, rgba(23,19,16,1) 81%, rgba(1,1,1,1) 98%);
 	--transparent: rgba(255, 255, 255, 0);
-	--semi-transparent: #3f3f3f40;
+	--semi-transparent: #29292940;
 	--alert: #0a0a0ad0;
 	--btn-color: #312e29a4;
 	--hover-color: #e78d06;
@@ -156,7 +156,7 @@ BUTTONS
 	letter-spacing: 0.15rem;
 	transition: all 0.1s;
 	position: relative;
-	box-shadow: black 0 0 5px 3px;
+	box-shadow: rgba(0, 0, 0, 0.767) 0 0 7px 1px;
 	z-index: 1;
 	&:after {
 		content: "";
@@ -260,7 +260,7 @@ NAV MENU
 
 .navbar {
 	background-color: var(--semi-transparent) !important;
-	box-shadow: black 0 0 7px 1px;
+	box-shadow: inset rgba(0, 0, 0, 0.644) 0 0 7px 1px;
 }
 .navbar-toggler {
 	color: white !important;
@@ -385,7 +385,7 @@ CONTAINER
 
 .container {
 	background-color: var(--semi-transparent);
-	box-shadow: black 0 0 7px 1px;
+	box-shadow: inset rgba(0, 0, 0, 0.692) 0 0 7px 1px;
 	//backdrop-filter: blur(4px);
 	border-radius: 15px;
 	padding: 20px;
@@ -654,14 +654,11 @@ CARD CONSO
 	height: 300px;
 	width: 212px;
 	margin-bottom: 25px;
-	box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.75);
-	-webkit-box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.75);
-	-moz-box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.75);
-	background-color: #ffffff21;
+	box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.75);
+	-webkit-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.75);
+	background-color: #2e2e2e21;
 	border-radius: 0 17px;
-	&:hover {
-		box-shadow: 0px 0px 8px 6px rgba(0, 0, 0, 0.75);
-	}
 	@include xs {
 		width: 320px;
 	}
@@ -702,7 +699,7 @@ footer {
 	width: 100%;
 	height: auto;
 	background-color: var(--semi-transparent);
-	box-shadow: black 0 0 7px 1px;
+	box-shadow: inset rgba(0, 0, 0, 0.596) 0 0 7px 1px;
 	margin-top: 50px;
 }
 

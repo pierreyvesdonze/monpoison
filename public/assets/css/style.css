@@ -7,7 +7,7 @@ MEDIA QUERIES
   --body-bg: linear-gradient(90deg, rgba(21,30,34,1) 21%, rgba(20,27,28,1) 37%, rgba(20,21,23,1) 52%, rgba(23,19,16,1) 81%, rgba(1,1,1,1) 98%);
   --body-bg-small: linear-gradient(90deg, rgba(21,30,34,1) 21%, rgba(20,27,28,1) 37%, rgba(20,21,23,1) 52%, rgba(23,19,16,1) 81%, rgba(1,1,1,1) 98%);
   --transparent: rgba(255, 255, 255, 0);
-  --semi-transparent: #3f3f3f40;
+  --semi-transparent: #29292940;
   --alert: #0a0a0ad0;
   --btn-color: #312e29a4;
   --hover-color: #e78d06;
@@ -178,8 +178,8 @@ BUTTONS
   -webkit-transition: all 0.1s;
   transition: all 0.1s;
   position: relative;
-  -webkit-box-shadow: black 0 0 5px 3px;
-          box-shadow: black 0 0 5px 3px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.767) 0 0 7px 1px;
+          box-shadow: rgba(0, 0, 0, 0.767) 0 0 7px 1px;
   z-index: 1;
 }
 
@@ -298,8 +298,8 @@ NAV MENU
 
 .navbar {
   background-color: var(--semi-transparent) !important;
-  -webkit-box-shadow: black 0 0 7px 1px;
-          box-shadow: black 0 0 7px 1px;
+  -webkit-box-shadow: inset rgba(0, 0, 0, 0.644) 0 0 7px 1px;
+          box-shadow: inset rgba(0, 0, 0, 0.644) 0 0 7px 1px;
 }
 
 .navbar-toggler {
@@ -465,8 +465,8 @@ CONTAINER
 
 .container {
   background-color: var(--semi-transparent);
-  -webkit-box-shadow: black 0 0 7px 1px;
-          box-shadow: black 0 0 7px 1px;
+  -webkit-box-shadow: inset rgba(0, 0, 0, 0.692) 0 0 7px 1px;
+          box-shadow: inset rgba(0, 0, 0, 0.692) 0 0 7px 1px;
   border-radius: 15px;
   padding: 20px;
   width: 82%;
@@ -814,16 +814,11 @@ CARD CONSO
   height: 300px;
   width: 212px;
   margin-bottom: 25px;
-  box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.75);
-  background-color: #ffffff21;
+  box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.75);
+  background-color: #2e2e2e21;
   border-radius: 0 17px;
-}
-
-.card:hover {
-  -webkit-box-shadow: 0px 0px 8px 6px rgba(0, 0, 0, 0.75);
-          box-shadow: 0px 0px 8px 6px rgba(0, 0, 0, 0.75);
 }
 
 @media (min-width: 300px) and (max-width: 576px) {
@@ -870,8 +865,8 @@ footer {
   width: 100%;
   height: auto;
   background-color: var(--semi-transparent);
-  -webkit-box-shadow: black 0 0 7px 1px;
-          box-shadow: black 0 0 7px 1px;
+  -webkit-box-shadow: inset rgba(0, 0, 0, 0.596) 0 0 7px 1px;
+          box-shadow: inset rgba(0, 0, 0, 0.596) 0 0 7px 1px;
   margin-top: 50px;
 }
 
