@@ -57,7 +57,7 @@ var app = {
             app.installButton.display = 'none';
         });
 
-        installButton.addEventListener("click", app.installApp);
+        // installButton.addEventListener("click", app.installApp);
 
         window.addEventListener("beforeinstallprompt", e => {
             console.log("beforeinstallprompt fired");
