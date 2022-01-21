@@ -40,6 +40,25 @@ var app = {
             e.preventDefault();
             window.scroll({ top: 0, left: 0, behavior: 'smooth' });
         });
+
+        /**
+       * *****************************
+       * PWA INSTALLER
+       * *****************************
+       */
+        let deferredPrompt; // Allows to show the install prompt
+        const installButton = document.getElementById("buttonInstallPwa");
+        installButton.addEventListener("click", app.installApp);
+
+        window.addEventListener("beforeinstallprompt", e => {
+            console.log("beforeinstallprompt fired");
+            // Prevent Chrome 76 and earlier from automatically showing a prompt
+            e.preventDefault();
+            // Stash the event so it can be triggered later.
+            app.deferredPrompt = e;
+            // Show the install button
+            installButton.hidden = false;
+        });
     },
 
     /**
@@ -90,6 +109,24 @@ var app = {
             localStorage.setItem('showModal', 'showModalTrue');
         }
     },
+
+    installApp: function () {
+        console.log('installing PWA')
+        app.deferredPrompt.prompt();
+        installButton.disabled = true;
+
+        // Wait for the user to respond to the prompt
+        deferredPrompt.userChoice.then(choiceResult => {
+            if (choiceResult.outcome === "accepted") {
+                console.log("PWA setup accepted");
+                installButton.hidden = true;
+            } else {
+                console.log("PWA setup rejected");
+            }
+            installButton.disabled = false;
+            deferredPrompt = null;
+        });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', app.init)
