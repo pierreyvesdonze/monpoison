@@ -49,7 +49,11 @@
                 Plus longue période d'abstinence
             </td>
             <td>
-                {{ periodMax }} jours
+                {% if periodMax > 1 %}
+                    {{ periodMax }} jours
+                {% else %}
+                    {{ periodMax}} jour
+                {% endif %}
             </td>
         </tr>
         <tr>
@@ -81,8 +85,8 @@
                 Boissons consommées au total :
             </td>
             <td>
-                {% if drinks is not empty %}
-                {{ drinks|reduce((q, drink) => q + drink.quantity) }}
+                {% if statsArray['drinks'] is not empty %}
+                {{ statsArray['drinks']|reduce((q, drink) => q + drink.quantity) }}
                 {% else %}
                 Aucun enregistrement
                 {% endif %}
@@ -92,11 +96,11 @@
             <td>Ratio <span class="greenScore">avantages</span>/<span class="hardScore">inconvénients</span></td>
             <td>
                 <span class="greenScore">
-                    {{ xAdvantages|round }}%
+                    {{ ratioAdvInconv['advantage']|round }}%
                 </span>
                 /
                 <span class="hardScore">
-                    {{ xInconvenients|round }}%
+                    {{ ratioAdvInconv['inconvenient']|round }}%
             </td>
             </span>
         </tr>
@@ -106,8 +110,8 @@
                 Argent dépensé au total :
             </td>
             <td>
-                {% if drinks is not empty %}
-                {{ drinks|reduce((c, drink) => c + drink.cost) }} €
+                {% if statsArray['drinks'] is not empty %}
+                {{ statsArray['drinks']|reduce((c, drink) => c + drink.cost) }} €
                 {% else %}
                 Aucun enregistrement
                 {% endif %}
@@ -123,18 +127,18 @@
     <br>
     <canvas id="myChart2" width="400" height="400"></canvas>
 
-    <input type="hidden" data-sober="{{ xSober }}" id="xSober">
-    <input type="hidden" data-beer="{{ xBeer }}" id="xBeer">
-    <input type="hidden" data-wine="{{ xWine }}" id="xWine">
-    <input type="hidden" data-spiritus="{{ xSpiritus }}" id="xSpiritus">
+    <input type="hidden" data-sober="{{ statsArray['xSober'] }}" id="xSober">
+    <input type="hidden" data-beer="{{ statsArray['xBeer'] }}" id="xBeer">
+    <input type="hidden" data-wine="{{ statsArray['xWine'] }}" id="xWine">
+    <input type="hidden" data-spiritus="{{ statsArray['xSpiritus'] }}" id="xSpiritus">
 
-    <input type="hidden" data-monday="{{ mondayDrinks }}" id="mondayDrinks">
-    <input type="hidden" data-tuesday="{{ tuesdayDrinks }}" id="tuesdayDrinks">
-    <input type="hidden" data-wednesday="{{ wednesdayDrinks }}" id="wednesdayDrinks">
-    <input type="hidden" data-thursday="{{ thursdayDrinks }}" id="thursdayDrinks">
-    <input type="hidden" data-friday="{{ fridayDrinks }}" id="fridayDrinks">
-    <input type="hidden" data-saturday="{{ saturdayDrinks }}" id="saturdayDrinks">
-    <input type="hidden" data-sunday="{{ sundayDrinks }}" id="sundayDrinks">
+    <input type="hidden" data-monday="{{ weekDrinks['monday'] }}" id="mondayDrinks">
+    <input type="hidden" data-tuesday="{{ weekDrinks['tuesday'] }}" id="tuesdayDrinks">
+    <input type="hidden" data-wednesday="{{ weekDrinks['wednesday'] }}" id="wednesdayDrinks">
+    <input type="hidden" data-thursday="{{ weekDrinks['thursday'] }}" id="thursdayDrinks">
+    <input type="hidden" data-friday="{{ weekDrinks['friday'] }}" id="fridayDrinks">
+    <input type="hidden" data-saturday="{{ weekDrinks['saturday'] }}" id="saturdayDrinks">
+    <input type="hidden" data-sunday="{{ weekDrinks['sunday'] }}" id="sundayDrinks">
 
     <script>
         window.addEventListener("DOMContentLoaded", (event) => {
