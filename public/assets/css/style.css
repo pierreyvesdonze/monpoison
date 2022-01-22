@@ -860,6 +860,46 @@ REGISTRATION & LOGIN
 }
 
 /*********************
+POSTS
+*********************/
+.search-post {
+  width: 320px;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: auto;
+}
+
+.search-post div input {
+  margin-right: 1.5em;
+  border-radius: 20px;
+}
+
+.search-post div input::-webkit-input-placeholder {
+  text-align: center;
+}
+
+.search-post div input:-ms-input-placeholder {
+  text-align: center;
+}
+
+.search-post div input::-ms-input-placeholder {
+  text-align: center;
+}
+
+.search-post div input::placeholder {
+  text-align: center;
+}
+
+#label-form {
+  text-align: center;
+}
+
+/*********************
 FOOTER
 *********************/
 footer {

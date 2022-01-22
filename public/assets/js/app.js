@@ -27,6 +27,7 @@ var app = {
 
         document.querySelector('.navbar-toggler').addEventListener('click', app.disableSocialLinks)
 
+
         /**
         * *****************************
         * SCROLL TO TOP BUTTON
@@ -52,13 +53,12 @@ var app = {
         if (window.matchMedia('(display-mode: standalone)').matches) {
             app.installButton.style.display = "none";
         }
-        
+
         window.addEventListener('appinstalled', () => {
             app.installButton.display = 'none';
         });
 
         // installButton.addEventListener("click", app.installApp);
-
         window.addEventListener("beforeinstallprompt", e => {
             console.log("beforeinstallprompt fired");
             // Prevent Chrome 76 and earlier from automatically showing a prompt
@@ -110,7 +110,7 @@ var app = {
     displayWelcomeModal: function () {
         let showModal = localStorage.getItem('showModal')
         if (showModal != 'showModalTrue') {
-            
+
             $('#btnWelcomeModal').trigger('click');
             setTimeout(function () {
                 $('.close-welcome-modal').trigger('click')
@@ -135,7 +135,7 @@ var app = {
             installButton.disabled = false;
             deferredPrompt = null;
         });
-    }
+    },
 }
 
 document.addEventListener('DOMContentLoaded', app.init)
