@@ -42,8 +42,6 @@ class AlcoolController extends AbstractController
 
             $score += ($frequencyComsumption/2) + $drinkByDay + $fiveDrinksFrequency + $stopControl + $failAttempt + $needFirstDrink + $regrets + $noMemory;
 
-
-
             $user = $this->getUSer();
             if (null != $user) {
                 $user->setAlcoolScore($score);
