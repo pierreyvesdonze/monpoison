@@ -147,7 +147,14 @@ var app = {
 
         $('.container-post').hide();
         $('.container-post:contains("' + userInput + '")').show()
-    }
+
+        $(window).keydown(function (event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    },
 }
 
 document.addEventListener('DOMContentLoaded', app.init)

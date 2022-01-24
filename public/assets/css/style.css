@@ -4,8 +4,22 @@ MEDIA QUERIES
 ***********************************
 */
 :root {
-  --body-bg: linear-gradient(90deg, rgba(21,30,34,1) 21%, rgba(20,27,28,1) 37%, rgba(20,21,23,1) 52%, rgba(23,19,16,1) 81%, rgba(1,1,1,1) 98%);
-  --body-bg-small: linear-gradient(90deg, rgba(21,30,34,1) 21%, rgba(20,27,28,1) 37%, rgba(20,21,23,1) 52%, rgba(23,19,16,1) 81%, rgba(1,1,1,1) 98%);
+  --body-bg: linear-gradient(
+		90deg,
+		rgba(21, 30, 34, 1) 21%,
+		rgba(20, 27, 28, 1) 37%,
+		rgba(20, 21, 23, 1) 52%,
+		rgba(23, 19, 16, 1) 81%,
+		rgba(1, 1, 1, 1) 98%
+	);
+  --body-bg-small: linear-gradient(
+		90deg,
+		rgba(21, 30, 34, 1) 21%,
+		rgba(20, 27, 28, 1) 37%,
+		rgba(20, 21, 23, 1) 52%,
+		rgba(23, 19, 16, 1) 81%,
+		rgba(1, 1, 1, 1) 98%
+	);
   --transparent: rgba(255, 255, 255, 0);
   --semi-transparent: #29292940;
   --alert: #0a0a0ad0;
@@ -58,7 +72,8 @@ input,
 .infos,
 table,
 select,
-ul li {
+ul li,
+.container {
   font-family: "Comfortaa", cursive;
   color: wheat !important;
   text-shadow: 3px 1px 6px #070707;
@@ -893,6 +908,18 @@ POSTS
 
 .search-post input::placeholder {
   text-align: center;
+}
+
+@media (min-width: 300px) and (max-width: 576px) {
+  .search-post input {
+    margin-top: 2em;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .search-post input {
+    margin-top: 2em;
+  }
 }
 
 #label-form {

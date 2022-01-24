@@ -3,8 +3,22 @@
 :root {
 	//--body-bg: url("../images/texture.webp") no-repeat fixed;
 	//--body-bg-small: url("../images/texture-small.webp") no-repeat fixed;
-	--body-bg: linear-gradient(90deg, rgba(21,30,34,1) 21%, rgba(20,27,28,1) 37%, rgba(20,21,23,1) 52%, rgba(23,19,16,1) 81%, rgba(1,1,1,1) 98%);
-	--body-bg-small: linear-gradient(90deg, rgba(21,30,34,1) 21%, rgba(20,27,28,1) 37%, rgba(20,21,23,1) 52%, rgba(23,19,16,1) 81%, rgba(1,1,1,1) 98%);
+	--body-bg: linear-gradient(
+		90deg,
+		rgba(21, 30, 34, 1) 21%,
+		rgba(20, 27, 28, 1) 37%,
+		rgba(20, 21, 23, 1) 52%,
+		rgba(23, 19, 16, 1) 81%,
+		rgba(1, 1, 1, 1) 98%
+	);
+	--body-bg-small: linear-gradient(
+		90deg,
+		rgba(21, 30, 34, 1) 21%,
+		rgba(20, 27, 28, 1) 37%,
+		rgba(20, 21, 23, 1) 52%,
+		rgba(23, 19, 16, 1) 81%,
+		rgba(1, 1, 1, 1) 98%
+	);
 	--transparent: rgba(255, 255, 255, 0);
 	--semi-transparent: #29292940;
 	--alert: #0a0a0ad0;
@@ -13,21 +27,20 @@
 	--card-header: #00000069;
 }
 
-.big-text h1::first-letter{
-	  -webkit-animation: rotating 22s linear infinite;
-  -moz-animation: rotating 22s linear infinite;
-  -ms-animation: rotating 22s linear infinite;
-  -o-animation: rotating 22s linear infinite;
-  animation: rotating 22s linear infinite;
+.big-text h1::first-letter {
+	-webkit-animation: rotating 22s linear infinite;
+	-moz-animation: rotating 22s linear infinite;
+	-ms-animation: rotating 22s linear infinite;
+	-o-animation: rotating 22s linear infinite;
+	animation: rotating 22s linear infinite;
 }
-	@keyframes rotating {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-
-    transform: rotate(360deg);
-  }
+@keyframes rotating {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 p,
@@ -47,7 +60,8 @@ input,
 .infos,
 table,
 select,
-ul li {
+ul li,
+.container {
 	font-family: "Comfortaa", cursive;
 	// @font-face {
 	// 	font-family: "comfortaa";
@@ -363,7 +377,6 @@ SOCIALS ICONS
 	transition: ease-in-out 0.2s;
 }
 
-
 /**********************
 CONTAINER
 **********************/
@@ -372,8 +385,8 @@ CONTAINER
 }
 
 .logo-alcool-info img {
-	    width: 434px;
-		height: 89px;
+	width: 434px;
+	height: 89px;
 	@include xs {
 		width: 320px;
 		height: 66px;
@@ -694,21 +707,26 @@ REGISTRATION & LOGIN
 	background: var(--semi-transparent);
 }
 
-
 /*********************
 POSTS
 *********************/
 .search-post {
 	width: 320px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    margin: auto;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	margin: auto;
 	input {
 		margin-right: 1.5em;
 		border-radius: 20px;
 		&::placeholder {
 			text-align: center;
+		}
+		@include xs {
+			margin-top: 2em;
+		}
+		@include sm {
+			margin-top: 2em;
 		}
 	}
 }
