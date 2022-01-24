@@ -37,7 +37,7 @@ class PostController extends AbstractController
         //     $request->query->getInt('page', 1),
         //     6
         // );
-        $posts = $postRepository->findAll();
+        $posts = $postRepository->findAllByDesc();
         return $this->render('post/index.html.twig', [
             'posts' => $posts,
         ]);
