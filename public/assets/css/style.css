@@ -874,24 +874,24 @@ POSTS
   margin: auto;
 }
 
-.search-post div input {
+.search-post input {
   margin-right: 1.5em;
   border-radius: 20px;
 }
 
-.search-post div input::-webkit-input-placeholder {
+.search-post input::-webkit-input-placeholder {
   text-align: center;
 }
 
-.search-post div input:-ms-input-placeholder {
+.search-post input:-ms-input-placeholder {
   text-align: center;
 }
 
-.search-post div input::-ms-input-placeholder {
+.search-post input::-ms-input-placeholder {
   text-align: center;
 }
 
-.search-post div input::placeholder {
+.search-post input::placeholder {
   text-align: center;
 }
 

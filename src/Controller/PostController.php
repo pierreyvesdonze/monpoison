@@ -12,6 +12,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,11 +32,12 @@ class PostController extends AbstractController
         PaginatorInterface $paginator
     ): Response {
         $data = $postRepository->findBy([], ['date' => 'desc']);
-        $posts = $paginator->paginate(
-            $data,
-            $request->query->getInt('page', 1),
-            6
-        );
+        // $posts = $paginator->paginate(
+        //     $data,
+        //     $request->query->getInt('page', 1),
+        //     6
+        // );
+        $posts = $postRepository->findAll();
         return $this->render('post/index.html.twig', [
             'posts' => $posts,
         ]);

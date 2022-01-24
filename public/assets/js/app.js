@@ -27,6 +27,9 @@ var app = {
 
         document.querySelector('.navbar-toggler').addEventListener('click', app.disableSocialLinks)
 
+        // Search bar for posts
+        $('#search-post-btn').on('click', app.searchPost)
+        $('.search-post').on('keyup', app.searchPost)
 
         /**
         * *****************************
@@ -136,6 +139,15 @@ var app = {
             deferredPrompt = null;
         });
     },
+
+    searchPost: function (e) {
+
+        e.preventDefault();
+        let userInput = $('.search-post input').val();
+
+        $('.container-post').hide();
+        $('.container-post:contains("' + userInput + '")').show()
+    }
 }
 
 document.addEventListener('DOMContentLoaded', app.init)

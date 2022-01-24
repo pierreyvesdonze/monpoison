@@ -3,12 +3,17 @@
 {% block title %}Partie blog de monpoison.fr{% endblock %}
 
 {% block metadescription %}
-<meta name="description" content="Divers articles sur la consommation d'alcool, anecdotes, chiffres sur l'alcoolodépendance">
+<meta name="description"
+    content="Divers articles sur la consommation d'alcool, anecdotes, chiffres sur l'alcoolodépendance">
 {% endblock %}
 
 {% block body %}
 
 <br>
+<form class="search-post">
+    <input type="text" placeholder="rechercher">
+    <button class="custom-btn" type="button" id="search-post-btn">Go</button>
+</form>
 <br>
 
 <div class="container">
@@ -16,31 +21,33 @@
     {% for post in posts %}
     {% if post.isPublished == 1 %}
 
-    <h1>
-        {{ post.title }}
-    </h1>
+    <div class="container-post">
+        <h1 class="post-title" data-title="{{ post.title }}">
+            {{ post.title }}
+        </h1>
 
-    <p>
-        {{ post.content|slice(0, 250)|raw }} ...
-    </p>
+        <p>
+            {{ post.content|slice(0, 250)|raw }} ...
+        </p>
 
-    <a href="{{ path('post_show', {'id': post.id}) }}">Lire plus...</a>
-    <br>
-    <hr>
+        <a href="{{ path('post_show', {'id': post.id}) }}">Lire plus...</a>
+        <br>
+        <hr>
 
-    {% if is_granted('ROLE_ADMIN') %}
+        {% if is_granted('ROLE_ADMIN') %}
 
-    <a href="{{ path('post_edit', {'id': post.id}) }}" class="custom-btn" title="modifier l'article">Modifier</a>
-    <br>
+        <a href="{{ path('post_edit', {'id': post.id}) }}" class="custom-btn" title="modifier l'article">Modifier</a>
+        <br>
 
-    <hr>
-    {% endif %}
+        <hr>
+        {% endif %}
+    </div>
     {% endif %}
     {% endfor %}
 
-    <div class="paginator">
+    {# <div class="paginator">
         {{ knp_pagination_render(posts) }}
-    </div>
+    </div> #}
 </div>
 
 {% endblock %}
