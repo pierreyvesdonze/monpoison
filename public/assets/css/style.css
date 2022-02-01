@@ -145,6 +145,18 @@ table tr td {
   font-weight: bold;
 }
 
+@media (min-width: 300px) and (max-width: 576px) {
+  table tr td {
+    font-size: 0.9em;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  table tr td {
+    font-size: 0.9em;
+  }
+}
+
 a:hover {
   color: white !important;
 }
@@ -460,8 +472,8 @@ CONTAINER
 }
 
 .logo-alcool-info img {
-  width: 434px;
-  height: 89px;
+  width: 265px;
+  height: 46px;
 }
 
 @media (min-width: 300px) and (max-width: 576px) {
@@ -487,6 +499,7 @@ CONTAINER
   .container {
     width: 100%;
     min-height: calc(100vh - 308px);
+    padding: 20px;
   }
 }
 
@@ -494,6 +507,7 @@ CONTAINER
   .container {
     width: 100%;
     min-height: calc(100vh - 308px);
+    padding: 20px;
   }
 }
 
@@ -796,16 +810,16 @@ MYCHART
 @media (min-width: 300px) and (max-width: 576px) {
   #myChart,
   #myChart2 {
-    width: 350px !important;
-    height: 350px !important;
+    width: 300px !important;
+    height: 300px !important;
   }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
   #myChart,
   #myChart2 {
-    width: 350px !important;
-    height: 350px !important;
+    width: 300px !important;
+    height: 300px !important;
   }
 }
 

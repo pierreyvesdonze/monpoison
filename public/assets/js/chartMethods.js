@@ -33,7 +33,7 @@ window.addEventListener("DOMContentLoaded", () => {
                         // This more specific font property overrides the global property
                         color: 'wheat',
                         font: {
-                            size: 24,
+                            size: 14,
                             position: 'center',
                         }
                     }
@@ -89,7 +89,7 @@ window.addEventListener("DOMContentLoaded", () => {
                         // This more specific font property overrides the global property
                         color: 'wheat',
                         font: {
-                            size: 18,
+                            size: 14,
                             position: 'center',
                         }
                     }

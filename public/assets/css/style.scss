@@ -117,6 +117,13 @@ ul li {
 table tr td {
 	font-size: 1.3em;
 	font-weight: bold;
+	@include xs {
+		font-size: 0.9em;
+	}
+	@include sm {
+		font-size: 0.9em;
+	}
+
 }
 
 a:hover {
@@ -381,8 +388,8 @@ CONTAINER
 }
 
 .logo-alcool-info img {
-	width: 434px;
-	height: 89px;
+	width: 265px;
+	height: 46px;
 	@include xs {
 		width: 320px;
 		height: 66px;
@@ -399,10 +406,12 @@ CONTAINER
 	@include xs {
 		width: 100%;
 		min-height: calc(100vh - 308px);
+		padding: 20px;
 	}
 	@include sm {
 		width: 100%;
 		min-height: calc(100vh - 308px);
+		padding: 20px;
 	}
 }
 
@@ -632,12 +641,12 @@ MYCHART
 	height: 600px !important;
 	margin: inherit;
 	@include xs {
-		width: 350px !important;
-		height: 350px !important;
+		width: 300px !important;
+		height: 300px !important;
 	}
 	@include sm {
-		width: 350px !important;
-		height: 350px !important;
+		width: 300px !important;
+		height: 300px !important;
 	}
 }
 
