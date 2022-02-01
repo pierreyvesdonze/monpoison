@@ -58,7 +58,7 @@
                     <img src="{{ asset(drink.alcool.imgPath) }}" class="alcool-png" alt="Icône alcool">
                 </h6>
                 <p class="card-text">{{ drink.quantity }} UA</p>
-                <p class="card-text"><b>{{ drink.cost }} €</b></p>
+                <p class="card-text"><b>{{ drink.cost|number_format(2)}} €</b></p>
                 <div class="d-flex justify-content-around">
                     <a href="{{ path('drink_update', {'id': drink.id}) }}" title="Mettre à jour une consommation"
                         class="custom-btn btn-settings">&olarr;</a>

@@ -79,7 +79,8 @@ class DrinkController extends AbstractController
             $drink->setAlcool($form->get('alcool')->getData());
             $drink->setDate($form->get('date')->getData());
             $drink->setQuantity($form->get('quantity')->getData());
-
+            $drink->setCost($form->get('cost')->getData());
+      
             $this->entityManager->flush();
             $this->addFlash('success', 'Consommation mise à jour !');
 

@@ -40,7 +40,7 @@ class Drink
     private $date;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="decimal", precision=8, scale=2)
      */
     private $cost;
 
@@ -97,12 +97,12 @@ class Drink
         return $this;
     }
 
-    public function getCost(): ?int
+    public function getCost(): ?float
     {
         return $this->cost;
     }
 
-    public function setCost(int $cost): self
+    public function setCost(float $cost): self
     {
         $this->cost = $cost;
 

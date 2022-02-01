@@ -6,9 +6,9 @@ use App\Entity\Alcool;
 use App\Entity\Drink;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -37,10 +37,11 @@ class DrinkType extends AbstractType
             'data' => new \DateTime('now'),
             'widget' => 'single_text'
             ])
-            ->add('cost', IntegerType::class, [
+            ->add('cost', NumberType::class, [
+                'scale' => 2,
                 'label' => 'Argent dépensé',
                 'attr' => [
-                    'class' => 'input'
+                    'class' => 'input',
                 ]
             ])
             ->add('submit', SubmitType::class, [

@@ -735,6 +735,7 @@ input,
   width: 100%;
   margin: 15px 0px;
   background-color: var(--semi-transparent);
+  text-align: left;
 }
 
 .input-textarea {
@@ -747,7 +748,7 @@ input,
   border: none;
   background-color: var(--semi-transparent);
   padding: 5px 0px !important;
-  text-align: center;
+  text-align: left;
   -webkit-transition: all 250ms;
   transition: all 250ms;
 }
