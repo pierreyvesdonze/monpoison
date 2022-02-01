@@ -22,7 +22,7 @@ var app = {
             }, 1500);
         }
 
-        /**Push Notification btn */
+        // Push Notification btn
         $('#push-permission .custom-btn').on('click', app.askPermission)
 
         document.querySelector('.navbar-toggler').addEventListener('click', app.disableSocialLinks)
@@ -30,6 +30,9 @@ var app = {
         // Search bar for posts
         $('#search-post-btn').on('click', app.searchPost)
         $('.search-post').on('keyup', app.searchPost)
+
+        // Detect bottom of page
+        // $(window).on("scroll", app.scrollBottom);
 
         /**
         * *****************************
@@ -155,6 +158,18 @@ var app = {
             }
         });
     },
+
+    // scrollBottom: function () {
+    //     let scrollHeight = $(document).height();
+    //     let scrollPosition = $(window).height() + $(window).scrollTop();
+    //     if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+    //         console.log('bottom')
+    //         $('footer').css('visibility', 'visible')
+    //     } else {
+            
+    //         $('footer').css('visibility', 'hidden')
+    //     }
+    // },
 }
 
 document.addEventListener('DOMContentLoaded', app.init)

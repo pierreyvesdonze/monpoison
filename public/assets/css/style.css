@@ -484,18 +484,20 @@ CONTAINER
           box-shadow: inset rgba(0, 0, 0, 0.692) 0 0 7px 1px;
   border-radius: 15px;
   padding: 20px;
-  width: 82%;
+  min-height: calc(100vh - 262px);
 }
 
 @media (min-width: 300px) and (max-width: 576px) {
   .container {
     width: 100%;
+    min-height: calc(100vh - 308px);
   }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
   .container {
     width: 100%;
+    min-height: calc(100vh - 308px);
   }
 }
 
@@ -930,15 +932,14 @@ POSTS
 FOOTER
 *********************/
 footer {
-  position: relative;
-  bottom: 0;
   clear: both;
   width: 100%;
-  height: auto;
+  margin-top: 50px;
   background-color: var(--semi-transparent);
   -webkit-box-shadow: inset rgba(0, 0, 0, 0.596) 0 0 7px 1px;
           box-shadow: inset rgba(0, 0, 0, 0.596) 0 0 7px 1px;
-  margin-top: 50px;
+  -webkit-transition: ease-in-out .5s;
+  transition: ease-in-out .5s;
 }
 
 footer div {
