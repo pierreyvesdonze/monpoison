@@ -74,7 +74,7 @@ table,
 select,
 ul li,
 .container {
-  font-family: "Comfortaa", cursive;
+  font-family: 'Montserrat', sans-serif;
   color: wheat !important;
   text-shadow: 3px 1px 6px #070707;
 }
@@ -778,8 +778,7 @@ input[type="submit"]:hover {
 
 h2 {
   text-align: center;
-  font-family: opensans;
-  font-weight: 400;
+  font-weight: 500;
   display: block;
   margin-bottom: 25px !important;
 }
