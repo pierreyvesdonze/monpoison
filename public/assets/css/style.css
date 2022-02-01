@@ -1023,4 +1023,19 @@ ARGUMENTS
             flex-direction: column;
   }
 }
+
+/*********************
+BLOG
+*********************/
+@media (min-width: 300px) and (max-width: 576px) {
+  iframe {
+    max-width: 320px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  iframe {
+    max-width: 320px;
+  }
+}
 /*# sourceMappingURL=style.css.map */

@@ -790,3 +790,15 @@ ARGUMENTS
 		flex-direction: column;
 	}
 }
+
+/*********************
+BLOG
+*********************/
+iframe {
+	@include xs {
+		max-width: 320px;
+	}
+	@include sm {
+		max-width: 320px;
+	}
+}
