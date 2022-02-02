@@ -9,8 +9,9 @@
     {% set scoreStatus = null %}
     {% set message = null %}
     {% if score >= 9 %}
-    {% set scoreStatus = 'hardScore' %}
+        {% set scoreStatus = 'hardScore' %}
         {% set message =  'Vous ne le savez peut-être pas, mais vous êtes mort. Désolé.'%}
+
     {% elseif score > 0.8  and score < 8 %}
         {% set scoreStatus = 'hardScore' %}
         {% set message = "Selon l’article L243-1 du Code de la route, conduire un véhicule avec ce taux d'alcoolémie est passible de deux ans d'emprisonnement, 45000€ d'amende et la peine complémentaire encourue peut être une suspension du permis de conduire pour une durée de trois ans au plus." %}
@@ -21,6 +22,7 @@
     {% elseif score >= 0.5 and score < 0.8 %}
         {% set scoreStatus = 'middleScore' %}
         {% set message = "Conduire avec ce taux d'alcoolémie entraîne une contravention de quatrième classe assortie d'un retrait de six points sur le permis de conduire." %}
+
     {% elseif score < 0.50 %}
         {% set scoreStatus = 'greenScore' %}
         {% set message = "Avec ce taux d'alcoolémie inférieure 0.5g/L vous pouvez prendre la route, prudemment toutefois. L'acool diminue la vigilance. Attention ! Pour les permis probatoire le seuil maximal autorisé est limité à 0.25g/L. Pour exemple, ce taux correspond environ à une bière de 25cl à 5.5° pour un homme de 76 kg." %}

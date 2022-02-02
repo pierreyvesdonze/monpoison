@@ -23,21 +23,21 @@
             <td>
                 {% set score = user.alcoolScore %}
                 {% if score is not null %}
-                {% if score == 0 %}
-                    <span class="greenScore">
-                        Aucun danger
-                    </span>
-                {% endif %}
-                
-                {% if score > 0 and score <= 5 %} <span class="greenScore">Faible</span>
+                    {% if score == 0 %}
+                        <span class="greenScore">
+                            Aucun danger
+                        </span>
+                    {% endif %}
+                    
+                    {% if score > 0 and score <= 5 %} <span class="greenScore">Faible</span>
                     {% elseif score >= 6 and score <= 8 %} <span class="middleScore">Moyen</span>
-                        {% elseif score >= 9 and score <= 15 %} <span class="hardScore">Elevé</span>
-                            {% elseif score >= 16 %}
-                            <span class="dangerScore">Danger</span>
-                            {% endif %}
-                            {% else %}
-                            <a href="{{ path('alcool_test') }}" title="Test de dépendance à l'alcool">Faire le test</a>
-                            {% endif %}
+                    {% elseif score >= 9 and score <= 15 %} <span class="hardScore">Elevé</span>
+                    {% elseif score >= 16 %}
+                                <span class="dangerScore">Danger</span>
+                    {% endif %}
+                    {% else %}
+                        <a href="{{ path('alcool_test') }}" title="Test de dépendance à l'alcool">Faire le test</a>
+                {% endif %}
             </td>
         </tr>
         <tr>
@@ -93,7 +93,7 @@
 
             </td>
         <tr>
-            <td>Ratio <span class="greenScore">avantages</span>/<span class="hardScore">inconvénients</span></td>
+            <td>Ratio <span class="greenScore">avantages </span>/<span class="hardScore"> inconvénients</span></td>
             <td>
                 <span class="greenScore">
                     {{ ratioAdvInconv['advantage']|round }}%

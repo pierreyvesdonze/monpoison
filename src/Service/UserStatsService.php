@@ -12,17 +12,17 @@ class UserStatsService
         private SoberRepository $soberRepository,
         private DrinkRepository $drinkRepository,
         private ArgumentUserRepository $argRepo
-        )
-    {}
+    ) {
+    }
 
     // Get dates sorted by ASC to calculate longest period of sobriety
     public function getMaxSobrietyPeriod($user)
     {
         $sobersDates = $this->soberRepository->findDatesByUser($user);
 
-        $period = 0;
-        $periodMax = 0;
-        $previousDay = null;
+        $period            = 0;
+        $periodMax         = 0;
+        $previousDay       = null;
         $calculPreviousDay = null;
 
         foreach ($sobersDates as $soberDate) {
@@ -39,11 +39,9 @@ class UserStatsService
             }
             $previousDay = $soberDate['date'];
         }
-
         if ($period > $periodMax) {
             $periodMax = $period;
         }
-
         return $periodMax;
     }
 
@@ -100,15 +98,15 @@ class UserStatsService
         $statsArray['xSober']     = $xSober;
         $statsArray['xBeer']      = $xBeer;
         $statsArray['xWine']      = $xWine;
-        $statsArray ['xSpiritus'] = $xSpiritus;
+        $statsArray['xSpiritus'] = $xSpiritus;
 
-       return $statsArray;
+        return $statsArray;
     }
 
     // Get 7 days last drinks
     public function getLastWeekDrinks($user)
     {
-       return $this->drinkRepository->findLastWeekDrinks($user);
+        return $this->drinkRepository->findLastWeekDrinks($user);
     }
 
     // Get 7 days cost
@@ -121,7 +119,6 @@ class UserStatsService
     public function getDrinksByDay($user)
     {
         $weekDrinks = [];
-
         $weekDrinks['monday']    = (int)$this->drinkRepository->findByDay($user, 'Monday')[0][1];
         $weekDrinks['tuesday']   = (int)$this->drinkRepository->findByDay($user, 'Tuesday')[0][1];
         $weekDrinks['wednesday'] = (int)$this->drinkRepository->findByDay($user, 'Wednesday')[0][1];
@@ -138,7 +135,7 @@ class UserStatsService
     {
         $advantagesUser    = $this->argRepo->findAdvantagesByUser($user);
         $inconvenientsUser = $this->argRepo->findInconvenientsByUser($user);
-        $totalArgUsers = count($advantagesUser) + count($inconvenientsUser);
+        $totalArgUsers     = count($advantagesUser) + count($inconvenientsUser);
 
         $ratioAdvantageInconvenient = [];
 
@@ -157,7 +154,7 @@ class UserStatsService
             $xAdvantageUser = $xInconvenientUser = 0;
         }
 
-        $ratioAdvantageInconvenient['advantage'] = $xAdvantageUser;
+        $ratioAdvantageInconvenient['advantage']    = $xAdvantageUser;
         $ratioAdvantageInconvenient['inconvenient'] = $xInconvenientUser;
 
         return $ratioAdvantageInconvenient;

@@ -45,7 +45,6 @@ class AlcoolController extends AbstractController
             $user = $this->getUSer();
             if (null != $user) {
                 $user->setAlcoolScore($score);
-
                 $this->entityManager->flush();
             }
 
@@ -53,7 +52,6 @@ class AlcoolController extends AbstractController
                 'score' => $score
             ]);
         }
-
         return $this->render('alcool/test.html.twig', [
             'form' => $form->createView()
         ]);
@@ -82,7 +80,6 @@ class AlcoolController extends AbstractController
         } elseif ($score > 16) {
             $message = "Attention ! Votre niveau de consommation d'alcool est à un niveau au delà du raisonnable. À ce stade le risque de dépendance est extrêmement élevé. Sur la durée votre santé générale a de grands risques de se dégrader, votre socialisation peut être malmenée et votre moral peut significativement baisser. Rapprochez-vous de votre médecin ou d'un addictologue pour vous permettre d'obtenir des conseils et de l'aide pour garder le contrôle. Plus tôt arrive la conscience que l'on est en danger, plus facilement on peut corriger le tir.";
         }
-
         return $this->render('alcool/test.result.html.twig', [
             'message' => $message,
             'score'   => $score
@@ -121,7 +118,6 @@ class AlcoolController extends AbstractController
                 'score' => $score
             ]);
         }
-
         return $this->render('alcool/ethylotest.html.twig', [
             'form' => $form->createView()
         ]);
@@ -174,7 +170,6 @@ class AlcoolController extends AbstractController
 
             return $this->redirectToRoute('alcool_arguments');
         }
-
         return $this->render('alcool/add.arguments.html.twig', [
             'form' => $form->createView()
         ]);
@@ -192,7 +187,6 @@ class AlcoolController extends AbstractController
             
             $this->addFlash('success', 'Retiré !');
         }
-
         return $this->redirectToRoute('alcool_arguments');
     }
 }

@@ -12,7 +12,6 @@ use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -86,7 +85,6 @@ class PostController extends AbstractController
             $post->setIsPublished(0);
             $this->addFlash('success', 'Article dépublié !');
         }
-
         $this->em->flush();
 
         return $this->redirectToRoute('post_status', []);
@@ -125,7 +123,6 @@ class PostController extends AbstractController
 
             return $this->redirectToRoute('post_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('post/new.html.twig', [
             'post' => $post,
             'form' => $form,
@@ -169,7 +166,6 @@ class PostController extends AbstractController
 
             return $this->redirectToRoute('post_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('post/edit.html.twig', [
             'post' => $post,
             'form' => $form,

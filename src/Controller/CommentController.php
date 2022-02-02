@@ -42,12 +42,12 @@ class CommentController extends AbstractController
             $comment->setUser($this->getUser());
             $comment->setPost($post);
             $comment->setDate(new \DateTime('now'));
+
             $this->em->persist($comment);
             $this->em->flush();
 
             // Send comment to contact@monpoison.fr by email
-            if("production" === $this->getParameter('app.env'))
-            {
+            if ("production" === $this->getParameter('app.env')) {
                 $mailService->sendCommentMail($comment, $this->getUser());
             }
 
@@ -58,8 +58,8 @@ class CommentController extends AbstractController
 
         return $this->renderForm('comment/new.html.twig', [
             'comment' => $comment,
-            'form' => $form,
-            'post' => $post
+            'form'    => $form,
+            'post'    => $post
         ]);
     }
 
@@ -95,7 +95,6 @@ class CommentController extends AbstractController
 
     #[Route('/supprimer/{id}', name: 'comment_delete', methods: ['POST', 'GET'])]
     public function delete(
-        Request $request,
         Comment $comment
     ): Response {
 

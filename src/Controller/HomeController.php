@@ -16,9 +16,7 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('home/index.html.twig', [
-            '' => '',
-        ]);
+        return $this->render('home/index.html.twig');
     }
 
     /**
@@ -36,12 +34,10 @@ class HomeController extends AbstractController
         Request $request,
         MailService $mailer
     ) {
-
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $sender = $form->get('email')->getData();
             $text = $form->get('text')->getData();
 

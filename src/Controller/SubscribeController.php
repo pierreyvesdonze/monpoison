@@ -99,7 +99,7 @@ class SubscribeController extends AbstractController
         }
 
         return $this->render('subscribe/bye.html.twig', [
-            'postId' => $postId,
+            'postId'         => $postId,
             'isUnsubscribed' => $isUnsubscribed
         ]);
     }

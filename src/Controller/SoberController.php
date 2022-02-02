@@ -53,7 +53,6 @@ class SoberController extends AbstractController
             return $this->redirectToRoute('drink_calendar');
         }
 
-
         return $this->render('sober/add.html.twig', [
             'form' => $form->createView()
         ]);

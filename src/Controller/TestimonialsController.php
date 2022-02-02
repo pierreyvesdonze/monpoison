@@ -53,10 +53,8 @@ class TestimonialsController extends AbstractController
                     $form->get('pseudo')->getData()
                 );
             }
-
             return $this->redirectToRoute('testimonials', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('testimonials/new.html.twig', [
             'testimonial' => $testimonial,
             'form' => $form,
@@ -82,7 +80,6 @@ class TestimonialsController extends AbstractController
 
             return $this->redirectToRoute('testimonials_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('testimonials/edit.html.twig', [
             'testimonial' => $testimonial,
             'form' => $form,
@@ -96,7 +93,6 @@ class TestimonialsController extends AbstractController
             $entityManager->remove($testimonial);
             $entityManager->flush();
         }
-
         return $this->redirectToRoute('testimonials_index', [], Response::HTTP_SEE_OTHER);
     }
 }
