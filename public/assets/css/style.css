@@ -451,15 +451,15 @@ CONTAINER
 
 @media (min-width: 300px) and (max-width: 576px) {
   .logo-alcool-info img {
-    width: 320px;
-    height: 66px;
+    width: 177;
+    height: 32px;
   }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
   .logo-alcool-info img {
-    width: 320px;
-    height: 66px;
+    width: 177px;
+    height: 32px;
   }
 }
 
