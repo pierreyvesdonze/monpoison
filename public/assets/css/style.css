@@ -28,33 +28,6 @@ MEDIA QUERIES
   --card-header: #00000069;
 }
 
-.big-text h1::first-letter {
-  -webkit-animation: rotating 22s linear infinite;
-  animation: rotating 22s linear infinite;
-}
-
-@-webkit-keyframes rotating {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-
-@keyframes rotating {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-
 p,
 a,
 span,
@@ -74,7 +47,7 @@ table,
 select,
 ul li,
 .container {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: wheat !important;
   text-shadow: 3px 1px 6px #070707;
 }
@@ -597,7 +570,7 @@ HOMEPAGE
 .big-text {
   width: 60%;
   margin-top: 2em;
-  webkit-touch-callout: none;
+  -webkit-touch-callout: none;
   /* iOS Safari */
   -webkit-user-select: none;
   /* Safari */
@@ -614,6 +587,8 @@ HOMEPAGE
   text-transform: uppercase;
   line-height: 1.1em;
   font-weight: bold;
+  -webkit-animation: bounce 2s ease infinite alternate;
+  animation: bounce 2s ease-out infinite alternate;
 }
 
 @media (min-width: 300px) and (max-width: 576px) {
@@ -625,6 +600,20 @@ HOMEPAGE
 @media (min-width: 576px) and (max-width: 768px) {
   .big-text h1 {
     font-size: 3.2em;
+  }
+}
+
+@-webkit-keyframes bounce {
+  100% {
+    top: -20px;
+    text-shadow: 0 1px 0 #615f5f, 0 2px 0 #807e7e, 0 3px 0 #686868, 0 4px 0 gray, 0 5px 0 #797878, 0 6px 0 #747272, 0 7px 0 dimgray, 0 8px 0 #555555, 0 9px 0 #6b6b6b, 0 50px 25px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes bounce {
+  100% {
+    top: -20px;
+    text-shadow: 0 1px 0 #615f5f, 0 2px 0 #807e7e, 0 3px 0 #686868, 0 4px 0 gray, 0 5px 0 #797878, 0 6px 0 #747272, 0 7px 0 dimgray, 0 8px 0 #555555, 0 9px 0 #6b6b6b, 0 50px 25px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -951,8 +940,8 @@ footer {
   background-color: var(--semi-transparent);
   -webkit-box-shadow: inset rgba(0, 0, 0, 0.596) 0 0 7px 1px;
           box-shadow: inset rgba(0, 0, 0, 0.596) 0 0 7px 1px;
-  -webkit-transition: ease-in-out .5s;
-  transition: ease-in-out .5s;
+  -webkit-transition: ease-in-out 0.5s;
+  transition: ease-in-out 0.5s;
 }
 
 footer div {

@@ -31,9 +31,6 @@ var app = {
         $('#search-post-btn').on('click', app.searchPost)
         $('.search-post').on('keyup', app.searchPost)
 
-        // Detect bottom of page
-        // $(window).on("scroll", app.scrollBottom);
-
         /**
         * *****************************
         * SCROLL TO TOP BUTTON
@@ -158,18 +155,6 @@ var app = {
             }
         });
     },
-
-    // scrollBottom: function () {
-    //     let scrollHeight = $(document).height();
-    //     let scrollPosition = $(window).height() + $(window).scrollTop();
-    //     if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
-    //         console.log('bottom')
-    //         $('footer').css('visibility', 'visible')
-    //     } else {
-            
-    //         $('footer').css('visibility', 'hidden')
-    //     }
-    // },
 }
 
 document.addEventListener('DOMContentLoaded', app.init)

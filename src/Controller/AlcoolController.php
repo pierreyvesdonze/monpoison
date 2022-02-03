@@ -29,7 +29,6 @@ class AlcoolController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $score                   = 0;
             $frequencyComsumption    = ($form->get('frequencyComsumption')->getData());
             $drinkByDay              = $form->get('drinkByDay')->getData();
