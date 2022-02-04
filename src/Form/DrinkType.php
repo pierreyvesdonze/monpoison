@@ -19,6 +19,7 @@ class DrinkType extends AbstractType
     {
         $builder
             ->add('alcool', EntityType::class, [
+                'label' => 'Alcool consommé',
                 'class' => Alcool::class,
                 'attr' => [
                     'class' => 'input'

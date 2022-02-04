@@ -51,6 +51,13 @@ ul li,
 	text-shadow: 3px 1px 6px rgb(7, 7, 7);
 }
 
+h2 {
+	text-align: center;
+	font-weight: 500;
+	display: block;
+	margin-bottom: 25px !important;
+}
+
 body {
 	height: 100vh;
 	background: var(--body-bg);
@@ -530,53 +537,13 @@ SOBER
 }
 
 /**********************
-DRINK FORM 
+FORM 
 **********************/
 form[name="drink"] {
 	margin: auto;
 	width: 90%;
 }
-.msf_hide {
-	display: none;
-}
-.msf_show {
-	display: block;
-	font-size: 1.9em;
-	text-align: center;
-}
-.msf_bullet_o {
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: center;
-}
-.msf_bullet_o > div {
-	height: 15px;
-	width: 15px;
-	margin: 20px 10px;
-	border-radius: 100px;
-	z-index: 2;
-}
-.msf_bullet {
-	background-color: lightgrey;
-}
-.msf_bullet_active {
-	background-color: darkgrey !important;
-}
 
-.form_wrapper {
-	min-width: 300px;
-}
-fieldset {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	flex-flow: row wrap;
-	justify-content: center;
-	box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 30px;
-	border-radius: 0px;
-	border: none;
-	padding: 10px 20px !important;
-}
 input,
 .input-textarea {
 	display: block;
@@ -587,43 +554,6 @@ input,
 }
 .input-textarea {
 	height: 150px;
-}
-
-.input[type="text"],
-.input[type="password"] {
-	outline: none;
-	border: none;
-	background-color: var(--semi-transparent);
-	padding: 5px 0px !important;
-	text-align: left;
-	transition: all 250ms;
-}
-
-input[type="text"]:focus {
-	opacity: 0.5;
-}
-
-input[type="button"],
-input[type="submit"] {
-	margin-top: 100px !important;
-	cursor: pointer;
-	outline: none;
-	border: none;
-	padding: 15px !important;
-	line-height: 0px;
-	transition: all 150ms;
-	box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 5px;
-}
-input[type="button"]:hover,
-input[type="submit"]:hover {
-	background-color: darkgrey;
-	color: white;
-}
-h2 {
-	text-align: center;
-	font-weight: 500;
-	display: block;
-	margin-bottom: 25px !important;
 }
 
 /**********************
