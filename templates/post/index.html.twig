@@ -30,7 +30,7 @@
             {{ post.content|slice(0, 250)|raw }} ...
         </p>
 
-        <a href="{{ path('post_show', {'id': post.id}) }}">Lire plus...</a>
+        <a href="{{ path('post_show', {'id': post.id, 'slug': post.slug}) }}">Lire plus...</a>
         <br>
         <hr>
 

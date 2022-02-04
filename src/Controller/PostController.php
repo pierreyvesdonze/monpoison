@@ -129,7 +129,7 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/voir/{id}', name: 'post_show', methods: ['GET'])]
+    #[Route('/voir/{id}/{slug}', name: 'post_show', methods: ['GET'])]
     public function show(
         Post $post,
         CommentRepository $commentRepository

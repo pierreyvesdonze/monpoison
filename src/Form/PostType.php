@@ -27,6 +27,11 @@ class PostType extends AbstractType
                         'class' => "input-textarea"
                     ]
                 ])
+            ->add('slug', TextType::class, [
+                'attr' => [
+                    'class' => 'input'
+                ]
+            ])
             ->add('date', DateType::class, [
                 'data' => new \DateTime('now'),
                 'widget' => 'single_text'
