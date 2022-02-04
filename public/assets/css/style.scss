@@ -483,23 +483,12 @@ HOMEPAGE
 	text-transform: uppercase;
 	line-height: 1.1em;
 	font-weight: bold;
-	-webkit-animation: bounce 2s ease infinite alternate;
-	animation: bounce 2s ease-out infinite alternate;
 	@include xs {
 		font-size: 3.2em;
 	}
 	@include sm {
 		font-size: 3.2em;
 	}
-}
-
-@keyframes bounce {
-  100% {
-    top: -20px;
-    text-shadow: 0 1px 0 rgb(97, 95, 95), 0 2px 0 rgb(128, 126, 126), 0 3px 0 rgb(104, 104, 104), 0 4px 0 rgb(128, 128, 128),
-      0 5px 0 rgb(121, 120, 120), 0 6px 0 rgb(116, 114, 114), 0 7px 0 rgb(105, 105, 105), 0 8px 0 rgb(85, 85, 85), 0 9px 0 rgb(107, 107, 107),
-      0 50px 25px rgba(0, 0, 0, 0.2);
-  }
 }
 
 .home-text {
