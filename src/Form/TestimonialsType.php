@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Testimonials;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -20,12 +21,12 @@ class TestimonialsType extends AbstractType
                     'class' => 'input'
                 ]
             ])
-            ->add('content', TextareaType::class, [
+            ->add('content', CKEditorType::class, [
                 'label' => 'message',
-                'attr' => [
-                    'class' => 'input-textarea'
-                ]
-            ])
+                    'attr' => [
+                        'class' => "input-textarea"
+                    ]
+                ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Publier',
                 'attr' => [

@@ -12,11 +12,9 @@
     <hr>
     <br>
     {% for testimonial in testimonials %}
-    <blockquote>
         <p>
-            {{ testimonial }}
+            {{ testimonial|raw }}
         </p>
-    </blockquote>
     <span class="span-italic">- {{ testimonial.pseudo }} -</span>
     
     <hr>
