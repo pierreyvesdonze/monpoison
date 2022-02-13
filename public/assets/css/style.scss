@@ -479,10 +479,22 @@ HOMEPAGE
 }
 
 .big-text h1 {
-	font-size: 8em;
+	font-size: 7em;
 	text-transform: uppercase;
 	line-height: 1.1em;
 	font-weight: bold;
+	background: 50% 100% / 50% 50% no-repeat radial-gradient(ellipse at bottom, #fff, transparent, transparent);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	animation: glow 2500ms linear infinite 2000ms;
+
+	@keyframes glow {
+		40% {
+			text-shadow: 0 0 8px #fff;
+		}
+	}
+
 	@include xs {
 		font-size: 3.2em;
 	}
