@@ -19,12 +19,14 @@
     #}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
     {% block stylesheets %}
 
     {% endblock %}
@@ -113,22 +115,22 @@
 
     {% endblock %}
 
-        {% if 'production' == app_env %}
-        <!-- Start of Woopra Code -->
-        <script>
-            !function () { var t, o, c, e = window, n = document, r = arguments, a = "script", i = ["call", "cancelAction", "config", "identify", "push", "track", "trackClick", "trackForm", "update", "visit"], s = function () { var t, o = this, c = function (t) { o[t] = function () { return o._e.push([t].concat(Array.prototype.slice.call(arguments, 0))), o } }; for (o._e = [], t = 0; t < i.length; t++)c(i[t]) }; for (e.__woo = e.__woo || {}, t = 0; t < r.length; t++)e.__woo[r[t]] = e[r[t]] = e[r[t]] || new s; (o = n.createElement(a)).async = 1, o.src = "https://static.woopra.com/js/w.js", (c = n.getElementsByTagName(a)[0]).parentNode.insertBefore(o, c) }("woopra");
+    {% if 'production' == app_env %}
+    <!-- Start of Woopra Code -->
+    <script>
+        !function () { var t, o, c, e = window, n = document, r = arguments, a = "script", i = ["call", "cancelAction", "config", "identify", "push", "track", "trackClick", "trackForm", "update", "visit"], s = function () { var t, o = this, c = function (t) { o[t] = function () { return o._e.push([t].concat(Array.prototype.slice.call(arguments, 0))), o } }; for (o._e = [], t = 0; t < i.length; t++)c(i[t]) }; for (e.__woo = e.__woo || {}, t = 0; t < r.length; t++)e.__woo[r[t]] = e[r[t]] = e[r[t]] || new s; (o = n.createElement(a)).async = 1, o.src = "https://static.woopra.com/js/w.js", (c = n.getElementsByTagName(a)[0]).parentNode.insertBefore(o, c) }("woopra");
 
-            woopra.config({
-                domain: "monpoison.fr",
-                outgoing_tracking: true,
-                download_tracking: true,
-                click_tracking: true
-            });
+        woopra.config({
+            domain: "monpoison.fr",
+            outgoing_tracking: true,
+            download_tracking: true,
+            click_tracking: true
+        });
 
-            woopra.track();
-        </script>
-        <!-- End of Woopra Code -->
-        {% endif %}
+        woopra.track();
+    </script>
+    <!-- End of Woopra Code -->
+    {% endif %}
 </body>
 
 </html>
