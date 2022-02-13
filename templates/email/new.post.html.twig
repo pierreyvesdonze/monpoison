@@ -27,7 +27,7 @@
     <div class="container">
         <h1>Nouvel article sur monpoison.fr</h1>
         <p>
-            <a href="https://monpoison.fr{{ path('post_show', {'id':post.id}) }}" title="lire l'article">{{ post.title }}... lire</a>
+            <a href="https://monpoison.fr{{ path('post_show', {'id':post.id, 'slug':post.slug}) }}" title="lire l'article">{{ post.title }}... lire</a>
         </p>
     </div>
 </body>
