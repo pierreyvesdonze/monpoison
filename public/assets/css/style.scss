@@ -141,14 +141,6 @@ p {
 	word-wrap: break-word;
 }
 
-blockquote p::before {
-	content: "\201C";
-}
-
-blockquote p::after {
-	content: "\201D";
-}
-
 .modal-open {
 	color: wheat;
 }
