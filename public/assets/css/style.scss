@@ -91,6 +91,15 @@ html {
 	height: 100%;
 }
 
+.hr-white {
+  height: 1px;
+  border: 0;
+  width: 90%;
+  margin: 20px auto;
+  background: rgb(226, 226, 226);
+  background: radial-gradient(circle, rgb(240, 240, 240) 0%, rgba(255, 255, 255, 0.144) 50%, rgba(255, 254, 254, 0) 100%);
+}
+
 .alert,
 .alert-success {
 	background-color: var(--alert);
