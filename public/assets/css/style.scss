@@ -578,7 +578,6 @@ FORM
 **********************/
 form[name="drink"] {
 	margin: auto;
-	width: 90%;
 }
 
 input,
@@ -643,22 +642,26 @@ CARD CONSO
 	border-radius: 0 17px;
 	margin-bottom: 2em;
 	margin-right: -50px;
+	opacity: 0.5;
+	transform-origin: center;
+	transform: perspective(1000px) rotateY(45deg);
+	transition: 0.3s;
 
-		opacity: 0.5;
-		transform-origin: center;
-		transform: perspective(1000px) rotateY(45deg);
-		transition: 0.3s;
-	
 	&:hover {
+		box-shadow: 0px 0px 12px 5px rgba(0, 0, 0, 0.75);
 		transform: perspective(800px) rotateY(0deg);
 		opacity: 1;
 		margin-right: 10px;
 	}
 	@include xs {
 		width: 320px;
+		transform: perspective(0) rotateY(0deg);
+		opacity: 1;
 	}
 	@include sm {
 		width: 320px;
+		transform: perspective(0) rotateY(0deg);
+		opacity: 1;
 	}
 }
 
@@ -667,7 +670,7 @@ CARD CONSO
 }
 
 .card-header {
-	border-radius: 0 17px 10px 0 !important;
+	border-radius: 0 17px 0 0 !important;
 	background: var(--card-header);
 }
 
