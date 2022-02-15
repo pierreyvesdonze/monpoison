@@ -788,3 +788,79 @@ iframe {
 		max-width: 320px;
 	}
 }
+
+
+
+/*********************
+BIG TEXT ANIM
+*********************/
+.big-title-wrapper {
+    height: 300px;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--primary-color);
+}
+
+.grid-big-text {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+	margin-bottom: 3em;
+	@include xs {
+		margin-bottom: 1em;
+	}
+	@include sm {
+		margin-bottom: 1em;
+	}
+}
+
+.small {
+    width: 40px;
+    height: 40px;
+    @include sm {
+        width: 14px;
+        height: 14px;
+    }
+    @include xs {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+.square {
+    pointer-events: none;
+    position: relative;
+    width: 70px;
+    height: 50px;
+    margin: 2px;
+    background-color: var(--primary-color);
+    font-size: 6em;
+	   color: wheat;
+    font-weight: 100;
+    @include sm {
+        width: 30px;
+        height: 17px;
+        font-size: 3em;
+        margin-bottom: 1em;
+    }
+    @include xs {
+        width: 30px;
+        height: 17px;
+        font-size: 3em;
+        margin-bottom: 1em;
+    }
+}
+
+.yellow-big {
+	color: var(--hover-color);
+}

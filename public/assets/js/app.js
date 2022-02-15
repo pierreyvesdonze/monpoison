@@ -31,6 +31,18 @@ var app = {
         $('#search-post-btn').on('click', app.searchPost)
         $('.search-post').on('keyup', app.searchPost)
 
+        // MAIN TITLE WITCH ANIMATION
+        $(document).ready(function () {
+            anime({
+                targets: '.big-title-wrapper .el',
+                scale: [
+                    { value: .1, easing: 'easeOutSine', duration: 300 },
+                    { value: 1, easing: 'easeInOutQuad', duration: 1000 }
+                ],
+                delay: anime.stagger(200, { grid: [14, 5], from: 'center' })
+            });
+        });
+
 
         /**
         * *****************************
