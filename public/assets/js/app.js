@@ -31,6 +31,7 @@ var app = {
         $('#search-post-btn').on('click', app.searchPost)
         $('.search-post').on('keyup', app.searchPost)
 
+
         /**
         * *****************************
         * SCROLL TO TOP BUTTON

@@ -70,8 +70,8 @@ body {
           animation-iteration-count: 1;
   -webkit-animation-timing-function: ease-in;
           animation-timing-function: ease-in;
-  -webkit-animation-duration: .5s;
-          animation-duration: .5s;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 
 @media (min-width: 300px) and (max-width: 576px) {
@@ -664,6 +664,20 @@ HOMEPAGE
 }
 
 /**********************
+INPUTS
+**********************/
+select,
+.input {
+  border-radius: 20px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.322);
+  padding: 5px;
+  border: none;
+  -webkit-box-shadow: inset 2px 2px 3px black;
+          box-shadow: inset 2px 2px 3px black;
+}
+
+/**********************
 ALCOOL FORM
 **********************/
 form[name="alcool_test"] {
@@ -682,7 +696,6 @@ form[name="alcool_test"] {
   }
 }
 
-select,
 select option {
   background: rgba(3, 3, 3, 0.849);
 }

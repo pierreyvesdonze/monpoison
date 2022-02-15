@@ -62,11 +62,11 @@ body {
 	height: 100vh;
 	background: var(--body-bg);
 	background-size: cover;
-		opacity: 1;
+	opacity: 1;
 	animation-name: fadeInOpacity;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in;
-	animation-duration: .5s;
+	animation-duration: 0.5s;
 	@include xs {
 		background: var(--body-bg-small);
 		background-size: cover;
@@ -92,12 +92,17 @@ html {
 }
 
 .hr-white {
-  height: 1px;
-  border: 0;
-  width: 90%;
-  margin: 20px auto;
-  background: rgb(226, 226, 226);
-  background: radial-gradient(circle, rgb(240, 240, 240) 0%, rgba(255, 255, 255, 0.144) 50%, rgba(255, 254, 254, 0) 100%);
+	height: 1px;
+	border: 0;
+	width: 90%;
+	margin: 20px auto;
+	background: rgb(226, 226, 226);
+	background: radial-gradient(
+		circle,
+		rgb(240, 240, 240) 0%,
+		rgba(255, 255, 255, 0.144) 50%,
+		rgba(255, 254, 254, 0) 100%
+	);
 }
 
 .alert,
@@ -270,7 +275,6 @@ button.custom-btn {
 #welcomeModal {
 	overflow-y: auto;
 }
-
 
 /*********************
 NAV MENU
@@ -528,6 +532,19 @@ HOMEPAGE
 }
 
 /**********************
+INPUTS
+**********************/
+select,
+.input {
+	border-radius: 20px;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.322);
+	padding: 5px;
+	border: none;
+	box-shadow: inset 2px 2px 3px black;
+}
+
+/**********************
 ALCOOL FORM
 **********************/
 form[name="alcool_test"] {
@@ -540,7 +557,6 @@ form[name="alcool_test"] {
 	}
 }
 
-select,
 select option {
 	background: rgba(3, 3, 3, 0.849);
 }
