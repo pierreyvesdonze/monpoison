@@ -172,6 +172,7 @@ BUTTONS
 .btn-danger {
 	display: inline-block;
 	text-decoration: none;
+	text-shadow: 0 0 15px hsla(0, 0%, 100%, 1), /* bloom */ 0 2px 4px hsla(0, 0%, 0%, 0.7); /* drop shadow */
 	text-align: center;
 	border: none;
 	padding: 0.45rem 0.45rem;
@@ -182,7 +183,11 @@ BUTTONS
 	letter-spacing: 0.15rem;
 	transition: all 0.1s;
 	position: relative;
-	box-shadow: rgba(0, 0, 0, 0.767) 0 0 7px 1px;
+	box-shadow: rgba(0, 0, 0, 0.767) 0 0 7px 1px, inset 0 -5px 20px hsla(0, 0%, 0%, 0.4),
+		/* top light */ inset 0 5px 20px hsla(0, 0%, 100%, 0.4),
+		/* bottom shadow */ /* multiple light sources yall */ -8px 8px 5px hsla(0, 0%, 0%, 0.15),
+		/* drop shadow 1 */ 5px 18px 10px hsla(0, 0%, 0%, 0.2);
+
 	z-index: 1;
 	&:after {
 		content: "";
@@ -636,6 +641,19 @@ CARD CONSO
 	-moz-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.75);
 	background-color: #2e2e2e21;
 	border-radius: 0 17px;
+	margin-bottom: 2em;
+	margin-right: -50px;
+
+		opacity: 0.5;
+		transform-origin: center;
+		transform: perspective(1000px) rotateY(45deg);
+		transition: 0.3s;
+	
+	&:hover {
+		transform: perspective(800px) rotateY(0deg);
+		opacity: 1;
+		margin-right: 10px;
+	}
 	@include xs {
 		width: 320px;
 	}
@@ -649,7 +667,7 @@ CARD CONSO
 }
 
 .card-header {
-	border-radius: 0 17px 0 0 !important;
+	border-radius: 0 17px 10px 0 !important;
 	background: var(--card-header);
 }
 

@@ -202,6 +202,8 @@ BUTTONS
 .btn-danger {
   display: inline-block;
   text-decoration: none;
+  text-shadow: 0 0 15px white, 0 2px 4px rgba(0, 0, 0, 0.7);
+  /* drop shadow */
   text-align: center;
   border: none;
   padding: 0.45rem 0.45rem;
@@ -213,8 +215,8 @@ BUTTONS
   -webkit-transition: all 0.1s;
   transition: all 0.1s;
   position: relative;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.767) 0 0 7px 1px;
-          box-shadow: rgba(0, 0, 0, 0.767) 0 0 7px 1px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.767) 0 0 7px 1px, inset 0 -5px 20px rgba(0, 0, 0, 0.4), inset 0 5px 20px rgba(255, 255, 255, 0.4), -8px 8px 5px rgba(0, 0, 0, 0.15), 5px 18px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: rgba(0, 0, 0, 0.767) 0 0 7px 1px, inset 0 -5px 20px rgba(0, 0, 0, 0.4), inset 0 5px 20px rgba(255, 255, 255, 0.4), -8px 8px 5px rgba(0, 0, 0, 0.15), 5px 18px 10px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -784,6 +786,22 @@ CARD CONSO
   -moz-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.75);
   background-color: #2e2e2e21;
   border-radius: 0 17px;
+  margin-bottom: 2em;
+  margin-right: -50px;
+  opacity: 0.5;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  -webkit-transform: perspective(1000px) rotateY(45deg);
+          transform: perspective(1000px) rotateY(45deg);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.card:hover {
+  -webkit-transform: perspective(800px) rotateY(0deg);
+          transform: perspective(800px) rotateY(0deg);
+  opacity: 1;
+  margin-right: 10px;
 }
 
 @media (min-width: 300px) and (max-width: 576px) {
@@ -803,7 +821,7 @@ CARD CONSO
 }
 
 .card-header {
-  border-radius: 0 17px 0 0 !important;
+  border-radius: 0 17px 10px 0 !important;
   background: var(--card-header);
 }
 
