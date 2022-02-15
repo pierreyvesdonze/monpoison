@@ -40,7 +40,6 @@ var app = {
         $(document).ready(function () {
             let url = (location.href.split('/'));
             let lastPartUrl = url.pop() || url.pop()
-            console.log(lastPartUrl);
             if ('public' === lastPartUrl) {
                 anime({
                     targets: '.big-title-wrapper .el',
