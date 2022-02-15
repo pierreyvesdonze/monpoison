@@ -604,32 +604,69 @@ SOCIAL ICON & DIV ICON
 /**********************
 HOMEPAGE
 **********************/
-.big-text {
-  width: 60%;
-  margin-top: 2em;
-  -webkit-touch-callout: none;
-  /* iOS Safari */
-  -webkit-user-select: none;
-  /* Safari */
-  /* Konqueror HTML */
-  -moz-user-select: none;
-  /* Old versions of Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer/Edge */
-  user-select: none;
+/*********************
+BIG TEXT ANIM
+*********************/
+.big-title-wrapper {
+  height: 300px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--primary-color);
 }
 
-.big-text h1 {
-  font-size: 7em;
-  text-transform: uppercase;
-  line-height: 1.1em;
-  font-weight: bold;
-  background: 50% 100%/50% 50% no-repeat radial-gradient(ellipse at bottom, #fff, transparent, transparent);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.grid-big-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-bottom: 3em;
+}
+
+@media (min-width: 300px) and (max-width: 576px) {
+  .grid-big-text {
+    margin-bottom: 1em;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .grid-big-text {
+    margin-bottom: 1em;
+  }
+}
+
+.small {
+  width: 40px;
+  height: 40px;
   -webkit-animation: glow 2500ms linear infinite 2000ms;
           animation: glow 2500ms linear infinite 2000ms;
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .small {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (min-width: 300px) and (max-width: 576px) {
+  .small {
+    width: 10px;
+    height: 10px;
+  }
 }
 
 @-webkit-keyframes glow {
@@ -644,16 +681,38 @@ HOMEPAGE
   }
 }
 
-@media (min-width: 300px) and (max-width: 576px) {
-  .big-text h1 {
-    font-size: 3.2em;
-  }
+.square {
+  pointer-events: none;
+  position: relative;
+  width: 70px;
+  height: 50px;
+  margin: 2px;
+  background-color: var(--primary-color);
+  font-size: 6em;
+  color: wheat;
+  font-weight: 100;
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
-  .big-text h1 {
-    font-size: 3.2em;
+  .square {
+    width: 30px;
+    height: 17px;
+    font-size: 3em;
+    margin-bottom: 1em;
   }
+}
+
+@media (min-width: 300px) and (max-width: 576px) {
+  .square {
+    width: 30px;
+    height: 17px;
+    font-size: 3em;
+    margin-bottom: 1em;
+  }
+}
+
+.yellow-big {
+  color: var(--hover-color);
 }
 
 .home-text {
@@ -1056,6 +1115,8 @@ BIG TEXT ANIM
 .small {
   width: 40px;
   height: 40px;
+  -webkit-animation: glow 2500ms linear infinite 2000ms;
+          animation: glow 2500ms linear infinite 2000ms;
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
@@ -1069,6 +1130,12 @@ BIG TEXT ANIM
   .small {
     width: 10px;
     height: 10px;
+  }
+}
+
+@keyframes glow {
+  40% {
+    text-shadow: 0 0 8px #fff;
   }
 }
 
