@@ -12,7 +12,7 @@
 
     <br>
 
-    <a href="{{ path('post_show', {'id':post.id}) }}" title="Retourner à la liste d'articles">Retourner à l'article</a>
+    <a href="{{ path('post_show', {'id':post.id, 'slug':post.slug}) }}" title="Retourner à la liste d'articles">Retourner à l'article</a>
 </div>
 
 {% endblock %}
