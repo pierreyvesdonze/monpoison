@@ -37,35 +37,22 @@ class DrinkController extends AbstractController
     /**
      * @Route("/consommation/ajouter", name="drink_add")
      */
-    public function addDrink(
-        Request $request,
-        DrinkRepository $drinkRepository
-        )
+    public function addDrink(Request $request)
     {
         $form = $this->createForm(DrinkType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $existingDrink = $drinkRepository->findExistingDrink($this->getUser(), $form->get('date')->getData());
+            $drink = new Drink;
+            $drink->setUser($this->getUser());
+            $drink->setAlcool($form->get('alcool')->getData());
+            $drink->setCost($form->get('cost')->getData());
+            $drink->setDate($form->get('date')->getData());
+            $drink->setQuantity($form->get('quantity')->getData());
 
-            // If existing drink, just update it
-            if($existingDrink) {
-                $existingDrink[0]->setQuantity($existingDrink[0]->getQuantity() + $form->get('quantity')->getData());
-                $existingDrink[0]->setCost($existingDrink[0]->getCost() + $form->get('cost')->getData());
+            $this->entityManager->persist($drink);
+            $this->entityManager->flush();
 
-                $this->entityManager->flush();
-            } else {                
-                $drink = new Drink;
-                $drink->setUser($this->getUser());
-                $drink->setAlcool($form->get('alcool')->getData());
-                $drink->setCost($form->get('cost')->getData());
-                $drink->setDate($form->get('date')->getData());
-                $drink->setQuantity($form->get('quantity')->getData());
-                
-                $this->entityManager->persist($drink);
-                $this->entityManager->flush();
-            }
-                
             $this->addFlash('success', 'Nouvelle consommation enregistrée !');
 
             return $this->redirectToRoute('drink_calendar');
