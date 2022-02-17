@@ -542,7 +542,7 @@ CONTAINER
   }
 }
 
-.container-center {
+.container-start {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
