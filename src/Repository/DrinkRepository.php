@@ -127,13 +127,15 @@ class DrinkRepository extends ServiceEntityRepository
     /**
      * @return SUM of Drink[] Returns an array of Drink objects
      */
-    public function findExistingDrink($user, $day)
+    public function findExistingDrink($user, $day, $alcool)
     {
         return $this->createQueryBuilder('d')
             ->where('d.user = :user')
             ->andWhere('d.date = :day')
+            ->andWhere('d.alcool = :alcool')
             ->setParameter('user', $user)
             ->setParameter('day', $day)
+            ->setParameter('alcool', $alcool)
             ->getQuery()
             ->getResult();
     }

@@ -37,18 +37,32 @@ class DrinkController extends AbstractController
     /**
      * @Route("/consommation/ajouter", name="drink_add")
      */
-    public function addDrink(Request $request)
+    public function addDrink(
+        Request $request,
+        DrinkRepository $drinkRepository
+        )
     {
         $form = $this->createForm(DrinkType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $drink = new Drink;
+
+            // Check for existing drink (same alcool + same date)
+            $existingDrink = $drinkRepository->findExistingDrink($this->getUser(), $form->get('date')->getData(), $form->get('alcool')->getData());
+
+            if(!$existingDrink) {
+                $drink = new Drink;
+                $drink->setCost($form->get('cost')->getData());
+                $drink->setQuantity($form->get('quantity')->getData());
+            } else {
+                $drink = $existingDrink[0];
+                $drink->setCost($form->get('cost')->getData() + $existingDrink[0]->getCost());
+                $drink->setQuantity($form->get('quantity')->getData() + $existingDrink[0]->getQuantity());
+            }
+
             $drink->setUser($this->getUser());
             $drink->setAlcool($form->get('alcool')->getData());
-            $drink->setCost($form->get('cost')->getData());
-            $drink->setDate($form->get('date')->getData());
-            $drink->setQuantity($form->get('quantity')->getData());
+            $drink->setDate($form->get('date')->getData());     
 
             $this->entityManager->persist($drink);
             $this->entityManager->flush();
