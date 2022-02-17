@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Testimonials{% endblock %}
+
+{% block body %}
+<h1>Testimonials</h1>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ testimonial.id }}</td>
+        </tr>
+        <tr>
+            <th>Pseudo</th>
+            <td>{{ testimonial.pseudo }}</td>
+        </tr>
+        <tr>
+            <th>Content</th>
+            <td>
+            {{ testimonial.content|raw }}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<a href="{{ path('testimonials_index') }}">back to list</a>
+
+<a href="{{ path('testimonials_edit', {'id': testimonial.id}) }}">edit</a>
+
+{{ include('testimonials/_delete_form.html.twig') }}
+{% endblock %}

@@ -6,7 +6,9 @@ use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
-use Knp\Component\Pager\PaginatorInterface; 
+use App\Repository\SubscriberRepository;
+use App\Service\MailService;
+use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -27,14 +29,14 @@ class PostController extends AbstractController
         PostRepository $postRepository,
         Request $request,
         PaginatorInterface $paginator
-        ): Response
-    {
-        $data = $postRepository->findBy([], ['id' => 'desc']);
-        $posts = $paginator->paginate(
-            $data,
-            $request->query->getInt('page', 1),
-            5
-        );
+    ): Response {
+        $data = $postRepository->findBy([], ['date' => 'desc']);
+        // $posts = $paginator->paginate(
+        //     $data,
+        //     $request->query->getInt('page', 1),
+        //     6
+        // );
+        $posts = $postRepository->findAllByDesc();
         return $this->render('post/index.html.twig', [
             'posts' => $posts,
         ]);
@@ -48,8 +50,7 @@ class PostController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        $posts = $postRepository->findAll();
-
+        $posts = $postRepository->findBy([], ['date' => 'desc']);
         return $this->render('post/status.html.twig', [
             'posts' => $posts
         ]);
@@ -60,18 +61,30 @@ class PostController extends AbstractController
      * @Route("/retirer/status/{type}{id}", name="edit_post_status_remove", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function publishPostStatus(Post $post, $type)
-    {
+    public function publishPostStatus(
+        Post $post,
+        $type,
+        SubscriberRepository $subscriberRepository,
+        MailService $mailService
+    ) {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         if ('publish' === $type) {
             $post->setIsPublished(1);
             $this->addFlash('success', 'Article publié !');
+
+            // Notify subscribers
+            $subscribers = $subscriberRepository->findAll();
+
+            foreach ($subscribers as $recipient) {
+                if ("production" === $this->getParameter('app.env')) {
+                    $mailService->sendSubscribersNewPost($recipient->getEmail(), $post);
+                }
+            }
         } elseif ('remove' === $type) {
             $post->setIsPublished(0);
             $this->addFlash('success', 'Article dépublié !');
         }
-
         $this->em->flush();
 
         return $this->redirectToRoute('post_status', []);
@@ -95,8 +108,9 @@ class PostController extends AbstractController
      * @Route("/nouveau", name="post_new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function new(Request $request): Response
-    {
+    public function new(
+        Request $request
+    ): Response {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $post = new Post();
@@ -109,14 +123,13 @@ class PostController extends AbstractController
 
             return $this->redirectToRoute('post_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('post/new.html.twig', [
             'post' => $post,
             'form' => $form,
         ]);
     }
 
-    #[Route('/voir/{id}', name: 'post_show', methods: ['GET'])]
+    #[Route('/voir/{id}/{slug}', name: 'post_show', methods: ['GET'])]
     public function show(
         Post $post,
         CommentRepository $commentRepository
@@ -153,7 +166,6 @@ class PostController extends AbstractController
 
             return $this->redirectToRoute('post_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('post/edit.html.twig', [
             'post' => $post,
             'form' => $form,

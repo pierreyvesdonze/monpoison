@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\DrinkRepository;
+use App\Service\UserStatsService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,50 +10,47 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
-    public function __construct(
-       private EntityManagerInterface $entityManager
-    ) {}
+    public function __construct(private EntityManagerInterface $em)
+    {
+    }
 
     /**
      * @Route("/user/profile", name="user_account")
      */
-    public function index(DrinkRepository $drinkRepository): Response
+    public function index(UserStatsService $userStatsService): Response
     {
         $user = $this->getUser();
 
-        $lastWeekDrinks = $drinkRepository->findLastWeekDrinks($user);
-        $lastWeekCost   = $drinkRepository->findLastWeekCost($user);
-        $drinks         = $drinkRepository->findByUser($user);
-        $totalBeer      = $drinkRepository->findTotalBeer($user)[1];
-        $totalWine      = $drinkRepository->findTotalWine($user)[1];
-        $totalSpiritus  = $drinkRepository->findTotalSpiritus($user)[1];
+        // Get total of drinks
+        $statsArray     = $userStatsService->getDrinksStats($user);
 
-        $totalDrink = (int)$totalBeer + (int)$totalWine + (int)$totalSpiritus;
+        // Get total of Sobers Days
+        $sobers         = $userStatsService->getSobersdays($user);
 
-        if (null !== $totalBeer) {
-            $xBeer     = ((int)$totalBeer * 100) / $totalDrink;
-        } else {
-            $xBeer = 0;
-        }
-        if (null !== $totalWine) {
-            $xWine     = ((int)$totalWine * 100) / $totalDrink;
-        } else {
-            $xWine = 0;
-        }
-        if (null !== $totalSpiritus) {
-            $xSpiritus = ((int)$totalSpiritus * 100) / $totalDrink;
-        } else {
-            $xSpiritus = 0;
-        }
+        // Get dates sorted by ASC to calculate longest period of sobriety
+        $periodMax      = $userStatsService->getMaxSobrietyPeriod($user);
+
+        // Get 7 days last drinks
+        $lastWeekDrinks = $userStatsService->getLastWeekDrinks($user);
+
+        // Get 7 days cost
+        $lastWeekCost   = $userStatsService->getLastWeekCost($user);
+
+        // Get all days of drinking day by day
+        $weekDrinks     = $userStatsService->getDrinksByDay($user);
+
+        // Get ratio of arguments & inconvenient 
+        $ratioAdvInconv = $userStatsService->getRatioAdvantageInconvenient($user);
 
         return $this->render('user/user.html.twig', [
             'user'           => $user,
-            'drinks'         => $drinks,
+            'statsArray'     => $statsArray,
+            'sobers'         => $sobers,
             'lastWeekDrinks' => $lastWeekDrinks,
             'lastWeekCost'   => $lastWeekCost,
-            'xBeer'          => $xBeer,
-            'xWine'          => $xWine,
-            'xSpiritus'      => $xSpiritus
+            'ratioAdvInconv' => $ratioAdvInconv,
+            'weekDrinks'     => $weekDrinks,
+            'periodMax'      => $periodMax
         ]);
     }
 }

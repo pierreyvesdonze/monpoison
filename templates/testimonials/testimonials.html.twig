@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<br><br>
+
+<div class="container">
+
+    <h1>Témoignages</h1>
+<br>
+    <a href="{{ path('testimonials_new') }}" class="custom-btn" title="ajouter un témoignage">Ajouter un témoignage</a>
+    <hr>
+    <br>
+    {% for testimonial in testimonials %}
+        <p>
+            {{ testimonial|raw }}
+        </p>
+    <b><span class="span-italic">- {{ testimonial.pseudo }} -</span></b>
+    
+    <hr class="hr-white">
+    <hr class="hr-white">
+    <hr class="hr-white">
+
+
+    {% endfor %}
+</div>
+
+{% endblock %}

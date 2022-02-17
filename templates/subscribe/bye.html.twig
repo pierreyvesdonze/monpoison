@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Souscription aux articles désactivées{% endblock %}
+
+{% block body %}
+
+<br><br>
+
+<div class="container" data-postId='{{ postId }}' data-isSubscribed='{{ isUnsubscribed }}'>
+    {% if isUnsubscribed == false %}
+    <div class="unsuscribe-form-div">
+        <p>Entrez votre adresse mail ci-dessous pour vous désabonner</p>
+        <form method="POST" class="unsubscribe-form" name="unsuscribe-form">
+            <input type="text" class="input unsubscribe-mail-input" name="unsubscribe-input">
+            <button class="custom-btn" id="submit-unsubscribe" type="submit">Se désabonner</button>
+            <a href="{{ path('post_show', {'id':postId}) }}" class="custom-btn">Retourner à l'article</a>
+        </form>
+    </div>
+    {% else %}
+    <div class="hide">
+        <h1>Vous êtes désormais désabonné(e) !</h1>
+        <p>
+            Vous ne recevrez plus de notification concernant la publication de nouveaux articles !
+        </p>
+        <a href="{{ path('post_show', {'id':postId}) }}" class="custom-btn">Retourner à l'article</a>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

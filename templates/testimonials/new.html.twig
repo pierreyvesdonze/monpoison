@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau témoignage{% endblock %}
+
+{% block body %}
+
+<br><br>
+<div class="container">
+
+    <h1>Ajouter un témoignage</h1>
+
+    <p>Attention. Une fois votre témoignage publié, vous ne pourrez plus le modifier ni le supprimer.</p>
+
+    {{ include('testimonials/_form.html.twig') }}
+
+    <br>
+
+    <a href="{{ path('testimonials') }}" title="témoignages">Retour à la liste de témoignages</a>
+</div>
+{% endblock %}

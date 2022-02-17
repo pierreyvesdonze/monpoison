@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un jour de sobriété à votre tableau de bord{% endblock %}
+
+{% block metadescription %}
+<meta name="description" content="Entrez une journée où vous avez résisté à la tentation de boire, sa date, ses quantités, son budget grâce à ce formulaire">
+{% endblock %}
+
+{% block body %}
+<br><br>
+<div class="container">
+    {{ form_start(form) }}
+    {{ form_label(form.date) }}
+    <br>
+    {{ form_widget(form.date) }}
+    <br>
+    {{ form_widget(form.submit) }} 
+    {{ form_end(form) }}
+    <br>
+    <a class="custom-btn" href="{{ path('drink_calendar') }}">Annuler</a>
+</div>
+{% endblock %}

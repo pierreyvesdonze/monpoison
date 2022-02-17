@@ -6,12 +6,11 @@ use App\Entity\Comment;
 use App\Entity\Post;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
+use App\Service\MailService;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/commentaire')]
@@ -33,7 +32,7 @@ class CommentController extends AbstractController
     public function new(
         Request $request,
         Post $post,
-        MailerInterface $mailer
+        MailService $mailService
     ): Response {
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
@@ -43,22 +42,14 @@ class CommentController extends AbstractController
             $comment->setUser($this->getUser());
             $comment->setPost($post);
             $comment->setDate(new \DateTime('now'));
+
             $this->em->persist($comment);
             $this->em->flush();
 
-            $message = (new TemplatedEmail())
-                ->from($this->getUser()->getEmail())
-                ->to(
-                    'contact@monpoison.fr',
-                )
-                ->subject('De la part de ' . $this->getUser()->getPseudo() . ' ! de monpoison.fr')
-                ->htmlTemplate('email/comment.notification.html.twig')
-                ->context([
-                    'sender'  => $this->getUSer()->getEmail(),
-                    'text' => $comment
-                ]);
-
-            $mailer->send($message);
+            // Send comment to contact@monpoison.fr by email
+            if ("production" === $this->getParameter('app.env')) {
+                $mailService->sendCommentMail($comment, $this->getUser());
+            }
 
             return $this->redirectToRoute('post_show', [
                 'id' => $post->getId()
@@ -67,8 +58,8 @@ class CommentController extends AbstractController
 
         return $this->renderForm('comment/new.html.twig', [
             'comment' => $comment,
-            'form' => $form,
-            'post' => $post
+            'form'    => $form,
+            'post'    => $post
         ]);
     }
 
@@ -104,7 +95,6 @@ class CommentController extends AbstractController
 
     #[Route('/supprimer/{id}', name: 'comment_delete', methods: ['POST', 'GET'])]
     public function delete(
-        Request $request,
         Comment $comment
     ): Response {
 

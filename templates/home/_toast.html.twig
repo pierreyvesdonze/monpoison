@@ -1,0 +1,18 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary invisible" data-bs-toggle="modal" data-bs-target="#welcomeModal"
+    id="btnWelcomeModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+            <div class="modal-header bg-dark">
+                <span class="modal-title bg-dark" id="welcomeModalLabel">Bonjour {% if app.user %}
+                    {{ app.user.pseudo }}{% endif %} !</span>
+                <button type="button" class="btn-close close-welcome-modal" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+</div>

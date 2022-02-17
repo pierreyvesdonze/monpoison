@@ -2,38 +2,31 @@
 <html lang="fr">
 
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-5VCZ92Z');</script>
-    <!-- End Google Tag Manager -->
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta name="description"
-        content="Êtes-vous dépendant à l'alcool ?Faites le test ! Apprenez à gérer efficacement vos consommations au quotidien !">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black">
-    <title>{% block title %}Arrêter l'alcool et sortir de la dépendance{% endblock %}</title>
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    {% block metadescription %}{% endblock %}
     <meta name="google-site-verification" content="Wug1WNXTFOb4DLNL5JstVtp3r1nRBv47FCgGvH8tVFQ" />
+
+    <title>{% block title %}Arrêter l'alcool et sortir de la dépendance{% endblock %}</title>
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="{{ asset('assets/images/favicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('assets/images/apple-touch-icon.png') }}">
 
     {#
     S T Y L E S
     #}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
     {% block stylesheets %}
 
     {% endblock %}
@@ -42,10 +35,6 @@
 <!--***************************BODY****************************-->
 
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VCZ92Z" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
     {# Flash messages #}
     <div class="flash-container">
@@ -65,9 +54,22 @@
     <!-- Back to top button -->
     <a id="toTop"></a>
 
-    {% block body %}
+    <!-- SOCIAL ICONS -->
+    {% block aside %}
+    <aside>
+        <div class="social-icons">
+            <a href="https://twitter.com/monpoisonfr" title="twitter" target="_blank">
+                <img src="{{ asset('assets/images/twitter.png') }}" alt="twitter-icon" class="social-twitter-img">
+            </a>
+            <a href="https://www.facebook.com/Mon-poison-106440341938696" title="facebook" target="_blank">
+                <img src="{{ asset('assets/images/facebook.png') }}" alt="facebook-icon" class="social-fb-img">
+            </a>
+        </div>
+    </aside>
     {% endblock %}
 
+    {% block body %}
+    {% endblock %}
 
     <!-- FOOTER -->
     {% block footer %}
@@ -76,8 +78,9 @@
 
     {# JS #}
     {% block javascripts %}
+    <script src="{{ asset('script.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"
         defer></script>
@@ -89,11 +92,8 @@
         crossorigin="anonymous" defer></script>
     <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}" defer></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
-        defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" defer></script>
     <script src="{{ asset('assets/js/app.js') }}" defer></script>
-    <script src="{{ asset('assets/js/functions.js') }}" defer></script>
+    
 
     <!-- COOKIES CONSENT-->
     <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
@@ -117,6 +117,22 @@
 
     {% endblock %}
 
+    {% if 'production' == app_env %}
+    <!-- Start of Woopra Code -->
+    <script>
+        !function () { var t, o, c, e = window, n = document, r = arguments, a = "script", i = ["call", "cancelAction", "config", "identify", "push", "track", "trackClick", "trackForm", "update", "visit"], s = function () { var t, o = this, c = function (t) { o[t] = function () { return o._e.push([t].concat(Array.prototype.slice.call(arguments, 0))), o } }; for (o._e = [], t = 0; t < i.length; t++)c(i[t]) }; for (e.__woo = e.__woo || {}, t = 0; t < r.length; t++)e.__woo[r[t]] = e[r[t]] = e[r[t]] || new s; (o = n.createElement(a)).async = 1, o.src = "https://static.woopra.com/js/w.js", (c = n.getElementsByTagName(a)[0]).parentNode.insertBefore(o, c) }("woopra");
+
+        woopra.config({
+            domain: "monpoison.fr",
+            outgoing_tracking: true,
+            download_tracking: true,
+            click_tracking: true
+        });
+
+        woopra.track();
+    </script>
+    <!-- End of Woopra Code -->
+    {% endif %}
 </body>
 
 </html>

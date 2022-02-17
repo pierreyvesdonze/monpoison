@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Form\AlcoolTestType;
+use App\Form\ArgumentType;
 use App\Form\EthylotestType;
-use App\Repository\DrinkRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\ArgumentUser;
+use App\Repository\ArgumentUserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +29,6 @@ class AlcoolController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $score                   = 0;
             $frequencyComsumption    = ($form->get('frequencyComsumption')->getData());
             $drinkByDay              = $form->get('drinkByDay')->getData();
@@ -38,12 +39,11 @@ class AlcoolController extends AbstractController
             $regrets                 = $form->get('regrets')->getData();
             $noMemory                = $form->get('noMemory')->getData();
 
-            $score += $frequencyComsumption + $drinkByDay + $fiveDrinksFrequency + $stopControl + $failAttempt + $needFirstDrink + $regrets + $noMemory;
+            $score += ($frequencyComsumption/2) + $drinkByDay + $fiveDrinksFrequency + $stopControl + $failAttempt + $needFirstDrink + $regrets + $noMemory;
 
             $user = $this->getUSer();
             if (null != $user) {
                 $user->setAlcoolScore($score);
-
                 $this->entityManager->flush();
             }
 
@@ -51,7 +51,6 @@ class AlcoolController extends AbstractController
                 'score' => $score
             ]);
         }
-
         return $this->render('alcool/test.html.twig', [
             'form' => $form->createView()
         ]);
@@ -80,7 +79,6 @@ class AlcoolController extends AbstractController
         } elseif ($score > 16) {
             $message = "Attention ! Votre niveau de consommation d'alcool est à un niveau au delà du raisonnable. À ce stade le risque de dépendance est extrêmement élevé. Sur la durée votre santé générale a de grands risques de se dégrader, votre socialisation peut être malmenée et votre moral peut significativement baisser. Rapprochez-vous de votre médecin ou d'un addictologue pour vous permettre d'obtenir des conseils et de l'aide pour garder le contrôle. Plus tôt arrive la conscience que l'on est en danger, plus facilement on peut corriger le tir.";
         }
-
         return $this->render('alcool/test.result.html.twig', [
             'message' => $message,
             'score'   => $score
@@ -108,10 +106,9 @@ class AlcoolController extends AbstractController
             $weight   = $form->get('weight')->getData();
             $quantity = $form->get('quantity')->getData();
             $degree   = $form->get('degree')->getData();
-            
+
             if (0 === $sex) {
-                $score = ((($quantity *10) * $degree * 0.8) / ($weight * 0.7)) / 52.5;
-            
+                $score = ((($quantity * 10) * $degree * 0.8) / ($weight * 0.7)) / 52.5;
             } else {
                 $score = ((($quantity * 10) * $degree * 0.8) / ($weight * 0.6)) / 36;
             }
@@ -120,19 +117,75 @@ class AlcoolController extends AbstractController
                 'score' => $score
             ]);
         }
-
         return $this->render('alcool/ethylotest.html.twig', [
             'form' => $form->createView()
         ]);
     }
 
     /**
-     * @Route("/ethylotest/{score}", name="ethylotest_result")
+     * @Route("/alcool/ethylotest/{score}", name="ethylotest_result")
      */
-    public function ethylotestResult($score) :Response
+    public function ethylotestResult($score): Response
     {
         return $this->render('alcool/ethylotest.result.html.twig', [
             'score' => $score
         ]);
+    }
+
+    /**
+     * @Route("/alcool/avantages/inconvenients", name="alcool_arguments")
+     */
+    public function alcoolArguments(
+        ArgumentUserRepository $arguRepo
+    ): Response {
+        $user = $this->getUser();
+
+        $arguments = $arguRepo->findAllByUser($user);
+     
+        return $this->render('alcool/arguments.html.twig', [
+            'arguments' => $arguments
+        ]);
+    }
+
+    /**
+     * @Route("/alcool/avantages/inconvenients/ajouter", name="alcool_arguments_add")
+     */
+    public function addArgument(Request $request) {
+        
+        $form = $this->createForm(ArgumentType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $newArgument = new ArgumentUser;
+            $newArgument->setType($form->get('type')->getData());
+            $newArgument->setContent($form->get('content')->getData());
+            $newArgument->setUser($this->getUser());
+
+            $this->entityManager->persist($newArgument);
+            $this->entityManager->flush();
+
+            $this->addFlash('success', "Argument ajouté");
+
+            return $this->redirectToRoute('alcool_arguments');
+        }
+        return $this->render('alcool/add.arguments.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/alcool/avantages/inconvenients/retirer/{id}", name="alcool_arguments_remove")
+     */
+    public function removeArgument(ArgumentUser $argument)
+    {
+        if ($this->getUser() == $argument->getUser()) {
+
+            $this->entityManager->remove($argument);
+            $this->entityManager->flush();
+            
+            $this->addFlash('success', 'Retiré !');
+        }
+        return $this->redirectToRoute('alcool_arguments');
     }
 }

@@ -22,7 +22,6 @@ class DrinkRepository extends ServiceEntityRepository
     /**
      * @return Drink[] Returns an array of Drink objects
      */
-
     public function findByUser($user)
     {
         return $this->createQueryBuilder('d')
@@ -33,6 +32,9 @@ class DrinkRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @return Drink[] Returns an array of last week Drink objects
+     */
     public function findLastWeekDrinks($user)
     {
         return $this->createQueryBuilder('d')
@@ -46,6 +48,9 @@ class DrinkRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    /**
+     * @return Cost on a week
+     */
     public function findLastWeekCost($user)
     {
         return $this->createQueryBuilder('d')
@@ -59,6 +64,9 @@ class DrinkRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    /**
+     * @return Drink['beer'] Returns an array of Drink beer objects
+     */
     public function findTotalBeer($user)
     {
         return $this->createQueryBuilder('d')
@@ -71,6 +79,9 @@ class DrinkRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    /**
+     * @return Drink['wine'] Returns an array of Drink wine objects
+     */
     public function findTotalWine($user)
     {
         return $this->createQueryBuilder('d')
@@ -83,6 +94,9 @@ class DrinkRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    /**
+     * @return Drink['spiritus'] Returns an array of Drink spiritus objects
+     */
     public function findTotalSpiritus($user)
     {
         return $this->createQueryBuilder('d')
@@ -93,5 +107,34 @@ class DrinkRepository extends ServiceEntityRepository
             ->select('SUM(d.quantity)')
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    /**
+     * @return SUM of Drink[] Returns an array of Drink objects
+     */
+    public function findByDay($user, $day)
+    {
+        return $this->createQueryBuilder('d')
+            ->where('d.user = :user')
+            ->andWhere('DayName(d.date) = :day')
+            ->setParameter('user', $user)
+            ->setParameter('day', $day)
+            ->select('SUM(d.quantity)')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return SUM of Drink[] Returns an array of Drink objects
+     */
+    public function findExistingDrink($user, $day)
+    {
+        return $this->createQueryBuilder('d')
+            ->where('d.user = :user')
+            ->andWhere('d.date = :day')
+            ->setParameter('user', $user)
+            ->setParameter('day', $day)
+            ->getQuery()
+            ->getResult();
     }
 }

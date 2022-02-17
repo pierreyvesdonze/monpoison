@@ -2,9 +2,15 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     paths:
         '%kernel.project_dir%/vendor/knplabs/knp-paginator-bundle/templates': KnpPaginator
+    
+    globals:
+        app_env: '%env(APP_ENV)%'
+    
     form_themes:
         - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
 
 when@test:
     twig:
         strict_variables: true
+knp_paginator:
+    page_range: 3 

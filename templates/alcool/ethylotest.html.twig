@@ -1,12 +1,28 @@
 {% extends 'base.html.twig' %}
 {% block title %} Ethylotest en ligne {% endblock %}
 
+{% block metadescription %}
+<meta name="description" content="Estimez votre taux d'alcool dans le sang grace à ce formulaire">
+{% endblock %}
+
 {% block body %}
+
+{% include('drink/modal.info.html.twig') %}
 
 <br><br>
 
 <div class="container">
     <h1>Ethylotest en ligne</h1>
+    <br>
+    <p>
+        Ce test a pour but de fournir une estimation sur les consommations que vous avez absorbées. En aucun cas ce test ne remplace un vrai ethylotest.
+    </p>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#infoConso" name="open modal">
+        <img src="{{ asset('assets/images/info.png') }}" alt="information" class="info-icon">
+    </button>
+    <br>
+    <br>
     {{ form_start(form) }}
     {{ form_label(form.sex) }}
     <br>

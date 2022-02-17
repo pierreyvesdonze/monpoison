@@ -1,0 +1,22 @@
+{
+    "name": "Mon poison",
+    "short_name": "Mon poison",
+    "icons": [
+        {
+            "src" : "/public/assets/images/icon512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/public/assets/images/icon192.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "maskable any" 
+        }
+    ],
+    "start_url": "/public/?source=pwa",
+    "display": "standalone",
+    "theme_color": "#151e22",
+    "background_color": "#151e22"
+}

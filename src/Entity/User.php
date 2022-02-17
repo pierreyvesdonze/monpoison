@@ -5,12 +5,17 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity("email")
+ * errorPath="email",
+ * message="It appears you have already registered with this email."
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -23,6 +28,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Email()
      */
     private $email;
 
@@ -57,10 +63,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $pseudo;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isDeleted;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isSubscribed;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Sober::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $date;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ArgumentUser::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $argumentUsers;
+
     public function __construct()
     {
         $this->drinks = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->date = new ArrayCollection();
+        $this->argumentUsers = new ArrayCollection();
     }
 
     public function __toString()
@@ -237,6 +265,90 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function isDeleted(): ?bool
+    {
+        return $this->isDeleted;
+    }
+
+    public function setIsDeleted(bool $isDeleted): self
+    {
+        $this->isDeleted = $isDeleted;
+
+        return $this;
+    }
+
+    public function getIsSubscribed(): ?bool
+    {
+        return $this->isSubscribed;
+    }
+
+    public function setIsSubscribed(bool $isSubscribed): self
+    {
+        $this->isSubscribed = $isSubscribed;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Sober[]
+     */
+    public function getDate(): Collection
+    {
+        return $this->date;
+    }
+
+    public function addDate(Sober $date): self
+    {
+        if (!$this->date->contains($date)) {
+            $this->date[] = $date;
+            $date->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDate(Sober $date): self
+    {
+        if ($this->date->removeElement($date)) {
+            // set the owning side to null (unless already changed)
+            if ($date->getUser() === $this) {
+                $date->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ArgumentUser[]
+     */
+    public function getArgumentUsers(): Collection
+    {
+        return $this->argumentUsers;
+    }
+
+    public function addArgumentUser(ArgumentUser $argumentUser): self
+    {
+        if (!$this->argumentUsers->contains($argumentUser)) {
+            $this->argumentUsers[] = $argumentUser;
+            $argumentUser->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArgumentUser(ArgumentUser $argumentUser): self
+    {
+        if ($this->argumentUsers->removeElement($argumentUser)) {
+            // set the owning side to null (unless already changed)
+            if ($argumentUser->getUser() === $this) {
+                $argumentUser->setUser(null);
+            }
+        }
 
         return $this;
     }

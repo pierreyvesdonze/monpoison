@@ -1,0 +1,22 @@
+<!-- Modal -->
+<div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeTitleModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title" id="subscribeTitleModal">S'abonner aux articles</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-dark">
+                <p class="modal-subscribe-text">
+                    Entrez votre email ci-dessous pour être informé lors de la publication d'un nouvel article.
+                </p>
+                <input type="text" class="input subscribe-mail-input" value="email">
+                <p>cliquez <a href="{{ path('unsubscribe_posts', {"postId":postId}) }}">ici</a> pour vous désabonner des articles</p>
+            </div>
+            <div class="modal-footer bg-dark">
+                <button type="button" class="custom-btn btn-subscribe" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="custom-btn btn-subscribe submit-subscribe">S'inscrire</button>
+            </div>
+        </div>
+    </div>
+</div>

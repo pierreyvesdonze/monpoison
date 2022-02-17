@@ -1,3 +1,21 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_label(form.title) }}
+    {{ form_widget(form.title) }}
+    <br>
+    {{ form_label(form.content) }}
+    {{ form_widget(form.content) }}
+    <br>
+    {{ form_label(form.slug) }}
+    {{ form_widget(form.slug) }}
+    <br>
+    {{ form_label(form.date) }}
+    {{ form_widget(form.date) }}
+    <br>
+    {{ form_label(form.isPublished) }}
+    {{ form_widget(form.isPublished) }}
+    <br>
+    <br>
+    {{ form_widget(form.submit) }}
+    <br>
+    <br>
 {{ form_end(form) }}

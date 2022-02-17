@@ -1,33 +1,96 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Monpoison, site spécialisé sur l'alcool et la dépendance{% endblock %}
+
+{% block metadescription %}
+<meta name="description"
+    content="Site internet traitant de l'alcool et de la dépendance à l'alcool. Outils de gestion de consommation au quotidien">
+{% endblock %}
 
 {% block body %}
+
+{# SOCIAL ICONS DISABLED #}
+{% block aside %}
+{% endblock %}
+
+{# TOAST ENCOURAGEMENT #}
+{% include('home/_toast.html.twig') %}
 
 <div class="logo-alcool-info">
     <img src="{{ asset('assets/images/alcool-info-service-logo.png') }}" alt="">
 </div>
 
-<div class="big-text">
-    <h1>
-        L'abus d'alcool est dangereux pour la santé !
-    </h1>
+<br>
+
+{# pwa installer btn #}
+{# <button class="custom-btn" id="buttonInstallPwa">Installer l'app ?</button> #}
+
+<div class="big-title-wrapper">
+    <div class="grid-big-text">
+        <div class="small square el" style="transform: scale(1);">B</div>
+        <div class="small square el" style="transform: scale(1);">I</div>
+        <div class="small square el" style="transform: scale(1);">E</div>
+        <div class="small square el" style="transform: scale(1);">N</div>
+        <div class="small square el" style="transform: scale(1);">V</div>
+        <div class="small square el" style="transform: scale(1);">E</div>
+        <div class="small square el" style="transform: scale(1);">N</div>
+        <div class="small square el" style="transform: scale(1);">U</div>
+        <div class="small square el" style="transform: scale(1);">E</div>
+    </div>
+    <div class="grid-big-text">
+        <div class="small square el" style="transform: scale(1);">S</div>
+        <div class="small square el" style="transform: scale(1);">U</div>
+        <div class="small square el" style="transform: scale(1);">R</div>
+    </div>
+    <div class="grid-big-text">
+        <div class="small square el" style="transform: scale(1);">M</div>
+        <div class="small square el" style="transform: scale(1);">O</div>
+        <div class="small square el" style="transform: scale(1);">N</div>
+        <div class="small square el" style="transform: scale(1);"></div>
+        <div class="small square el yellow-big" style="transform: scale(1);">P</div>
+        <div class="small square el yellow-big" style="transform: scale(1);">O</div>
+        <div class="small square el yellow-big" style="transform: scale(1);">I</div>
+        <div class="small square el yellow-big" style="transform: scale(1);">S</div>
+        <div class="small square el yellow-big" style="transform: scale(1);">O</div>
+        <div class="small square el yellow-big" style="transform: scale(1);">N</div>
+
+    </div>
 </div>
 
 <div class="container">
     <p class="home-text">
         La binouze, la gnôle, le casse-poitrine, le pousse-café, la goutte, le pinard... les termes argotiques ne
-        manquent pas pour désigner l'alcool sous toutes ses formes. Cette boisson existe depuis 4000 ans avant JC et elle est aujourd'hui sacralisée par bien des peuples. Ancrée dans la culture française elle n'est pas sans poser problème, bien au contraire. Environ 49000 décès et 30000 cancers sont imputés à l'alcool chaque année et 10% de la population française déclare en consommer quotidiennement.
+        manquent pas pour désigner l'alcool sous toutes ses formes. Cette boisson existe depuis 4000 ans avant JC et
+        elle est aujourd'hui sacralisée par bien des peuples. Ancrée dans la culture française elle n'est pas sans poser
+        problème, bien au contraire. Environ 49000 décès et 30000 cancers sont imputés à l'alcool chaque année et 10% de
+        la population française déclare en consommer quotidiennement.
         <br>
         <br>
-        Si boire un coup détend et désinhibe, boire quotidiennement et en quantité n'apporte que souffrance et dépendance, pour soi comme pour son entourage. Lorsque l'addiction s'installe, les déboires s'emballent.
+        Si boire un coup détend et désinhibe, boire quotidiennement et en quantité n'apporte que souffrance et
+        dépendance, pour soi comme pour son entourage. Lorsque l'addiction s'installe, les déboires s'emballent.
         <br>
         <br>
-        Ce site a pour but d'aider quiconque désire suivre de près ses consommations au quotidien, notamment les personnes s'avouant alcoolodépendantes ou souhaitant simplement connaître leur niveau de dépendance. Aussi la partie blog est là pour informer sur les bienfaits mais surtout méfaits de l'alcool, afin de sensibiliser la population à ce produit qui figure aujourd'hui parmis les drogues les plus addictives au monde.
+        Ce site a pour but d'aider quiconque désire suivre de près ses consommations au quotidien, notamment les
+        personnes s'avouant alcoolodépendantes ou souhaitant simplement connaître leur niveau de dépendance. Aussi la
+        partie blog est là pour informer sur les bienfaits mais surtout méfaits de l'alcool, afin de sensibiliser la
+        population à ce produit qui figure aujourd'hui parmis les drogues les plus addictives au monde.
         <br>
         <br>
         Et vous, êtes-vous alcoolodépendant(e) ? <a href="{{ path('alcool_test') }}">Faites le test !</a>
     </p>
 </div>
+<br>
+
+<h2>Obtenez des statistiques détaillées sur vos habitudes de consommation</h2>
+<div class="container">
+    <div class="d-flex justify-content-center home-stats-img">
+        <img src="{{ asset('assets/images/stats-board.webp') }}" alt="stats-board">
+    </div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
+    integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
+    crossorigin="anonymous"></script>
 
 {% endblock %}

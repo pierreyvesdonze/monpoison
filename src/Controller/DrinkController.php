@@ -5,10 +5,10 @@ namespace App\Controller;
 use App\Entity\Drink;
 use App\Form\DrinkType;
 use App\Repository\DrinkRepository;
+use App\Repository\SoberRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DrinkController extends AbstractController
@@ -18,19 +18,24 @@ class DrinkController extends AbstractController
     ) {}
 
     /**
-     * @Route("/drink/calendar", name="drink_calendar")
+     * @Route("/consommations/voir", name="drink_calendar")
      */
-    public function getCalendar(DrinkRepository $drinkRepository)
+    public function getCalendar(
+        DrinkRepository $drinkRepository,
+        SoberRepository $soberRepository
+        )
     {
         $drinks = $drinkRepository->findByUser($this->getUser());
+        $sobers = $soberRepository->findByUser($this->getUser());
 
         return $this->render('drink/calendar.html.twig', [
-            'drinks' => $drinks
+            'drinks' => $drinks,
+            'sobers' => $sobers
         ]);
     }
 
     /**
-     * @Route("/drink/add", name="drink_add")
+     * @Route("/consommation/ajouter", name="drink_add")
      */
     public function addDrink(Request $request)
     {
@@ -59,7 +64,7 @@ class DrinkController extends AbstractController
     }
 
     /**
-     * @Route("/drink/update/{id}", name="drink_update")
+     * @Route("/consommation/editer/{id}", name="drink_update")
      */
     public function drinkUpdate(
         Drink $drink,
@@ -67,26 +72,27 @@ class DrinkController extends AbstractController
     ) {
         $form = $this->createForm(DrinkType::class, $drink);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
 
             $drink->setAlcool($form->get('alcool')->getData());
             $drink->setDate($form->get('date')->getData());
             $drink->setQuantity($form->get('quantity')->getData());
-
+            $drink->setCost($form->get('cost')->getData());
+      
             $this->entityManager->flush();
             $this->addFlash('success', 'Consommation mise à jour !');
 
             return $this->redirectToRoute('drink_calendar');
         }
 
-        return $this->render('drink/add.html.twig', [
+        return $this->render('drink/edit.html.twig', [
             'form' => $form->createView()
         ]);
     }
 
     /**
-     * @Route("/drink/delete/{id}", name="drink_delete")
+     * @Route("/consommation/supprimer/{id}", name="drink_delete")
      */
     public function drinkDelete(Drink $drink)
     {

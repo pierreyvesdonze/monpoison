@@ -1,71 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DrinkController!{% endblock %}
+{% block title %}Formulaire d'ajout d'une consommation{% endblock %}
+
+{% block metadescription %}
+<meta name="description"
+    content="Entrez une consommation, sa date, ses quantités, son budget grâce à ce formulaire">
+{% endblock %}
 
 {% block body %}
 
 <br><br>
 
 <div class="container">
+        {{form_start(form)}}
+        {{form_label(form.alcool)}}
+        <br>
+        {{form_widget(form.alcool)}}
+        <br>
+        <br>
+        {{form_label(form.quantity)}}
+        <br>
+        {{form_widget(form.quantity)}}
+        <br>
+        <br>
+        {{form_label(form.cost)}}
+        <br>
+        {{form_widget(form.cost)}}
+        <br>
+        <br>
+        {{form_label(form.date)}}
+        <br>
+        {{form_widget(form.date)}}
+        <br>
+        <br>
+        {{form_widget(form.submit)}}
 
-    <div class="container-center">
-        {{ form_start(form) }}
-        <div class="form_wrapper">
-            <fieldset class="msf_hide">
-                <h2>Quel type d'alcool avez-vous bu ?</h2>
-                <div>
-                    {{ form_label(form.alcool) }}
-                    <br>
-                    {{ form_widget(form.alcool) }}
-                </div>
-
-                <input type="button" name="back" value="Précédent" onclick="msf_btn_back()" class="btn btn-secondary">
-                <input type="button" name="next" value="Suivant" onclick="msf_btn_next()" class="btn btn-secondary">
-                <div class="msf_bullet_o"></div>
-
-            </fieldset>
-
-            <fieldset class="msf_hide">
-                <h2>Quelle quantité avez-vous bu ?</h2>
-                <div>
-                    {{ form_label(form.quantity) }}
-                    <br>
-                    {{ form_widget(form.quantity) }}
-                </div>
-
-                <input type="button" name="back" value="Précédent" onclick="msf_btn_back()" class="btn btn-secondary">
-                <input type="button" name="next" value="Suivant" onclick="msf_btn_next()" class="btn btn-secondary">
-                <div class="msf_bullet_o"></div>
-            </fieldset>
-
-            <fieldset class="msf_hide">
-                <h2>Combien avez-vous dépensé ?</h2>
-                <div>
-                    {{ form_label(form.cost) }}
-                    <br>
-                    {{ form_widget(form.cost) }}
-                </div>
-            
-                <input type="button" name="back" value="Précédent" onclick="msf_btn_back()" class="btn btn-secondary">
-                <input type="button" name="next" value="Suivant" onclick="msf_btn_next()" class="btn btn-secondary">
-                <div class="msf_bullet_o"></div>
-            </fieldset>
-
-            <fieldset class="msf_hide">
-                <h2>Date de cette consommation ?</h2>
-                <div>
-                    {{ form_label(form.date) }}
-                    <br>
-                    {{ form_widget(form.date) }}
-                </div>
-
-                {{ form_row(form.submit) }}
-                <input type="button" name="next" value="Suivant" onclick="msf_btn_next()" class="btn btn-secondary">
-                <div class="msf_bullet_o"></div>
-            </fieldset>
-        </div>
-
-        {{ form_end(form) }}
-    </div>
+        {{form_end(form)}}
+        <br>
+        <a class="custom-btn" href="{{ path('drink_calendar') }}">Annuler</a>
 </div>
 {% endblock %}

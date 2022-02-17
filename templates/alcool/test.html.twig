@@ -1,12 +1,18 @@
 {% extends 'base.html.twig' %}
-{% block title %}Test d'évaluation de dépendance{% endblock %}
+{% block title %}Test d'évaluation de dépendance à l'alcool{% endblock %}
+
+{% block metadescription %}
+<meta name="description"
+    content="Êtes-vous dépendant à l'alcool ? Faites le test ! Apprenez à gérer efficacement vos consommations au quotidien !">
+{% endblock %}
 
 {% block body %}
+
 
 <br><br>
 
 <div class="container">
-    <h1>Test d'évaluation de dépendance</h1>
+    <h1>Evaluez votre degré de dépendance à l'alcool</h1>
     {{ form_start(form) }}
     {{ form_label(form.frequencyComsumption) }}
     <br>

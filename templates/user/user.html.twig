@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon tableau de bord{% endblock %}
+{% block title %}Tableau de bord de mes consommations d'alcool{% endblock %}
+
+{% block metadescription %}
+<meta name="description"
+    content="Retrouvez toutes vos statistiques de consommation d'alcool et d'abstinence sur votre tableau de bord">
+{% endblock %}
 
 {% block body %}
 
@@ -18,15 +23,37 @@
             <td>
                 {% set score = user.alcoolScore %}
                 {% if score is not null %}
-                {% if score > 0 and score <= 5 %} <span class="greenScore">Faible</span>
+                    {% if score == 0 %}
+                        <span class="greenScore" >
+                            Aucun danger
+                        </span>
+                    {% endif %}
+                    
+                    {% if score > 0 and score <= 5 %} <span class="greenScore" >Faible</span>
                     {% elseif score >= 6 and score <= 8 %} <span class="middleScore">Moyen</span>
-                        {% elseif score >= 9 and score <= 15 %} <span class="hardScore">Elevé</span>
-                            {% elseif score > 16 %}
-                            <span class="dangerScore">Danger</span>
-                            {% endif %}
-                            {% else %}
-                            <a href="{{ path('alcool_test') }}" title="Test de dépendance à l'alcool">Faire le test</a>
-                            {% endif %}
+                    {% elseif score >= 9 and score <= 15 %} <span class="hardScore">Elevé</span>
+                    {% elseif score >= 16 %}
+                                <span class="dangerScore">Danger</span>
+                    {% endif %}
+                    {% else %}
+                        <a href="{{ path('alcool_test') }}" title="Test de dépendance à l'alcool">Faire le test</a>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Jours d'abstinence</td>
+            <td>{{ sobers }}</td>
+        </tr>
+        <tr>
+            <td>
+                Plus longue période d'abstinence
+            </td>
+            <td>
+                {% if periodMax > 1 %}
+                    {{ periodMax }} jours
+                {% else %}
+                    {{ periodMax}} jour
+                {% endif %}
             </td>
         </tr>
         <tr>
@@ -58,21 +85,33 @@
                 Boissons consommées au total :
             </td>
             <td>
-                {% if drinks is not empty %}
-                {{ drinks|reduce((q, drink) => q + drink.quantity) }}
+                {% if statsArray['drinks'] is not empty %}
+                {{ statsArray['drinks']|reduce((q, drink) => q + drink.quantity) }}
                 {% else %}
                 Aucun enregistrement
                 {% endif %}
 
             </td>
+        <tr>
+            <td>Ratio <span class="greenScore">avantages </span>/<span class="hardScore"> inconvénients</span></td>
+            <td>
+                <span class="greenScore">
+                    {{ ratioAdvInconv['advantage']|round }}%
+                </span>
+                /
+                <span class="hardScore">
+                    {{ ratioAdvInconv['inconvenient']|round }}%
+            </td>
+            </span>
+        </tr>
         </tr>
         <tr>
             <td>
                 Argent dépensé au total :
             </td>
             <td>
-                {% if drinks is not empty %}
-                {{ drinks|reduce((c, drink) => c + drink.cost) }} €
+                {% if statsArray['drinks'] is not empty %}
+                {{ statsArray['drinks']|reduce((c, drink) => c + drink.cost) }} €
                 {% else %}
                 Aucun enregistrement
                 {% endif %}
@@ -84,66 +123,38 @@
     <br>
     <br>
 
-    {% if drinks is not empty %}
-
-
     <canvas id="myChart" width="400" height="400"></canvas>
-    <input type="hidden" data-beer="{{ xBeer }}" id="xBeer">
-    <input type="hidden" data-wine="{{ xWine }}" id="xWine">
-    <input type="hidden" data-spiritus="{{ xSpiritus }}" id="xSpiritus">
+    <br>
+    <canvas id="myChart2" width="400" height="400"></canvas>
 
-    <script>
-        window.addEventListener("DOMContentLoaded", (event) => {
-            console.log($('.table').data('drinks'));
-            const ctx = document.getElementById('myChart');
-            const myChart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: [
-                        'Bière',
-                        'Vin',
-                        'Alcool fort'
-                    ],
-                    datasets: [{
-                        label: 'Répartition des alcools',
-                        data: [
-                            document.getElementById("xBeer").dataset.beer,
-                            document.getElementById('xWine').dataset.wine,
-                            document.getElementById('xSpiritus').dataset.spiritus
-                        ],
-                        backgroundColor: [
-                            'rgb(255, 205, 86)',
-                            'rgb(115, 18, 18, 1)',
-                            'rgb(250, 122, 3, 1)'
-                        ],
-                        hoverOffset: 4
-                    }]
-                },
-                options: {
-                    plugins: {
-                        legend: {
-                            labels: {
-                                // This more specific font property overrides the global property
-                                color: 'wheat',
-                                font: {
-                                    size: 24,
-                                    position: 'center',
-                                }
-                            }
-                        }
-                    }
-                }
-            })
-        });
+    <input type="hidden" data-sober="{{ statsArray['xSober'] }}" id="xSober">
+    <input type="hidden" data-beer="{{ statsArray['xBeer'] }}" id="xBeer">
+    <input type="hidden" data-wine="{{ statsArray['xWine'] }}" id="xWine">
+    <input type="hidden" data-spiritus="{{ statsArray['xSpiritus'] }}" id="xSpiritus">
+    <input type="hidden" data-monday="{{ weekDrinks['monday'] }}" id="mondayDrinks">
+    <input type="hidden" data-tuesday="{{ weekDrinks['tuesday'] }}" id="tuesdayDrinks">
+    <input type="hidden" data-wednesday="{{ weekDrinks['wednesday'] }}" id="wednesdayDrinks">
+    <input type="hidden" data-thursday="{{ weekDrinks['thursday'] }}" id="thursdayDrinks">
+    <input type="hidden" data-friday="{{ weekDrinks['friday'] }}" id="fridayDrinks">
+    <input type="hidden" data-saturday="{{ weekDrinks['saturday'] }}" id="saturdayDrinks">
+    <input type="hidden" data-sunday="{{ weekDrinks['sunday'] }}" id="sundayDrinks">
+
+    <script type="text/javascript" src="{{asset('assets/js/chartMethods.js')}}">
     </script>
-
-    {% endif %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
+        defer></script>
     <hr>
 
+    <p>
     <h2>Options</h2>
-
+    {# <a href="#" class="custom-btn">Recevoir des notifications</a> #}
+    <br><br>
+    <a href="{{ path('unsubscribe_posts', {'postId':1}) }}" class="custom-btn" title="Se désabonner des articles">Se
+        désabonner des articles</a>
+    <br><br>
     <a href="{{ path('delete_user') }}" title="Supprimer mon compte" class="btn btn-danger"
-        onclick="return confirm('Supprimer définitivement votre compte ?')">Supprimer mon compte</a>
-
+        onclick="return confirm('Supprimer définitivement votre compte et vos enregistrements ?')">Supprimer mon
+        compte</a>
+    </p>
 </div>
 {% endblock %}

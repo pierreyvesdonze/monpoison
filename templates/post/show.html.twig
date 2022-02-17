@@ -4,7 +4,15 @@
 
 {% block body %}
 
+{# PARAMS #}
+{% set postId = app.request.uri|split('/')|last %}
+{% set currentPath = path(app.request.attributes.get('_route'),
+app.request.attributes.get('_route_params')) %}
+
 <br><br>
+
+{# modal subscribe #}
+{% include('subscribe/_new.html.twig') %}
 
 <div class="container">
 
@@ -17,13 +25,32 @@
     <p>
         Article rédigé le {{ post.date ? post.date|date('d/m/y') : '' }}
     </p>
-
     <hr>
-    <!-- share Facebook -->
-    <div class="d-flex justify-content-center social-div">
-        <a href="http://www.facebook.com/sharer.php?u=https://monpoison.fr/public/article/voir/{{ post.id }}" target="_blank"><img src="{{ asset('assets/images/fb-share-icon.png') }}" alt="partager sur facebook" class="social-img">Partager</a>
+    <div class="social-wrapper">
+        <!--subscribe-->
+        <div class="">
+            <a type="button" data-bs-toggle="modal" data-bs-target="#subscribeModal" class="custom-btn custom-btn-left"
+                id='subscribe-btn'><img src="{{ asset('assets/images/subscribe.png') }}" alt="s'abonner aux articles"
+                    class="social-img"></a>
+
+        </div>
+
+        <!-- share Twitter -->
+        <div>
+            <a class="custom-btn twitter-share-button"
+                href="https://twitter.com/intent/tweet?text={{ post.title }}&url=https://monpoison.fr/public/article/voir/{{ postId  }}&hashtags=craving,7façons,alcool">
+                <img src="{{ asset('assets/images/twitter-share-icon.png') }}" alt="Partager sur Twitter"
+                    class="social-img"></a>
+        </div>
+
+        <!-- share Facebook -->
+        <div class="">
+            <a href="http://www.facebook.com/sharer.php?u=https://monpoison.fr/public/article/voir/{{ post.id }}"
+                title="Partager sur Facebook" class="custom-btn custom-btn-right" target="_blank">
+                <img src="{{ asset('assets/images/fb-share-icon.png') }}" alt="partager sur facebook"
+                    class="social-img"></a>
+        </div>
     </div>
-        
 
     <br>
     {% if app.user %}
