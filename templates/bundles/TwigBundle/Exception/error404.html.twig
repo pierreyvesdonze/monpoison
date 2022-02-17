@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<center>
+    <br><br>
+    <div class="container">
+    <div class="big-text">
+        <h1>Erreur 404, page inexistante</h1>
+    </div>
+    <br><br>
+    <hr class="hr-white">
+        <img src="{{ asset('assets/images/icon192.png') }}" alt="error-404">
+        <br><br>
+        <p>
+            La page que que vous cherchez n'existe pas, cliquez <a href="{{ path('home') }}">ici</a> pour retourner à
+            l'accueil.
+        </p>
+    </div>
+</center>
+{% endblock %}
