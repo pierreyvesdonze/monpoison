@@ -22,6 +22,9 @@ var app = {
             }, 1500);
         }
 
+        //Set goals achievement
+        $('.set-achievement').on('click', app.setGoalAchievement);
+
         // Push Notification btn
         $('#push-permission .custom-btn').on('click', app.askPermission)
 
@@ -177,6 +180,31 @@ var app = {
             }
         });
     },
+
+    setGoalAchievement: function (e) {
+        e.preventDefault();
+        let achievementStatus = $(this).parent().prev().find('.goalAchievement');
+        achievementStatus.toggleClass('dangerScore').toggleClass('greenScore');
+
+        let goalId = achievementStatus.data('id');
+
+        $.ajax(
+            {
+                url: Routing.generate('set-achievement', { 'goalId': goalId }),
+                method: "POST",
+            }).done(function (response) {
+                e.preventDefault();
+                if (null !== response) {
+                    return;
+                } else {
+                    console.log('Problème');
+                }
+            }).fail(function (jqXHR, textStatus, error) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(error);
+            });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', app.init)

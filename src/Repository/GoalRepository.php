@@ -32,4 +32,16 @@ class GoalRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    /**
+     * @return Goal Returns Goal object
+     */
+    public function finOnedById($goalId)
+    {
+        return $this->createQueryBuilder('g')
+            ->andWhere('g.id = :val')
+            ->setParameter('val', $goalId)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

@@ -4,5 +4,5 @@ if ('serviceWorker' in navigator) {
             
             console.log('Enregistrement reussi.')
         })
-        .catch(function (e) { console.error(e + '...') });
+        //.catch(function (e) { console.error(e + '...') });
 }

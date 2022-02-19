@@ -814,7 +814,7 @@ PAGINATOR
 }
 
 /*********************
-ARGUMENTS
+ARGUMENTS & OBJECTIFS
 *********************/
 .flex-left-right {
 	display: flex;
@@ -825,6 +825,10 @@ ARGUMENTS
 	@include sm {
 		flex-direction: column;
 	}
+}
+
+.left, .right {
+	width: 50%;
 }
 
 /*********************

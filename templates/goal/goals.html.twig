@@ -27,12 +27,38 @@
 
     <br><br>
 
-    {% for goal in goals %}
-    {{ goal.isAchieved }} - {{ goal.content }}
-    
-    <a href="{{ path('remove_goal', {'id':goal.id}) }}" title="Supprimer un objectif" class="btn btn-danger"
-    onclick="return confirm('Supprimer cet objectif ?')">&cross;</a>
-    {% endfor %}
+    <div class="flex-left-right">
+        <ul>
+            {% for goal in goals %}
+            <li>
+                {% if goal.isAchieved == false %}
+                <div>
+                    <span class="dangerScore goalAchievement" data-id="{{ goal.id }}">
+                       {{ goal.content }}
+                    </span>
+                </div>
+                <div>
+                    <button class="custom-btn set-achievement">&circlearrowleft;</button>
+                    <a href="{{ path('remove_goal', {'id':goal.id}) }}" title="Supprimer un objectif"
+                        class="btn btn-danger" onclick="return confirm('Supprimer cet objectif ?')">&cross;</a>
+                </div>
+                {% else %}
+                <div>
+                    <span class="greenScore goalAchievement" data-id="{{ goal.id }}">
+                        {{ goal.content }}
+                    </span>
+                </div>
+                <div>
+                    <button class="custom-btn set-achievement">&circlearrowleft;</button>
+                    <a href="{{ path('remove_goal', {'id':goal.id}) }}" title="Supprimer un objectif"
+                        class="btn btn-danger" onclick="return confirm('Supprimer cet objectif ?')">&cross;</a>
+                </div>
+                {% endif %}
+                <br>
+                {% endfor %}
+            </li>
+        </ul>
+    </div>
 </div>
 
 

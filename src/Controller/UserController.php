@@ -11,6 +11,7 @@ use App\Repository\GoalRepository;
 use App\Service\UserStatsService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -150,6 +151,8 @@ class UserController extends AbstractController
             $this->em->flush();
 
             $this->addFlash('success', 'Nouvel objectif ajouté !');
+
+            return $this->redirectToRoute('goals');
         }
         return $this->render('goal/add.goal.html.twig', [
             'form' => $form->createView()
@@ -168,4 +171,21 @@ class UserController extends AbstractController
         }
         return $this->redirectToRoute('goals');
     }
+
+    /**
+     * @Route("/changer/validation/objectif/{goalId}", name="set-achievement", options={"expose"=true}, methods="POST")
+     */
+    public function setAchievement($goalId, GoalRepository $goalRepository)
+    {
+        $goal = $goalRepository->findOneById($goalId);
+
+        $goal->getIsAchieved(0) ? $goal->setIsAchieved(1) : $goal->setIsAchieved(0);
+
+        $goal->getIsAchieved(1) ? $goal->setIsAchieved(0) : $goal->setIsAchieved(1);
+
+        $this->em->flush();
+
+        return new JsonResponse($goalId);
+    }
+
 }
