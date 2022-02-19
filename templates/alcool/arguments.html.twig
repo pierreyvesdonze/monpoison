@@ -35,7 +35,7 @@
                 {% for arg in arguments %}
                 {% if arg.type == 0 %}
                 <li class="greenScore">
-                    {{ arg.content }} <a href="{{ path('alcool_arguments_remove', {'id':arg.id}) }}" title)"Retirer" class="btn btn-danger" onclick="return confirm('Supprimer ?')">&cross;</a>
+                    {{ arg.content }} <a href="{{ path('alcool_arguments_remove', {'id':arg.id}) }}" title="Retirer un avantage" class="btn btn-danger" onclick="return confirm('Supprimer ?')">&cross;</a>
                 </li>
                 <br>
                 {% endif %}
@@ -48,7 +48,7 @@
                 {% for arg in arguments %}
                 {% if arg.type == 1 %}
                 <li class="hardScore">
-                    {{ arg.content }} <a href="{{ path('alcool_arguments_remove', {'id':arg.id}) }}" title)"Retirer" class="btn btn-danger" onclick="return confirm('Supprimer ?')">&cross;</a>
+                    {{ arg.content }} <a href="{{ path('alcool_arguments_remove', {'id':arg.id}) }}" title"Retirer un inconvénient" class="btn btn-danger" onclick="return confirm('Supprimer ?')">&cross;</a>
                 </li>
                 {% endif %}
                 {% endfor %}

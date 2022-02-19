@@ -83,12 +83,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $argumentUsers;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Goal::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $goals;
+
     public function __construct()
     {
         $this->drinks = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->date = new ArrayCollection();
         $this->argumentUsers = new ArrayCollection();
+        $this->goals = new ArrayCollection();
     }
 
     public function __toString()
@@ -347,6 +353,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($argumentUser->getUser() === $this) {
                 $argumentUser->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Goal[]
+     */
+    public function getGoals(): Collection
+    {
+        return $this->goals;
+    }
+
+    public function addGoal(Goal $goal): self
+    {
+        if (!$this->goals->contains($goal)) {
+            $this->goals[] = $goal;
+            $goal->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGoal(Goal $goal): self
+    {
+        if ($this->goals->removeElement($goal)) {
+            // set the owning side to null (unless already changed)
+            if ($goal->getUser() === $this) {
+                $goal->setUser(null);
             }
         }
 

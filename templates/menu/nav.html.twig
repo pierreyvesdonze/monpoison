@@ -24,11 +24,16 @@
                                 title="Tableau de bord de mes consommations">Tableau de bord</a></li>
                         <li><a class="dropdown-item" rel="noreferrer" href="{{ path('drink_calendar') }}"
                                 title="Suivi de mes consommations">Mes consommations</a></li>
-                        <li><a class="dropdown-item" rel="noreferrer" href="{{ path('alcool_arguments') }}"
-                                title="Avantages et inconvénients">Mes
-                                arguments</a></li>
                         <li>
-                            <a class="dropdown-item" rel="noreferrer" aria-current="page" href="{{ path('logout') }}"
+                            <a class="dropdown-item" rel="noreferrer" href="{{ path('alcool_arguments') }}"
+                                title="Avantages et inconvénients">Mes
+                                arguments</a>
+                        </li>
+                          <li>
+                            <a class="dropdown-item" rel="noreferrer" href="{{ path('goals') }}"
+                                title="Objectifs à atteindre">Mes objectifs</a>
+                        </li>
+                        <li> <a class="dropdown-item" rel="noreferrer" aria-current="page" href="{{ path('logout') }}"
                                 title="Déconnexion">Se
                                 déconnecter</a>
                         </li>
