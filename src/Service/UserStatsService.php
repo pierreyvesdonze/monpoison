@@ -5,13 +5,15 @@ namespace App\Service;
 use App\Repository\SoberRepository;
 use App\Repository\DrinkRepository;
 use App\Repository\ArgumentUserRepository;
+use App\Repository\GoalRepository;
 
 class UserStatsService
 {
     public function __construct(
         private SoberRepository $soberRepository,
         private DrinkRepository $drinkRepository,
-        private ArgumentUserRepository $argRepo
+        private ArgumentUserRepository $argRepo,
+        private GoalRepository $goalRepository
     ) {
     }
 
@@ -158,5 +160,17 @@ class UserStatsService
         $ratioAdvantageInconvenient['inconvenient'] = $xInconvenientUser;
 
         return $ratioAdvantageInconvenient;
+    }
+
+    public function getGoals($user) {
+        
+        $positiveGoals = count($this->goalRepository->findPositiveGoalsByUser($user));
+        $totalGoals = count($this->goalRepository->getTotalGoals($user));
+        $goalRatio = [];
+
+        $goalRatio['positive'] = $positiveGoals;
+        $goalRatio['total'] = $totalGoals;
+
+        return $goalRatio;
     }
 }

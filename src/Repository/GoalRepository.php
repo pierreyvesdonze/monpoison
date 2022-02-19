@@ -44,4 +44,30 @@ class GoalRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    /**
+     * @return Goal Returns Goal object
+     */
+    public function findPositiveGoalsByUser($user)
+    {
+        return $this->createQueryBuilder('g')
+            ->where('g.isAchieved = :pos')
+            ->andWhere('g.user = :val')
+            ->setParameter('val', $user)
+            ->setParameter('pos', 1)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return Goal Returns Goal object
+     */
+    public function getTotalGoals($user)
+    {
+        return $this->createQueryBuilder('g')
+            ->andWhere('g.user = :val')
+            ->setParameter('val', $user)
+            ->getQuery()
+            ->getResult();
+    }
 }

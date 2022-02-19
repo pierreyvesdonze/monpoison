@@ -50,6 +50,9 @@ class UserController extends AbstractController
         // Get ratio of arguments & inconvenient 
         $ratioAdvInconv = $userStatsService->getRatioAdvantageInconvenient($user);
 
+        // Get ratio of goals
+        $goalsRatio = $userStatsService->getGoals($user);
+
         return $this->render('user/user.html.twig', [
             'user'           => $user,
             'statsArray'     => $statsArray,
@@ -58,7 +61,8 @@ class UserController extends AbstractController
             'lastWeekCost'   => $lastWeekCost,
             'ratioAdvInconv' => $ratioAdvInconv,
             'weekDrinks'     => $weekDrinks,
-            'periodMax'      => $periodMax
+            'periodMax'      => $periodMax,
+            'goalsRatio'     => $goalsRatio
         ]);
     }
 

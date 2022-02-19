@@ -26,6 +26,7 @@
     <a href="{{ path('add_goal') }}" class="custom-btn" title="Ajouter un objectif">Ajouter un objectif</a>
 
     <br><br>
+    <hr class="hr-white">
 
     <div class="flex-left-right">
         <ul>
@@ -34,7 +35,7 @@
                 {% if goal.isAchieved == false %}
                 <div>
                     <span class="dangerScore goalAchievement" data-id="{{ goal.id }}">
-                       {{ goal.content }}
+                        {{ goal.content }}
                     </span>
                 </div>
                 <div>
@@ -59,6 +60,7 @@
             </li>
         </ul>
     </div>
+    <hr class="hr-white">
 </div>
 
 
