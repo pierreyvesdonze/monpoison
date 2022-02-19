@@ -185,8 +185,18 @@ p {
   word-wrap: break-word;
 }
 
+/*********************
+MODALS
+*********************/
 .modal-open {
   color: wheat;
+  background-color: red;
+}
+
+.modal-content {
+  background-color: var(--semi-transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 /*********************
@@ -1035,7 +1045,7 @@ PAGINATOR
 }
 
 /*********************
-ARGUMENTS
+ARGUMENTS & OBJECTIFS
 *********************/
 .flex-left-right {
   display: -webkit-box;
@@ -1061,6 +1071,11 @@ ARGUMENTS
         -ms-flex-direction: column;
             flex-direction: column;
   }
+}
+
+.left,
+.right {
+  width: 50%;
 }
 
 /*********************
