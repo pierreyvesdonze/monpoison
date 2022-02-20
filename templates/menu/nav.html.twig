@@ -29,13 +29,18 @@
                                 title="Avantages et inconvénients">Mes
                                 arguments</a>
                         </li>
-                          <li>
+                        <li>
                             <a class="dropdown-item" rel="noreferrer" href="{{ path('goals') }}"
                                 title="Objectifs à atteindre">Mes objectifs</a>
                         </li>
                         <li> <a class="dropdown-item" rel="noreferrer" aria-current="page" href="{{ path('logout') }}"
                                 title="Déconnexion">Se
                                 déconnecter</a>
+                        </li>
+                        <li>
+                            <a href="{{path('why_register')}}" type="button" class="dropdown-item"
+                                title="pourquoi s'enregistrer">Pourquoi
+                                s'enregistrer ?</a>
                         </li>
                     </ul>
                 </li>
@@ -56,6 +61,10 @@
                         <li>
                             <a href="{{path('app_register')}}" type="button" class="dropdown-item"
                                 title="S'enregistrer">S'enregistrer</a>
+                        </li>
+                        <li>
+                            <a href="{{path('why_register')}}" type="button" class="dropdown-item"
+                                title="pourquoi s'enregistrer">Pourquoi s'enregistrer ?</a>
                         </li>
                     </ul>
                 </li>
