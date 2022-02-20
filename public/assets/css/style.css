@@ -195,8 +195,6 @@ MODALS
 
 .modal-content {
   background-color: var(--semi-transparent);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
 }
 
 /*********************
