@@ -24,7 +24,10 @@ class TestimonialsType extends AbstractType
                 'label' => 'message',
                     'attr' => [
                         'class' => "input-textarea"
-                    ]
+                    ],
+            'config' => [
+                'uiColor' => '#000000'
+            ]
                 ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Publier',
