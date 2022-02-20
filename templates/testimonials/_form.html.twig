@@ -4,5 +4,5 @@
     {{ form_label(form.content) }}
     {{ form_widget(form.content) }}
     <br>
-    {{ form_widget(form.submit) }}
+    {{ form_widget(form.submit, {'attr': { onclick: "return confirm('Attention, après validation vous ne pourrez plus modifier ni supprimer votre témoignage !')" }}) }}
 {{ form_end(form) }}
