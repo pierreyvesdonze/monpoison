@@ -23,21 +23,21 @@
             <td>
                 {% set score = user.alcoolScore %}
                 {% if score is not null %}
-                    {% if score == 0 %}
-                        <span class="greenScore" >
-                            Aucun danger
-                        </span>
-                    {% endif %}
-                    
-                    {% if score > 0 and score <= 5 %} <span class="greenScore" >Faible</span>
-                    {% elseif score >= 6 and score <= 8 %} <span class="middleScore">Moyen</span>
-                    {% elseif score >= 9 and score <= 15 %} <span class="hardScore">Elevé</span>
-                    {% elseif score >= 16 %}
-                                <span class="dangerScore">Danger</span>
-                    {% endif %}
-                    {% else %}
-                        <a href="{{ path('alcool_test') }}" title="Test de dépendance à l'alcool">Faire le test</a>
+                {% if score == 0 %}
+                <span class="greenScore">
+                    Aucun danger
+                </span>
                 {% endif %}
+
+                {% if score > 0 and score <= 5 %} <span class="greenScore">Faible</span>
+                    {% elseif score >= 6 and score <= 8 %} <span class="middleScore">Moyen</span>
+                        {% elseif score >= 9 and score <= 15 %} <span class="hardScore">Elevé</span>
+                            {% elseif score >= 16 %}
+                            <span class="dangerScore">Danger</span>
+                            {% endif %}
+                            {% else %}
+                            <a href="{{ path('alcool_test') }}" title="Test de dépendance à l'alcool">Faire le test</a>
+                            {% endif %}
             </td>
         </tr>
         <tr>
@@ -50,9 +50,9 @@
             </td>
             <td>
                 {% if periodMax > 1 %}
-                    {{ periodMax }} jours
+                {{ periodMax }} jours
                 {% else %}
-                    {{ periodMax}} jour
+                {{ periodMax}} jour
                 {% endif %}
             </td>
         </tr>
@@ -103,14 +103,14 @@
                     {{ ratioAdvInconv['inconvenient']|round }}%
                 </span>
             </td>
-            <tr>
-                <td>
-                    Objectifs atteints
-                </td>
-                <td>
-                    {{ goalsRatio['positive'] }} / {{ goalsRatio['total'] }}
-                </td>
-            </tr>
+        <tr>
+            <td>
+                Objectifs atteints
+            </td>
+            <td>
+                {{ goalsRatio['positive'] }} / {{ goalsRatio['total'] }}
+            </td>
+        </tr>
         </tr>
         </tr>
         <tr>
@@ -157,8 +157,12 @@
     <h2>Options</h2>
     {# <a href="#" class="custom-btn">Recevoir des notifications</a> #}
     <br><br>
+    {% if user.isSubscribed == true %}
     <a href="{{ path('unsubscribe_posts', {'postId':1}) }}" class="custom-btn" title="Se désabonner des articles">Se
         désabonner des articles</a>
+    {% else %}
+    <a href="{{ path('subscribe_posts', {'emailSubscriber':user.email }) }}" class="custom-btn" title="Se désabonner des articles">S'abonner aux articles</a>
+    {% endif %}
     <br><br>
     <a href="{{ path('delete_user') }}" title="Supprimer mon compte" class="btn btn-danger"
         onclick="return confirm('Supprimer définitivement votre compte et vos enregistrements ?')">Supprimer mon

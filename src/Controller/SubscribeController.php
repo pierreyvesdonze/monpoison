@@ -56,6 +56,13 @@ class SubscribeController extends AbstractController
                     $this->mailService->subscribeNotification($user);
                 }
             }
+        } else {
+            $this->getUser()->setIsSubscribed(true);
+            $this->em->flush();
+
+            $this->addFlash('success', "Merci, vous êtes désormais abonné(e) aux articles !");
+
+            return $this->redirectToRoute('user_account');
         }
 
         return new JsonResponse($message);
@@ -81,7 +88,7 @@ class SubscribeController extends AbstractController
                 $isUnsubscribed = true;
             }
 
-            if (false == preg_match('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/', $emailSubscriber)) {
+            if (false == preg_match('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/', $emailSubscriber)) {
                 $this->addFlash('danger', "Cette adresse mail est invalide");
                 $isUnsubscribed = false;
             } elseif ($existingSubscriber) {
@@ -89,7 +96,7 @@ class SubscribeController extends AbstractController
                 $this->em->remove($existingSubscriber);
                 $this->addFlash('success', 'Enregistré !');
             } else {
-                $this->addFlash('danger', "Cette adresse mail n'est pas enregistrée");
+                $this->addFlash('danger', "Vous êtes désormais désinscrit(e)");
             }
 
             if (!false == $this->getUSer()) {

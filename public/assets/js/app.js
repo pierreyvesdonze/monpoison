@@ -105,7 +105,7 @@ var app = {
         e.preventDefault();
         var emailSubscriber = document.querySelector('.subscribe-mail-input').value;
         console.log($('.container').data('isSubscribed'));
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailSubscriber)) {
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/.test(emailSubscriber)) {
 
             $.ajax(
                 {
