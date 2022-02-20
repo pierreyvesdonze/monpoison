@@ -53,7 +53,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("pourquoi/enregistrer", name="why_register")
+     * @Route("pourquoi/creer/un/compte", name="why_register")
      */
     public function whyRegister() 
     {
