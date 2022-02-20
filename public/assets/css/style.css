@@ -190,11 +190,6 @@ MODALS
 *********************/
 .modal-open {
   color: wheat;
-  background-color: red;
-}
-
-.modal-content {
-  background-color: var(--semi-transparent);
 }
 
 /*********************
