@@ -22,13 +22,13 @@ class TestimonialsType extends AbstractType
             ])
             ->add('content', CKEditorType::class, [
                 'label' => 'message',
-                    'attr' => [
-                        'class' => "input-textarea"
-                    ],
-            'config' => [
-                'uiColor' => '#000000'
-            ]
-                ])
+                'attr' => [
+                    'class' => "input-textarea"
+                ],
+                'config' => [
+                    'uiColor' => '#000000'
+                ]
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Publier',
                 'attr' => [
