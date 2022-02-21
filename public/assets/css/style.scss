@@ -1,9 +1,9 @@
 @import "./responsive";
 
 :root {
-	//--body-bg: url("../images/texture.webp") no-repeat fixed;
-	//--body-bg-small: url("../images/texture-small.webp") no-repeat fixed;
-	--body-bg: linear-gradient(
+	//$body-bg: url("../images/texture.webp") no-repeat fixed;
+	//$body-bg-small: url("../images/texture-small.webp") no-repeat fixed;
+	$body-bg: linear-gradient(
 		90deg,
 		rgba(21, 30, 34, 1) 21%,
 		rgba(20, 27, 28, 1) 37%,
@@ -11,7 +11,7 @@
 		rgba(23, 19, 16, 1) 81%,
 		rgba(1, 1, 1, 1) 98%
 	);
-	--body-bg-small: linear-gradient(
+	$body-bg-small: linear-gradient(
 		90deg,
 		rgba(21, 30, 34, 1) 21%,
 		rgba(20, 27, 28, 1) 37%,
@@ -19,12 +19,12 @@
 		rgba(23, 19, 16, 1) 81%,
 		rgba(1, 1, 1, 1) 98%
 	);
-	--transparent: rgba(255, 255, 255, 0);
-	--semi-transparent: #29292940;
-	--alert: #0a0a0ad0;
-	--btn-color: #312e29a4;
-	--hover-color: #e78d06;
-	--card-header: #00000069;
+	$transparent: rgba(255, 255, 255, 0);
+	$semi-transparent: #29292940;
+	$alert: #0a0a0ad0;
+	$btn-color: #312e29a4;
+	$hover-color: #e78d06;
+	$card-header: #00000069;
 }
 
 p,
@@ -60,7 +60,7 @@ h2 {
 
 body {
 	height: 100vh;
-	background: var(--body-bg);
+	background: $body-bg;
 	background-size: cover;
 	opacity: 1;
 	animation-name: fadeInOpacity;
@@ -68,11 +68,11 @@ body {
 	animation-timing-function: ease-in;
 	animation-duration: 0.5s;
 	@include xs {
-		background: var(--body-bg-small);
+		background: $body-bg-small;
 		background-size: cover;
 	}
 	@include sm {
-		background: var(--body-bg-small);
+		background: $body-bg-small;
 		background-size: cover;
 	}
 }
@@ -107,7 +107,7 @@ html {
 
 .alert,
 .alert-success {
-	background-color: var(--alert);
+	background-color: $alert;
 	border: none;
 	position: absolute;
 	width: 100%;
@@ -199,7 +199,7 @@ BUTTONS
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: var(--btn-color);
+		background: $btn-color;
 		border-radius: 10rem;
 		z-index: -2;
 	}
@@ -210,7 +210,7 @@ BUTTONS
 		left: 0;
 		width: 0%;
 		height: 100%;
-		background-color: var(--hover-color);
+		background-color: $hover-color;
 		transition: all 0.2s;
 		border-radius: 10rem;
 		z-index: -1;
@@ -236,13 +236,13 @@ BUTTONS
 
 button[type="submit"],
 button.custom-btn {
-	background-color: var(--btn-color);
+	background-color: $btn-color;
 }
 
 #toTop {
 	display: inline-block;
 	text-decoration: none;
-	background-color: var(--hover-color);
+	background-color: $hover-color;
 	width: 50px;
 	height: 50px;
 	text-align: center;
@@ -265,7 +265,7 @@ button.custom-btn {
 }
 #toTop:hover {
 	cursor: pointer;
-	background-color: var(--semi-transparent);
+	background-color: $semi-transparent;
 }
 #toTop:active {
 	background-color: #555;
@@ -293,7 +293,7 @@ NAV MENU
 }
 
 .navbar {
-	background-color: var(--semi-transparent) !important;
+	background-color: $semi-transparent !important;
 	box-shadow: inset rgba(0, 0, 0, 0.644) 0 0 7px 1px;
 }
 .navbar-toggler {
@@ -330,7 +330,7 @@ NAV MENU
 
 .nav-link {
 	&:hover {
-		color: var(--hover-color) !important;
+		color: $hover-color !important;
 	}
 }
 
@@ -481,7 +481,7 @@ SOCIAL ICON & DIV ICON
 	box-shadow: inset black 0 0 5px 3px;
 	transition: ease-in-out 0.2s;
 	&:hover {
-		background: var(--hover-color);
+		background: $hover-color;
 		box-shadow: inset black 0 0 1px 1px;
 	}
 }
@@ -511,7 +511,7 @@ BIG TEXT ANIM
 	-ms-flex-pack: center;
 	justify-content: center;
 	text-align: center;
-	background-color: var(--primary-color);
+	background-color: $primary-color;
 }
 
 .grid-big-text {
@@ -552,7 +552,7 @@ BIG TEXT ANIM
 	width: 70px;
 	height: 50px;
 	margin: 2px;
-	background-color: var(--primary-color);
+	background-color: $primary-color;
 	font-size: 6em;
 	color: wheat;
 	font-weight: 100;
@@ -571,7 +571,7 @@ BIG TEXT ANIM
 }
 
 .yellow-big {
-	color: var(--hover-color);
+	color: $hover-color;
 }
 
 .home-text {
@@ -601,7 +601,7 @@ input,
 	text-align: left;
 	box-shadow: inset 2px 2px 3px black;
 	&:focus {
-		outline-color: var(--hover-color);
+		outline-color: $hover-color;
 	}
 }
 
@@ -723,7 +723,7 @@ CARD CONSO
 
 .card-header {
 	border-radius: 0 17px 0 0 !important;
-	background: var(--card-header);
+	background: $card-header;
 }
 
 .card-header,
@@ -736,7 +736,7 @@ REGISTRATION & LOGIN
 *********************/
 #registration_form_email,
 #registration_form_plainPassword {
-	background: var(--semi-transparent);
+	background: $semi-transparent;
 }
 
 /*********************
@@ -774,7 +774,7 @@ footer {
 	clear: both;
 	width: 100%;
 	margin-top: 50px;
-	background-color: var(--semi-transparent);
+	background-color: $semi-transparent;
 	box-shadow: inset rgba(0, 0, 0, 0.596) 0 0 7px 1px;
 	transition: ease-in-out 0.5s;
 }
@@ -863,7 +863,7 @@ BIG TEXT ANIM
 	-ms-flex-pack: center;
 	justify-content: center;
 	text-align: center;
-	background-color: var(--primary-color);
+	background-color: $primary-color;
 }
 
 .grid-big-text {
@@ -904,7 +904,7 @@ BIG TEXT ANIM
 	width: 70px;
 	height: 50px;
 	margin: 2px;
-	background-color: var(--primary-color);
+	background-color: $primary-color;
 	font-size: 6em;
 	color: wheat;
 	font-weight: 100;
@@ -923,5 +923,5 @@ BIG TEXT ANIM
 }
 
 .yellow-big {
-	color: var(--hover-color);
+	color: $hover-color;
 }
