@@ -34,8 +34,11 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-                        
+            
             // encode the plain password
+            if (strlen($form->get('plainPassword')->getData()) < 6) {
+                $this->addFlash('danger', 'Votre mot de passe doit contenir 6 caractères');
+            }
             $user->setPassword(
                 $userPasswordHasherInterface->hashPassword(
                     $user,
