@@ -11,8 +11,14 @@ var app = {
             document.querySelector('.submit-subscribe').addEventListener('click', app.subscribeToPosts);
         }
 
+        // Welcome modal
         if (window.location.href.indexOf('public/') > -1) {
             app.displayWelcomeModal();
+        }
+
+        // Congrats & Alert modal for moderations
+        if (true === window.location.href.indexOf('/profile') > -1) {
+            $('.btn-encouragements-invisible').trigger('click');
         }
 
         // Fadeout flash message

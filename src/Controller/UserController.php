@@ -8,6 +8,7 @@ use App\Form\ArgumentType;
 use App\Form\GoalType;
 use App\Repository\ArgumentUserRepository;
 use App\Repository\GoalRepository;
+use App\Service\EncouragementsService;
 use App\Service\UserStatsService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -51,7 +52,10 @@ class UserController extends AbstractController
         $ratioAdvInconv = $userStatsService->getRatioAdvantageInconvenient($user);
 
         // Get ratio of goals
-        $goalsRatio = $userStatsService->getGoals($user);
+        $goalsRatio     = $userStatsService->getGoals($user);
+
+        // Get encouragement text
+        $encouragement  = $userStatsService->getEncouragement($user);
 
         return $this->render('user/user.html.twig', [
             'user'           => $user,
@@ -62,7 +66,8 @@ class UserController extends AbstractController
             'ratioAdvInconv' => $ratioAdvInconv,
             'weekDrinks'     => $weekDrinks,
             'periodMax'      => $periodMax,
-            'goalsRatio'     => $goalsRatio
+            'goalsRatio'     => $goalsRatio,
+            'encouragement' => $encouragement
         ]);
     }
 

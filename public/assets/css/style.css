@@ -76,14 +76,14 @@ body {
 
 @media (min-width: 300px) and (max-width: 576px) {
   body {
-    background: var(--body-bg-small);
+    background: var(--body-bg) -small;
     background-size: cover;
   }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
   body {
-    background: var(--body-bg-small);
+    background: var(--body-bg) -small;
     background-size: cover;
   }
 }
@@ -327,6 +327,10 @@ button.custom-btn {
 
 #welcomeModal {
   overflow-y: auto;
+}
+
+.btn-encouragements-invisible {
+  display: none;
 }
 
 /*********************
@@ -624,7 +628,7 @@ BIG TEXT ANIM
   -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
-  background-color: var(--primary-color);
+  background-color: var(--semi-transparent);
 }
 
 .grid-big-text {
@@ -690,7 +694,7 @@ BIG TEXT ANIM
   width: 70px;
   height: 50px;
   margin: 2px;
-  background-color: var(--primary-color);
+  background-color: var(--semi-transparent);
   font-size: 6em;
   color: wheat;
   font-weight: 100;
@@ -1103,7 +1107,7 @@ BIG TEXT ANIM
   -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
-  background-color: var(--primary-color);
+  background-color: var(--semi-transparent);
 }
 
 .grid-big-text {
@@ -1163,7 +1167,7 @@ BIG TEXT ANIM
   width: 70px;
   height: 50px;
   margin: 2px;
-  background-color: var(--primary-color);
+  background-color: var(--semi-transparent);
   font-size: 6em;
   color: wheat;
   font-weight: 100;

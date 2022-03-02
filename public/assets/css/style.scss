@@ -1,9 +1,9 @@
 @import "./responsive";
 
 :root {
-	//$body-bg: url("../images/texture.webp") no-repeat fixed;
-	//$body-bg-small: url("../images/texture-small.webp") no-repeat fixed;
-	$body-bg: linear-gradient(
+	//var(--body-bg): url("../images/texture.webp") no-repeat fixed;
+	//var(--body-bg)-small: url("../images/texture-small.webp") no-repeat fixed;
+	--body-bg: linear-gradient(
 		90deg,
 		rgba(21, 30, 34, 1) 21%,
 		rgba(20, 27, 28, 1) 37%,
@@ -11,7 +11,7 @@
 		rgba(23, 19, 16, 1) 81%,
 		rgba(1, 1, 1, 1) 98%
 	);
-	$body-bg-small: linear-gradient(
+	--body-bg-small: linear-gradient(
 		90deg,
 		rgba(21, 30, 34, 1) 21%,
 		rgba(20, 27, 28, 1) 37%,
@@ -19,12 +19,12 @@
 		rgba(23, 19, 16, 1) 81%,
 		rgba(1, 1, 1, 1) 98%
 	);
-	$transparent: rgba(255, 255, 255, 0);
-	$semi-transparent: #29292940;
-	$alert: #0a0a0ad0;
-	$btn-color: #312e29a4;
-	$hover-color: #e78d06;
-	$card-header: #00000069;
+	--transparent: rgba(255, 255, 255, 0);
+	--semi-transparent: #29292940;
+	--alert: #0a0a0ad0;
+	--btn-color: #312e29a4;
+	--hover-color: #e78d06;
+	--card-header: #00000069;
 }
 
 p,
@@ -60,7 +60,7 @@ h2 {
 
 body {
 	height: 100vh;
-	background: $body-bg;
+	background: var(--body-bg);
 	background-size: cover;
 	opacity: 1;
 	animation-name: fadeInOpacity;
@@ -68,11 +68,11 @@ body {
 	animation-timing-function: ease-in;
 	animation-duration: 0.5s;
 	@include xs {
-		background: $body-bg-small;
+		background: var(--body-bg)-small;
 		background-size: cover;
 	}
 	@include sm {
-		background: $body-bg-small;
+		background: var(--body-bg)-small;
 		background-size: cover;
 	}
 }
@@ -107,7 +107,7 @@ html {
 
 .alert,
 .alert-success {
-	background-color: $alert;
+	background-color: var(--alert);
 	border: none;
 	position: absolute;
 	width: 100%;
@@ -199,7 +199,7 @@ BUTTONS
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: $btn-color;
+		background: var(--btn-color);
 		border-radius: 10rem;
 		z-index: -2;
 	}
@@ -210,7 +210,7 @@ BUTTONS
 		left: 0;
 		width: 0%;
 		height: 100%;
-		background-color: $hover-color;
+		background-color: var(--hover-color);
 		transition: all 0.2s;
 		border-radius: 10rem;
 		z-index: -1;
@@ -236,13 +236,13 @@ BUTTONS
 
 button[type="submit"],
 button.custom-btn {
-	background-color: $btn-color;
+	background-color: var(--btn-color);
 }
 
 #toTop {
 	display: inline-block;
 	text-decoration: none;
-	background-color: $hover-color;
+	background-color: var(--hover-color);
 	width: 50px;
 	height: 50px;
 	text-align: center;
@@ -265,7 +265,7 @@ button.custom-btn {
 }
 #toTop:hover {
 	cursor: pointer;
-	background-color: $semi-transparent;
+	background-color: var(--semi-transparent);
 }
 #toTop:active {
 	background-color: #555;
@@ -284,6 +284,10 @@ button.custom-btn {
 	overflow-y: auto;
 }
 
+.btn-encouragements-invisible {
+	display: none;
+}
+
 /*********************
 NAV MENU
 *********************/
@@ -293,7 +297,7 @@ NAV MENU
 }
 
 .navbar {
-	background-color: $semi-transparent !important;
+	background-color: var(--semi-transparent) !important;
 	box-shadow: inset rgba(0, 0, 0, 0.644) 0 0 7px 1px;
 }
 .navbar-toggler {
@@ -330,7 +334,7 @@ NAV MENU
 
 .nav-link {
 	&:hover {
-		color: $hover-color !important;
+		color: var(--hover-color) !important;
 	}
 }
 
@@ -481,7 +485,7 @@ SOCIAL ICON & DIV ICON
 	box-shadow: inset black 0 0 5px 3px;
 	transition: ease-in-out 0.2s;
 	&:hover {
-		background: $hover-color;
+		background: var(--hover-color);
 		box-shadow: inset black 0 0 1px 1px;
 	}
 }
@@ -511,7 +515,7 @@ BIG TEXT ANIM
 	-ms-flex-pack: center;
 	justify-content: center;
 	text-align: center;
-	background-color: $primary-color;
+	background-color: var(--semi-transparent);
 }
 
 .grid-big-text {
@@ -552,7 +556,7 @@ BIG TEXT ANIM
 	width: 70px;
 	height: 50px;
 	margin: 2px;
-	background-color: $primary-color;
+	background-color: var(--semi-transparent);
 	font-size: 6em;
 	color: wheat;
 	font-weight: 100;
@@ -571,7 +575,7 @@ BIG TEXT ANIM
 }
 
 .yellow-big {
-	color: $hover-color;
+	color: var(--hover-color);
 }
 
 .home-text {
@@ -601,7 +605,7 @@ input,
 	text-align: left;
 	box-shadow: inset 2px 2px 3px black;
 	&:focus {
-		outline-color: $hover-color;
+		outline-color: var(--hover-color);
 	}
 }
 
@@ -723,7 +727,7 @@ CARD CONSO
 
 .card-header {
 	border-radius: 0 17px 0 0 !important;
-	background: $card-header;
+	background: var(--card-header);
 }
 
 .card-header,
@@ -736,7 +740,7 @@ REGISTRATION & LOGIN
 *********************/
 #registration_form_email,
 #registration_form_plainPassword {
-	background: $semi-transparent;
+	background: var(--semi-transparent);
 }
 
 /*********************
@@ -774,7 +778,7 @@ footer {
 	clear: both;
 	width: 100%;
 	margin-top: 50px;
-	background-color: $semi-transparent;
+	background-color: var(--semi-transparent);
 	box-shadow: inset rgba(0, 0, 0, 0.596) 0 0 7px 1px;
 	transition: ease-in-out 0.5s;
 }
@@ -863,7 +867,7 @@ BIG TEXT ANIM
 	-ms-flex-pack: center;
 	justify-content: center;
 	text-align: center;
-	background-color: $primary-color;
+	background-color: var(--semi-transparent);
 }
 
 .grid-big-text {
@@ -904,7 +908,7 @@ BIG TEXT ANIM
 	width: 70px;
 	height: 50px;
 	margin: 2px;
-	background-color: $primary-color;
+	background-color: var(--semi-transparent);
 	font-size: 6em;
 	color: wheat;
 	font-weight: 100;
@@ -923,5 +927,5 @@ BIG TEXT ANIM
 }
 
 .yellow-big {
-	color: $hover-color;
+	color: var(--hover-color);
 }
