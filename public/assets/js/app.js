@@ -16,10 +16,11 @@ var app = {
             app.displayWelcomeModal();
         }
 
-        // Congrats & Alert modal for moderations
-        if (true === window.location.href.indexOf('/profile') > -1) {
+        // Congrats & Alert modal for moderations if no new drink
+        if (true === window.location.href.indexOf('/profile') > -1 &&
+            $('#last-week-drinks').data('last-drink') < 1) {
             $('.btn-encouragements-invisible').trigger('click');
-        }
+        } 
 
         // Fadeout flash message
         if ($('.flash-container').find('.alert').length !== 0) {

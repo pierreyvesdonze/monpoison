@@ -50,6 +50,7 @@ class UserStatsService
     // Get encouragements day by then month by month
     public function getEncouragement($user)
     {
+        $lastWeekDrinks = $this->getLastWeekDrinks($user);
         $totalSober = $this->getMaxSobrietyPeriod($user);
 
         $encouragementsJson = file_get_contents('../public/assets/json/encouragements.json');

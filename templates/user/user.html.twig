@@ -64,6 +64,7 @@
         <tr>
             <td>
                 Boissons consommées sur 7 jours :
+                <input type="hidden" data-last-drink="{{ lastWeekDrinks[1] }}" id="last-week-drinks">
             </td>
             <td>
                 {% if lastWeekDrinks[1] is not empty %}
