@@ -330,7 +330,7 @@ button.custom-btn {
 }
 
 .btn-encouragements-invisible {
-  display: none;
+  display: none !important;
 }
 
 /*********************
