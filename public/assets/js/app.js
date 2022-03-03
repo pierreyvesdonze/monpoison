@@ -17,8 +17,7 @@ var app = {
         }
 
         // Congrats & Alert modal for moderations if no new drink
-        if (true === window.location.href.indexOf('/profile') > -1 &&
-            $('#last-week-drinks').data('last-drink') < 1) {
+        if (true === window.location.href.indexOf('/profile') > -1) {
             $('.btn-encouragements-invisible').trigger('click');
         } 
 

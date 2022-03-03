@@ -41,6 +41,9 @@ class UserController extends AbstractController
 
         // Get 7 days last drinks
         $lastWeekDrinks = $userStatsService->getLastWeekDrinks($user);
+        
+        // Get Last day drink
+        $lastDayDrinks = $userStatsService->getLastDayDrinks($user);
 
         // Get 7 days cost
         $lastWeekCost   = $userStatsService->getLastWeekCost($user);
@@ -62,12 +65,13 @@ class UserController extends AbstractController
             'statsArray'     => $statsArray,
             'sobers'         => $sobers,
             'lastWeekDrinks' => $lastWeekDrinks,
+            'lastDayDrinks'  => $lastDayDrinks,
             'lastWeekCost'   => $lastWeekCost,
             'ratioAdvInconv' => $ratioAdvInconv,
             'weekDrinks'     => $weekDrinks,
             'periodMax'      => $periodMax,
             'goalsRatio'     => $goalsRatio,
-            'encouragement' => $encouragement
+            'encouragement'  => $encouragement
         ]);
     }
 

@@ -76,14 +76,14 @@ body {
 
 @media (min-width: 300px) and (max-width: 576px) {
   body {
-    background: var(--body-bg) -small;
+    background: var(--body-bg-small);
     background-size: cover;
   }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
   body {
-    background: var(--body-bg) -small;
+    background: var(--body-bg-small);
     background-size: cover;
   }
 }
