@@ -20,8 +20,16 @@
                         Mon profil
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" rel="noreferrer" href="{{ path('user_account') }}"
-                                title="Tableau de bord de mes consommations">Tableau de bord</a></li>
+                        <li>
+                            <a class="dropdown-item" rel="noreferrer" href="{{ path('user_account') }}"
+                                title="Compte personnel">Mon compte
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" rel="noreferrer" href="{{ path('user_board') }}"
+                                title="Tableau de bord de mes consommations">Tableau de bord
+                            </a>
+                        </li>
                         <li><a class="dropdown-item" rel="noreferrer" href="{{ path('drink_calendar') }}"
                                 title="Suivi de mes consommations">Mes consommations</a></li>
                         <li>

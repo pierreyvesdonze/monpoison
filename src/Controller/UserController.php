@@ -8,7 +8,6 @@ use App\Form\ArgumentType;
 use App\Form\GoalType;
 use App\Repository\ArgumentUserRepository;
 use App\Repository\GoalRepository;
-use App\Service\EncouragementsService;
 use App\Service\UserStatsService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,11 +21,18 @@ class UserController extends AbstractController
     public function __construct(private EntityManagerInterface $em)
     {
     }
+    /**
+     * @Route("/user/compte", name="user_account")
+     */
+    public function index(): Response
+    {
+        return $this->render('user/account.html.twig');
+    }
 
     /**
-     * @Route("/user/profile", name="user_account")
+     * @Route("/user/profile", name="user_board")
      */
-    public function index(UserStatsService $userStatsService): Response
+    public function board(UserStatsService $userStatsService): Response
     {
         $user = $this->getUser();
 

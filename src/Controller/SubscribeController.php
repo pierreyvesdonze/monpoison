@@ -62,7 +62,7 @@ class SubscribeController extends AbstractController
 
             $this->addFlash('success', "Merci, vous êtes désormais abonné(e) aux articles !");
 
-            return $this->redirectToRoute('user_account');
+            return $this->redirectToRoute('user_board');
         }
 
         return new JsonResponse($message);

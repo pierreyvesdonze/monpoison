@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord de mes consommations d'alcool{% endblock %}
+
+{% block metadescription %}
+<meta name="description"
+    content="Retrouvez toutes vos statistiques de consommation d'alcool et d'abstinence sur votre tableau de bord">
+{% endblock %}
+
+{% block body %}
+
+<br><br>
+
+<div class="container">
+    <h1>Mon compte</h1>
+    <br>
+    <table class="table">
+        <tr>
+            <td>Email</td>
+            <td>{{ app.user.email }}</td>
+        </tr>
+        <tr>
+            <td>Pseudo</td>
+            <td>{{ app.user.pseudo }}</td>
+        </tr>
+        <tr>
+            <td>Mot de passe</td>
+            <td><a href="{{ path('app_forgot_password_request') }}" title="mot de passe oublié"
+                    class="custom-btn">Réinitialiser</a></td>
+        </tr>
+        <tr>
+            <td>Abonnement aux articles</td>
+            <td>
+                {% if app.user.isSubscribed == true %}
+                <a href="{{ path('unsubscribe_posts', {'postId':1}) }}" class="custom-btn"
+                    title="Se désabonner des articles">Me
+                    désabonner des articles</a>
+                {% else %}
+                <a href="{{ path('subscribe_posts', {'emailSubscriber':app.user.email }) }}" class="custom-btn"
+                    title="Se désabonner des articles">M'abonner aux articles</a>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Supprimer mon compte</td>
+            <td><a href="{{ path('delete_user') }}" title="Supprimer mon compte" class="btn btn-danger"
+                    onclick="return confirm('Supprimer définitivement votre compte et vos enregistrements ?')">Supprimer
+                    mon compte</a></td>
+        </tr>
+    </table>
+</div>
+
+{% endblock %}

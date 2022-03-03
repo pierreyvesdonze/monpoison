@@ -156,23 +156,5 @@
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
         defer></script>
-    <hr>
-
-    <p>
-    <h2>Options</h2>
-    {# <a href="#" class="custom-btn">Recevoir des notifications</a> #}
-    <br><br>
-    {% if user.isSubscribed == true %}
-    <a href="{{ path('unsubscribe_posts', {'postId':1}) }}" class="custom-btn" title="Se désabonner des articles">Se
-        désabonner des articles</a>
-    {% else %}
-    <a href="{{ path('subscribe_posts', {'emailSubscriber':user.email }) }}" class="custom-btn"
-        title="Se désabonner des articles">S'abonner aux articles</a>
-    {% endif %}
-    <br><br>
-    <a href="{{ path('delete_user') }}" title="Supprimer mon compte" class="btn btn-danger"
-        onclick="return confirm('Supprimer définitivement votre compte et vos enregistrements ?')">Supprimer mon
-        compte</a>
-    </p>
 </div>
 {% endblock %}
