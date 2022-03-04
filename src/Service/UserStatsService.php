@@ -17,7 +17,7 @@ class UserStatsService
         private ArgumentUserRepository $argRepo,
         private GoalRepository $goalRepository,
         private EntityManagerInterface $em,
-        private BadgeRepository $badgeRepository
+        private BadgeRepository $badgeRepository,
     ) {
     }
 
@@ -56,6 +56,22 @@ class UserStatsService
     {
         $badges = $this->badgeRepository->findByUser($user);
         return $badges;
+    }
+
+    // Set user badges
+    public function setBadges($user) {
+        $totalSobers = $this->getMaxSobrietyPeriod($user);
+        $totalBadges = $this->badgeRepository->findAll();
+
+        foreach ($totalBadges as $badge) {
+            if ($totalSobers == $badge->getTitle()) {
+                $user->addBadge($badge);
+                $this->em->persist($badge);
+                $this->em->flush();
+            }
+            dump($user);
+        }
+        return;
     }
 
     // Get encouragements day by then month by month

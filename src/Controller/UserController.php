@@ -3,11 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\ArgumentUser;
+use App\Entity\Badge;
 use App\Entity\Goal;
 use App\Form\ArgumentType;
 use App\Form\GoalType;
 use App\Repository\ArgumentUserRepository;
+use App\Repository\BadgeRepository;
 use App\Repository\GoalRepository;
+use App\Repository\SoberRepository;
 use App\Service\UserStatsService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -47,7 +50,7 @@ class UserController extends AbstractController
 
         // Get 7 days last drinks
         $lastWeekDrinks = $userStatsService->getLastWeekDrinks($user);
-        
+
         // Get Last day drink
         $lastDayDrinks = $userStatsService->getLastDayDrinks($user);
 
@@ -66,9 +69,11 @@ class UserController extends AbstractController
         // Get encouragement text
         $encouragement  = $userStatsService->getEncouragement($user);
 
+        // Set Badges
+        $userStatsService->setBadges($user);
+        
         // Get Badges
         $badges         = $userStatsService->getBadges($user);
-        dump($badges);
 
         return $this->render('user/user.html.twig', [
             'user'           => $user,
@@ -85,6 +90,28 @@ class UserController extends AbstractController
             'badges'         => $badges
         ]);
     }
+
+    /**
+     * @Route("user/ajouter/badges", name="user_set_badges")
+     */
+    // public function setBadges(
+    //     BadgeRepository $badgeRepository,
+    //     UserStatsService $userStatsService
+    // ) {
+    //     $user = $this->getUser();
+    //     $totalSobers = $userStatsService->getMaxSobrietyPeriod($user);
+    //     $totalBadges = $badgeRepository->findAll();
+
+    //     foreach ($totalBadges as $badge) {            
+    //         if ($totalSobers > 1 && $totalSobers <= $badge->getTitle()) {
+    //             $user->addBadge($badge);
+    //             $this->em->persist($badge);
+    //             $this->em->flush();
+    //          }
+    //     }
+
+    //     return $this->redirectToRoute('user_board');
+    // }
 
     /**
      * @Route("/alcool/avantages/inconvenients", name="alcool_arguments")
@@ -180,7 +207,7 @@ class UserController extends AbstractController
         }
         return $this->render('goal/add.goal.html.twig', [
             'form' => $form->createView()
-        ]);      
+        ]);
     }
 
     /**
@@ -211,5 +238,4 @@ class UserController extends AbstractController
 
         return new JsonResponse($goalId);
     }
-
 }

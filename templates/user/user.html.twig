@@ -16,6 +16,16 @@
 <div class="container">
     <h1>Mon profil</h1>
     <hr>
+        {% if badges %}
+        <h2>Vos badges</h2>
+
+        {% for badge in app.user.badges %}
+            <img src="{{ badge.path }}">
+        {% endfor %}
+        
+        <hr>
+        {% endif %}
+        
     <h2>Statistiques</h2>
     <!-- Button trigger modal -->
     <button type="button" class="btn-encouragements-invisible" data-bs-toggle="modal" data-bs-target="#modalEncour"

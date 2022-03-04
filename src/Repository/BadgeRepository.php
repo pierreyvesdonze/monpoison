@@ -32,4 +32,15 @@ class BadgeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @return Badge[] Returns an array of Badge objects
+     */
+    public function findBySoberDay($totalSobers)
+    {
+        return $this->createQueryBuilder('b')
+            ->where('b = :badge')
+            ->setParameter('badge', $totalSobers)
+            ->getQuery()
+            ->getResult();
+    }
 }
