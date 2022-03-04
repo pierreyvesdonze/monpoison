@@ -5,7 +5,9 @@ namespace App\Service;
 use App\Repository\SoberRepository;
 use App\Repository\DrinkRepository;
 use App\Repository\ArgumentUserRepository;
+use App\Repository\BadgeRepository;
 use App\Repository\GoalRepository;
+use Doctrine\ORM\EntityManagerInterface;
 
 class UserStatsService
 {
@@ -13,7 +15,9 @@ class UserStatsService
         private SoberRepository $soberRepository,
         private DrinkRepository $drinkRepository,
         private ArgumentUserRepository $argRepo,
-        private GoalRepository $goalRepository
+        private GoalRepository $goalRepository,
+        private EntityManagerInterface $em,
+        private BadgeRepository $badgeRepository
     ) {
     }
 
@@ -47,61 +51,66 @@ class UserStatsService
         return $periodMax;
     }
 
+    // Get user badges
+    public function getBadges($user)
+    {
+        $badges = $this->badgeRepository->findByUser($user);
+        return $badges;
+    }
+
     // Get encouragements day by then month by month
     public function getEncouragement($user)
     {
-        $lastdayDrinks = $this->getLastDayDrinks($user);
         $totalSober = $this->getMaxSobrietyPeriod($user);
 
         $encouragementsJson = file_get_contents('../public/assets/json/encouragements.json');
         $encouragementsArray = json_decode($encouragementsJson);
 
-            if ($totalSober === 1) {
-                return $encouragementsArray->duration->{'1-day'};
-            } elseif ($totalSober === 2) {
-                return $encouragementsArray->duration->{'2-days'};
-            } elseif ($totalSober === 3) {
-                return $encouragementsArray->duration->{'3-days'};
-            } elseif ($totalSober === 4) {
-                return $encouragementsArray->duration->{'4-days'};
-            } elseif ($totalSober === 5) {
-                return $encouragementsArray->duration->{'5-days'};
-            } elseif ($totalSober === 6) {
-                return $encouragementsArray->duration->{'6-days'};
-            } elseif ($totalSober === 7) {
-                return $encouragementsArray->duration->{'1-week'};
-            } elseif ($totalSober === 14) {
-                return $encouragementsArray->duration->{'2-weeks'};
-            } elseif ($totalSober === 21) {
-                return $encouragementsArray->duration->{'3-weeks'};
-            } elseif ($totalSober === 30 || $totalSober === 31) {
-                return $encouragementsArray->duration->{'1-month'};
-            } elseif ($totalSober === 60 || $totalSober === 61) {
-                return $encouragementsArray->duration->{'2-months'};
-            } elseif ($totalSober === 90 && $totalSober === 91) {
-                return $encouragementsArray->duration->{'3-months'};
-            } elseif ($totalSober === 120 && $totalSober === 121) {
-                return $encouragementsArray->duration->{'4-months'};
-            } elseif ($totalSober === 151 && $totalSober === 152) {
-                return $encouragementsArray->duration->{'5-months'};
-            } elseif ($totalSober === 182 && $totalSober === 183) {
-                return $encouragementsArray->duration->{'6-months'};
-            } elseif ($totalSober === 212 && $totalSober === 213) {
-                return $encouragementsArray->duration->{'7-months'};
-            } elseif ($totalSober === 243 && $totalSober === 244) {
-                return $encouragementsArray->duration->{'8-months'};
-            } elseif ($totalSober === 273 && $totalSober === 274) {
-                return $encouragementsArray->duration->{'9-months'};
-            } elseif ($totalSober === 304 && $totalSober === 305) {
-                return $encouragementsArray->duration->{'10-months'};
-            } elseif ($totalSober === 334 && $totalSober === 335) {
-                return $encouragementsArray->duration->{'11-months'};
-            } elseif ($totalSober === 365) {
-                return $encouragementsArray->duration->{'1-year'};
-            } else {
-                return $encouragementsArray->duration->{'+1'};
-            }
-        
+        if ($totalSober === 1) {
+            return $encouragementsArray->duration->{'1-day'};
+        } elseif ($totalSober === 2) {
+            return $encouragementsArray->duration->{'2-days'};
+        } elseif ($totalSober === 3) {
+            return $encouragementsArray->duration->{'3-days'};
+        } elseif ($totalSober === 4) {
+            return $encouragementsArray->duration->{'4-days'};
+        } elseif ($totalSober === 5) {
+            return $encouragementsArray->duration->{'5-days'};
+        } elseif ($totalSober === 6) {
+            return $encouragementsArray->duration->{'6-days'};
+        } elseif ($totalSober === 7) {
+            return $encouragementsArray->duration->{'1-week'};
+        } elseif ($totalSober === 14) {
+            return $encouragementsArray->duration->{'2-weeks'};
+        } elseif ($totalSober === 21) {
+            return $encouragementsArray->duration->{'3-weeks'};
+        } elseif ($totalSober === 30 || $totalSober === 31) {
+            return $encouragementsArray->duration->{'1-month'};
+        } elseif ($totalSober === 60 || $totalSober === 61) {
+            return $encouragementsArray->duration->{'2-months'};
+        } elseif ($totalSober === 90 && $totalSober === 91) {
+            return $encouragementsArray->duration->{'3-months'};
+        } elseif ($totalSober === 120 && $totalSober === 121) {
+            return $encouragementsArray->duration->{'4-months'};
+        } elseif ($totalSober === 151 && $totalSober === 152) {
+            return $encouragementsArray->duration->{'5-months'};
+        } elseif ($totalSober === 182 && $totalSober === 183) {
+            return $encouragementsArray->duration->{'6-months'};
+        } elseif ($totalSober === 212 && $totalSober === 213) {
+            return $encouragementsArray->duration->{'7-months'};
+        } elseif ($totalSober === 243 && $totalSober === 244) {
+            return $encouragementsArray->duration->{'8-months'};
+        } elseif ($totalSober === 273 && $totalSober === 274) {
+            return $encouragementsArray->duration->{'9-months'};
+        } elseif ($totalSober === 304 && $totalSober === 305) {
+            return $encouragementsArray->duration->{'10-months'};
+        } elseif ($totalSober === 334 && $totalSober === 335) {
+            return $encouragementsArray->duration->{'11-months'};
+        } elseif ($totalSober === 365) {
+            return $encouragementsArray->duration->{'1-year'};
+        } else {
+            return $encouragementsArray->duration->{'+1'};
+        }
     }
 
     // Get total of Sobers Days

@@ -88,6 +88,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $goals;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Badge::class, mappedBy="user")
+     */
+    private $badges;
+
     public function __construct()
     {
         $this->drinks = new ArrayCollection();
@@ -95,6 +100,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->date = new ArrayCollection();
         $this->argumentUsers = new ArrayCollection();
         $this->goals = new ArrayCollection();
+        $this->badges = new ArrayCollection();
     }
 
     public function __toString()
@@ -384,6 +390,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($goal->getUser() === $this) {
                 $goal->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Badge[]
+     */
+    public function getBadges(): Collection
+    {
+        return $this->badges;
+    }
+
+    public function addBadge(Badge $badge): self
+    {
+        if (!$this->badges->contains($badge)) {
+            $this->badges[] = $badge;
+            $badge->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBadge(Badge $badge): self
+    {
+        if ($this->badges->removeElement($badge)) {
+            $badge->removeUser($this);
         }
 
         return $this;

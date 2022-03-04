@@ -66,6 +66,10 @@ class UserController extends AbstractController
         // Get encouragement text
         $encouragement  = $userStatsService->getEncouragement($user);
 
+        // Get Badges
+        $badges         = $userStatsService->getBadges($user);
+        dump($badges);
+
         return $this->render('user/user.html.twig', [
             'user'           => $user,
             'statsArray'     => $statsArray,
@@ -77,7 +81,8 @@ class UserController extends AbstractController
             'weekDrinks'     => $weekDrinks,
             'periodMax'      => $periodMax,
             'goalsRatio'     => $goalsRatio,
-            'encouragement'  => $encouragement
+            'encouragement'  => $encouragement,
+            'badges'         => $badges
         ]);
     }
 
