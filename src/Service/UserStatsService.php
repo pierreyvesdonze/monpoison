@@ -69,7 +69,6 @@ class UserStatsService
                 $this->em->persist($badge);
                 $this->em->flush();
             }
-            dump($user);
         }
         return;
     }
