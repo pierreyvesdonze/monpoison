@@ -84,6 +84,8 @@ class UserStatsService
         $encouragementsJson = file_get_contents('../public/assets/json/encouragements.json');
         $encouragementsArray = json_decode($encouragementsJson);
 
+        $daysArray = [1,2,3,4,5,6,7,14,21,30,60,90,120,151,182,212,243,273,304,334,365];
+
         if ($totalSober === 1) {
             return $encouragementsArray->duration->{'1-day'};
         } elseif ($totalSober === 2) {
