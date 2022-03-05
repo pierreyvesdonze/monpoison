@@ -630,9 +630,6 @@ form[name="alcool_test"] {
 	}
 }
 
-/**********************
-FORM 
-**********************/
 form[name="drink"] {
 	margin: auto;
 }
@@ -646,6 +643,23 @@ SOBER
 **********************/
 .sober-card {
 	overflow-y: scroll !important;
+}
+
+/*********************
+SOCIALS ICONS
+*********************/
+
+.badge-img {
+	width: 150px;
+	height: 150px;
+	@include xs {
+		width: 100px;
+		height: 100px;
+	}
+	@include sm {
+		width: 100px;
+		height: 100px;
+	}
 }
 
 /**********************

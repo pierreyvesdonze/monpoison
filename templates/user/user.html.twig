@@ -20,7 +20,7 @@
         <h2>Vos badges</h2>
 
         {% for badge in app.user.badges %}
-            <img src="{{ badge.path }}">
+            <img src="{{ badge.path }}" class="badge-img">
         {% endfor %}
         
         <hr>
