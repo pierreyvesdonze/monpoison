@@ -59,14 +59,17 @@ class UserStatsService
     }
 
     // Set user badges
-    public function setBadges($user) {
+    public function setBadges($user)
+    {
         $totalSobers = $this->getMaxSobrietyPeriod($user);
-        $totalBadges = $this->badgeRepository->findAll();
 
-        foreach ($totalBadges as $badge) {
-            if ($totalSobers == $badge->getTitle()) {
-                $user->addBadge($badge);
-                $this->em->persist($badge);
+        $badgesArray = [7, 14, 21, 30, 60, 90, 120, 151, 182, 212, 243, 273, 304, 334, 365];
+
+        foreach ($badgesArray as $badge) {
+            if ($totalSobers == $badge || $badge <= $totalSobers) {
+                $badgeEntity = $this->badgeRepository->findByTitle($badge);
+                $user->addBadge($badgeEntity[0]);
+                $this->em->persist($badgeEntity[0]);
                 $this->em->flush();
             }
         }

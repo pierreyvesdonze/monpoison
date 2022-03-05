@@ -43,4 +43,16 @@ class BadgeRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * @return Badge[] Returns an array of Badge objects
+     */
+    public function findByTitle($badge)
+    {
+        return $this->createQueryBuilder('b')
+            ->where('b.title = :badge')
+            ->setParameter('badge', $badge)
+            ->getQuery()
+            ->getResult();
+    }
 }
