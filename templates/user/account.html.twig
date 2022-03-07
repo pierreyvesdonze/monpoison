@@ -33,19 +33,17 @@
             <td>
                 {% if app.user.isSubscribed == true %}
                 <a href="{{ path('unsubscribe_posts', {'postId':1}) }}" class="custom-btn"
-                    title="Se désabonner des articles">Me
-                    désabonner des articles</a>
+                    title="Se désabonner des articles">Désinscription</a>
                 {% else %}
                 <a href="{{ path('subscribe_posts', {'emailSubscriber':app.user.email }) }}" class="custom-btn"
-                    title="Se désabonner des articles">M'abonner aux articles</a>
+                    title="Se désabonner des articles">Inscription</a>
                 {% endif %}
             </td>
         </tr>
         <tr>
             <td>Supprimer mon compte</td>
             <td><a href="{{ path('delete_user') }}" title="Supprimer mon compte" class="btn btn-danger"
-                    onclick="return confirm('Supprimer définitivement votre compte et vos enregistrements ?')">Supprimer
-                    mon compte</a></td>
+                    onclick="return confirm('Supprimer définitivement votre compte et vos enregistrements ?')">Suppression</a></td>
         </tr>
     </table>
 </div>
