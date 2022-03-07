@@ -11,15 +11,21 @@
     <h1>S'enregistrer</h1>
     
     {{ form_start(registrationForm) }}
+    <h2>
+        {{ form_errors(registrationForm.email) }}
+    </h2>
+    <h2>
+        {{ form_errors(registrationForm.plainPassword) }}
+    </h2>
 
     {{ form_label(registrationForm.email) }}
     {{ form_widget(registrationForm.email) }}
-
+    
     {{ form_label(registrationForm.pseudo) }}
     {{ form_widget(registrationForm.pseudo) }}
     
-{{ form_label(registrationForm.plainPassword) }}
-{{ form_widget(registrationForm.plainPassword) }}
+    {{ form_label(registrationForm.plainPassword) }}
+    {{ form_widget(registrationForm.plainPassword) }}
 
 
 {{ form_label(registrationForm.agreeTerms) }}

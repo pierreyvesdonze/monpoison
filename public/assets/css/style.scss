@@ -1,8 +1,8 @@
 @import "./responsive";
 
 :root {
-	//--body-bg: url("../images/texture.webp") no-repeat fixed;
-	//--body-bg-small: url("../images/texture-small.webp") no-repeat fixed;
+	//var(--body-bg): url("../images/texture.webp") no-repeat fixed;
+	//var(--body-bg)-small: url("../images/texture-small.webp") no-repeat fixed;
 	--body-bg: linear-gradient(
 		90deg,
 		rgba(21, 30, 34, 1) 21%,
@@ -155,6 +155,9 @@ p {
 	word-wrap: break-word;
 }
 
+/*********************
+MODALS
+*********************/
 .modal-open {
 	color: wheat;
 }
@@ -281,6 +284,9 @@ button.custom-btn {
 	overflow-y: auto;
 }
 
+.btn-encouragements-invisible {
+	display: none !important;
+}
 
 /*********************
 NAV MENU
@@ -496,26 +502,26 @@ HOMEPAGE
 BIG TEXT ANIM
 *********************/
 .big-title-wrapper {
-    height: 300px;
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    text-align: center;
-    background-color: var(--primary-color);
+	height: 300px;
+	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	text-align: center;
+	background-color: var(--semi-transparent);
 }
 
 .grid-big-text {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
 	margin-bottom: 3em;
 	@include xs {
 		margin-bottom: 1em;
@@ -526,46 +532,46 @@ BIG TEXT ANIM
 }
 
 .small {
-    width: 40px;
-    height: 40px;
+	width: 40px;
+	height: 40px;
 	animation: glow 2500ms linear infinite 2000ms;
-    @include sm {
-        width: 14px;
-        height: 14px;
-    }
-    @include xs {
-        width: 10px;
-        height: 10px;
-    }
-}
-	@keyframes glow {
-		40% {
-			text-shadow: 0 0 8px #fff;
-		}
+	@include sm {
+		width: 14px;
+		height: 14px;
 	}
+	@include xs {
+		width: 10px;
+		height: 10px;
+	}
+}
+@keyframes glow {
+	40% {
+		text-shadow: 0 0 8px #fff;
+	}
+}
 
 .square {
-    pointer-events: none;
-    position: relative;
-    width: 70px;
-    height: 50px;
-    margin: 2px;
-    background-color: var(--primary-color);
-    font-size: 6em;
-	   color: wheat;
-    font-weight: 100;
-    @include sm {
-        width: 30px;
-        height: 17px;
-        font-size: 3em;
-        margin-bottom: 1em;
-    }
-    @include xs {
-        width: 30px;
-        height: 17px;
-        font-size: 3em;
-        margin-bottom: 1em;
-    }
+	pointer-events: none;
+	position: relative;
+	width: 70px;
+	height: 50px;
+	margin: 2px;
+	background-color: var(--semi-transparent);
+	font-size: 6em;
+	color: wheat;
+	font-weight: 100;
+	@include sm {
+		width: 30px;
+		height: 17px;
+		font-size: 3em;
+		margin-bottom: 1em;
+	}
+	@include xs {
+		width: 30px;
+		height: 17px;
+		font-size: 3em;
+		margin-bottom: 1em;
+	}
 }
 
 .yellow-big {
@@ -596,7 +602,7 @@ input,
 	background: rgba(0, 0, 0, 0.322);
 	padding: 5px;
 	border: none;
-		text-align: left;
+	text-align: left;
 	box-shadow: inset 2px 2px 3px black;
 	&:focus {
 		outline-color: var(--hover-color);
@@ -608,7 +614,7 @@ input,
 }
 
 input::-webkit-calendar-picker-indicator {
-    filter: invert(1);
+	filter: invert(1);
 }
 
 /**********************
@@ -624,9 +630,6 @@ form[name="alcool_test"] {
 	}
 }
 
-/**********************
-FORM 
-**********************/
 form[name="drink"] {
 	margin: auto;
 }
@@ -640,6 +643,23 @@ SOBER
 **********************/
 .sober-card {
 	overflow-y: scroll !important;
+}
+
+/*********************
+SOCIALS ICONS
+*********************/
+
+.badge-img {
+	width: 150px;
+	height: 150px;
+	@include xs {
+		width: 100px;
+		height: 100px;
+	}
+	@include sm {
+		width: 100px;
+		height: 100px;
+	}
 }
 
 /**********************
@@ -814,7 +834,7 @@ PAGINATOR
 }
 
 /*********************
-ARGUMENTS
+ARGUMENTS & OBJECTIFS
 *********************/
 .flex-left-right {
 	display: flex;
@@ -825,6 +845,11 @@ ARGUMENTS
 	@include sm {
 		flex-direction: column;
 	}
+}
+
+.left,
+.right {
+	width: 50%;
 }
 
 /*********************
@@ -843,26 +868,26 @@ iframe {
 BIG TEXT ANIM
 *********************/
 .big-title-wrapper {
-    height: 300px;
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    text-align: center;
-    background-color: var(--primary-color);
+	height: 300px;
+	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	text-align: center;
+	background-color: var(--semi-transparent);
 }
 
 .grid-big-text {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
 	margin-bottom: 3em;
 	@include xs {
 		margin-bottom: 1em;
@@ -873,46 +898,46 @@ BIG TEXT ANIM
 }
 
 .small {
-    width: 40px;
-    height: 40px;
+	width: 40px;
+	height: 40px;
 	animation: glow 2500ms linear infinite 2000ms;
-    @include sm {
-        width: 14px;
-        height: 14px;
-    }
-    @include xs {
-        width: 10px;
-        height: 10px;
-    }
-}
-	@keyframes glow {
-		40% {
-			text-shadow: 0 0 8px #fff;
-		}
+	@include sm {
+		width: 14px;
+		height: 14px;
 	}
+	@include xs {
+		width: 10px;
+		height: 10px;
+	}
+}
+@keyframes glow {
+	40% {
+		text-shadow: 0 0 8px #fff;
+	}
+}
 
 .square {
-    pointer-events: none;
-    position: relative;
-    width: 70px;
-    height: 50px;
-    margin: 2px;
-    background-color: var(--primary-color);
-    font-size: 6em;
-	   color: wheat;
-    font-weight: 100;
-    @include sm {
-        width: 30px;
-        height: 17px;
-        font-size: 3em;
-        margin-bottom: 1em;
-    }
-    @include xs {
-        width: 30px;
-        height: 17px;
-        font-size: 3em;
-        margin-bottom: 1em;
-    }
+	pointer-events: none;
+	position: relative;
+	width: 70px;
+	height: 50px;
+	margin: 2px;
+	background-color: var(--semi-transparent);
+	font-size: 6em;
+	color: wheat;
+	font-weight: 100;
+	@include sm {
+		width: 30px;
+		height: 17px;
+		font-size: 3em;
+		margin-bottom: 1em;
+	}
+	@include xs {
+		width: 30px;
+		height: 17px;
+		font-size: 3em;
+		margin-bottom: 1em;
+	}
 }
 
 .yellow-big {

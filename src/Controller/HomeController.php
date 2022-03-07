@@ -51,4 +51,12 @@ class HomeController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("pourquoi/creer/un/compte", name="why_register")
+     */
+    public function whyRegister() 
+    {
+        return $this->render('home/why.register.html.twig');
+    }
 }

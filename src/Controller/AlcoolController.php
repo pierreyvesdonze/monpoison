@@ -3,11 +3,8 @@
 namespace App\Controller;
 
 use App\Form\AlcoolTestType;
-use App\Form\ArgumentType;
 use App\Form\EthylotestType;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Entity\ArgumentUser;
-use App\Repository\ArgumentUserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -132,60 +129,5 @@ class AlcoolController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/alcool/avantages/inconvenients", name="alcool_arguments")
-     */
-    public function alcoolArguments(
-        ArgumentUserRepository $arguRepo
-    ): Response {
-        $user = $this->getUser();
-
-        $arguments = $arguRepo->findAllByUser($user);
-     
-        return $this->render('alcool/arguments.html.twig', [
-            'arguments' => $arguments
-        ]);
-    }
-
-    /**
-     * @Route("/alcool/avantages/inconvenients/ajouter", name="alcool_arguments_add")
-     */
-    public function addArgument(Request $request) {
-        
-        $form = $this->createForm(ArgumentType::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $newArgument = new ArgumentUser;
-            $newArgument->setType($form->get('type')->getData());
-            $newArgument->setContent($form->get('content')->getData());
-            $newArgument->setUser($this->getUser());
-
-            $this->entityManager->persist($newArgument);
-            $this->entityManager->flush();
-
-            $this->addFlash('success', "Argument ajouté");
-
-            return $this->redirectToRoute('alcool_arguments');
-        }
-        return $this->render('alcool/add.arguments.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
-
-    /**
-     * @Route("/alcool/avantages/inconvenients/retirer/{id}", name="alcool_arguments_remove")
-     */
-    public function removeArgument(ArgumentUser $argument)
-    {
-        if ($this->getUser() == $argument->getUser()) {
-
-            $this->entityManager->remove($argument);
-            $this->entityManager->flush();
-            
-            $this->addFlash('success', 'Retiré !');
-        }
-        return $this->redirectToRoute('alcool_arguments');
-    }
+    
 }

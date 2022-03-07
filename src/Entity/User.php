@@ -83,12 +83,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $argumentUsers;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Goal::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $goals;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Badge::class, mappedBy="user")
+     */
+    private $badges;
+
     public function __construct()
     {
         $this->drinks = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->date = new ArrayCollection();
         $this->argumentUsers = new ArrayCollection();
+        $this->goals = new ArrayCollection();
+        $this->badges = new ArrayCollection();
     }
 
     public function __toString()
@@ -348,6 +360,63 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($argumentUser->getUser() === $this) {
                 $argumentUser->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Goal[]
+     */
+    public function getGoals(): Collection
+    {
+        return $this->goals;
+    }
+
+    public function addGoal(Goal $goal): self
+    {
+        if (!$this->goals->contains($goal)) {
+            $this->goals[] = $goal;
+            $goal->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGoal(Goal $goal): self
+    {
+        if ($this->goals->removeElement($goal)) {
+            // set the owning side to null (unless already changed)
+            if ($goal->getUser() === $this) {
+                $goal->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Badge[]
+     */
+    public function getBadges(): Collection
+    {
+        return $this->badges;
+    }
+
+    public function addBadge(Badge $badge): self
+    {
+        if (!$this->badges->contains($badge)) {
+            $this->badges[] = $badge;
+            $badge->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBadge(Badge $badge): self
+    {
+        if ($this->badges->removeElement($badge)) {
+            $badge->removeUser($this);
         }
 
         return $this;

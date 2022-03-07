@@ -33,6 +33,20 @@ class DrinkRepository extends ServiceEntityRepository
     }
 
     /**
+     * @return Drink[] Returns an array of Drink objects
+     */
+    public function findDatesByUser($user)
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.user = :val')
+            ->setParameter('val', $user)
+            ->select('d.date')
+            ->orderBy('d.date', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
      * @return Drink[] Returns an array of last week Drink objects
      */
     public function findLastWeekDrinks($user)
@@ -41,6 +55,22 @@ class DrinkRepository extends ServiceEntityRepository
             ->where('d.user = :user')
             ->andWhere('d.date BETWEEN :begin AND :end')
             ->setParameter('begin', new \DateTime('-1 week'))
+            ->setParameter('end', new \DateTime('now'))
+            ->setParameter('user', $user)
+            ->select('SUM(d.quantity)')
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
+     * @return Drink[] Returns an array of last week Drink objects
+     */
+    public function findLastDayDrinks($user)
+    {
+        return $this->createQueryBuilder('d')
+            ->where('d.user = :user')
+            ->andWhere('d.date BETWEEN :begin AND :end')
+            ->setParameter('begin', new \DateTime('-1 day'))
             ->setParameter('end', new \DateTime('now'))
             ->setParameter('user', $user)
             ->select('SUM(d.quantity)')

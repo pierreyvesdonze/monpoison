@@ -11,9 +11,15 @@ var app = {
             document.querySelector('.submit-subscribe').addEventListener('click', app.subscribeToPosts);
         }
 
+        // Welcome modal
         if (window.location.href.indexOf('public/') > -1) {
             app.displayWelcomeModal();
         }
+
+        // Congrats & Alert modal for moderations if no new drink
+        if (true === window.location.href.indexOf('/profile') > -1) {
+            $('.btn-encouragements-invisible').trigger('click');
+        } 
 
         // Fadeout flash message
         if ($('.flash-container').find('.alert').length !== 0) {
@@ -21,6 +27,9 @@ var app = {
                 $('.alert').fadeOut('fast')
             }, 1500);
         }
+
+        //Set goals achievement
+        $('.set-achievement').on('click', app.setGoalAchievement);
 
         // Push Notification btn
         $('#push-permission .custom-btn').on('click', app.askPermission)
@@ -102,7 +111,7 @@ var app = {
         e.preventDefault();
         var emailSubscriber = document.querySelector('.subscribe-mail-input').value;
         console.log($('.container').data('isSubscribed'));
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailSubscriber)) {
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/.test(emailSubscriber)) {
 
             $.ajax(
                 {
@@ -177,6 +186,31 @@ var app = {
             }
         });
     },
+
+    setGoalAchievement: function (e) {
+        e.preventDefault();
+        let achievementStatus = $(this).parent().prev().find('.goalAchievement');
+        achievementStatus.toggleClass('dangerScore').toggleClass('greenScore');
+
+        let goalId = achievementStatus.data('id');
+
+        $.ajax(
+            {
+                url: Routing.generate('set-achievement', { 'goalId': goalId }),
+                method: "POST",
+            }).done(function (response) {
+                e.preventDefault();
+                if (null !== response) {
+                    return;
+                } else {
+                    console.log('Problème');
+                }
+            }).fail(function (jqXHR, textStatus, error) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(error);
+            });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', app.init)

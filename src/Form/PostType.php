@@ -25,6 +25,9 @@ class PostType extends AbstractType
             ->add('content', CKEditorType::class, [
                     'attr' => [
                         'class' => "input-textarea"
+                    ],
+                    'config' => [
+                        'uiColor' => '#000000'
                     ]
                 ])
             ->add('slug', TextType::class, [

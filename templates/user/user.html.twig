@@ -9,12 +9,28 @@
 
 {% block body %}
 
+{% include('user/modal.encouragements.html.twig') %}
+
 <br><br>
 
 <div class="container">
     <h1>Mon profil</h1>
     <hr>
+        {% if badges %}
+        <h2>Vos badges</h2>
+
+        {% for badge in app.user.badges %}
+            <img src="{{ badge.path }}" class="badge-img">
+        {% endfor %}
+        
+        <hr>
+        {% endif %}
+        
     <h2>Statistiques</h2>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn-encouragements-invisible" data-bs-toggle="modal" data-bs-target="#modalEncour"
+        name="open modal">
+    </button>
     <table class="table">
         <tr>
             <td>
@@ -23,38 +39,37 @@
             <td>
                 {% set score = user.alcoolScore %}
                 {% if score is not null %}
-                    {% if score == 0 %}
-                        <span class="greenScore" >
-                            Aucun danger
-                        </span>
-                    {% endif %}
-                    
-                    {% if score > 0 and score <= 5 %} <span class="greenScore" >Faible</span>
-                    {% elseif score >= 6 and score <= 8 %} <span class="middleScore">Moyen</span>
-                    {% elseif score >= 9 and score <= 15 %} <span class="hardScore">Elevé</span>
-                    {% elseif score >= 16 %}
-                                <span class="dangerScore">Danger</span>
-                    {% endif %}
-                    {% else %}
-                        <a href="{{ path('alcool_test') }}" title="Test de dépendance à l'alcool">Faire le test</a>
+                {% if score == 0 %}
+                <span class="greenScore">
+                    Aucun danger
+                </span>
                 {% endif %}
+
+                {% if score > 0 and score <= 5 %} <span class="greenScore">Faible</span>
+                    {% elseif score >= 6 and score <= 8 %} <span class="middleScore">Moyen</span>
+                        {% elseif score >= 9 and score <= 15 %} <span class="hardScore">Elevé</span>
+                            {% elseif score >= 16 %}
+                            <span class="dangerScore">Danger</span>
+                            {% endif %}
+                            {% else %}
+                            <a href="{{ path('alcool_test') }}" title="Test de dépendance à l'alcool">Faire le test</a>
+                            {% endif %}
             </td>
         </tr>
         <tr>
-            <td>Jours d'abstinence</td>
+            <td>Jours d'abstinence au total</td>
             <td>{{ sobers }}</td>
         </tr>
-        <tr>
-            <td>
-                Plus longue période d'abstinence
-            </td>
-            <td>
-                {% if periodMax > 1 %}
-                    {{ periodMax }} jours
-                {% else %}
-                    {{ periodMax}} jour
-                {% endif %}
-            </td>
+        <td>
+            Plus longue période d'abstinence
+        </td>
+        <td>
+            {% if periodMax > 1 %}
+            {{ periodMax }} jours
+            {% else %}
+            {{ periodMax}} jour
+            {% endif %}
+        </td>
         </tr>
         <tr>
             <td>
@@ -101,8 +116,16 @@
                 /
                 <span class="hardScore">
                     {{ ratioAdvInconv['inconvenient']|round }}%
+                </span>
             </td>
-            </span>
+        <tr>
+            <td>
+                Objectifs atteints
+            </td>
+            <td>
+                {{ goalsRatio['positive'] }} / {{ goalsRatio['total'] }}
+            </td>
+        </tr>
         </tr>
         </tr>
         <tr>
@@ -143,18 +166,5 @@
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
         defer></script>
-    <hr>
-
-    <p>
-    <h2>Options</h2>
-    {# <a href="#" class="custom-btn">Recevoir des notifications</a> #}
-    <br><br>
-    <a href="{{ path('unsubscribe_posts', {'postId':1}) }}" class="custom-btn" title="Se désabonner des articles">Se
-        désabonner des articles</a>
-    <br><br>
-    <a href="{{ path('delete_user') }}" title="Supprimer mon compte" class="btn btn-danger"
-        onclick="return confirm('Supprimer définitivement votre compte et vos enregistrements ?')">Supprimer mon
-        compte</a>
-    </p>
 </div>
 {% endblock %}

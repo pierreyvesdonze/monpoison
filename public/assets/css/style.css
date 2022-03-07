@@ -185,6 +185,9 @@ p {
   word-wrap: break-word;
 }
 
+/*********************
+MODALS
+*********************/
 .modal-open {
   color: wheat;
 }
@@ -324,6 +327,10 @@ button.custom-btn {
 
 #welcomeModal {
   overflow-y: auto;
+}
+
+.btn-encouragements-invisible {
+  display: none !important;
 }
 
 /*********************
@@ -621,7 +628,7 @@ BIG TEXT ANIM
   -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
-  background-color: var(--primary-color);
+  background-color: var(--semi-transparent);
 }
 
 .grid-big-text {
@@ -687,7 +694,7 @@ BIG TEXT ANIM
   width: 70px;
   height: 50px;
   margin: 2px;
-  background-color: var(--primary-color);
+  background-color: var(--semi-transparent);
   font-size: 6em;
   color: wheat;
   font-weight: 100;
@@ -780,9 +787,6 @@ form[name="alcool_test"] {
   }
 }
 
-/**********************
-FORM 
-**********************/
 form[name="drink"] {
   margin: auto;
 }
@@ -796,6 +800,28 @@ SOBER
 **********************/
 .sober-card {
   overflow-y: scroll !important;
+}
+
+/*********************
+SOCIALS ICONS
+*********************/
+.badge-img {
+  width: 150px;
+  height: 150px;
+}
+
+@media (min-width: 300px) and (max-width: 576px) {
+  .badge-img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .badge-img {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 /**********************
@@ -1035,7 +1061,7 @@ PAGINATOR
 }
 
 /*********************
-ARGUMENTS
+ARGUMENTS & OBJECTIFS
 *********************/
 .flex-left-right {
   display: -webkit-box;
@@ -1061,6 +1087,11 @@ ARGUMENTS
         -ms-flex-direction: column;
             flex-direction: column;
   }
+}
+
+.left,
+.right {
+  width: 50%;
 }
 
 /*********************
@@ -1095,7 +1126,7 @@ BIG TEXT ANIM
   -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
-  background-color: var(--primary-color);
+  background-color: var(--semi-transparent);
 }
 
 .grid-big-text {
@@ -1155,7 +1186,7 @@ BIG TEXT ANIM
   width: 70px;
   height: 50px;
   margin: 2px;
-  background-color: var(--primary-color);
+  background-color: var(--semi-transparent);
   font-size: 6em;
   color: wheat;
   font-weight: 100;

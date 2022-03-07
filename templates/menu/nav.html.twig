@@ -20,17 +20,35 @@
                         Mon profil
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" rel="noreferrer" href="{{ path('user_account') }}"
-                                title="Tableau de bord de mes consommations">Tableau de bord</a></li>
+                        <li>
+                            <a class="dropdown-item" rel="noreferrer" href="{{ path('user_account') }}"
+                                title="Compte personnel">Mon compte
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" rel="noreferrer" href="{{ path('user_board') }}"
+                                title="Tableau de bord de mes consommations">Tableau de bord
+                            </a>
+                        </li>
                         <li><a class="dropdown-item" rel="noreferrer" href="{{ path('drink_calendar') }}"
                                 title="Suivi de mes consommations">Mes consommations</a></li>
-                        <li><a class="dropdown-item" rel="noreferrer" href="{{ path('alcool_arguments') }}"
-                                title="Avantages et inconvénients">Mes
-                                arguments</a></li>
                         <li>
-                            <a class="dropdown-item" rel="noreferrer" aria-current="page" href="{{ path('logout') }}"
-                                title="Déconnexion">Se
+                            <a class="dropdown-item" rel="noreferrer" href="{{ path('alcool_arguments') }}"
+                                title="Avantages et inconvénients">Mes
+                                arguments</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" rel="noreferrer" href="{{ path('goals') }}"
+                                title="Objectifs à atteindre">Mes objectifs</a>
+                        </li>
+                        <li> <a class="dropdown-item" rel="noreferrer" aria-current="page" href="{{ path('logout') }}"
+                                title="Déconnexion">Me
                                 déconnecter</a>
+                        </li>
+                        <li>
+                            <a href="{{path('why_register')}}" type="button" class="dropdown-item"
+                                title="pourquoi s'enregistrer">Pourquoi
+                                m'enregistrer ?</a>
                         </li>
                     </ul>
                 </li>
@@ -45,12 +63,16 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
                             <a href="{{path('login')}}" type="button" class="dropdown-item" rel="noreferrer"
-                                title="Se connecter">Se
+                                title="Se connecter">Me
                                 connecter</a>
                         </li>
                         <li>
                             <a href="{{path('app_register')}}" type="button" class="dropdown-item"
-                                title="S'enregistrer">S'enregistrer</a>
+                                title="S'enregistrer">Créer un compte</a>
+                        </li>
+                        <li>
+                            <a href="{{path('why_register')}}" type="button" class="dropdown-item"
+                                title="pourquoi s'enregistrer">Pourquoi m'enregistrer ?</a>
                         </li>
                     </ul>
                 </li>
@@ -90,6 +112,9 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ path('testimonials') }}" class="nav-link" title="temoignages">Témoignages</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownHelp" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -101,13 +126,21 @@
                                 title="L'alcool en chiffres">L'alcool en chiffres</a>
                         </li>
                         <li>
-                            <a href="{{ path('testimonials') }}" class="dropdown-item"
-                                title="temoignages">Témoignages</a>
-                        </li>
-                        <li>
                             <a href="https://annuaire.action-sociale.org/etablissements/readaptation-sociale/centre-de-soins-accompagnement-prevention-addictologie-197.html"
                                 title="centres csapa en France" class="dropdown-item" target='_blank'
                                 rel="noreferrer">Liste des csapa</a>
+                        </li>
+                        <li>
+                            <a href="https://www.alcooliques-anonymes.fr/recherche-de-reunion/"
+                                title="alcooliques anonymes en France" class="dropdown-item" target='_blank' rel="noreferrer">Liste des alcooliques anonymes</a>
+                        </li>
+                        <li>
+                            <a href="https://www.baclofene.org/" title="association baclofene" class="dropdown-item"
+                                target='_blank' rel="noreferrer">Association Baclofène</a>
+                        </li>
+                        <li>
+                            <a href="https://www.alcool-info-service.fr/" title="alcool info service"
+                                class="dropdown-item" target='_blank' rel="noreferrer">Alcool info service</a>
                         </li>
                     </ul>
                 </li>
