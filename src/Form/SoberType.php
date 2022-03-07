@@ -24,12 +24,16 @@ class SoberType extends AbstractType
             'widget' => 'single_text',
             ])
 
-            ->add('submit', SubmitType::class, [
+            ->add(
+                'submit',
+                SubmitType::class,
+                [
                 'label' => 'Envoyer',
                 'attr' => [
                     'class' => 'custom-btn'
                 ]
-            ]);
+            ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

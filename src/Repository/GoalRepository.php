@@ -19,8 +19,8 @@ class GoalRepository extends ServiceEntityRepository
         parent::__construct($registry, Goal::class);
     }
 
-     /**
-      * @return Goal[] Returns an array of Goal objects
+    /**
+     * @return Goal[] Returns an array of Goal objects
     */
     public function findByUser($user)
     {

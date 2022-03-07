@@ -97,7 +97,6 @@ class CommentController extends AbstractController
     public function delete(
         Comment $comment
     ): Response {
-
         $this->em->remove($comment);
         $this->em->flush();
 

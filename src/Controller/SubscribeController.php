@@ -35,7 +35,7 @@ class SubscribeController extends AbstractController
             ]);
 
             if (false == $existingSubscriber) {
-                $newSubscriber = new Subscriber;
+                $newSubscriber = new Subscriber();
                 $newSubscriber->setEmail($emailSubscriber);
 
                 $this->em->persist($newSubscriber);

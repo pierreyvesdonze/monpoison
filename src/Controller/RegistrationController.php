@@ -25,16 +25,17 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasherInterface,
-    UserRepository $userRepository
-    ): Response
-    {
+    public function register(
+        Request $request,
+        UserPasswordHasherInterface $userPasswordHasherInterface,
+        UserRepository $userRepository
+    ): Response {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             // encode the plain password
             if (strlen($form->get('plainPassword')->getData()) < 6) {
                 $this->addFlash('danger', 'Votre mot de passe doit contenir 6 caractères');
@@ -68,10 +69,10 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('login');
         } else {
             $checkIfUserExists = $userRepository->checkIfExists($form->get('email')->getData());
-            
+
             if (true == $checkIfUserExists) {
                 $this->addFlash('danger', 'Un compte associé à cet email existe déjà.');
-                
+
                 return $this->redirectToRoute('login');
             }
         }

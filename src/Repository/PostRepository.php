@@ -19,9 +19,9 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-     /**
-     * @return Post[] Returns an array of Post objects
-     */
+    /**
+    * @return Post[] Returns an array of Post objects
+    */
     public function findAllByDesc()
     {
         return $this->createQueryBuilder('p')

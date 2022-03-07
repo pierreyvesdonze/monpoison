@@ -55,7 +55,7 @@ class HomeController extends AbstractController
     /**
      * @Route("pourquoi/creer/un/compte", name="why_register")
      */
-    public function whyRegister() 
+    public function whyRegister()
     {
         return $this->render('home/why.register.html.twig');
     }

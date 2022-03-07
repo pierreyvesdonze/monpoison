@@ -128,6 +128,4 @@ class AlcoolController extends AbstractController
             'score' => $score
         ]);
     }
-
-    
 }

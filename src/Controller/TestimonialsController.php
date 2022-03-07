@@ -34,8 +34,7 @@ class TestimonialsController extends AbstractController
         Request $request,
         EntityManagerInterface $entityManager,
         MailService $mailService
-        ): Response
-    {
+    ): Response {
         $testimonial = new Testimonials();
         $form = $this->createForm(TestimonialsType::class, $testimonial);
         $form->handleRequest($request);

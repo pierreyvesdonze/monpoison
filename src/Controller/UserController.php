@@ -3,14 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\ArgumentUser;
-use App\Entity\Badge;
 use App\Entity\Goal;
 use App\Form\ArgumentType;
 use App\Form\GoalType;
 use App\Repository\ArgumentUserRepository;
-use App\Repository\BadgeRepository;
 use App\Repository\GoalRepository;
-use App\Repository\SoberRepository;
 use App\Service\UserStatsService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -52,7 +49,7 @@ class UserController extends AbstractController
         $lastWeekDrinks = $userStatsService->getLastWeekDrinks($user);
 
         // Get Last day drink
-        $lastDayDrinks = $userStatsService->getLastDayDrinks($user);
+        $lastDayDrinks  = $userStatsService->getLastDayDrinks($user);
 
         // Get 7 days cost
         $lastWeekCost   = $userStatsService->getLastWeekCost($user);
@@ -60,7 +57,7 @@ class UserController extends AbstractController
         // Get all days of drinking day by day
         $weekDrinks     = $userStatsService->getDrinksByDay($user);
 
-        // Get ratio of arguments & inconvenient 
+        // Get ratio of arguments & inconvenient
         $ratioAdvInconv = $userStatsService->getRatioAdvantageInconvenient($user);
 
         // Get ratio of goals
@@ -71,7 +68,7 @@ class UserController extends AbstractController
 
         // Set Badges
         $userStatsService->setBadges($user);
-        
+
         // Get Badges
         $badges         = $userStatsService->getBadges($user);
 
@@ -90,28 +87,6 @@ class UserController extends AbstractController
             'badges'         => $badges
         ]);
     }
-
-    /**
-     * @Route("user/ajouter/badges", name="user_set_badges")
-     */
-    // public function setBadges(
-    //     BadgeRepository $badgeRepository,
-    //     UserStatsService $userStatsService
-    // ) {
-    //     $user = $this->getUser();
-    //     $totalSobers = $userStatsService->getMaxSobrietyPeriod($user);
-    //     $totalBadges = $badgeRepository->findAll();
-
-    //     foreach ($totalBadges as $badge) {            
-    //         if ($totalSobers > 1 && $totalSobers <= $badge->getTitle()) {
-    //             $user->addBadge($badge);
-    //             $this->em->persist($badge);
-    //             $this->em->flush();
-    //          }
-    //     }
-
-    //     return $this->redirectToRoute('user_board');
-    // }
 
     /**
      * @Route("/alcool/avantages/inconvenients", name="alcool_arguments")
@@ -133,13 +108,11 @@ class UserController extends AbstractController
      */
     public function addArgument(Request $request)
     {
-
         $form = $this->createForm(ArgumentType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $newArgument = new ArgumentUser;
+            $newArgument = new ArgumentUser();
             $newArgument->setType($form->get('type')->getData());
             $newArgument->setContent($form->get('content')->getData());
             $newArgument->setUser($this->getUser());
@@ -162,7 +135,6 @@ class UserController extends AbstractController
     public function removeArgument(ArgumentUser $argument)
     {
         if ($this->getUser() == $argument->getUser()) {
-
             $this->em->remove($argument);
             $this->em->flush();
 
@@ -192,8 +164,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $goal = new Goal;
+            $goal = new Goal();
             $goal->setContent($form->get('content')->getData());
             $goal->setIsAchieved($form->get('isAchieved')->getData());
             $goal->setUser($this->getUser());

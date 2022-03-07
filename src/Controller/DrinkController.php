@@ -14,8 +14,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class DrinkController extends AbstractController
 {
     public function __construct(
-       private  EntityManagerInterface $entityManager
-    ) {}
+        private  EntityManagerInterface $entityManager
+    ) {
+    }
 
     /**
      * @Route("/consommations/voir", name="drink_calendar")
@@ -23,8 +24,7 @@ class DrinkController extends AbstractController
     public function getCalendar(
         DrinkRepository $drinkRepository,
         SoberRepository $soberRepository
-        )
-    {
+    ) {
         $drinks = $drinkRepository->findByUser($this->getUser());
         $sobers = $soberRepository->findByUser($this->getUser());
 
@@ -40,8 +40,7 @@ class DrinkController extends AbstractController
     public function addDrink(
         Request $request,
         DrinkRepository $drinkRepository
-        )
-    {
+    ) {
         $form = $this->createForm(DrinkType::class);
         $form->handleRequest($request);
 
@@ -50,8 +49,8 @@ class DrinkController extends AbstractController
             // Check for existing drink (same alcool + same date)
             $existingDrink = $drinkRepository->findExistingDrink($this->getUser(), $form->get('date')->getData(), $form->get('alcool')->getData());
 
-            if(!$existingDrink) {
-                $drink = new Drink;
+            if (!$existingDrink) {
+                $drink = new Drink();
                 $drink->setCost($form->get('cost')->getData());
                 $drink->setQuantity($form->get('quantity')->getData());
             } else {
@@ -62,7 +61,7 @@ class DrinkController extends AbstractController
 
             $drink->setUser($this->getUser());
             $drink->setAlcool($form->get('alcool')->getData());
-            $drink->setDate($form->get('date')->getData());     
+            $drink->setDate($form->get('date')->getData());
 
             $this->entityManager->persist($drink);
             $this->entityManager->flush();
@@ -86,14 +85,13 @@ class DrinkController extends AbstractController
     ) {
         $form = $this->createForm(DrinkType::class, $drink);
         $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()) {
 
+        if ($form->isSubmitted() && $form->isValid()) {
             $drink->setAlcool($form->get('alcool')->getData());
             $drink->setDate($form->get('date')->getData());
             $drink->setQuantity($form->get('quantity')->getData());
             $drink->setCost($form->get('cost')->getData());
-      
+
             $this->entityManager->flush();
             $this->addFlash('success', 'Consommation mise à jour !');
 

@@ -19,7 +19,6 @@ class MailService
      */
     public function sendCommentMail($comment, $user)
     {
-
         $message = (new TemplatedEmail())
             ->from($user->getEmail())
             ->to(

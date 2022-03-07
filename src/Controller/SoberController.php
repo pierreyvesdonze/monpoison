@@ -24,8 +24,7 @@ class SoberController extends AbstractController
     public function addSober(
         Request $request,
         SoberRepository $soberRepository
-        ): Response
-    {
+    ): Response {
         $form = $this->createForm(SoberType::class);
         $form->handleRequest($request);
 
@@ -33,15 +32,16 @@ class SoberController extends AbstractController
             $user = $this->getUser();
 
             $formDate = $form->get('date')->getData();
-    
-            if ($formDate = $soberRepository->findByUserAndByDate($user,
+
+            if ($formDate = $soberRepository->findByUserAndByDate(
+                $user,
                 $formDate
             )) {
                 $this->addFlash('danger', 'Vous avez déjà été sobre ce jour là : ' . $formDate[0]->getDate()->format('d/m/y'));
 
                 return $this->redirectToRoute('drink_calendar');
             }
-            $newSober = new Sober;
+            $newSober = new Sober();
             $newSober->setUser($this->getUser());
             $newSober->setDate($form->get('date')->getData());
 

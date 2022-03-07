@@ -1,0 +1,4 @@
+#cmd to run cs-fixer
+
+tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src
+

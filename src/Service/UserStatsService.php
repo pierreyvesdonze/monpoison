@@ -186,7 +186,7 @@ class UserStatsService
         $statsArray['xSober']     = $xSober;
         $statsArray['xBeer']      = $xBeer;
         $statsArray['xWine']      = $xWine;
-        $statsArray['xSpiritus'] = $xSpiritus;
+        $statsArray['xSpiritus']  = $xSpiritus;
 
         return $statsArray;
     }
@@ -256,7 +256,6 @@ class UserStatsService
 
     public function getGoals($user)
     {
-
         $positiveGoals = count($this->goalRepository->findPositiveGoalsByUser($user));
         $totalGoals = count($this->goalRepository->getTotalGoals($user));
         $goalRatio = [];
