@@ -17,10 +17,10 @@
     <h1>Mon profil</h1>
     <hr>
         {% if badges %}
-        <h2>Vos badges</h2>
+        <h2>Mes badges</h2>
 
         {% for badge in app.user.badges %}
-            <img src="{{ badge.path }}" class="badge-img">
+            <img src="{{ badge.path }}" class="badge-img" alt="badge-img">
         {% endfor %}
         
         <hr>

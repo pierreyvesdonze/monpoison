@@ -19,7 +19,7 @@ var app = {
         // Congrats & Alert modal for moderations if no new drink
         if (true === window.location.href.indexOf('/profile') > -1) {
             $('.btn-encouragements-invisible').trigger('click');
-        } 
+        }
 
         // Fadeout flash message
         if ($('.flash-container').find('.alert').length !== 0) {
@@ -58,8 +58,13 @@ var app = {
                     ],
                     delay: anime.stagger(200, { grid: [14, 5], from: 'center' })
                 });
-            } 
+            }
         });
+
+        // Loading spinner animation
+        $(window).on('load', function () {
+            $('.loader').hide();
+        })
 
 
         /**
@@ -210,7 +215,7 @@ var app = {
                 console.log(textStatus);
                 console.log(error);
             });
-    }
+    },
 }
 
 document.addEventListener('DOMContentLoaded', app.init)
