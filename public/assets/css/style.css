@@ -1242,7 +1242,7 @@ LOADER ANIM
   top: 0%;
   -webkit-animation: rotate-one 1s linear infinite;
           animation: rotate-one 1s linear infinite;
-  border-bottom: 3px solid #EFEFFA;
+  border-bottom: 3px solid wheat;
 }
 
 .inner.two {
@@ -1250,7 +1250,7 @@ LOADER ANIM
   top: 0%;
   -webkit-animation: rotate-two 1s linear infinite;
           animation: rotate-two 1s linear infinite;
-  border-right: 3px solid #EFEFFA;
+  border-right: 3px solid wheat;
 }
 
 .inner.three {
@@ -1258,7 +1258,7 @@ LOADER ANIM
   bottom: 0%;
   -webkit-animation: rotate-three 1s linear infinite;
           animation: rotate-three 1s linear infinite;
-  border-top: 3px solid #EFEFFA;
+  border-top: 3px solid wheat;
 }
 
 @-webkit-keyframes rotate-one {

@@ -23,16 +23,13 @@ var app = {
 
         // Fadeout flash message
         if ($('.flash-container').find('.alert').length !== 0) {
-            setTimeout(function () {
+            setTimeout(() => {
                 $('.alert').fadeOut('fast')
             }, 1500);
         }
 
         //Set goals achievement
         $('.set-achievement').on('click', app.setGoalAchievement);
-
-        // Push Notification btn
-        $('#push-permission .custom-btn').on('click', app.askPermission)
 
         document.querySelector('.navbar-toggler').addEventListener('click', app.disableSocialLinks)
 
@@ -61,11 +58,14 @@ var app = {
             }
         });
 
-        // Loading spinner animation
-        $(window).on('load', function () {
+        /**
+        * *****************************
+        * LOADING ANIMATION
+        * *****************************
+        */
+        $(window).on('load', () => {
             $('.loader').hide();
         })
-
 
         /**
         * *****************************
@@ -80,39 +80,12 @@ var app = {
             e.preventDefault();
             window.scroll({ top: 0, left: 0, behavior: 'smooth' });
         });
-
-        /**
-       * *****************************
-       * PWA INSTALLER
-       * *****************************
-       */
-        let deferredPrompt; // Allows to show the install prompt
-        const installButton = document.getElementById("buttonInstallPwa");
-
-        if (window.matchMedia('(display-mode: standalone)').matches) {
-            app.installButton.style.display = "none";
-        }
-
-        window.addEventListener('appinstalled', () => {
-            app.installButton.display = 'none';
-        });
-
-        // installButton.addEventListener("click", app.installApp);
-        window.addEventListener("beforeinstallprompt", e => {
-            console.log("beforeinstallprompt fired");
-            // Prevent Chrome 76 and earlier from automatically showing a prompt
-            e.preventDefault();
-            // Stash the event so it can be triggered later.
-            app.deferredPrompt = e;
-            // Show the install button
-            installButton.hidden = false;
-        });
     },
-
+    
     /**
      * Subscribe to posts
      */
-    subscribeToPosts: function (e) {
+    subscribeToPosts: (e) => {
         e.preventDefault();
         var emailSubscriber = document.querySelector('.subscribe-mail-input').value;
         console.log($('.container').data('isSubscribed'));
@@ -141,42 +114,24 @@ var app = {
         }
     },
 
-    disableSocialLinks: function (params) {
+    disableSocialLinks: () => {
         let $socialIcons = $('.social-icons')
         $('.navbar-toggler').hasClass('collapsed') ? $socialIcons.fadeIn('slow') : $socialIcons.fadeOut('fast');
     },
 
-    displayWelcomeModal: function () {
+    displayWelcomeModal: () => {
         let showModal = localStorage.getItem('showModal')
         if (showModal != 'showModalTrue') {
 
             $('#btnWelcomeModal').trigger('click');
-            setTimeout(function () {
+            setTimeout(() => {
                 $('.close-welcome-modal').trigger('click')
             }, 1500);
             localStorage.setItem('showModal', 'showModalTrue');
         }
     },
 
-    installApp: function () {
-        console.log('installing PWA')
-        app.deferredPrompt.prompt();
-        installButton.disabled = true;
-
-        // Wait for the user to respond to the prompt
-        deferredPrompt.userChoice.then(choiceResult => {
-            if (choiceResult.outcome === "accepted") {
-                console.log("PWA setup accepted");
-                installButton.hidden = true;
-            } else {
-                console.log("PWA setup rejected");
-            }
-            installButton.disabled = false;
-            deferredPrompt = null;
-        });
-    },
-
-    searchPost: function (e) {
+    searchPost: (e) => {
 
         e.preventDefault();
         let userInput = $('.search-post input').val();
@@ -184,7 +139,7 @@ var app = {
         $('.container-post').hide();
         $('.container-post:contains("' + userInput + '")').show()
 
-        $(window).keydown(function (event) {
+        $(window).keydown((event) => {
             if (event.keyCode == 13) {
                 event.preventDefault();
                 return false;
