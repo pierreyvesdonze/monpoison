@@ -37,6 +37,11 @@ var app = {
         $('#search-post-btn').on('click', app.searchPost)
         $('.search-post').on('keyup', app.searchPost)
 
+        // Redirect to consommations if user is connected
+        if ($('.hidden-user').data('user') !== null) {
+            console.log(location.pathname);
+        }
+
         /**
           * *****************************
           * TITLES ANIMATIONS
@@ -81,7 +86,7 @@ var app = {
             window.scroll({ top: 0, left: 0, behavior: 'smooth' });
         });
     },
-    
+
     /**
      * Subscribe to posts
      */

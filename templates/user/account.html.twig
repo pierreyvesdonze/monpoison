@@ -14,6 +14,7 @@
 <div class="container">
     <h1>Mon compte</h1>
     <br>
+    <h2>Informations</h2>
     <table class="table">
         <tr>
             <td>Email</td>
@@ -46,6 +47,13 @@
                     onclick="return confirm('Supprimer définitivement votre compte et vos enregistrements ?')">Suppression</a></td>
         </tr>
     </table>
+
+    <br><br>
+    <hr class="hr-white">
+    <h2>Options</h2>
+    <div class="container">
+        {{ form(form) }}
+    </div>
 </div>
 
 {% endblock %}

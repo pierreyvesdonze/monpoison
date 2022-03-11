@@ -93,6 +93,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $badges;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $homepage;
+
     public function __construct()
     {
         $this->drinks = new ArrayCollection();
@@ -418,6 +423,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->badges->removeElement($badge)) {
             $badge->removeUser($this);
         }
+
+        return $this;
+    }
+
+    public function getHomepage(): ?string
+    {
+        return $this->homepage;
+    }
+
+    public function setHomepage(?string $homepage): self
+    {
+        $this->homepage = $homepage;
 
         return $this;
     }

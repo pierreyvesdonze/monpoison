@@ -6,6 +6,7 @@ use App\Entity\ArgumentUser;
 use App\Entity\Goal;
 use App\Form\ArgumentType;
 use App\Form\GoalType;
+use App\Form\UserHomepageType;
 use App\Repository\ArgumentUserRepository;
 use App\Repository\GoalRepository;
 use App\Service\UserStatsService;
@@ -24,9 +25,32 @@ class UserController extends AbstractController
     /**
      * @Route("/user/compte", name="user_account")
      */
-    public function index(): Response
+    public function account(Request $request): Response
     {
-        return $this->render('user/account.html.twig');
+        $user = $this->getUser();
+        if ($user) {
+            $form = $this->createForm(UserHomepageType::class);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $formData = $form->get('homepage')->getData();
+                if (0 === $formData) {
+                    $user->setHomepage('home');
+                } elseif (1 === $formData) {
+                    $user->setHomepage('drink_calendar');
+                } elseif (2 === $formData) {
+                    $user->setHomepage('user_account');
+                } elseif (3 == $formData) {
+                    $user->setHomepage('user_board');
+                }
+                $this->em->flush();
+                $this->addFlash('success', 'Paramètre enregistré');
+            }
+        }
+
+        return $this->render('user/account.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
     /**
