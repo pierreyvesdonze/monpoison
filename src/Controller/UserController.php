@@ -46,6 +46,8 @@ class UserController extends AbstractController
                 $this->em->flush();
                 $this->addFlash('success', 'Paramètre enregistré');
             }
+        } else {
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('user/account.html.twig', [
