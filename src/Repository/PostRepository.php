@@ -25,8 +25,7 @@ class PostRepository extends ServiceEntityRepository
     public function findAllByDesc()
     {
         return $this->createQueryBuilder('p')
-            ->orderBy('p.id', 'DESC')
-            ->setMaxResults(10)
+            ->orderBy('p.date', 'DESC')
             ->getQuery()
             ->getResult()
         ;
