@@ -205,8 +205,6 @@ BUTTONS
 .btn-danger {
   display: inline-block;
   text-decoration: none;
-  text-shadow: 0 0 15px white, 0 2px 4px rgba(0, 0, 0, 0.7);
-  /* drop shadow */
   text-align: center;
   border: none;
   padding: 0.45rem 0.45rem;
@@ -267,6 +265,11 @@ BUTTONS
 .custom-btn-right,
 .twitter-share-button {
   padding: 0;
+}
+
+.btn-settings {
+  -webkit-box-shadow: 0 0 0 0 black;
+          box-shadow: 0 0 0 0 black;
 }
 
 .btn-settings,
@@ -878,7 +881,10 @@ CARD CONSO
   box-shadow: -6px 0px 7px 1px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: -6px 0px 7px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -6px 0px 7px 1px rgba(0, 0, 0, 0.75);
-  background-color: #2e2e2e21;
+  background: #8fa6ad;
+  background: -webkit-gradient(linear, left top, right top, color-stop(8%, rgba(143, 166, 173, 0.927609)), color-stop(31%, #53637c), color-stop(49%, #3f3e5d), color-stop(72%, #392a3d), color-stop(95%, #171118));
+  background: linear-gradient(90deg, rgba(143, 166, 173, 0.927609) 8%, #53637c 31%, #3f3e5d 49%, #392a3d 72%, #171118 95%);
+  border: 0;
   border-radius: 0 17px;
   margin-bottom: 2em;
   margin-right: -50px;
@@ -916,6 +922,10 @@ CARD CONSO
             transform: perspective(0) rotateY(0deg);
     opacity: 1;
   }
+}
+
+.card:first-of-type {
+  background: #2e2e2e21;
 }
 
 .card-text {

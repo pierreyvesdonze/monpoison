@@ -175,7 +175,6 @@ BUTTONS
 .btn-danger {
 	display: inline-block;
 	text-decoration: none;
-	text-shadow: 0 0 15px hsla(0, 0%, 100%, 1), /* bloom */ 0 2px 4px hsla(0, 0%, 0%, 0.7); /* drop shadow */
 	text-align: center;
 	border: none;
 	padding: 0.45rem 0.45rem;
@@ -227,6 +226,10 @@ BUTTONS
 .custom-btn-right,
 .twitter-share-button {
 	padding: 0;
+}
+
+.btn-settings {
+	box-shadow: 0 0 0 0 black;
 }
 
 .btn-settings,
@@ -708,7 +711,9 @@ CARD CONSO
 	box-shadow: -6px 0px 7px 1px rgba(0, 0, 0, 0.75);
 	-webkit-box-shadow: -6px 0px 7px 1px rgba(0, 0, 0, 0.75);
 	-moz-box-shadow: -6px 0px 7px 1px rgba(0, 0, 0, 0.75);
-	background-color: #2e2e2e21;
+	background: rgb(143,166,173);
+background: linear-gradient(90deg, rgba(143,166,173,0.927608543417367) 8%, rgba(83,99,124,1) 31%, rgba(63,62,93,1) 49%, rgba(57,42,61,1) 72%, rgba(23,17,24,1) 95%);
+	border: 0;
 	border-radius: 0 17px;
 	margin-bottom: 2em;
 	margin-right: -50px;
@@ -733,6 +738,10 @@ CARD CONSO
 		transform: perspective(0) rotateY(0deg);
 		opacity: 1;
 	}
+}
+
+.card:first-of-type {
+	background: #2e2e2e21;
 }
 
 .card-text {
@@ -944,73 +953,71 @@ BIG TEXT ANIM
 	color: var(--hover-color);
 }
 
-
-
 /*********************
 LOADER ANIM
 *********************/
 .loader {
-  position: absolute;
-  top: calc(50% - 32px);
-  left: calc(50% - 32px);
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  perspective: 800px;
+	position: absolute;
+	top: calc(50% - 32px);
+	left: calc(50% - 32px);
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	perspective: 800px;
 }
 
 .inner {
-  position: absolute;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;  
+	position: absolute;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
 }
 
 .inner.one {
-  left: 0%;
-  top: 0%;
-  animation: rotate-one 1s linear infinite;
-  border-bottom: 3px solid wheat
+	left: 0%;
+	top: 0%;
+	animation: rotate-one 1s linear infinite;
+	border-bottom: 3px solid wheat;
 }
 
 .inner.two {
-  right: 0%;
-  top: 0%;
-  animation: rotate-two 1s linear infinite;
-  border-right: 3px solid wheat;
+	right: 0%;
+	top: 0%;
+	animation: rotate-two 1s linear infinite;
+	border-right: 3px solid wheat;
 }
 
 .inner.three {
-  right: 0%;
-  bottom: 0%;
-  animation: rotate-three 1s linear infinite;
-  border-top: 3px solid wheat;
+	right: 0%;
+	bottom: 0%;
+	animation: rotate-three 1s linear infinite;
+	border-top: 3px solid wheat;
 }
 
 @keyframes rotate-one {
-  0% {
-    transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
-  }
-  100% {
-    transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
-  }
+	0% {
+		transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+	}
+	100% {
+		transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+	}
 }
 
 @keyframes rotate-two {
-  0% {
-    transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
-  }
-  100% {
-    transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
-  }
+	0% {
+		transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+	}
+	100% {
+		transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+	}
 }
 
 @keyframes rotate-three {
-  0% {
-    transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
-  }
-  100% {
-    transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
-  }
+	0% {
+		transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+	}
+	100% {
+		transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+	}
 }

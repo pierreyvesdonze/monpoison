@@ -27,7 +27,6 @@ class PostController extends AbstractController
     #[Route('s', name: 'post_index', methods: ['GET'])]
     public function index(
         PostRepository $postRepository,
-        Request $request,
         PaginatorInterface $paginator
     ): Response {
         $data = $postRepository->findBy([], ['date' => 'desc']);
