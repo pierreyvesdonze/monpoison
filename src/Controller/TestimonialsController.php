@@ -7,6 +7,7 @@ use App\Form\TestimonialsType;
 use App\Repository\TestimonialsRepository;
 use App\Service\MailService;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,12 +21,21 @@ class TestimonialsController extends AbstractController
     /**
      * @Route("s", name="testimonials", methods="GET")
      */
-    public function index(TestimonialsRepository $testimonialsRepository): Response
+    public function index(
+        TestimonialsRepository $testimonialsRepository,
+        PaginatorInterface $paginator,
+        Request $request
+        ): Response
     {
+        $data = $testimonialsRepository->findAllByDescId();
+        $testimonials = $paginator->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            6
+        );
+
         return $this->render('testimonials/testimonials.html.twig', [
-            'testimonials' => $testimonialsRepository->findBy([], [
-                'id' => 'DESC'
-            ]),
+            'testimonials' => $testimonials
         ]);
     }
 
@@ -61,7 +71,10 @@ class TestimonialsController extends AbstractController
     }
 
     #[Route('/voir/{id}', name: 'testimonials_show', methods: ['GET'])]
-    public function show(Testimonials $testimonial): Response
+    public function show(
+        Testimonials $testimonial,
+        PaginatorInterface $paginatorInterface
+        ): Response
     {
         return $this->render('testimonials/show.html.twig', [
             'testimonial' => $testimonial,
