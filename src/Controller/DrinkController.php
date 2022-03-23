@@ -98,7 +98,7 @@ class DrinkController extends AbstractController
             return $this->redirectToRoute('drink_calendar');
         }
 
-        return $this->render('drink/edit.html.twig', [
+        return $this->render('drink/add.html.twig', [
             'form' => $form->createView()
         ]);
     }

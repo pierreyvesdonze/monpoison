@@ -711,8 +711,15 @@ CARD CONSO
 	box-shadow: -6px 0px 7px 1px rgba(0, 0, 0, 0.75);
 	-webkit-box-shadow: -6px 0px 7px 1px rgba(0, 0, 0, 0.75);
 	-moz-box-shadow: -6px 0px 7px 1px rgba(0, 0, 0, 0.75);
-	background: rgb(143,166,173);
-background: linear-gradient(90deg, rgba(143,166,173,0.927608543417367) 8%, rgba(83,99,124,1) 31%, rgba(63,62,93,1) 49%, rgba(57,42,61,1) 72%, rgba(23,17,24,1) 95%);
+	background: rgb(143, 166, 173);
+	background: linear-gradient(
+		90deg,
+		rgba(143, 166, 173, 0.927608543417367) 8%,
+		rgba(83, 99, 124, 1) 31%,
+		rgba(63, 62, 93, 1) 49%,
+		rgba(57, 42, 61, 1) 72%,
+		rgba(23, 17, 24, 1) 95%
+	);
 	border: 0;
 	border-radius: 0 17px;
 	margin-bottom: 2em;
