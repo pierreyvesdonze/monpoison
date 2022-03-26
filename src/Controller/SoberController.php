@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Sober;
 use App\Form\SoberType;
 use App\Repository\SoberRepository;
+use App\Service\SoberService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -73,6 +74,17 @@ class SoberController extends AbstractController
         $this->em->flush();
 
         $this->addFlash('success', 'Jour de sobriété retiré !');
+
+        return $this->redirectToRoute('drink_calendar');
+    }
+
+    /**
+     * @Route("/sobriete/ajouter/auto", name="sober_add_auto")
+     */
+    public function addAutoSober(SoberService $soberService)
+    {
+        $user = $this->getUser();
+        $soberService->addAutoSoberDay($user);
 
         return $this->redirectToRoute('drink_calendar');
     }

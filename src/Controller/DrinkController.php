@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Drink;
+use App\Entity\Sober;
 use App\Form\DrinkType;
 use App\Repository\DrinkRepository;
 use App\Repository\SoberRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,9 +27,10 @@ class DrinkController extends AbstractController
         DrinkRepository $drinkRepository,
         SoberRepository $soberRepository
     ) {
-        $drinks = $drinkRepository->findByUser($this->getUser());
-        $sobers = $soberRepository->findByUser($this->getUser());
-
+        $user     = $this->getUser();
+        $drinks   = $drinkRepository->findByUser($user);
+        $sobers   = $soberRepository->findByUser($user);
+        
         return $this->render('drink/calendar.html.twig', [
             'drinks' => $drinks,
             'sobers' => $sobers
