@@ -2,14 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\Parameters;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserHomepageType extends AbstractType
+class UserOptionsFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -21,6 +19,15 @@ class UserHomepageType extends AbstractType
                     'Consommations' => 1,
                     'Mon profil' => 2,
                     'Tableau de bord' => 3
+                ]
+            ]);
+
+        $builder
+            ->add('autoSober', ChoiceType::class, [
+                'label' => 'Ajouter les jours de sobriété automatiquement',
+                'choices' => [
+                    'Oui' => 0,
+                    'Non' => 1
                 ]
             ]);
 

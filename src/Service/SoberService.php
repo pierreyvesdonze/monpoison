@@ -22,7 +22,7 @@ class SoberService
         $soberDay = $this->soberRepository->findByUserAndByDate($user, new DateTime('today'));
         $drinkDay = $this->drinkRepository->findByUserAndByDate($user, new DateTime('today'))[0][1];
 
-        if (null == $drinkDay && null == $soberDay) {
+        if (true == $user->getAutoSober() && null == $drinkDay && null == $soberDay) {
 
             $newSoberDay = new Sober;
             $newSoberDay->setUser($user);
@@ -32,6 +32,21 @@ class SoberService
             $this->em->flush();
 
             return $newSoberDay;
+        }
+
+        return null;
+    }
+
+    public function removeAutoSoberDay($user) {
+        $soberDay = $this->soberRepository->findByUserAndByDate($user, new DateTime('today'))[0];
+        $drinkDay = $this->drinkRepository->findByUserAndByDate($user, new DateTime('today'))[0][1];
+
+        if (true == $user->getAutoSober() && false == $drinkDay && true == $soberDay) {
+
+            $this->em->remove($soberDay);
+            $this->em->flush();
+
+            return $soberDay;
         }
 
         return null;

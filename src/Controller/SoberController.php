@@ -8,6 +8,7 @@ use App\Repository\SoberRepository;
 use App\Service\SoberService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -79,13 +80,12 @@ class SoberController extends AbstractController
     }
 
     /**
-     * @Route("/sobriete/ajouter/auto", name="sober_add_auto")
+     * @Route("/sobriete/ajouter/auto", name="sober_add_auto", options={"expose"=true})
      */
     public function addAutoSober(SoberService $soberService)
     {
-        $user = $this->getUser();
-        $soberService->addAutoSoberDay($user);
+        $soberService->addAutoSoberDay($this->getUser());
 
-        return $this->redirectToRoute('drink_calendar');
+        return new JsonResponse('ok');
     }
 }
