@@ -1,93 +1,89 @@
 {% extends 'base.html.twig' %}
-{% block title %}Tableau de suivi des consommations et des abstinences{% endblock %}
+{% block title %}Tableau de suivi des consommations et des abstinences
+{% endblock %}
 
 {% block metadescription %}
-<meta name="description"
-    content="Suivez, ajoutez, modifiez vos consommations et vos jours d'abstinences facilement">
+	<meta name="description" content="Suivez, ajoutez, modifiez vos consommations et vos jours d'abstinences facilement">
 {% endblock %}
 
 {% block body %}
 
-{% include('drink/modal.info.html.twig') %}
+	{% include('drink/modal.info.html.twig') %}
 
-<br><br>
+	<br><br>
 
-<div class="container">
-    <h1>Mon suivi</h1>
+	<div class="container">
+		<h1>Mon suivi</h1>
 
-    <a href="{{ path('drink_add') }}" title="Ajouter une consommation" class="custom-btn">Ajouter une consommation</a>
-    <br><br>
-    <a href="{{ path('sober_add') }}" title="Ajouter une sobriete" class="custom-btn">Ajouter une sobriété</a>
+		<a href="{{ path('drink_add') }}" title="Ajouter une consommation" class="custom-btn">Ajouter une consommation</a>
+		<br><br>
+		<a href="{{ path('sober_add') }}" title="Ajouter une sobriete" class="custom-btn">Ajouter une sobriété</a>
 
-    <br>
-    <br>
+		<br>
+		<br>
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn info-btn" data-bs-toggle="modal" data-bs-target="#infoConso" name="open modal">
-        <img src="{{ asset('assets/images/info.png') }}" alt="information" class="info-icon">
-    </button>
+		<!-- Button trigger modal -->
+		<button type="button" class="btn info-btn" data-bs-toggle="modal" data-bs-target="#infoConso" name="open modal">
+			<img src="{{ asset('assets/images/info.png') }}" alt="information" class="info-icon">
+		</button>
 
-    <hr>
+		<hr>
 
-    <div class="container-start">
-        {% if app.user is not null and sobers is not empty %}
-        <div class="card">
-            <h5 class="card-header">
-                {% if sobers|length <= 1 %} {{ sobers|length }} jour sans alcool</h5>
-                    {% else %}
-                    {{ sobers|length }} jours sans alcool</h5>
-            {% endif %}
+		<div class="container-start">
+			{% if app.user is not null and sobers is not empty %}
+				<div class="card">
+					<h5 class="card-header">
+						{% if sobers|length <= 1 %}
+							{{ sobers|length }}
+							jour sans alcool</h5>
+					{% else %}
+						{{ sobers|length }}
+						jours sans alcool</h5>
+				{% endif %}
 
-            <div class="card-body sober-card">
-                {% for sober in sobers %}
-                <span class="card-subtitle mb-2 text-muted greenScore d-flex justify-content-between">
-                    {{ sober.date|date('d/m/y') }} <a href="{{ path('sober_remove', {'soberId':sober.id}) }}"
-                        class="btn btn-outline-danger">&Cross;</a>
-                </span>
-                <br>
-                {% endfor %}
-            </div>
-        </div>
-        {% endif %}
-        {% if app.user is not null and app.user.drinks is not empty %}
-        {% for drink in drinks %}
-        <div class="card">
-            <h5 class="card-header">{{ drink.date|date('d/m/y') }}</h5>
-            <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">
-                    <img src="{{ asset(drink.alcool.imgPath) }}" class="alcool-png" alt="Icône alcool">
-                </h6>
-                <p class="card-text">{{ drink.quantity }} UA</p>
-                <p class="card-text"><b>{{ drink.cost|number_format(2)}} €</b></p>
-                <div class="d-flex justify-content-around">
-                    <a href="{{ path('drink_update', {'id': drink.id}) }}" title="Mettre à jour une consommation"
-                        class="custom-btn btn-settings">&olarr;</a>
-                    <a href="{{ path('drink_delete', {'id':drink.id}) }}" title="Supprimer une consommation"
-                        class="btn btn-danger btn-settings"
-                        onclick="return confirm('Voulez-vous supprimer cette consommation ?') ">&cross;</a>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
+				<div class="card-body sober-card">
+					{% for sober in sobers %}
+						<span class="card-subtitle mb-2 text-muted greenScore d-flex justify-content-between">
+							{{ sober.date|date('d/m/y') }}
+							<a href="{{ path('sober_remove', {'soberId':sober.id}) }}" class="btn btn-outline-danger">&Cross;</a>
+						</span>
+						<br>
+					{% endfor %}
+				</div>
+			</div>
+		{% endif %}
+		{% if app.user is not null and app.user.drinks is not empty %}
+			{% for drink in drinks %}
+				<div class="card">
+					<h5 class="card-header">{{ drink.date|date('d/m/y') }}</h5>
+					<div class="card-body">
+						<h6 class="card-subtitle mb-2 text-muted">
+							<img src="{{ asset(drink.alcool.imgPath) }}" class="alcool-png" alt="Icône alcool">
+						</h6>
+						<p class="card-text">{{ drink.quantity }}
+							UA</p>
+						<p class="card-text">
+							<b>{{ drink.cost|number_format(2)}}
+								€</b>
+						</p>
+						<div class="d-flex justify-content-around">
+							<a href="{{ path('drink_update', {'id': drink.id}) }}" title="Mettre à jour une consommation" class="custom-btn btn-settings">&olarr;</a>
+							<a href="{{ path('drink_delete', {'id':drink.id}) }}" title="Supprimer une consommation" class="btn btn-danger btn-settings" onclick="return confirm('Voulez-vous supprimer cette consommation ?') ">&cross;</a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
 
-        {% elseif app.user is not null and sobers|length >= 1 %}
+		{% else %}
 
-        <div class="big-text">
-            <h1>bravo</h1>
-        </div>
-
-        {% else %}
-
-        <div class="container">
-            <p>
-                Vous n'avez aucune consommation enregistrée pour le moment.
-            </p>
-        </div>
-        {% endif %}
-    </div>
-    <hr>
+			<div class="container">
+				<p>
+					Vous n'avez aucune consommation enregistrée pour le moment.
+				</p>
+			</div>
+		{% endif %}
+	</div>
+	<hr>
 
 
-</div>
-
-{% endblock %}
+</div>{% endblock %}

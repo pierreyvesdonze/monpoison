@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Sober;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -20,19 +19,19 @@ class SoberType extends AbstractType
                 'attr' => [
                     'class' => 'input'
                 ],
-            'data' => new \DateTime('now'),
-            'widget' => 'single_text',
+                'data' => new \DateTime('now'),
+                'widget' => 'single_text',
             ])
 
             ->add(
                 'submit',
                 SubmitType::class,
                 [
-                'label' => 'Envoyer',
-                'attr' => [
-                    'class' => 'custom-btn'
+                    'label' => 'Envoyer',
+                    'attr' => [
+                        'class' => 'custom-btn'
+                    ]
                 ]
-            ]
             );
     }
 

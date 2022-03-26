@@ -7,6 +7,12 @@ var app = {
         * L I S T E N E R S
         * *****************************
         */
+
+        // Check for autosoboer
+        if (window.location.href.indexOf('public/')) {
+            app.checkAutoSober();
+        }
+
         if (window.location.href.indexOf("article/voir") > -1) {
             document.querySelector('.submit-subscribe').addEventListener('click', app.subscribeToPosts);
         }
@@ -25,7 +31,7 @@ var app = {
         if ($('.flash-container').find('.alert').length !== 0) {
             setTimeout(() => {
                 $('.alert').fadeOut('fast')
-            }, 1500);
+            }, 2000);
         }
 
         //Set goals achievement
@@ -36,11 +42,6 @@ var app = {
         // Search bar for posts
         $('#search-post-btn').on('click', app.searchPost)
         $('.search-post').on('keyup', app.searchPost)
-
-        // Redirect to consommations if user is connected
-        if ($('.hidden-user').data('user') !== null) {
-            console.log(location.pathname);
-        }
 
         /**
           * *****************************
@@ -85,6 +86,24 @@ var app = {
             e.preventDefault();
             window.scroll({ top: 0, left: 0, behavior: 'smooth' });
         });
+    },
+
+    checkAutoSober: () => {
+        $.ajax(
+            {
+                url: Routing.generate('sober_add_auto'),
+                method: "POST",
+            }).done(function (response) {
+                if (null !== response) {
+                    console.log('okokok');
+                } else {
+                    console.log('Problème');
+                }
+            }).fail(function (jqXHR, textStatus, error) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(error);
+            });
     },
 
     /**

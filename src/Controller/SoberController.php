@@ -5,8 +5,10 @@ namespace App\Controller;
 use App\Entity\Sober;
 use App\Form\SoberType;
 use App\Repository\SoberRepository;
+use App\Service\SoberService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,26 +25,35 @@ class SoberController extends AbstractController
      */
     public function addSober(
         Request $request,
-        SoberRepository $soberRepository
+        SoberRepository $soberRepository,
+        SoberService $soberService
     ): Response {
         $form = $this->createForm(SoberType::class);
         $form->handleRequest($request);
+        $user = $this->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $this->getUser();
 
             $formDate = $form->get('date')->getData();
 
+            if( true == $soberService->checkExistingDrink($user, $formDate)) {
+                $this->addFlash('danger', 'Vous ne pouvez pas ajouter une sobriété le même jour qu\'une consommation');
+
+                return $this->redirectToRoute('drink_calendar');
+            }
+        
             if ($formDate = $soberRepository->findByUserAndByDate(
                 $user,
                 $formDate
             )) {
-                $this->addFlash('danger', 'Vous avez déjà été sobre ce jour là : ' . $formDate[0]->getDate()->format('d/m/y'));
+                $this->addFlash('danger', 'Vous avez déjà été sobre ce jour là : ' . $formDate->getDate()->format('d/m/y'));
 
                 return $this->redirectToRoute('drink_calendar');
             }
+     
             $newSober = new Sober();
-            $newSober->setUser($this->getUser());
+            $newSober->setUser($user);
             $newSober->setDate($form->get('date')->getData());
 
             $this->em->persist($newSober);
@@ -75,5 +86,15 @@ class SoberController extends AbstractController
         $this->addFlash('success', 'Jour de sobriété retiré !');
 
         return $this->redirectToRoute('drink_calendar');
+    }
+
+    /**
+     * @Route("/sobriete/ajouter/auto", name="sober_add_auto", options={"expose"=true})
+     */
+    public function addAutoSober(SoberService $soberService)
+    {
+        $soberService->addAutoSoberDay($this->getUser());
+
+        return new JsonResponse('ok');
     }
 }

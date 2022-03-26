@@ -98,6 +98,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $homepage;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $autoSober;
+
     public function __construct()
     {
         $this->drinks = new ArrayCollection();
@@ -435,6 +440,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setHomepage(?string $homepage): self
     {
         $this->homepage = $homepage;
+
+        return $this;
+    }
+
+    public function getAutoSober(): ?bool
+    {
+        return $this->autoSober;
+    }
+
+    public function setAutoSober(bool $autoSober): self
+    {
+        $this->autoSober = $autoSober;
 
         return $this;
     }

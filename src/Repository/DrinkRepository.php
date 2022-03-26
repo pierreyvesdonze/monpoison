@@ -154,6 +154,35 @@ class DrinkRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+     /**
+     * @return SUM of Drink[] Returns an array of Drink objects
+     */
+    public function findByUserAndByDate($user, $date)
+    {
+        return $this->createQueryBuilder('d')
+            ->where('d.user = :user')
+            ->andWhere('d.date = :date')
+            ->setParameter('user', $user)
+            ->setParameter('date', $date)
+            ->select('SUM(d.quantity)')
+            ->getQuery()
+            ->getResult();
+    }
+
+     /**
+     * @return SUM of Drink[] Returns an array of Drink objects
+     */
+    public function findDrinkOfTheDay($user, $date)
+    {
+        return $this->createQueryBuilder('d')
+            ->where('d.user = :user')
+            ->andWhere('d.date = :date')
+            ->setParameter('user', $user)
+            ->setParameter('date', $date)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
     /**
      * @return SUM of Drink[] Returns an array of Drink objects
      */

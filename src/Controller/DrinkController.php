@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Drink;
+use App\Entity\Sober;
 use App\Form\DrinkType;
 use App\Repository\DrinkRepository;
 use App\Repository\SoberRepository;
+use App\Service\SoberService;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,9 +28,10 @@ class DrinkController extends AbstractController
         DrinkRepository $drinkRepository,
         SoberRepository $soberRepository
     ) {
-        $drinks = $drinkRepository->findByUser($this->getUser());
-        $sobers = $soberRepository->findByUser($this->getUser());
-
+        $user     = $this->getUser();
+        $drinks   = $drinkRepository->findByUser($user);
+        $sobers   = $soberRepository->findByUser($user);
+        
         return $this->render('drink/calendar.html.twig', [
             'drinks' => $drinks,
             'sobers' => $sobers
@@ -39,8 +43,10 @@ class DrinkController extends AbstractController
      */
     public function addDrink(
         Request $request,
-        DrinkRepository $drinkRepository
+        DrinkRepository $drinkRepository,
+        SoberService $soberService
     ) {
+
         $form = $this->createForm(DrinkType::class);
         $form->handleRequest($request);
 
@@ -63,8 +69,11 @@ class DrinkController extends AbstractController
             $drink->setAlcool($form->get('alcool')->getData());
             $drink->setDate($form->get('date')->getData());
 
+            // Remove auto sober day if option is activated
+            $soberService->removeAutoSoberDay($this->getUser());
+
             $this->entityManager->persist($drink);
-            $this->entityManager->flush();
+            $this->entityManager->flush();  
 
             $this->addFlash('success', 'Nouvelle consommation enregistrée !');
 

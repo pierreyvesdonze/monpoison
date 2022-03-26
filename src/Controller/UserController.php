@@ -5,8 +5,9 @@ namespace App\Controller;
 use App\Entity\ArgumentUser;
 use App\Entity\Goal;
 use App\Form\ArgumentType;
+use App\Form\AutoSoberFormType;
 use App\Form\GoalType;
-use App\Form\UserHomepageType;
+use App\Form\UserOptionsFormType;
 use App\Repository\ArgumentUserRepository;
 use App\Repository\GoalRepository;
 use App\Service\UserStatsService;
@@ -29,23 +30,33 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
         if ($user) {
-            $form = $this->createForm(UserHomepageType::class);
+            $form = $this->createForm(UserOptionsFormType::class);
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
-                $formData = $form->get('homepage')->getData();
-                if (0 === $formData) {
+                $homeChoice = $form->get('homepage')->getData();
+                $isAutoSober = $form->get('autoSober')->getData();
+
+                if (0 === $homeChoice) {
                     $user->setHomepage('home');
-                } elseif (1 === $formData) {
+                } elseif (1 === $homeChoice) {
                     $user->setHomepage('drink_calendar');
-                } elseif (2 === $formData) {
+                } elseif (2 === $homeChoice) {
                     $user->setHomepage('user_account');
-                } elseif (3 == $formData) {
+                } elseif (3 == $homeChoice) {
                     $user->setHomepage('user_board');
                 }
+
+                if (0 === $isAutoSober) {
+                    $user->setAutoSober(true);
+                } else {
+                    $user->setAutosober(false);
+                }
+
                 $this->em->flush();
                 $this->addFlash('success', 'Paramètre enregistré');
             }
+        
         } else {
             return $this->redirectToRoute('home');
         }

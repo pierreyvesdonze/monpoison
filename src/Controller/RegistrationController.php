@@ -50,6 +50,7 @@ class RegistrationController extends AbstractController
             $user->setRoles($user->getRoles());
             $user->setIsSubscribed(false);
             $user->setIsDeleted(false);
+            $user->setAutoSober(true);
 
             $this->em->persist($user);
             $this->em->flush();
