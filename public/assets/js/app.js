@@ -31,7 +31,7 @@ var app = {
         if ($('.flash-container').find('.alert').length !== 0) {
             setTimeout(() => {
                 $('.alert').fadeOut('fast')
-            }, 1500);
+            }, 2000);
         }
 
         //Set goals achievement

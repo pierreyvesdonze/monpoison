@@ -73,9 +73,7 @@ class DrinkController extends AbstractController
             $soberService->removeAutoSoberDay($this->getUser());
 
             $this->entityManager->persist($drink);
-            $this->entityManager->flush();
-
-        
+            $this->entityManager->flush();  
 
             $this->addFlash('success', 'Nouvelle consommation enregistrée !');
 

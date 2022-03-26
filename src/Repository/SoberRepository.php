@@ -58,6 +58,6 @@ class SoberRepository extends ServiceEntityRepository
             ->setParameter('date', $date)
             ->orderBy('s.date', 'DESC')
             ->getQuery()
-            ->getResult();
+            ->getOneOrNullResult();
     }
 }
