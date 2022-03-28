@@ -95,7 +95,7 @@ var app = {
                 method: "POST",
             }).done(function (response) {
                 if (null !== response) {
-                    console.log('okokok');
+                    console.log("autoSober activated")
                 } else {
                     console.log('Problème');
                 }
