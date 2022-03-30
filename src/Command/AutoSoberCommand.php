@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Security\Core\Security;
 
-class CreateUserCommand extends Command
+class AutoSoberCommand extends Command
 {
     private $soberService;
     private $security;
