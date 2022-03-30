@@ -31,7 +31,7 @@ class DrinkController extends AbstractController
         $user     = $this->getUser();
         $drinks   = $drinkRepository->findByUser($user);
         $sobers   = $soberRepository->findByUser($user);
-        
+       
         return $this->render('drink/calendar.html.twig', [
             'drinks' => $drinks,
             'sobers' => $sobers
