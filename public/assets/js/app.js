@@ -8,7 +8,7 @@ var app = {
         * *****************************
         */
 
-        // Check for autosoboer
+        // Check for autosober
         if (window.location.href.indexOf('public/')) {
             app.checkAutoSober();
         }
