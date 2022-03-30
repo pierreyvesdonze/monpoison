@@ -1,7 +1,6 @@
 const cronAutoSober = require('node-cron');
 
 cronAutoSober.schedule('* * * * *', function () {
-    console.log('working ?');
     $.ajax(
         {
             url: Routing.generate('sober_add_auto'),
