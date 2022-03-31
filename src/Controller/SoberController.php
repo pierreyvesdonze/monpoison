@@ -37,11 +37,11 @@ class SoberController extends AbstractController
 
             $formDate = $form->get('date')->getData();
 
-            if( true == $soberService->checkExistingDrink($user, $formDate)) {
+    /*         if( true == $soberService->checkExistingDrink($user, $formDate)) {
                 $this->addFlash('danger', 'Vous ne pouvez pas ajouter une sobriété le même jour qu\'une consommation');
 
                 return $this->redirectToRoute('drink_calendar');
-            }
+            } */
         
             if ($formDate = $soberRepository->findByUserAndByDate(
                 $user,
