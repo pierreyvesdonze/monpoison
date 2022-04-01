@@ -53,9 +53,10 @@ class SoberService
     }
 
     public function checkExistingDrink($user, $formDate) {
-        $drinkDay = $this->drinkRepository->findDrinkOfTheDay($user, new DateTime('today'));
        
-        if ($drinkDay->getDate() == $formDate) {
+        $drinkDay = $this->drinkRepository->findDrinkOfTheDay($user, new DateTime($formDate->format('y-m-d')));
+       
+        if ($drinkDay && $drinkDay->getDate() == $formDate) {
            return true;
        }
 
