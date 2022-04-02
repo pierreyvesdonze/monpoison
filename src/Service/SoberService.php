@@ -43,6 +43,9 @@ class SoberService
         $this->em->flush();
     }
 
+    /**
+     * @Param User account option
+     */
     public function removeAutoSoberDay($user) {
         $soberDay = $this->soberRepository->findByUserAndByDate($user, new DateTime('today'));
         $drinkDay = $this->drinkRepository->findByUserAndByDate($user, new DateTime('today'))[0][1];

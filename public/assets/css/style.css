@@ -704,7 +704,7 @@ BIG TEXT ANIM
   width: 70px;
   height: 50px;
   margin: 2px;
-  background-color: var(--semi-transparent);
+  background-color: var(--transparent);
   font-size: 6em;
   color: wheat;
   font-weight: 100;
@@ -1143,7 +1143,7 @@ BIG TEXT ANIM
   -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
-  background-color: var(--semi-transparent);
+  background-color: var(--transparent);
 }
 
 .grid-big-text {
