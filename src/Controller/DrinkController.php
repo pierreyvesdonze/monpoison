@@ -7,6 +7,7 @@ use App\Form\DrinkType;
 use App\Repository\DrinkRepository;
 use App\Repository\SoberRepository;
 use App\Service\SoberService;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,6 +32,10 @@ class DrinkController extends AbstractController
         $drinks    = $this->drinkRepository->findByUser($user);
         $lastDrink = $this->drinkRepository->findLastDrink($user);
         $sobers    = $soberRepository->findByUser($user);
+
+        if($lastDrink->getDate() < new DateTime('today')) {
+            $lastDrink = false;
+        }
 
         return $this->render('drink/calendar.html.twig', [
             'drinks'    => $drinks,
