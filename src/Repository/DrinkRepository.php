@@ -198,4 +198,18 @@ class DrinkRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * @return Drink Returns Last Drink object
+     */
+    public function findLastDrink($user) 
+    {
+        return $this->createQueryBuilder("d")
+            ->where('d.user = :user')
+            ->orderBy("d.id", "DESC")
+            ->setParameter('user', $user)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }
