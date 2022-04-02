@@ -57,7 +57,7 @@ class DrinkController extends AbstractController
 
         $lastDrink->setQuantity($lastDrinkQuantity += 1);
 
-        if (!false == $this->session->get('lastDrinkCost') || 0 == $this->session->get('lastDrinkCost')  ) {
+        if (!false == $this->session->get('lastDrinkCost') || 0 == $this->session->get('lastDrinkCost')) {
             $lastDrink->setCost($lastDrinkCost += $this->session->get('lastDrinkCost'));
         } else {
             $this->addFlash('danger', 'Votre dernier enregistrement semble dater un peu ou vous avez ajouté plusieurs unités à la fois, veuillez mettre à jour votre consommation manuellement');
@@ -85,8 +85,11 @@ class DrinkController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $user = $this->getUser();
+            $date = $form->get('date')->getData();
+
             // Check for existing drink (same alcool + same date)
-            $existingDrink = $this->drinkRepository->findExistingDrink($this->getUser(), $form->get('date')->getData(), $form->get('alcool')->getData());
+            $existingDrink = $this->drinkRepository->findExistingDrink($user, $date, $form->get('alcool')->getData());
 
             if (!$existingDrink) {
                 $drink = new Drink();
@@ -98,12 +101,20 @@ class DrinkController extends AbstractController
                 $drink->setQuantity($form->get('quantity')->getData() + $existingDrink[0]->getQuantity());
             }
 
-            $drink->setUser($this->getUser());
+            $drink->setUser($user);
             $drink->setAlcool($form->get('alcool')->getData());
-            $drink->setDate($form->get('date')->getData());
+            $drink->setDate($date);
 
             // Remove auto sober day if option is activated
-            $soberService->removeAutoSoberDay($this->getUser());
+            $soberService->removeAutoSoberDay($user);
+
+            // Checking if soberDay exists the same day of the drink
+            $soberDay = $soberService->checkExistingSober($user, $date);
+
+            // If exist, remove soberDay
+            if ($soberDay) {
+                $soberService->removeSoberDay($soberDay);
+            }
 
             $this->entityManager->persist($drink);
             $this->entityManager->flush();

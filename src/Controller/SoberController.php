@@ -16,7 +16,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class SoberController extends AbstractController
 {
     public function __construct(
-        private  EntityManagerInterface $em
+        private  EntityManagerInterface $em,
+        private SoberRepository $soberRepository
     ) {
     }
 
@@ -25,7 +26,6 @@ class SoberController extends AbstractController
      */
     public function addSober(
         Request $request,
-        SoberRepository $soberRepository,
         SoberService $soberService
     ): Response {
         $form = $this->createForm(SoberType::class);
@@ -43,7 +43,7 @@ class SoberController extends AbstractController
                 return $this->redirectToRoute('drink_calendar');
             }
 
-            if ($formDate = $soberRepository->findByUserAndByDate(
+            if ($formDate = $this->soberRepository->findByUserAndByDate(
                 $user,
                 $formDate
             )) {
@@ -73,10 +73,9 @@ class SoberController extends AbstractController
      * @Route("/sobriete/retirer{soberId}", name="sober_remove")
      */
     public function removeSober(
-        $soberId,
-        SoberRepository $soberRepository
+        $soberId
     ) {
-        $soberDay = $soberRepository->findBy([
+        $soberDay = $this->soberRepository->findBy([
             'id' => $soberId
         ]);
 
