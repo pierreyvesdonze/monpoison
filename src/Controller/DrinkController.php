@@ -160,6 +160,14 @@ class DrinkController extends AbstractController
             // Remove auto sober day if option is activated
             $soberService->removeAutoSoberDay($this->getUser());
 
+            // Checking if soberDay exists the same day of the drink
+            $soberDay = $soberService->checkExistingSober($this->getUser(), $form->get('date')->getData());
+
+            // If exist, remove soberDay
+            if ($soberDay) {
+                $soberService->removeSoberDay($soberDay);
+            }
+
             // Update session for +1drink button
             if (1 === $drink->getQuantity()) {
                 $this->session->set('lastDrinkCost', $drink->getCost());
