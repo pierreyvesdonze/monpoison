@@ -18,7 +18,8 @@ class DrinkController extends AbstractController
 {
     public function __construct(
         private  EntityManagerInterface $entityManager,
-        private DrinkRepository $drinkRepository
+        private DrinkRepository $drinkRepository,
+        private SessionInterface $session
     ) {
     }
 
@@ -33,7 +34,7 @@ class DrinkController extends AbstractController
         $lastDrink = $this->drinkRepository->findLastDrink($user);
         $sobers    = $soberRepository->findByUser($user);
 
-        if($lastDrink->getDate() < new DateTime('today')) {
+        if ($lastDrink->getDate() < new DateTime('today')) {
             $lastDrink = false;
         }
 
@@ -47,7 +48,7 @@ class DrinkController extends AbstractController
     /**
      * @Route("/consommation/ajouter/une/conso", name="drink_add_one_more")
      */
-    public function addOneMoreDrink(SessionInterface $session)
+    public function addOneMoreDrink()
     {
         $user = $this->getUser();
         $lastDrink = $this->drinkRepository->findLastDrink($user);
@@ -56,10 +57,10 @@ class DrinkController extends AbstractController
 
         $lastDrink->setQuantity($lastDrinkQuantity += 1);
 
-        if (!null == $session->get('lastDrinkCost')) {
-            $lastDrink->setCost($lastDrinkCost += $session->get('lastDrinkCost'));
+        if (!false == $this->session->get('lastDrinkCost') || 0 == $this->session->get('lastDrinkCost')  ) {
+            $lastDrink->setCost($lastDrinkCost += $this->session->get('lastDrinkCost'));
         } else {
-            $this->addFlash('danger', 'Votre dernier enregistrement semble dater un peu ou vous avez ajouter plusieurs unités à la fois, veuillez mettre à jour votre consommation manuellement');
+            $this->addFlash('danger', 'Votre dernier enregistrement semble dater un peu ou vous avez ajouté plusieurs unités à la fois, veuillez mettre à jour votre consommation manuellement');
 
             return $this->redirectToRoute('drink_calendar');
         }
@@ -76,8 +77,7 @@ class DrinkController extends AbstractController
      */
     public function addDrink(
         Request $request,
-        SoberService $soberService,
-        SessionInterface $session
+        SoberService $soberService
     ) {
 
         $form = $this->createForm(DrinkType::class);
@@ -110,9 +110,13 @@ class DrinkController extends AbstractController
 
             // If drink quantity = 1, registering in session for +1 option
             if (1 === $drink->getQuantity()) {
-                $session->set('lastDrinkCost', $drink->getCost());
+                $this->session->set('lastDrinkCost', $drink->getCost());
+                if (null == $drink->getCost()) {
+                    $drink->setCost(0);
+                    $this->session->set('LastDrinkCost', 0);
+                }
             } else {
-                $session->clear();
+                $this->session->clear();
             }
 
             $this->addFlash('success', 'Nouvelle consommation enregistrée !');
