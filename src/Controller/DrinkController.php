@@ -3,15 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Drink;
-use App\Entity\Sober;
 use App\Form\DrinkType;
 use App\Repository\DrinkRepository;
 use App\Repository\SoberRepository;
 use App\Service\SoberService;
-use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -52,13 +49,13 @@ class DrinkController extends AbstractController
         $lastDrinkQuantity = $lastDrink->getQuantity();
         $lastDrinkCost = $lastDrink->getCost();
 
-        $lastDrink->setQuantity($lastDrinkQuantity +=1);
+        $lastDrink->setQuantity($lastDrinkQuantity += 1);
 
         if (!null == $session->get('lastDrinkCost')) {
             $lastDrink->setCost($lastDrinkCost += $session->get('lastDrinkCost'));
         } else {
-            $this->addFlash('danger', 'Votre dernier enregistrement semble dater un peu, veuillez mettre à jour votre consommation manuellement');
-            
+            $this->addFlash('danger', 'Votre dernier enregistrement semble dater un peu ou vous avez ajouter plusieurs unités à la fois, veuillez mettre à jour votre consommation manuellement');
+
             return $this->redirectToRoute('drink_calendar');
         }
 
@@ -106,7 +103,12 @@ class DrinkController extends AbstractController
             $this->entityManager->persist($drink);
             $this->entityManager->flush();
 
-            $session->set('lastDrinkCost', $drink->getCost());
+            // If drink quantity = 1, registering in session for +1 option
+            if (1 === $drink->getQuantity()) {
+                $session->set('lastDrinkCost', $drink->getCost());
+            } else {
+                $session->clear();
+            }
 
             $this->addFlash('success', 'Nouvelle consommation enregistrée !');
 
@@ -123,7 +125,8 @@ class DrinkController extends AbstractController
      */
     public function drinkUpdate(
         Drink $drink,
-        Request $request
+        Request $request,
+        SoberService $soberService
     ) {
         $form = $this->createForm(DrinkType::class, $drink);
         $form->handleRequest($request);
@@ -133,6 +136,9 @@ class DrinkController extends AbstractController
             $drink->setDate($form->get('date')->getData());
             $drink->setQuantity($form->get('quantity')->getData());
             $drink->setCost($form->get('cost')->getData());
+
+            // Remove auto sober day if option is activated
+            $soberService->removeAutoSoberDay($this->getUser());
 
             $this->entityManager->flush();
             $this->addFlash('success', 'Consommation mise à jour !');
