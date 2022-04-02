@@ -11,13 +11,16 @@ use App\Service\SoberService;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DrinkController extends AbstractController
 {
     public function __construct(
-        private  EntityManagerInterface $entityManager
+        private  EntityManagerInterface $entityManager,
+        private DrinkRepository $drinkRepository
     ) {
     }
 
@@ -25,19 +28,45 @@ class DrinkController extends AbstractController
      * @Route("/consommations/voir", name="drink_calendar")
      */
     public function getCalendar(
-        DrinkRepository $drinkRepository,
         SoberRepository $soberRepository
     ) {
-        $user     = $this->getUser();
-        $drinks   = $drinkRepository->findByUser($user);
-        $sobers   = $soberRepository->findByUser($user);
-
-        $lastDrink = $drinkRepository->findLastDrink($user);
+        $user      = $this->getUser();
+        $drinks    = $this->drinkRepository->findByUser($user);
+        $lastDrink = $this->drinkRepository->findLastDrink($user);
+        $sobers    = $soberRepository->findByUser($user);
 
         return $this->render('drink/calendar.html.twig', [
-            'drinks' => $drinks,
-            'sobers' => $sobers
+            'drinks'    => $drinks,
+            'sobers'    => $sobers,
+            'lastDrink' => $lastDrink
         ]);
+    }
+
+    /**
+     * @Route("/consommation/ajouter/une/conso", name="drink_add_one_more")
+     */
+    public function addOneMoreDrink(SessionInterface $session)
+    {
+        $user = $this->getUser();
+        $lastDrink = $this->drinkRepository->findLastDrink($user);
+        $lastDrinkQuantity = $lastDrink->getQuantity();
+        $lastDrinkCost = $lastDrink->getCost();
+
+        $lastDrink->setQuantity($lastDrinkQuantity +=1);
+
+        if (!null == $session->get('lastDrinkCost')) {
+            $lastDrink->setCost($lastDrinkCost += $session->get('lastDrinkCost'));
+        } else {
+            $this->addFlash('danger', 'Votre dernier enregistrement semble dater un peu, veuillez mettre à jour votre consommation manuellement');
+            
+            return $this->redirectToRoute('drink_calendar');
+        }
+
+        $this->entityManager->flush();
+
+        $this->addFlash('success', '+ 1 conso ajoutée');
+
+        return $this->redirectToRoute('drink_calendar');
     }
 
     /**
@@ -45,8 +74,8 @@ class DrinkController extends AbstractController
      */
     public function addDrink(
         Request $request,
-        DrinkRepository $drinkRepository,
-        SoberService $soberService
+        SoberService $soberService,
+        SessionInterface $session
     ) {
 
         $form = $this->createForm(DrinkType::class);
@@ -55,7 +84,7 @@ class DrinkController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             // Check for existing drink (same alcool + same date)
-            $existingDrink = $drinkRepository->findExistingDrink($this->getUser(), $form->get('date')->getData(), $form->get('alcool')->getData());
+            $existingDrink = $this->drinkRepository->findExistingDrink($this->getUser(), $form->get('date')->getData(), $form->get('alcool')->getData());
 
             if (!$existingDrink) {
                 $drink = new Drink();
@@ -75,7 +104,9 @@ class DrinkController extends AbstractController
             $soberService->removeAutoSoberDay($this->getUser());
 
             $this->entityManager->persist($drink);
-            $this->entityManager->flush();  
+            $this->entityManager->flush();
+
+            $session->set('lastDrinkCost', $drink->getCost());
 
             $this->addFlash('success', 'Nouvelle consommation enregistrée !');
 
