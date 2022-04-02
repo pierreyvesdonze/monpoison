@@ -149,6 +149,17 @@ class DrinkController extends AbstractController
             // Remove auto sober day if option is activated
             $soberService->removeAutoSoberDay($this->getUser());
 
+            // Update session for +1drink button
+            if (1 === $drink->getQuantity()) {
+                $this->session->set('lastDrinkCost', $drink->getCost());
+                if (null == $drink->getCost()) {
+                    $drink->setCost(0);
+                    $this->session->set('LastDrinkCost', 0);
+                }
+            } else {
+                $this->session->clear();
+            }
+
             $this->entityManager->flush();
             $this->addFlash('success', 'Consommation mise à jour !');
 
