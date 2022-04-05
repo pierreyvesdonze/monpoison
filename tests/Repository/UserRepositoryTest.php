@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\Repository;
 
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
+/**
+ * php bin/phpunit tests/Repository/UserRepositoryTest.php
+ */
 class UserRepositoryTest extends KernelTestCase
 {
     public function testCount()

@@ -154,9 +154,9 @@ class DrinkRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-     /**
-     * @return SUM of Drink[] Returns an array of Drink objects
-     */
+    /**
+    * @return SUM of Drink[] Returns an array of Drink objects
+    */
     public function findByUserAndByDate($user, $date)
     {
         return $this->createQueryBuilder('d')
@@ -169,9 +169,9 @@ class DrinkRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-     /**
-     * @return SUM of Drink[] Returns an array of Drink objects
-     */
+    /**
+    * @return SUM of Drink[] Returns an array of Drink objects
+    */
     public function findDrinkOfTheDay($user, $date)
     {
         return $this->createQueryBuilder('d')
@@ -202,7 +202,7 @@ class DrinkRepository extends ServiceEntityRepository
     /**
      * @return Drink Returns Last Drink object
      */
-    public function findLastDrink($user) 
+    public function findLastDrink($user)
     {
         return $this->createQueryBuilder("d")
             ->where('d.user = :user')

@@ -25,8 +25,7 @@ class TestimonialsController extends AbstractController
         TestimonialsRepository $testimonialsRepository,
         PaginatorInterface $paginator,
         Request $request
-        ): Response
-    {
+    ): Response {
         $data = $testimonialsRepository->findAllByDescId();
         $testimonials = $paginator->paginate(
             $data,
@@ -74,8 +73,7 @@ class TestimonialsController extends AbstractController
     public function show(
         Testimonials $testimonial,
         PaginatorInterface $paginatorInterface
-        ): Response
-    {
+    ): Response {
         return $this->render('testimonials/show.html.twig', [
             'testimonial' => $testimonial,
         ]);

@@ -25,7 +25,7 @@ class HomeController extends AbstractController
         if ($user) {
             if (null != $user->getHomepage() && 'home' !== $user->getHomepage()) {
                 return $this->redirectToRoute($user->getHomepage());
-            } 
+            }
         }
         return $this->render('home/index.html.twig');
     }

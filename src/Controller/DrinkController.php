@@ -79,12 +79,10 @@ class DrinkController extends AbstractController
         Request $request,
         SoberService $soberService
     ) {
-
         $form = $this->createForm(DrinkType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $user = $this->getUser();
             $date = $form->get('date')->getData();
 

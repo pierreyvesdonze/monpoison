@@ -30,13 +30,12 @@ class AutoSoberCommand extends Command
         Security $security,
         MailService $mailer,
         LoggerInterface $logger,
-        )
-    {
+    ) {
         $this->soberService = $soberService;
         $this->security = $security;
         $this->mailer = $mailer;
         $this->logger = $logger;
-      
+
         parent::__construct();
     }
 
@@ -44,12 +43,11 @@ class AutoSoberCommand extends Command
         InputInterface $input,
         OutputInterface $output
     ) {
-        
         $user = $this->security->getUser();
         //$this->mailer->sendCommentMail($user, 'test command');
         // $this->logger->info($user);
         $this->soberService->addAutoSoberDay($user);
-                
+
         return Command::SUCCESS;
     }
 }

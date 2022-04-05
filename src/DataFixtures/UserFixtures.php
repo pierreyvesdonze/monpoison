@@ -8,11 +8,11 @@ use Doctrine\Persistence\ObjectManager as PersistenceObjectManager;
 
 class UserFixtures extends Fixture
 {
-    //php bin/console doctrine:fixtures:load
+    //php bin/console doctrine:fixtures:load --env=test
     public function load(PersistenceObjectManager $manager)
     {
         for ($i = 0; $i < 10; $i++) {
-            $user = new User;
+            $user = new User();
             $user->setEmail('user' . $i . '@test.test');
             $user->setPassword('testtest');
             $user->setPseudo('test'.$i);
