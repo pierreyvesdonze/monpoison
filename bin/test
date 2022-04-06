@@ -1,0 +1,19 @@
+#cmd : sh bin/test
+
+SHELL := /bin/bash
+
+tests:
+	php bin/phpunit tests/HomeFunctionalTest.php
+	php bin/phpunit tests/Entity/ArgumentUserEntityTest.php
+	php bin/phpunit tests/Entity/CommentEntityTest.php
+	php bin/phpunit tests/Entity/DrinkEntityTest.php
+	php bin/phpunit tests/Entity/GoalEntityTest.php
+	php bin/phpunit tests/Entity/PostEntityTest.php
+	php bin/phpunit tests/Entity/SoberEntityTest.php
+	php bin/phpunit tests/Entity/SubscriberEntityTest.php
+	php bin/phpunit tests/Entity/TestimonialsEntityTest.php
+	php bin/phpunit tests/Entity/UserEntityTest.php
+
+	php bin/phpunit tests/Repository/UserRepositoryTest.php
+	php bin/phpunit tests/Repository/ArgumentUserRepositoryTest.php
+	
