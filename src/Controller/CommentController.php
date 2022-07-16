@@ -13,14 +13,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/commentaire')]
+#[Route('/')]
 class CommentController extends AbstractController
 {
     public function __construct(private EntityManagerInterface $em)
     {
     }
 
-    #[Route('/', name: 'comment_index', methods: ['GET'])]
+    #[Route('/comments', name: 'comment_index', methods: ['GET'])]
     public function index(CommentRepository $commentRepository): Response
     {
         return $this->render('comment/index.html.twig', [

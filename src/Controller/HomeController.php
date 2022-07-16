@@ -39,7 +39,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/contact", name="contact")
+     * @Route("/contact", name="contact", methods={"GET","POST"})
      */
     public function contact(
         Request $request,

@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class DrinkController extends AbstractController
 {
@@ -25,6 +26,7 @@ class DrinkController extends AbstractController
 
     /**
      * @Route("/consommations/voir", name="drink_calendar")
+     * @IsGranted("ROLE_USER")
      */
     public function getCalendar(
         SoberRepository $soberRepository

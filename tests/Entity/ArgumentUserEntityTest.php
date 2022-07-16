@@ -6,7 +6,6 @@ use App\Entity\ArgumentUser;
 use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 
-
 /**
  * php bin/phpunit tests/Entity/ArgumentUserEntityTest.php
  */
