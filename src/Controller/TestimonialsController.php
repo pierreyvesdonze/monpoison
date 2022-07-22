@@ -41,8 +41,7 @@ class TestimonialsController extends AbstractController
     #[Route('/ajouter', name: 'testimonials_new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
-        EntityManagerInterface $entityManager,
-        MailService $mailService
+        EntityManagerInterface $entityManager
     ): Response {
         $testimonial = new Testimonials();
         $form = $this->createForm(TestimonialsType::class, $testimonial);
@@ -54,13 +53,6 @@ class TestimonialsController extends AbstractController
 
             $this->addFlash('success', 'Votre témoignage a bien été enregistré !');
 
-            // Send notification to contact@monpoison.fr
-            if ("production" === $this->getParameter('app.env')) {
-                $mailService->sendTestimonialMail(
-                    $form->get('content')->getData(),
-                    $form->get('pseudo')->getData()
-                );
-            }
             return $this->redirectToRoute('testimonials', [], Response::HTTP_SEE_OTHER);
         }
         return $this->renderForm('testimonials/new.html.twig', [
