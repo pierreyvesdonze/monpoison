@@ -41,7 +41,8 @@ class TestimonialsController extends AbstractController
     #[Route('/ajouter', name: 'testimonials_new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        MailService $mailService
     ): Response {
         $testimonial = new Testimonials();
         $form = $this->createForm(TestimonialsType::class, $testimonial);
@@ -50,6 +51,8 @@ class TestimonialsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($testimonial);
             $entityManager->flush();
+
+            $mailService->sendTestimonialMail($testimonial->getContent(), $this->getUser());
 
             $this->addFlash('success', 'Votre témoignage a bien été enregistré !');
 

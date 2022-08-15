@@ -31,7 +31,8 @@ class CommentController extends AbstractController
     #[Route('/ajouter/{id}', name: 'comment_new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
-        Post $post
+        Post $post,
+        MailService $mailService
     ): Response {
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
@@ -44,6 +45,8 @@ class CommentController extends AbstractController
 
             $this->em->persist($comment);
             $this->em->flush();
+
+            $mailService->sendCommentMail($comment->getContent(), $this->getUser());
 
             $this->addFlash('success', 'Votre commentaire a bien été ajouté !');
 

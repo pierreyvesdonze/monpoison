@@ -23,6 +23,7 @@ class MailService
             ->from($user->getEmail())
             ->to(
                 'contact@monpoison.fr',
+                'pyd3.14@gmail.com'
             )
             ->subject('De la part de ' . $user->getPseudo() . ' ! de monpoison.fr')
             ->htmlTemplate('email/comment.notification.html.twig')
@@ -64,6 +65,7 @@ class MailService
             ->from('contact@monpoison.fr')
             ->to(
                 'contact@monpoison.fr',
+                'pyd3.14@gmail.com'
             )
             ->subject('De la part de ' . $user . ' ! de monpoison.fr')
             ->htmlTemplate('email/contact.notification.html.twig')
