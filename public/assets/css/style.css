@@ -400,8 +400,8 @@ SOCIALS ICONS
   flex-direction: column;
 }
 .social-icons img {
-  width: 65px;
-  height: 65px;
+  width: 40px;
+  height: 40px;
 }
 @media (min-width: 300px) and (max-width: 576px) {
   .social-icons img {
