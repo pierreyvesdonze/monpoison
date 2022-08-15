@@ -7,6 +7,7 @@ var app = {
         * L I S T E N E R S
         * *****************************
         */
+       console.log('init');
 
         // Check for autosober
         if (window.location.href.indexOf('public/')) {
