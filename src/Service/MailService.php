@@ -29,7 +29,7 @@ class MailService
             ->htmlTemplate('email/comment.notification.html.twig')
             ->context([
                 'sender'  => $user->getEmail(),
-                'text' => $comment
+                'text' => $comment->getContent()
             ]);
 
         $this->mailer->send($message);
