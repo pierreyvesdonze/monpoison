@@ -112,6 +112,8 @@ class PostController extends AbstractController
             $this->em->persist($post);
             $this->em->flush();
 
+            $this->addFlash('success', 'Article publié !');
+
             return $this->redirectToRoute('post_index', [], Response::HTTP_SEE_OTHER);
         }
         return $this->renderForm('post/new.html.twig', [
@@ -154,6 +156,8 @@ class PostController extends AbstractController
                 $post->setIsPublished(0);
             }
             $this->em->flush();
+
+            $this->addFlash('success', 'Article modifié !');
 
             return $this->redirectToRoute('post_index', [], Response::HTTP_SEE_OTHER);
         }
