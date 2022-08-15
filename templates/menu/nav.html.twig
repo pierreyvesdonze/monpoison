@@ -112,15 +112,21 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ path('testimonials') }}" class="nav-link" title="temoignages">Témoignages</a>
-                </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownHelp" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Ressources
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownHelp">
+                        <li class="dropdown-item">
+                            <a class="nav-link" href="{{ path('post_index') }}" title="blog">Blog</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="{{ path('testimonials') }}" class="nav-link" title="temoignages">Témoignages</a>
+                        </li>
+
+                        <hr class="hr-white">
                         <li>
                             <a class="dropdown-item" href="{{ path('alcool_stats') }}"
                                 title="L'alcool en chiffres">L'alcool en chiffres</a>
@@ -132,7 +138,8 @@
                         </li>
                         <li>
                             <a href="https://www.alcooliques-anonymes.fr/recherche-de-reunion/"
-                                title="alcooliques anonymes en France" class="dropdown-item" target='_blank' rel="noreferrer">Liste des alcooliques anonymes</a>
+                                title="alcooliques anonymes en France" class="dropdown-item" target='_blank'
+                                rel="noreferrer">Liste des alcooliques anonymes</a>
                         </li>
                         <li>
                             <a href="https://www.baclofene.org/" title="association baclofene" class="dropdown-item"
@@ -143,9 +150,6 @@
                                 class="dropdown-item" target='_blank' rel="noreferrer">Alcool info service</a>
                         </li>
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('post_index') }}" title="blog">Blog</a>
                 </li>
                 {# <li class="nav-item">
                     <a class="nav-link" href="{{ path('contact') }}" title="contact">Contact</a>
