@@ -7,7 +7,7 @@ var app = {
         * L I S T E N E R S
         * *****************************
         */
-       console.log('init');
+        console.log('init');
 
         // Check for autosober
         if (window.location.href.indexOf('public/')) {
@@ -29,6 +29,8 @@ var app = {
         }
 
         // Fadeout flash message
+        $('.close-alert-btn').on('click', app.closeAlertMessage);
+
         if ($('.flash-container').find('.alert').length !== 0) {
             setTimeout(() => {
                 $('.alert').fadeOut('fast')
@@ -88,6 +90,16 @@ var app = {
             window.scroll({ top: 0, left: 0, behavior: 'smooth' });
         });
     },
+
+    /**
+        * *****************************
+        * CLOSE ALERT MESSAGE
+        * *****************************
+     */
+    closeAlertMessage: () => {
+        $('.alert').css('display', 'none');
+    },
+
 
     checkAutoSober: () => {
         $.ajax(

@@ -42,6 +42,7 @@
         {% for message in messages %}
 
         <div class="alert alert-{{ label }}">
+            <button class="custom-btn close-alert-btn">X</button>
             {{ message }}
         </div>
         {% endfor %}
