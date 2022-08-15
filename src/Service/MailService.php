@@ -43,6 +43,7 @@ class MailService
             ->from($user)
             ->to(
                 'contact@monpoison.fr',
+                'pyd3.14@gmail.com'
             )
             ->subject('De la part de ' . $user . ' ! de monpoison.fr')
             ->htmlTemplate('email/contact.notification.html.twig')
