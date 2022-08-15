@@ -46,7 +46,9 @@ class CommentController extends AbstractController
             $this->em->persist($comment);
             $this->em->flush();
 
-            $mailService->sendCommentMail($comment->getContent(), $this->getUser());
+            $mailService->sendCommentMail(
+                $comment->getContent(),
+                $this->getUser());
 
             $this->addFlash('success', 'Votre commentaire a bien été ajouté !');
 
