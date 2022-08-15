@@ -10,9 +10,9 @@ var app = {
         console.log('init');
 
         // Check for autosober
-        if (window.location.href.indexOf('public/')) {
-            app.checkAutoSober();
-        }
+        // if (window.location.href.indexOf('public/')) {
+        //     app.checkAutoSober();
+        // }
 
         if (window.location.href.indexOf("article/voir") > -1) {
             document.querySelector('.submit-subscribe').addEventListener('click', app.subscribeToPosts);
