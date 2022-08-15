@@ -104,6 +104,7 @@ class AlcoolController extends AbstractController
             $quantity = $form->get('quantity')->getData();
             $degree   = $form->get('degree')->getData();
 
+            // 0 = man
             if (0 === $sex) {
                 $score = ((($quantity * 10) * $degree * 0.8) / ($weight * 0.7)) / 52.5;
             } else {

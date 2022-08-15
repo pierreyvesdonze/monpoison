@@ -28,7 +28,7 @@ class CommentController extends AbstractController
         ]);
     }
 
-    #[Route('/ajouter/{id}', name: 'comment_new', methods: ['GET', 'POST'])]
+    #[Route('/comment/ajouter/{id}', name: 'comment_new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
         Post $post,
