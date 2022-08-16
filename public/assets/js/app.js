@@ -9,11 +9,6 @@ var app = {
         */
         console.log('init');
 
-        // Check for autosober
-        // if (window.location.href.indexOf('public/')) {
-        //     app.checkAutoSober();
-        // }
-
         if (window.location.href.indexOf("article/voir") > -1) {
             document.querySelector('.submit-subscribe').addEventListener('click', app.subscribeToPosts);
         }
@@ -69,15 +64,6 @@ var app = {
 
         /**
         * *****************************
-        * LOADING ANIMATION
-        * *****************************
-        */
-        $(window).on('load', () => {
-            $('.loader').hide();
-        })
-
-        /**
-        * *****************************
         * SCROLL TO TOP BUTTON
         * *****************************
         */
@@ -92,31 +78,11 @@ var app = {
     },
 
     /**
-        * *****************************
-        * CLOSE ALERT MESSAGE
-        * *****************************
+     * Close alert modal
      */
     closeAlertMessage: () => {
         $('.alert').css('display', 'none');
     },
-
-    // checkAutoSober: () => {
-    //     $.ajax(
-    //         {
-    //             url: Routing.generate('sober_add_auto'),
-    //             method: "POST",
-    //         }).done(function (response) {
-    //             if (null !== response) {
-    //                 console.log("autoSober activated")
-    //             } else {
-    //                 console.log('Problème');
-    //             }
-    //         }).fail(function (jqXHR, textStatus, error) {
-    //             console.log(jqXHR);
-    //             console.log(textStatus);
-    //             console.log(error);
-    //         });
-    // },
 
     /**
      * Subscribe to posts
