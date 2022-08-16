@@ -68,6 +68,13 @@
 						</p>
 						<div class="d-flex justify-content-around">
 							<a href="{{ path('drink_update', {'id': drink.id}) }}" title="Mettre à jour une consommation" class="custom-btn btn-settings">&olarr;</a>
+
+							{% if app.session.get('lastDrinkCost') and drink == lastDrink %}
+							
+							<a href="{{ path('drink_add_one_more') }}" title="Rajouter une consommation"
+								class="custom-btn btn-settings" id="one-more-drink"><span>+1</span></a>				
+							{% endif %}
+			
 							<a href="{{ path('drink_delete', {'id':drink.id}) }}" title="Supprimer une consommation" class="btn btn-danger btn-settings" onclick="return confirm('Voulez-vous supprimer cette consommation ?') ">&cross;</a>
 						</div>
 					</div>

@@ -7,11 +7,12 @@ var app = {
         * L I S T E N E R S
         * *****************************
         */
+        console.log('init');
 
         // Check for autosober
-        if (window.location.href.indexOf('public/')) {
-            app.checkAutoSober();
-        }
+        // if (window.location.href.indexOf('public/')) {
+        //     app.checkAutoSober();
+        // }
 
         if (window.location.href.indexOf("article/voir") > -1) {
             document.querySelector('.submit-subscribe').addEventListener('click', app.subscribeToPosts);
@@ -28,6 +29,8 @@ var app = {
         }
 
         // Fadeout flash message
+        $('.close-alert-btn').on('click', app.closeAlertMessage);
+
         if ($('.flash-container').find('.alert').length !== 0) {
             setTimeout(() => {
                 $('.alert').fadeOut('fast')
@@ -88,23 +91,32 @@ var app = {
         });
     },
 
-    checkAutoSober: () => {
-        $.ajax(
-            {
-                url: Routing.generate('sober_add_auto'),
-                method: "POST",
-            }).done(function (response) {
-                if (null !== response) {
-                    console.log("autoSober activated")
-                } else {
-                    console.log('Problème');
-                }
-            }).fail(function (jqXHR, textStatus, error) {
-                console.log(jqXHR);
-                console.log(textStatus);
-                console.log(error);
-            });
+    /**
+        * *****************************
+        * CLOSE ALERT MESSAGE
+        * *****************************
+     */
+    closeAlertMessage: () => {
+        $('.alert').css('display', 'none');
     },
+
+    // checkAutoSober: () => {
+    //     $.ajax(
+    //         {
+    //             url: Routing.generate('sober_add_auto'),
+    //             method: "POST",
+    //         }).done(function (response) {
+    //             if (null !== response) {
+    //                 console.log("autoSober activated")
+    //             } else {
+    //                 console.log('Problème');
+    //             }
+    //         }).fail(function (jqXHR, textStatus, error) {
+    //             console.log(jqXHR);
+    //             console.log(textStatus);
+    //             console.log(error);
+    //         });
+    // },
 
     /**
      * Subscribe to posts

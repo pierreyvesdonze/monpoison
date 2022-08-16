@@ -42,6 +42,7 @@
         {% for message in messages %}
 
         <div class="alert alert-{{ label }}">
+            <button class="custom-btn close-alert-btn">X</button>
             {{ message }}
         </div>
         {% endfor %}
@@ -49,11 +50,11 @@
     </div>
 
     {# Loader anim #}
-    <div class="loader">
+    {# <div class="loader">
         <div class="inner one"></div>
         <div class="inner two"></div>
         <div class="inner three"></div>
-    </div>
+    </div> #}
 
     {# NAV #}
     {% include("menu/nav.html.twig") %}
@@ -85,7 +86,6 @@
 
     {# JS #}
     {% block javascripts %}
-    <script src="{{ asset('cron.js') }}"></script>
     <script src="{{ asset('script.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous" defer></script>

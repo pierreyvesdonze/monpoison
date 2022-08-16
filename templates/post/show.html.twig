@@ -32,7 +32,6 @@ app.request.attributes.get('_route_params')) %}
             <a type="button" data-bs-toggle="modal" data-bs-target="#subscribeModal" class="custom-btn custom-btn-left"
                 id='subscribe-btn'><img src="{{ asset('assets/images/subscribe.png') }}" alt="s'abonner aux articles"
                     class="social-img"></a>
-
         </div>
 
         <!-- share Twitter -->
@@ -66,7 +65,7 @@ app.request.attributes.get('_route_params')) %}
 
     {% if is_granted('ROLE_ADMIN') %}
 
-    <a href="{{ path('post_edit', {'id': post.id}) }}" class="custom-btn">edit</a>
+    <a href="{{ path('post_edit', {'id': post.id}) }}" class="custom-btn">Modifier</a>
     <br><br>
     {{ include('post/_delete_form.html.twig') }}
     <hr>

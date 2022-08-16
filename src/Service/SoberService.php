@@ -23,8 +23,7 @@ class SoberService
         $drinkDay = $this->drinkRepository->findByUserAndByDate($user, new DateTime('today'))[0][1];
 
         if (true == $user->getAutoSober() && null == $drinkDay && null == $soberDay) {
-
-            $newSoberDay = new Sober;
+            $newSoberDay = new Sober();
             $newSoberDay->setUser($user);
             $newSoberDay->setDate(new DateTime('now'));
 
@@ -37,12 +36,21 @@ class SoberService
         return null;
     }
 
-    public function removeAutoSoberDay($user) {
+    public function removeSoberDay($soberDay)
+    {
+        $this->em->remove($soberDay);
+        $this->em->flush();
+    }
+
+    /**
+     * @Param User account option
+     */
+    public function removeAutoSoberDay($user)
+    {
         $soberDay = $this->soberRepository->findByUserAndByDate($user, new DateTime('today'));
         $drinkDay = $this->drinkRepository->findByUserAndByDate($user, new DateTime('today'))[0][1];
 
         if (true == $user->getAutoSober() && false == $drinkDay && true == $soberDay) {
-
             $this->em->remove($soberDay);
             $this->em->flush();
 
@@ -52,13 +60,25 @@ class SoberService
         return null;
     }
 
-    public function checkExistingDrink($user, $formDate) {
-        $drinkDay = $this->drinkRepository->findDrinkOfTheDay($user, new DateTime('today'));
-       
-        if ($drinkDay->getDate() == $formDate) {
-           return true;
-       }
+    public function checkExistingDrink($user, $formDate)
+    {
+        $drinkDay = $this->drinkRepository->findDrinkOfTheDay($user, new DateTime($formDate->format('y-m-d')));
 
-       return false;
+        if ($drinkDay && $drinkDay->getDate() == $formDate) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function checkExistingSober($user, $formDate)
+    {
+        $soberDay = $this->soberRepository->findByUserAndByDate($user, new DateTime($formDate->format('y-m-d')));
+
+        if ($soberDay && $soberDay->getDate() == $formDate) {
+            return $soberDay;
+        }
+
+        return false;
     }
 }

@@ -13,14 +13,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/commentaire')]
+#[Route('/')]
 class CommentController extends AbstractController
 {
     public function __construct(private EntityManagerInterface $em)
     {
     }
 
-    #[Route('/', name: 'comment_index', methods: ['GET'])]
+    #[Route('/comments', name: 'comment_index', methods: ['GET'])]
     public function index(CommentRepository $commentRepository): Response
     {
         return $this->render('comment/index.html.twig', [
@@ -28,7 +28,7 @@ class CommentController extends AbstractController
         ]);
     }
 
-    #[Route('/ajouter/{id}', name: 'comment_new', methods: ['GET', 'POST'])]
+    #[Route('/comment/ajouter/{id}', name: 'comment_new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
         Post $post,
@@ -46,13 +46,15 @@ class CommentController extends AbstractController
             $this->em->persist($comment);
             $this->em->flush();
 
-            // Send comment to contact@monpoison.fr by email
-            if ("production" === $this->getParameter('app.env')) {
-                $mailService->sendCommentMail($comment, $this->getUser());
-            }
+            $mailService->sendCommentMail(
+                $comment,
+                $this->getUser());
+
+            $this->addFlash('success', 'Votre commentaire a bien été ajouté !');
 
             return $this->redirectToRoute('post_show', [
-                'id' => $post->getId()
+                'id' => $post->getId(),
+                'slug' => $post->getSlug()
             ], Response::HTTP_SEE_OTHER);
         }
 
@@ -82,8 +84,11 @@ class CommentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
 
+            $this->addFlash('success', 'Votre commentaire a bien été modifié !');
+
             return $this->redirectToRoute('post_show', [
-                'id' => $comment->getPost()->getId()
+                'id' => $comment->getPost()->getId(),
+                'slug' => $comment->getPost()->getSlug()
             ], Response::HTTP_SEE_OTHER);
         }
 
@@ -100,8 +105,11 @@ class CommentController extends AbstractController
         $this->em->remove($comment);
         $this->em->flush();
 
+        $this->addFlash('success', 'Le commentaire a bien été supprimé !');
+
         return $this->redirectToRoute('post_show', [
-            'id' => $comment->getPost()->getId()
+            'id' => $comment->getPost()->getId(),
+            'slug' => $comment->getPost()->getSlug()
         ], Response::HTTP_SEE_OTHER);
     }
 }

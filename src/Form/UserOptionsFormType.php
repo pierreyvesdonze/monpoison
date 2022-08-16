@@ -22,14 +22,14 @@ class UserOptionsFormType extends AbstractType
                 ]
             ]);
 
-        $builder
-            ->add('autoSober', ChoiceType::class, [
-                'label' => 'Ajouter les jours de sobriété automatiquement (en bêta test pour le moment)',
-                'choices' => [
-                    'Oui' => 0,
-                    'Non' => 1
-                ]
-            ]);
+        // $builder
+        //     ->add('autoSober', ChoiceType::class, [
+        //         'label' => 'Ajouter les jours de sobriété automatiquement (en bêta test pour le moment)',
+        //         'choices' => [
+        //             'Oui' => 0,
+        //             'Non' => 1
+        //         ]
+        //     ]);
 
         $builder
             ->add(

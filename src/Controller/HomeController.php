@@ -25,7 +25,7 @@ class HomeController extends AbstractController
         if ($user) {
             if (null != $user->getHomepage() && 'home' !== $user->getHomepage()) {
                 return $this->redirectToRoute($user->getHomepage());
-            } 
+            }
         }
         return $this->render('home/index.html.twig');
     }
@@ -39,7 +39,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/contact", name="contact")
+     * @Route("/contact", name="contact", methods={"GET","POST"})
      */
     public function contact(
         Request $request,

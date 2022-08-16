@@ -1,0 +1,28 @@
+#cmd : sh bin/test
+
+#unit tests
+	#entity test
+	php bin/phpunit tests/Entity/ArgumentUserEntityTest.php
+	php bin/phpunit tests/Entity/CommentEntityTest.php
+	php bin/phpunit tests/Entity/DrinkEntityTest.php
+	php bin/phpunit tests/Entity/GoalEntityTest.php
+	php bin/phpunit tests/Entity/PostEntityTest.php
+	php bin/phpunit tests/Entity/SoberEntityTest.php
+	php bin/phpunit tests/Entity/SubscriberEntityTest.php
+	php bin/phpunit tests/Entity/TestimonialsEntityTest.php
+	php bin/phpunit tests/Entity/UserEntityTest.php
+
+#functional tests
+	#php bin/phpunit tests/Functionnal/HomeFunctionalTest.php
+	#php bin/phpunit tests/Repository/UserRepositoryTest.php
+	#php bin/phpunit tests/Repository/ArgumentUserRepositoryTest.php
+
+#webcase tests / Controller tests
+	#php bin/phpunit tests/Controller/HomeControllerTest.php
+	#php bin/phpunit tests/Controller/AlcoolControllerTest.php
+	#php bin/phpunit tests/Controller/CommentControllerTest.php
+	#php bin/phpunit tests/Controller/DrinkControllerTest.php
+
+	#php bin/phpunit tests/Controller/SecurityControllerTest.php
+
+	

@@ -3,35 +3,29 @@
 :root {
 	//var(--body-bg): url("../images/texture.webp") no-repeat fixed;
 	//var(--body-bg)-small: url("../images/texture-small.webp") no-repeat fixed;
-	--body-bg: linear-gradient(
-		90deg,
-		rgba(21, 30, 34, 1) 21%,
-		rgba(20, 27, 28, 1) 37%,
-		rgba(20, 21, 23, 1) 52%,
-		rgba(23, 19, 16, 1) 81%,
-		rgba(1, 1, 1, 1) 98%
-	);
-	--body-bg-small: linear-gradient(
-		90deg,
-		rgba(21, 30, 34, 1) 21%,
-		rgba(20, 27, 28, 1) 37%,
-		rgba(20, 21, 23, 1) 52%,
-		rgba(23, 19, 16, 1) 81%,
-		rgba(1, 1, 1, 1) 98%
-	);
+	--body-bg: linear-gradient(90deg,
+			rgba(21, 30, 34, 1) 21%,
+			rgba(20, 27, 28, 1) 37%,
+			rgba(20, 21, 23, 1) 52%,
+			rgba(23, 19, 16, 1) 81%,
+			rgba(1, 1, 1, 1) 98%);
+	--body-bg-small: linear-gradient(90deg,
+			rgba(21, 30, 34, 1) 21%,
+			rgba(20, 27, 28, 1) 37%,
+			rgba(20, 21, 23, 1) 52%,
+			rgba(23, 19, 16, 1) 81%,
+			rgba(1, 1, 1, 1) 98%);
 	--transparent: rgba(255, 255, 255, 0);
 	--semi-transparent: #29292940;
 	--alert: #0a0a0ad0;
 	--btn-color: #312e29a4;
 	--hover-color: #e78d06;
-	--card-bg : background: linear-gradient(
-		90deg,
-		rgba(143, 166, 173, 0.927608543417367) 8%,
-		rgba(83, 99, 124, 1) 31%,
-		rgba(63, 62, 93, 1) 49%,
-		rgba(57, 42, 61, 1) 72%,
-		rgba(23, 17, 24, 1) 95%
-	);
+	--card-bg: background: linear-gradient(90deg,
+			rgba(143, 166, 173, 0.927608543417367) 8%,
+			rgba(83, 99, 124, 1) 31%,
+			rgba(63, 62, 93, 1) 49%,
+			rgba(57, 42, 61, 1) 72%,
+			rgba(23, 17, 24, 1) 95%);
 	--card-header: #00000069;
 }
 
@@ -75,19 +69,23 @@ body {
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in;
 	animation-duration: 0.5s;
+
 	@include xs {
 		background: var(--body-bg-small);
 		background-size: cover;
 	}
+
 	@include sm {
 		background: var(--body-bg-small);
 		background-size: cover;
 	}
 }
+
 @keyframes fadeInOpacity {
 	0% {
 		opacity: 0;
 	}
+
 	100% {
 		opacity: 1;
 	}
@@ -105,12 +103,10 @@ html {
 	width: 90%;
 	margin: 20px auto;
 	background: rgb(226, 226, 226);
-	background: radial-gradient(
-		circle,
-		rgb(240, 240, 240) 0%,
-		rgba(255, 255, 255, 0.144) 50%,
-		rgba(255, 254, 254, 0) 100%
-	);
+	background: radial-gradient(circle,
+			rgb(240, 240, 240) 0%,
+			rgba(255, 255, 255, 0.144) 50%,
+			rgba(255, 254, 254, 0) 100%);
 }
 
 .alert,
@@ -122,12 +118,19 @@ html {
 	text-align: center;
 	z-index: 1200;
 	font-size: 2.5em;
+
 	@include xs {
 		font-size: 1.8em;
 	}
+
 	@include sm {
 		font-size: 1.8em;
 	}
+}
+
+.close-alert-btn {
+	position: absolute !important;
+	right: 50px !important;
 }
 
 #remember_me,
@@ -137,15 +140,17 @@ html {
 
 ul li {
 	list-style-type: none;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 }
 
 table tr td {
 	font-size: 1.3em;
 	font-weight: bold;
+
 	@include xs {
 		font-size: 0.9em;
 	}
+
 	@include sm {
 		font-size: 0.9em;
 	}
@@ -186,19 +191,24 @@ BUTTONS
 	text-align: center;
 	border: none;
 	padding: 0.45rem 0.45rem;
-	border-radius: 10rem;
+	border-radius: 8rem;
 	color: #fff;
 	text-transform: uppercase;
-	font-size: 1rem;
+	font-size: .8rem;
 	letter-spacing: 0.15rem;
 	transition: all 0.1s;
 	position: relative;
 	box-shadow: rgba(0, 0, 0, 0.767) 0 0 7px 1px, inset 0 -5px 20px hsla(0, 0%, 0%, 0.4),
-		/* top light */ inset 0 5px 20px hsla(0, 0%, 100%, 0.4),
-		/* bottom shadow */ /* multiple light sources yall */ -8px 8px 5px hsla(0, 0%, 0%, 0.15),
-		/* drop shadow 1 */ 5px 18px 10px hsla(0, 0%, 0%, 0.2);
+		/* top light */
+		inset 0 5px 20px hsla(0, 0%, 100%, 0.4),
+		/* bottom shadow */
+		/* multiple light sources yall */
+		-8px 8px 5px hsla(0, 0%, 0%, 0.15),
+		/* drop shadow 1 */
+		5px 18px 10px hsla(0, 0%, 0%, 0.2);
 
 	z-index: 1;
+
 	&:after {
 		content: "";
 		position: absolute;
@@ -210,6 +220,7 @@ BUTTONS
 		border-radius: 10rem;
 		z-index: -2;
 	}
+
 	&:before {
 		content: "";
 		position: absolute;
@@ -222,14 +233,17 @@ BUTTONS
 		border-radius: 10rem;
 		z-index: -1;
 	}
+
 	&:hover {
 		color: #fff;
 		box-shadow: black 0 0 2px 1px;
+
 		&:before {
 			width: 100%;
 		}
 	}
 }
+
 .custom-btn-left,
 .custom-btn-right,
 .twitter-share-button {
@@ -266,6 +280,7 @@ button.custom-btn {
 	visibility: hidden;
 	z-index: 1000;
 }
+
 #toTop::after {
 	content: "\2191";
 	font-weight: normal;
@@ -274,13 +289,16 @@ button.custom-btn {
 	line-height: 50px;
 	color: #fff;
 }
+
 #toTop:hover {
 	cursor: pointer;
 	background-color: var(--semi-transparent);
 }
+
 #toTop:active {
 	background-color: #555;
 }
+
 #toTop.show {
 	opacity: 1;
 	visibility: visible;
@@ -300,6 +318,15 @@ button.custom-btn {
 }
 
 /*********************
+TABLE
+*********************/
+.table tbody tr td {
+	height: 6em !important;
+	vertical-align: middle;
+}
+
+
+/*********************
 NAV MENU
 *********************/
 
@@ -311,6 +338,7 @@ NAV MENU
 	background-color: var(--semi-transparent) !important;
 	box-shadow: inset rgba(0, 0, 0, 0.644) 0 0 7px 1px;
 }
+
 .navbar-toggler {
 	color: white !important;
 	outline: none !important;
@@ -372,20 +400,24 @@ SOCIALS ICONS
 	z-index: 600;
 	display: flex;
 	flex-direction: column;
+
 	img {
-		width: 65px;
-		height: 65px;
+		width: 40px;
+		height: 40px;
+
 		@include xs {
 			width: 35px;
 			height: 35px;
 			margin: -2%;
 		}
+
 		@include sm {
 			width: 35px;
 			height: 35px;
 			margin: -2%;
 		}
 	}
+
 	@include xs {
 		position: absolute;
 		top: 46px;
@@ -393,6 +425,7 @@ SOCIALS ICONS
 		justify-content: space-evenly;
 		flex-direction: row;
 	}
+
 	@include sm {
 		position: absolute;
 		top: 46px;
@@ -406,6 +439,7 @@ SOCIALS ICONS
 .social-fb-img {
 	transition: ease-in-out 0.2s;
 }
+
 .social-twitter-img:hover,
 .social-fb-img:hover {
 	transform: rotate(45deg);
@@ -422,10 +456,12 @@ CONTAINER
 .logo-alcool-info img {
 	width: 265px;
 	height: 46px;
+
 	@include xs {
 		width: 177px;
 		height: 32px;
 	}
+
 	@include sm {
 		width: 177px;
 		height: 32px;
@@ -435,11 +471,13 @@ CONTAINER
 .container {
 	padding: 60px;
 	min-height: calc(100vh - 262px);
+
 	@include xs {
 		width: 100%;
 		min-height: calc(100vh - 308px);
 		padding: 20px;
 	}
+
 	@include sm {
 		width: 100%;
 		min-height: calc(100vh - 308px);
@@ -452,6 +490,7 @@ CONTAINER
 	width: fill-available;
 	height: auto;
 	box-shadow: black 0 0 7px 1px;
+
 	@include xs {
 		width: 320px !important;
 	}
@@ -495,6 +534,7 @@ SOCIAL ICON & DIV ICON
 	border-radius: 20px;
 	box-shadow: inset black 0 0 5px 3px;
 	transition: ease-in-out 0.2s;
+
 	&:hover {
 		background: var(--hover-color);
 		box-shadow: inset black 0 0 1px 1px;
@@ -507,7 +547,7 @@ SOCIAL ICON & DIV ICON
 }
 
 .info-btn {
-		&:focus {
+	&:focus {
 		border: none;
 		outline: none;
 		box-shadow: none;
@@ -543,9 +583,11 @@ BIG TEXT ANIM
 	justify-content: center;
 	flex-wrap: wrap;
 	margin-bottom: 3em;
+
 	@include xs {
 		margin-bottom: 1em;
 	}
+
 	@include sm {
 		margin-bottom: 1em;
 	}
@@ -555,15 +597,18 @@ BIG TEXT ANIM
 	width: 40px;
 	height: 40px;
 	animation: glow 2500ms linear infinite 2000ms;
+
 	@include sm {
 		width: 14px;
 		height: 14px;
 	}
+
 	@include xs {
 		width: 10px;
 		height: 10px;
 	}
 }
+
 @keyframes glow {
 	40% {
 		text-shadow: 0 0 8px #fff;
@@ -580,12 +625,14 @@ BIG TEXT ANIM
 	font-size: 6em;
 	color: wheat;
 	font-weight: 100;
+
 	@include sm {
 		width: 30px;
 		height: 17px;
 		font-size: 3em;
 		margin-bottom: 1em;
 	}
+
 	@include xs {
 		width: 30px;
 		height: 17px;
@@ -624,6 +671,7 @@ input,
 	border: none;
 	text-align: left;
 	box-shadow: inset 2px 2px 3px black;
+
 	&:focus {
 		outline-color: var(--hover-color);
 	}
@@ -642,9 +690,11 @@ FORM
 **********************/
 form[name="alcool_test"] {
 	font-size: 1.3em;
+
 	@include xs {
 		font-size: 1.5em !important;
 	}
+
 	@include sm {
 		font-size: 1.5em !important;
 	}
@@ -672,10 +722,12 @@ SOCIALS ICONS
 .badge-img {
 	width: 150px;
 	height: 150px;
+
 	@include xs {
 		width: 100px;
 		height: 100px;
 	}
+
 	@include sm {
 		width: 100px;
 		height: 100px;
@@ -690,10 +742,12 @@ MYCHART
 	width: 600px !important;
 	height: 600px !important;
 	margin: inherit;
+
 	@include xs {
 		width: 300px !important;
 		height: 300px !important;
 	}
+
 	@include sm {
 		width: 300px !important;
 		height: 300px !important;
@@ -744,11 +798,13 @@ CARD CONSO
 		opacity: 1;
 		margin-right: 10px;
 	}
+
 	@include xs {
 		width: 320px;
 		transform: perspective(0) rotateY(0deg);
 		opacity: 1;
 	}
+
 	@include sm {
 		width: 320px;
 		transform: perspective(0) rotateY(0deg);
@@ -791,15 +847,19 @@ POSTS
 	display: flex;
 	justify-content: center;
 	margin: auto;
+
 	input {
 		margin-right: 1.5em;
 		border-radius: 20px;
+
 		&::placeholder {
 			text-align: center;
 		}
+
 		@include xs {
 			margin-top: 2em;
 		}
+
 		@include sm {
 			margin-top: 2em;
 		}
@@ -825,11 +885,13 @@ footer {
 footer div {
 	display: flex;
 	justify-content: space-around;
+
 	@include xs {
 		position: relative;
 		flex-direction: column;
 		padding: 1em;
 	}
+
 	@include sm {
 		position: relative;
 		flex-direction: column;
@@ -843,6 +905,7 @@ PAGINATOR
 .pagination {
 	justify-content: center;
 }
+
 .first,
 .current,
 .page,
@@ -864,9 +927,11 @@ ARGUMENTS & OBJECTIFS
 .flex-left-right {
 	display: flex;
 	justify-content: space-around;
+
 	@include xs {
 		flex-direction: column;
 	}
+
 	@include sm {
 		flex-direction: column;
 	}
@@ -884,6 +949,7 @@ iframe {
 	@include xs {
 		max-width: 320px;
 	}
+
 	@include sm {
 		max-width: 320px;
 	}
@@ -906,7 +972,7 @@ BIG TEXT ANIM
 	-ms-flex-pack: center;
 	justify-content: center;
 	text-align: center;
-	background-color: var(--semi-transparent);
+	background-color: var(--transparent);
 }
 
 .grid-big-text {
@@ -914,9 +980,11 @@ BIG TEXT ANIM
 	justify-content: center;
 	flex-wrap: wrap;
 	margin-bottom: 3em;
+
 	@include xs {
 		margin-bottom: 1em;
 	}
+
 	@include sm {
 		margin-bottom: 1em;
 	}
@@ -926,15 +994,18 @@ BIG TEXT ANIM
 	width: 40px;
 	height: 40px;
 	animation: glow 2500ms linear infinite 2000ms;
+
 	@include sm {
 		width: 14px;
 		height: 14px;
 	}
+
 	@include xs {
 		width: 10px;
 		height: 10px;
 	}
 }
+
 @keyframes glow {
 	40% {
 		text-shadow: 0 0 8px #fff;
@@ -947,16 +1018,18 @@ BIG TEXT ANIM
 	width: 70px;
 	height: 50px;
 	margin: 2px;
-	background-color: var(--semi-transparent);
+	background-color: var(--transparent) !important;
 	font-size: 6em;
 	color: wheat;
 	font-weight: 100;
+
 	@include sm {
 		width: 30px;
 		height: 17px;
 		font-size: 3em;
 		margin-bottom: 1em;
 	}
+
 	@include xs {
 		width: 30px;
 		height: 17px;
@@ -1015,6 +1088,7 @@ LOADER ANIM
 	0% {
 		transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
 	}
+
 	100% {
 		transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
 	}
@@ -1024,6 +1098,7 @@ LOADER ANIM
 	0% {
 		transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
 	}
+
 	100% {
 		transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
 	}
@@ -1033,6 +1108,7 @@ LOADER ANIM
 	0% {
 		transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
 	}
+
 	100% {
 		transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
 	}

@@ -35,7 +35,7 @@ class UserController extends AbstractController
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $homeChoice = $form->get('homepage')->getData();
-                $isAutoSober = $form->get('autoSober')->getData();
+                //$isAutoSober = $form->get('autoSober')->getData();
 
                 if (0 === $homeChoice) {
                     $user->setHomepage('home');
@@ -47,16 +47,15 @@ class UserController extends AbstractController
                     $user->setHomepage('user_board');
                 }
 
-                if (0 === $isAutoSober) {
-                    $user->setAutoSober(true);
-                } else {
-                    $user->setAutosober(false);
-                }
+                // if (0 === $isAutoSober) {
+                //     $user->setAutoSober(true);
+                // } else {
+                //     $user->setAutosober(false);
+                // }
 
                 $this->em->flush();
                 $this->addFlash('success', 'Paramètre enregistré');
             }
-        
         } else {
             return $this->redirectToRoute('home');
         }

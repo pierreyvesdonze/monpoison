@@ -25,8 +25,7 @@ class TestimonialsController extends AbstractController
         TestimonialsRepository $testimonialsRepository,
         PaginatorInterface $paginator,
         Request $request
-        ): Response
-    {
+    ): Response {
         $data = $testimonialsRepository->findAllByDescId();
         $testimonials = $paginator->paginate(
             $data,
@@ -53,15 +52,10 @@ class TestimonialsController extends AbstractController
             $entityManager->persist($testimonial);
             $entityManager->flush();
 
+            $mailService->sendTestimonialMail($testimonial->getContent(), $this->getUser());
+
             $this->addFlash('success', 'Votre témoignage a bien été enregistré !');
 
-            // Send notification to contact@monpoison.fr
-            if ("production" === $this->getParameter('app.env')) {
-                $mailService->sendTestimonialMail(
-                    $form->get('content')->getData(),
-                    $form->get('pseudo')->getData()
-                );
-            }
             return $this->redirectToRoute('testimonials', [], Response::HTTP_SEE_OTHER);
         }
         return $this->renderForm('testimonials/new.html.twig', [
@@ -74,8 +68,7 @@ class TestimonialsController extends AbstractController
     public function show(
         Testimonials $testimonial,
         PaginatorInterface $paginatorInterface
-        ): Response
-    {
+    ): Response {
         return $this->render('testimonials/show.html.twig', [
             'testimonial' => $testimonial,
         ]);

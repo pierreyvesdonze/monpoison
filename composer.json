@@ -15,7 +15,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.10",
         "friendsofsymfony/ckeditor-bundle": "^2.3",
-        "friendsofsymfony/jsrouting-bundle": "^2.8",
+        "friendsofsymfony/jsrouting-bundle": "^3.2",
         "gregwar/captcha-bundle": "^2.2",
         "knplabs/knp-paginator-bundle": "^5.8",
         "phpdocumentor/reflection-docblock": "^5.3",
