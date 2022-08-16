@@ -9,7 +9,6 @@ use App\Repository\PostRepository;
 use App\Repository\SubscriberRepository;
 use App\Service\MailService;
 use Doctrine\ORM\EntityManagerInterface;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,17 +25,9 @@ class PostController extends AbstractController
 
     #[Route('s', name: 'post_index', methods: ['GET'])]
     public function index(
-        PostRepository $postRepository,
-        PaginatorInterface $paginatorInterface,
-        Request $request
+        PostRepository $postRepository
     ): Response {
-        
-        $data = $postRepository->findAllByDesc();
-        $posts = $paginatorInterface->paginate(
-            $data,
-            $request->query->getInt('page', 1),
-            6
-        );
+        $posts = $postRepository->findAllByDesc();
         return $this->render('post/index.html.twig', [
             'posts' => $posts,
         ]);
