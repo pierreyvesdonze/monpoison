@@ -9,6 +9,7 @@ use App\Service\MailService;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -66,17 +67,21 @@ class TestimonialsController extends AbstractController
 
     #[Route('/voir/{id}', name: 'testimonials_show', methods: ['GET'])]
     public function show(
-        Testimonials $testimonial,
-        PaginatorInterface $paginatorInterface
+        Testimonials $testimonial
     ): Response {
         return $this->render('testimonials/show.html.twig', [
             'testimonial' => $testimonial,
         ]);
     }
 
-    #[Route('/{id}/editer', name: 'testimonials_edit', methods: ['GET', 'POST'])]
+    /**
+     * @Route("/editer/{id}", name="testimonial_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
+     */
     public function edit(Request $request, Testimonials $testimonial, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $form = $this->createForm(TestimonialsType::class, $testimonial);
         $form->handleRequest($request);
 
@@ -91,13 +96,21 @@ class TestimonialsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/supprimer', name: 'testimonials_delete', methods: ['POST'])]
-    public function delete(Request $request, Testimonials $testimonial, EntityManagerInterface $entityManager): Response
+    /**
+     * @Route("/supprimer/{id}", name="delete_testimonial", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function delete(
+        Testimonials $testimonial,
+        EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$testimonial->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($testimonial);
-            $entityManager->flush();
-        }
-        return $this->redirectToRoute('testimonials_index', [], Response::HTTP_SEE_OTHER);
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        $entityManager->remove($testimonial);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Témoignage supprimé !');
+
+        return $this->redirectToRoute('testimonials', [], Response::HTTP_SEE_OTHER);
     }
 }

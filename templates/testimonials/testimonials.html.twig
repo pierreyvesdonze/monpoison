@@ -17,6 +17,12 @@
     </p>
     <b><span class="span-italic">- {{ testimonial.pseudo }} -</span></b>
 
+    {% if is_granted('ROLE_ADMIN') %}
+    <br>
+    <a href="{{ path('delete_testimonial', {'id':testimonial.id}) }}" class="custom-btn"
+        onclick="return confirm('Supprimer ce témoignage ?')">Supprimer</a>
+    {% endif %}
+
     <hr class="hr-white">
     <hr class="hr-white">
     <hr class="hr-white">
