@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une économie d'argent à votre tableau de bord{% endblock %}
+
+{% block metadescription %}
+<meta name="description"
+    content="Entrez un montant économisé grâce à ce formulaire">
+{% endblock %}
+
+{% block body %}
+<br><br>
+<div class="container">
+    {{ form_start(form) }}
+    {{ form_label(form.amount) }}
+    <br>
+    {{ form_widget(form.amount) }}
+    <br>
+    {{ form_widget(form.submit) }}
+    {{ form_end(form) }}
+    <br>
+    <a class="custom-btn" href="{{ path('drink_calendar') }}">Annuler</a>
+</div>
+{% endblock %}

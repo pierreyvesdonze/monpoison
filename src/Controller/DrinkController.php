@@ -32,18 +32,28 @@ class DrinkController extends AbstractController
         SoberRepository $soberRepository
     ) {
         $user      = $this->getUser();
-        $drinks    = $this->drinkRepository->findByUser($user);
+        $drinks    = $this->drinkRepository->findBy([
+            'user' => $user
+        ]);
         $lastDrink = $this->drinkRepository->findLastDrink($user);
-        $sobers    = $soberRepository->findByUser($user);
+        $sobers    = $soberRepository->findBy([
+            'user' => $user
+        ]);
+
+        $totalMoneySaved = 0;
+        foreach ($user->getMoney() as $value) {
+            $totalMoneySaved += $value->getAmount();
+        }
 
         if ($lastDrink->getDate() < new DateTime('today')) {
             $lastDrink = false;
         }
 
         return $this->render('drink/calendar.html.twig', [
-            'drinks'    => $drinks,
-            'sobers'    => $sobers,
-            'lastDrink' => $lastDrink
+            'drinks'     => $drinks,
+            'sobers'     => $sobers,
+            'lastDrink'  => $lastDrink,
+            'moneySaved' => $totalMoneySaved
         ]);
     }
 

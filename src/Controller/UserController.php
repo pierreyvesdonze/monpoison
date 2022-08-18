@@ -107,6 +107,12 @@ class UserController extends AbstractController
 
         // Get Badges
         $badges         = $userStatsService->getBadges($user);
+        
+        // Total Money saved
+        $moneySaved     = 0;
+        foreach ($user->getMoney() as $value) {
+            $moneySaved += $value->getAmount();
+        }
 
         return $this->render('user/user.html.twig', [
             'user'           => $user,
@@ -120,7 +126,8 @@ class UserController extends AbstractController
             'periodMax'      => $periodMax,
             'goalsRatio'     => $goalsRatio,
             'encouragement'  => $encouragement,
-            'badges'         => $badges
+            'badges'         => $badges,
+            'moneySaved'     => $moneySaved
         ]);
     }
 
