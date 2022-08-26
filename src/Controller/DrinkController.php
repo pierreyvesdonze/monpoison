@@ -32,13 +32,9 @@ class DrinkController extends AbstractController
         SoberRepository $soberRepository
     ) {
         $user      = $this->getUser();
-        $drinks    = $this->drinkRepository->findBy([
-            'user' => $user
-        ]);
+        $drinks    = $this->drinkRepository->findByUser($user);
         $lastDrink = $this->drinkRepository->findLastDrink($user);
-        $sobers    = $soberRepository->findBy([
-            'user' => $user
-        ]);
+        $sobers    = $soberRepository->findByUser($user);
 
         $totalMoneySaved = 0;
         foreach ($user->getMoney() as $value) {
