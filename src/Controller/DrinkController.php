@@ -36,14 +36,20 @@ class DrinkController extends AbstractController
         $lastDrink = $this->drinkRepository->findLastDrink($user);
         $sobers    = $soberRepository->findByUser($user);
 
+        $totalMoneySaved = 0;
+        foreach ($user->getMoney() as $value) {
+            $totalMoneySaved += $value->getAmount();
+        }
+
         if ($lastDrink->getDate() < new DateTime('today')) {
             $lastDrink = false;
         }
 
         return $this->render('drink/calendar.html.twig', [
-            'drinks'    => $drinks,
-            'sobers'    => $sobers,
-            'lastDrink' => $lastDrink
+            'drinks'     => $drinks,
+            'sobers'     => $sobers,
+            'lastDrink'  => $lastDrink,
+            'moneySaved' => $totalMoneySaved
         ]);
     }
 

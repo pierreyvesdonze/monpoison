@@ -23,9 +23,6 @@ var app = {
             $('.btn-encouragements-invisible').trigger('click');
         }
 
-        // Fadeout flash message
-        $('.close-alert-btn').on('click', app.closeAlertMessage);
-
         if ($('.flash-container').find('.alert').length !== 0) {
             setTimeout(() => {
                 $('.alert').fadeOut('fast')
@@ -75,13 +72,6 @@ var app = {
             e.preventDefault();
             window.scroll({ top: 0, left: 0, behavior: 'smooth' });
         });
-    },
-
-    /**
-     * Close alert modal
-     */
-    closeAlertMessage: () => {
-        $('.alert').css('display', 'none');
     },
 
     /**

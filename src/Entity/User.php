@@ -103,6 +103,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $autoSober;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Money::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $money;
+
     public function __construct()
     {
         $this->drinks = new ArrayCollection();
@@ -111,6 +116,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->argumentUsers = new ArrayCollection();
         $this->goals = new ArrayCollection();
         $this->badges = new ArrayCollection();
+        $this->money = new ArrayCollection();
     }
 
     public function __toString()
@@ -452,6 +458,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAutoSober(bool $autoSober): self
     {
         $this->autoSober = $autoSober;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Money[]
+     */
+    public function getMoney(): Collection
+    {
+        return $this->money;
+    }
+
+    public function addMoney(Money $money): self
+    {
+        if (!$this->money->contains($money)) {
+            $this->money[] = $money;
+            $money->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMoney(Money $money): self
+    {
+        if ($this->money->removeElement($money)) {
+            // set the owning side to null (unless already changed)
+            if ($money->getUser() === $this) {
+                $money->setUser(null);
+            }
+        }
 
         return $this;
     }
