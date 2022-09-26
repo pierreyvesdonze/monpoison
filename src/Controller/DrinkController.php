@@ -14,7 +14,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class DrinkController extends AbstractController
 {
@@ -27,7 +26,6 @@ class DrinkController extends AbstractController
 
     /**
      * @Route("/consommations/voir", name="drink_calendar")
-     * @IsGranted("ROLE_USER")
      */
     public function getCalendar(
         SoberRepository $soberRepository,
@@ -37,7 +35,7 @@ class DrinkController extends AbstractController
         $drinks    = $this->drinkRepository->findByUser($user);
         $lastDrink = $this->drinkRepository->findLastDrink($user);
         $sobers    = $soberRepository->findByUser($user);
-        $lastSoberPeriod = 0; //$userStatsService->getLastSoberPeriod($user);
+        $lastSoberPeriod = $userStatsService->getLastSoberPeriod($user);
 
         $totalMoneySaved = 0;
         foreach ($user->getMoney() as $value) {
