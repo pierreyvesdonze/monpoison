@@ -37,7 +37,7 @@ class DrinkController extends AbstractController
         $drinks    = $this->drinkRepository->findByUser($user);
         $lastDrink = $this->drinkRepository->findLastDrink($user);
         $sobers    = $soberRepository->findByUser($user);
-        $lastSoberPeriod = $userStatsService->getLastSoberPeriod($user);
+        $lastSoberPeriod = 0; //$userStatsService->getLastSoberPeriod($user);
 
         $totalMoneySaved = 0;
         foreach ($user->getMoney() as $value) {
