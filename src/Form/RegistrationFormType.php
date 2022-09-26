@@ -23,7 +23,7 @@ class RegistrationFormType extends AbstractType
             ->add('email', TextType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Entrez un mot de passe',
+                        'message' => 'Entrez votre email',
                     ]),
                     new Regex([
                         'pattern' => ('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/'),

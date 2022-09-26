@@ -7,6 +7,7 @@ use App\Form\DrinkType;
 use App\Repository\DrinkRepository;
 use App\Repository\SoberRepository;
 use App\Service\SoberService;
+use App\Service\UserStatsService;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,12 +30,14 @@ class DrinkController extends AbstractController
      * @IsGranted("ROLE_USER")
      */
     public function getCalendar(
-        SoberRepository $soberRepository
+        SoberRepository $soberRepository,
+        UserStatsService $userStatsService
     ) {
         $user      = $this->getUser();
         $drinks    = $this->drinkRepository->findByUser($user);
         $lastDrink = $this->drinkRepository->findLastDrink($user);
         $sobers    = $soberRepository->findByUser($user);
+        $lastSoberPeriod = $userStatsService->getLastSoberPeriod($user);
 
         $totalMoneySaved = 0;
         foreach ($user->getMoney() as $value) {
@@ -46,10 +49,11 @@ class DrinkController extends AbstractController
         }
 
         return $this->render('drink/calendar.html.twig', [
-            'drinks'     => $drinks,
-            'sobers'     => $sobers,
-            'lastDrink'  => $lastDrink,
-            'moneySaved' => $totalMoneySaved
+            'drinks'          => $drinks,
+            'sobers'          => $sobers,
+            'lastDrink'       => $lastDrink,
+            'moneySaved'      => $totalMoneySaved,
+            'lastSoberPeriod' => $lastSoberPeriod
         ]);
     }
 

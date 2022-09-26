@@ -36,11 +36,7 @@
 		<div class="card">
 			<div class="card-header">
 				<h5>
-					{% if sobers|length <= 1 %} {{ sobers|length }} jour sans alcool
-						{% else %}
-						{{ sobers|length }}
-						jours sans alcool
-				{% endif %}
+				{{ lastSoberPeriod }} jour(s) sans alcool
 				</h5>
 				<h6>{{ moneySaved }} € économisé(s)</h6>
 			</div>
