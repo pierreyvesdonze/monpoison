@@ -42,8 +42,11 @@ class DrinkController extends AbstractController
             $totalMoneySaved += $value->getAmount();
         }
 
-        if ($lastDrink->getDate() < new DateTime('today')) {
-            $lastDrink = false;
+        if ($lastDrink) {
+            
+            if ($lastDrink->getDate() < new DateTime('today')) {
+                $lastDrink = false;
+            }
         }
 
         return $this->render('drink/calendar.html.twig', [
