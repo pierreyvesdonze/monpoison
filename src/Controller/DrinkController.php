@@ -43,7 +43,7 @@ class DrinkController extends AbstractController
         }
 
         if ($lastDrink) {
-            
+
             if ($lastDrink->getDate() < new DateTime('today')) {
                 $lastDrink = false;
             }
@@ -109,11 +109,12 @@ class DrinkController extends AbstractController
             } else {
                 $drink = $existingDrink[0];
                 $drink->setCost($form->get('cost')->getData() + $existingDrink[0]->getCost());
-                $drink->setQuantity($form->get('quantity')->getData() + $existingDrink[0]->getQuantity());
             }
-
+            
             $drink->setUser($user);
+            $drink->setQuantity($form->get('quantity')->getData() + $existingDrink[0]->getQuantity());
             $drink->setAlcool($form->get('alcool')->getData());
+            $drink->setWord($form->get('word')->getData());
             $drink->setDate($date);
 
             // Remove auto sober day if option is activated
@@ -163,10 +164,6 @@ class DrinkController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $drink->setAlcool($form->get('alcool')->getData());
-            $drink->setDate($form->get('date')->getData());
-            $drink->setQuantity($form->get('quantity')->getData());
-            $drink->setCost($form->get('cost')->getData());
 
             // Remove auto sober day if option is activated
             $soberService->removeAutoSoberDay($this->getUser());

@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -49,6 +50,12 @@ class DrinkType extends AbstractType
                 'label' => 'Envoyer',
                 'attr' => [
                     'class' => 'custom-btn'
+                ]
+            ])
+            ->add('word', TextType::class, [
+                'label' => 'Ecrivez juste un seul mot',
+                'attr' => [
+                    'maxlength' => 32
                 ]
             ]);
     }
