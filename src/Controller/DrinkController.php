@@ -109,10 +109,10 @@ class DrinkController extends AbstractController
             } else {
                 $drink = $existingDrink[0];
                 $drink->setCost($form->get('cost')->getData() + $existingDrink[0]->getCost());
+                $drink->setQuantity($form->get('quantity')->getData() + $existingDrink[0]->getQuantity());
             }
             
             $drink->setUser($user);
-            $drink->setQuantity($form->get('quantity')->getData() + $existingDrink[0]->getQuantity());
             $drink->setAlcool($form->get('alcool')->getData());
             $drink->setWord($form->get('word')->getData());
             $drink->setDate($date);
