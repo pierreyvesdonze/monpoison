@@ -36,7 +36,7 @@
 		<div class="card">
 			<div class="card-header">
 				<h5>
-				{{ lastSoberPeriod }} jour(s) sans alcool
+					{{ lastSoberPeriod }} jour(s) sans alcool
 				</h5>
 				<h6>{{ moneySaved }} € économisé(s)</h6>
 			</div>
@@ -66,6 +66,17 @@
 				<p class="card-text">
 					<b>{{ drink.cost|number_format(2)}}
 						€</b>
+				</p>
+				<p class="card-text">
+				<p>
+					<span class="drink-word">
+						{% if drink.word %}
+						{{ drink.word }}
+						{% else %}
+						Rien
+						{% endif %}
+					</span>
+				</p>
 				</p>
 				<div class="d-flex justify-content-around">
 					<a href="{{ path('drink_update', {'id': drink.id}) }}" title="Mettre à jour une consommation"

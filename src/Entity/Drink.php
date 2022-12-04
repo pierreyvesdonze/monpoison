@@ -44,6 +44,11 @@ class Drink
      */
     private $cost;
 
+    /**
+     * @ORM\Column(type="string", length=64, nullable=true)
+     */
+    private $word;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +110,18 @@ class Drink
     public function setCost(float $cost): self
     {
         $this->cost = $cost;
+
+        return $this;
+    }
+
+    public function getWord(): ?string
+    {
+        return $this->word;
+    }
+
+    public function setWord(?string $word): self
+    {
+        $this->word = $word;
 
         return $this;
     }
