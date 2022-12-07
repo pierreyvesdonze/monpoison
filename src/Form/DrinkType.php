@@ -22,13 +22,13 @@ class DrinkType extends AbstractType
             ->add('alcool', EntityType::class, [
                 'label' => 'Alcool consommé',
                 'class' => Alcool::class,
-                'attr' => [
+                'attr'  => [
                     'class' => 'input'
                 ]
             ])
             ->add('quantity', IntegerType::class, [
                 'label' => "Quantité (en unités d'alcool)",
-                'attr' => [
+                'attr'  => [
                     'class' => 'input'
                 ]
             ])
@@ -41,20 +41,21 @@ class DrinkType extends AbstractType
             ->add('cost', NumberType::class, [
                 'scale' => 2,
                 'label' => 'Argent dépensé',
-                'attr' => [
+                'attr'  => [
                     'class' => 'input',
                 ]
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer',
-                'attr' => [
+                'attr'  => [
                     'class' => 'custom-btn'
                 ]
             ])
             ->add('word', TextType::class, [
-                'label' => 'Ecrivez juste un seul mot',
-                'attr' => [
-                    'maxlength' => 32
+                'label'    => 'Associez un mot ou deux à cette consommation',
+                'required' => false,
+                'attr'     => [
+                    'maxlength' => 48
                 ]
             ]);
     }
