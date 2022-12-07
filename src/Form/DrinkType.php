@@ -51,13 +51,7 @@ class DrinkType extends AbstractType
                     'class' => 'custom-btn'
                 ]
             ])
-            ->add('word', TextType::class, [
-                'label'    => 'Associez un mot ou deux à cette consommation',
-                'required' => false,
-                'attr'     => [
-                    'maxlength' => 48
-                ]
-            ]);
+       ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -114,7 +114,6 @@ class DrinkController extends AbstractController
             
             $drink->setUser($user);
             $drink->setAlcool($form->get('alcool')->getData());
-            $drink->setWord($form->get('word')->getData());
             $drink->setDate($date);
 
             // Remove auto sober day if option is activated
