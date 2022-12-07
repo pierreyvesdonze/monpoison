@@ -67,17 +67,6 @@
 					<b>{{ drink.cost|number_format(2)}}
 						€</b>
 				</p>
-				<p class="card-text">
-				<p>
-					<span class="drink-word">
-						{% if drink.word %}
-						{{ drink.word }}
-						{% else %}
-						Rien
-						{% endif %}
-					</span>
-				</p>
-				</p>
 				<div class="d-flex justify-content-around">
 					<a href="{{ path('drink_update', {'id': drink.id}) }}" title="Mettre à jour une consommation"
 						class="custom-btn btn-settings">&olarr;</a>
