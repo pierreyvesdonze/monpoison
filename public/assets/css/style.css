@@ -458,60 +458,39 @@ SOCIALS ICONS
 /**********************
 CONTAINER
 **********************/
-.logo-alcool-info {
-  text-align: center;
-}
-
-.logo-alcool-info img {
-  width: 265px;
-  height: 46px;
-}
-@media (min-width: 300px) and (max-width: 576px) {
-  .logo-alcool-info img {
-    width: 177px;
-    height: 32px;
-  }
-}
-@media (min-width: 576px) and (max-width: 768px) {
-  .logo-alcool-info img {
-    width: 177px;
-    height: 32px;
-  }
-}
-
 .container {
   padding: 60px;
-  min-height: calc(100vh - 262px);
 }
 @media (min-width: 300px) and (max-width: 576px) {
   .container {
     width: 100%;
-    min-height: calc(100vh - 308px);
     padding: 20px;
   }
 }
 @media (min-width: 576px) and (max-width: 768px) {
   .container {
     width: 100%;
-    min-height: calc(100vh - 308px);
     padding: 20px;
   }
 }
 
-.container p img {
+.container p img,
+.container .flex-left-right .right img {
   width: -webkit-fill-available;
   width: -moz-available;
   width: fill-available;
   height: auto;
-  box-shadow: black 0 0 7px 1px;
+  box-shadow: rgba(0, 0, 0, 0.664) 0 0 6px 1px;
 }
 @media (min-width: 300px) and (max-width: 576px) {
-  .container p img {
+  .container p img,
+.container .flex-left-right .right img {
     width: 320px !important;
   }
 }
 @media (min-width: 576px) and (max-width: 768px) {
-  .container p img {
+  .container p img,
+.container .flex-left-right .right img {
     width: 320px !important;
   }
 }
@@ -667,7 +646,8 @@ BIG TEXT ANIM
   font-size: 1.2em;
 }
 
-.home-stats-img img {
+.home-stats-img img,
+.flex-left-right .right img {
   width: 100%;
 }
 
@@ -933,6 +913,10 @@ footer div {
     flex-direction: column;
     padding: 1em;
   }
+}
+
+.gg-play-icon {
+  width: 50%;
 }
 
 /**********************
