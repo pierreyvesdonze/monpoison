@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,13 +22,13 @@ class DrinkType extends AbstractType
             ->add('alcool', EntityType::class, [
                 'label' => 'Alcool consommé',
                 'class' => Alcool::class,
-                'attr' => [
+                'attr'  => [
                     'class' => 'input'
                 ]
             ])
             ->add('quantity', IntegerType::class, [
                 'label' => "Quantité (en unités d'alcool)",
-                'attr' => [
+                'attr'  => [
                     'class' => 'input'
                 ]
             ])
@@ -35,22 +36,22 @@ class DrinkType extends AbstractType
                 'attr' => [
                     'class' => 'input'
                 ],
-            'data' => new \DateTime('now'),
             'widget' => 'single_text'
             ])
             ->add('cost', NumberType::class, [
                 'scale' => 2,
                 'label' => 'Argent dépensé',
-                'attr' => [
+                'attr'  => [
                     'class' => 'input',
                 ]
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer',
-                'attr' => [
+                'attr'  => [
                     'class' => 'custom-btn'
                 ]
-            ]);
+            ])
+       ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

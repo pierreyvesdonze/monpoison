@@ -16,12 +16,6 @@
 {# TOAST ENCOURAGEMENT #}
 {% include('home/_toast.html.twig') %}
 
-<div class="logo-alcool-info">
-    <img src="{{ asset('assets/images/alcool-info-service-logo.png') }}" alt="">
-</div>
-
-<br>
-
 <div class="big-title-wrapper">
     <div class="grid-big-text">
         <div class="small square el" style="transform: scale(1);">B</div>
@@ -50,38 +44,66 @@
         <div class="small square el yellow-big" style="transform: scale(1);">S</div>
         <div class="small square el yellow-big" style="transform: scale(1);">O</div>
         <div class="small square el yellow-big" style="transform: scale(1);">N</div>
-
     </div>
 </div>
 
 <div class="container">
     <p class="home-text">
+        Contrôlez vos consommations d'alcool et gardez un oeil sur vos objectifs ainsi que vos dépenses liées à
+        l'alcool.
+        <br><br>
+        Ce site a pour but d'aider quiconque désire suivre de près ses consommations au quotidien, notamment les
+        personnes s'avouant alcoolodépendantes ou souhaitant simplement connaître leur niveau de dépendance.
+        <br><br>
         La binouze, la gnôle, le casse-poitrine, le pousse-café, la goutte, le pinard... les termes argotiques ne
         manquent pas pour désigner l'alcool sous toutes ses formes. Cette boisson existe depuis 4000 ans avant JC et
         elle est aujourd'hui sacralisée par bien des peuples. Ancrée dans la culture française elle n'est pas sans poser
         problème, bien au contraire. Environ 49000 décès et 30000 cancers sont imputés à l'alcool chaque année et 10% de
         la population française déclare en consommer quotidiennement.
-        <br>
-        <br>
+        <br><br>
         Si boire un coup détend et désinhibe, boire quotidiennement et en quantité n'apporte que souffrance et
         dépendance, pour soi comme pour son entourage. Lorsque l'addiction s'installe, les déboires s'emballent.
-        <br>
-        <br>
-        Ce site a pour but d'aider quiconque désire suivre de près ses consommations au quotidien, notamment les
-        personnes s'avouant alcoolodépendantes ou souhaitant simplement connaître leur niveau de dépendance. Aussi la
-        partie blog est là pour informer sur les bienfaits mais surtout méfaits de l'alcool, afin de sensibiliser la
-        population à ce produit qui figure aujourd'hui parmis les drogues les plus addictives au monde.
-        <br>
-        <br>
-        Et vous, êtes-vous alcoolodépendant(e) ? <a href="{{ path('alcool_test') }}">Faites le test !</a>
     </p>
 </div>
-<br>
+
+<hr class="hr-white">
 
 <div class="container">
-<h2>Obtenez des statistiques détaillées sur vos habitudes et maîtrisez vos consommation d'alcool au quotidien. </h2>
+    <h2>Obtenez des statistiques détaillées sur vos habitudes</h2>
     <div class="d-flex justify-content-center home-stats-img">
-        <img src="{{ asset('assets/images/stats-board.webp') }}" alt="stats-board">
+        <p>
+            <img src="{{ asset('assets/images/stats-board.webp') }}" alt="stats-board">
+        </p>
+    </div>
+</div>
+
+<hr class="hr-white">
+
+<div class="container">
+    <h2>
+        Êtes-vous alcoolodépendant(e) ?
+        <br>
+        <a href="{{ path('alcool_test') }}">Faites le test !</a>
+    </h2>
+</div>
+
+<hr class="hr-white">
+
+<div class="container">
+    <h2>Contrôlez vos consommations et votre budget alloué au quotidien</h2>
+    <p>
+        <img src="{{ asset('assets/images/monsuivi.png') }}" alt="drink-board">
+    </p>
+</div>
+
+<hr class="hr-white">
+
+<div class="container">
+    <div class="flex-left-right">
+        <div class="left"><h2>Fixez-vous des objectifs</h2></div>
+        <div class="right">
+            <img src="{{ asset('assets/images/objectifs.png') }}" alt="drink-board">
+        </div>
     </div>
 </div>
 

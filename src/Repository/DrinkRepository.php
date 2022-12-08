@@ -63,7 +63,7 @@ class DrinkRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Drink[] Returns an array of last week Drink objects
+     * @return Drink[] Returns an array of last day Drink objects
      */
     public function findLastDayDrinks($user)
     {

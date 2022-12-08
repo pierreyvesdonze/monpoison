@@ -20,7 +20,7 @@ class SoberRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Sober[] Returns an array of Drink objects
+     * @return Sober[] Returns an array of Sobers objects
      */
     public function findByUser($user)
     {
@@ -33,17 +33,39 @@ class SoberRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Sober[] Returns an array of Drink objects
+     * @return Sober[] Returns an array of Sobers objects
      */
-    public function findDatesByUser($user)
+    public function findDatesByUser($user, $orderBy)
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.user = :val')
             ->setParameter('val', $user)
             ->select('s.date')
-            ->orderBy('s.date', 'ASC')
+            ->orderBy('s.date', $orderBy)
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @return Sober[] Returns an array of Sobers objects
+     */
+    public function findDatesGreaterThanByUser($user, $last)
+    {
+        $qb = $this->createQueryBuilder('s')
+            ->where('s.user = :val')
+            ->setParameter('val', $user);
+        
+            if ($last !== null) {
+                $qb = $qb->andWhere('s.date > :last')
+                ->setParameter('last', $last);
+        }
+        $qb = $qb
+            ->select('s.date')
+            ->orderBy('s.date', 'DESC')
+            ->getQuery()
+            ->getResult();
+        
+            return $qb;
     }
 
     /**

@@ -7,13 +7,13 @@ use App\Form\DrinkType;
 use App\Repository\DrinkRepository;
 use App\Repository\SoberRepository;
 use App\Service\SoberService;
+use App\Service\UserStatsService;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class DrinkController extends AbstractController
 {
@@ -26,30 +26,35 @@ class DrinkController extends AbstractController
 
     /**
      * @Route("/consommations/voir", name="drink_calendar")
-     * @IsGranted("ROLE_USER")
      */
     public function getCalendar(
-        SoberRepository $soberRepository
+        SoberRepository $soberRepository,
+        UserStatsService $userStatsService
     ) {
         $user      = $this->getUser();
         $drinks    = $this->drinkRepository->findByUser($user);
         $lastDrink = $this->drinkRepository->findLastDrink($user);
         $sobers    = $soberRepository->findByUser($user);
+        $lastSoberPeriod = $userStatsService->getLastSoberPeriod($user);
 
         $totalMoneySaved = 0;
         foreach ($user->getMoney() as $value) {
             $totalMoneySaved += $value->getAmount();
         }
 
-        if ($lastDrink->getDate() < new DateTime('today')) {
-            $lastDrink = false;
+        if ($lastDrink) {
+
+            if ($lastDrink->getDate() < new DateTime('today')) {
+                $lastDrink = false;
+            }
         }
 
         return $this->render('drink/calendar.html.twig', [
-            'drinks'     => $drinks,
-            'sobers'     => $sobers,
-            'lastDrink'  => $lastDrink,
-            'moneySaved' => $totalMoneySaved
+            'drinks'          => $drinks,
+            'sobers'          => $sobers,
+            'lastDrink'       => $lastDrink,
+            'moneySaved'      => $totalMoneySaved,
+            'lastSoberPeriod' => $lastSoberPeriod
         ]);
     }
 
@@ -106,7 +111,7 @@ class DrinkController extends AbstractController
                 $drink->setCost($form->get('cost')->getData() + $existingDrink[0]->getCost());
                 $drink->setQuantity($form->get('quantity')->getData() + $existingDrink[0]->getQuantity());
             }
-
+            
             $drink->setUser($user);
             $drink->setAlcool($form->get('alcool')->getData());
             $drink->setDate($date);
@@ -158,10 +163,6 @@ class DrinkController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $drink->setAlcool($form->get('alcool')->getData());
-            $drink->setDate($form->get('date')->getData());
-            $drink->setQuantity($form->get('quantity')->getData());
-            $drink->setCost($form->get('cost')->getData());
 
             // Remove auto sober day if option is activated
             $soberService->removeAutoSoberDay($this->getUser());

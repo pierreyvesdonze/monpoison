@@ -24,7 +24,7 @@ class UserStatsService
     // Get dates sorted by ASC to calculate longest period of sobriety
     public function getMaxSobrietyPeriod($user)
     {
-        $sobersDates = $this->soberRepository->findDatesByUser($user);
+        $sobersDates = $this->soberRepository->findDatesByUser($user, 'ASC');
 
         $period            = 0;
         $periodMax         = 0;
@@ -49,6 +49,37 @@ class UserStatsService
             $periodMax = $period;
         }
         return $periodMax;
+    }
+
+    public function getLastSoberPeriod($user)
+    {
+        $lastDrink = $this->drinkRepository->findLastDrink($user);
+        
+        $lastDrinkDate = $lastDrink == null ? null : $lastDrink->getDate();
+
+        $sobersDates = $this->soberRepository->findDatesGreaterThanByUser($user, $lastDrinkDate);
+
+        if (count($sobersDates) == 0 ) {
+            return 0;
+        }
+
+        $previousDay = null;
+        $nbDays = 1;
+
+        foreach ($sobersDates as $soberDate) {
+            $expectedPreviousDay = clone $soberDate['date'];
+            $expectedPreviousDay->modify('+1 day');
+
+            if ($expectedPreviousDay == $previousDay) {
+                $nbDays++;
+            } elseif ($previousDay !== null) {
+                break;
+            } 
+
+            $previousDay = $soberDate['date'];
+        }
+        
+        return $nbDays;
     }
 
     // Get user badges
