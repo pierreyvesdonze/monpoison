@@ -809,9 +809,9 @@ CARD CONSO
 	background: var(--card-header);
 }
 .card-drinks {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	display: flex !important;
+	justify-content: space-between !important;
+	align-items: center !important;
 }
 
 .card-header,
