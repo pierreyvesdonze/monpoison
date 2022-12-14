@@ -256,7 +256,7 @@ BUTTONS
 
 .btn-settings,
 .btn-danger.btn-settings {
-	font-size: 2em !important;
+	font-size: 1em !important;
 }
 
 button[type="submit"],
@@ -468,8 +468,7 @@ CONTAINER
 }
 
 .container p img,
-.container .flex-left-right .right img
-{
+.container .flex-left-right .right img {
 	width: -webkit-fill-available;
 	width: fill-available;
 	height: auto;
@@ -761,7 +760,7 @@ MYCHART
 CARD CONSO
 *********************/
 .card {
-	height: 334px;
+	height: 208px;
 	width: 212px;
 	margin: 13px;
 	box-shadow: -6px 0px 7px 1px rgba(0, 0, 0, 0.75);
@@ -809,10 +808,19 @@ CARD CONSO
 	border-radius: 0 17px 0 0 !important;
 	background: var(--card-header);
 }
+.card-drinks {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
 
 .card-header,
 .card-body {
 	text-align: center;
+}
+
+.card-subtitle {
+	align-items: center;
 }
 
 /*********************
