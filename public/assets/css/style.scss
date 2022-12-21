@@ -796,7 +796,7 @@ CARD CONSO
 	}
 }
 
-.card:first-of-type {
+.card:nth-child(1) {
 	background: #2e2e2e21;
 }
 
