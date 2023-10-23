@@ -19,9 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class TestimonialsController extends AbstractController
 {
-    /**
-     * @Route("s", name="testimonials", methods="GET")
-     */
+    #[Route('s', name: 'testimonials', methods: ['GET'])]
     public function index(
         TestimonialsRepository $testimonialsRepository,
         PaginatorInterface $paginator,
@@ -74,10 +72,8 @@ class TestimonialsController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/editer/{id}", name="testimonial_edit", methods={"GET","POST"})
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route('/editer/{id}', name: 'testimonial_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Testimonials $testimonial, EntityManagerInterface $entityManager): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -96,14 +92,12 @@ class TestimonialsController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/supprimer/{id}", name="delete_testimonial", methods={"GET","POST"})
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route('/supprimer/{id}', name: 'delete_testimonial', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(
         Testimonials $testimonial,
-        EntityManagerInterface $entityManager): Response
-    {
+        EntityManagerInterface $entityManager
+    ): Response {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $entityManager->remove($testimonial);

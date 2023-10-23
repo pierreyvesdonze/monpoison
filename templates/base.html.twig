@@ -35,42 +35,43 @@
 <!--***************************BODY****************************-->
 
 <body>
+    <section class="main-section">
 
-    {# Flash messages #}
-    <div class="flash-container">
-        {% for label, messages in app.flashes %}
-        {% for message in messages %}
+        {# Flash messages #}
+        <div class="flash-container">
+            {% for label, messages in app.flashes %}
+            {% for message in messages %}
 
-        <div class="alert alert-{{ label }}">
-            {{ message }}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endfor %}
         </div>
-        {% endfor %}
-        {% endfor %}
-    </div>
 
-    {# NAV #}
-    {% include("menu/nav.html.twig") %}
+        {# NAV #}
+        {% include("menu/nav.html.twig") %}
 
-    <!-- Back to top button -->
-    <a id="toTop"></a>
+        <!-- Back to top button -->
+        <a id="toTop"></a>
 
-    <!-- SOCIAL ICONS -->
-    {% block aside %}
-    <aside>
-        <div class="social-icons">
-            <a href="https://twitter.com/monpoisonfr" title="twitter" target="_blank">
-                <img src="{{ asset('assets/images/twitter.png') }}" alt="twitter-icon" class="social-twitter-img">
-            </a>
-            <a href="https://www.facebook.com/Mon-poison-106440341938696" title="facebook" target="_blank">
-                <img src="{{ asset('assets/images/facebook.png') }}" alt="facebook-icon" class="social-fb-img">
-            </a>
-        </div>
-    </aside>
-    {% endblock %}
+        <!-- SOCIAL ICONS -->
+        {% block aside %}
+        <aside>
+            <div class="social-icons">
+                <a href="https://twitter.com/monpoisonfr" title="twitter" target="_blank">
+                    <img src="{{ asset('assets/images/twitter.png') }}" alt="twitter-icon" class="social-twitter-img">
+                </a>
+                <a href="https://www.facebook.com/Mon-poison-106440341938696" title="facebook" target="_blank">
+                    <img src="{{ asset('assets/images/facebook.png') }}" alt="facebook-icon" class="social-fb-img">
+                </a>
+            </div>
+        </aside>
+        {% endblock %}
 
-    {% block body %}
-    {% endblock %}
-
+        {% block body %}
+        {% endblock %}
+    </section>
     <!-- FOOTER -->
     {% block footer %}
     {% include('footer/footer.html.twig') %}
@@ -93,7 +94,7 @@
     <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}" defer></script>
     <script src="{{ asset('assets/js/app.js') }}" defer></script>
-    
+
 
     <!-- COOKIES CONSENT-->
     <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
@@ -133,6 +134,7 @@
     </script>
     <!-- End of Woopra Code -->
     {% endif %}
+
 </body>
 
 </html>

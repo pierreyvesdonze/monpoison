@@ -21,9 +21,7 @@ class SoberController extends AbstractController
     ) {
     }
 
-    /**
-     * @Route("/sobriete/ajouter", name="sober_add")
-     */
+    #[Route('/sobriete/ajouter', name:'sober_add')]
     public function addSober(
         Request $request,
         SoberService $soberService
@@ -69,9 +67,7 @@ class SoberController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/sobriete/retirer{soberId}", name="sober_remove")
-     */
+    #[Route('sobriete/retirer/{soberId}', name:'sober_remove')]
     public function removeSober(
         $soberId
     ) {
@@ -87,9 +83,7 @@ class SoberController extends AbstractController
         return $this->redirectToRoute('drink_calendar');
     }
 
-    /**
-     * @Route("/sobriete/ajouter/auto", name="sober_add_auto", options={"expose"=true})
-     */
+    #[Route('/sobriete/ajouter/auto', name:'sober_add_auto', options: ['expose' => true])]
     public function addAutoSober(SoberService $soberService)
     {
         $soberService->addAutoSoberDay($this->getUser());

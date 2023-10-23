@@ -20,9 +20,7 @@ class SubscribeController extends AbstractController
     ) {
     }
 
-    /**
-     * @Route("articles/abonnement/{emailSubscriber}", name="subscribe_posts", options={"expose"=true})
-     */
+    #[Route('articles/abonnement/{emailSubscriber}', name: 'subscribe_posts', options: ['expose' => true])]
     public function subscribeToPosts(
         $emailSubscriber,
         Request $request,
@@ -68,9 +66,7 @@ class SubscribeController extends AbstractController
         return new JsonResponse($message);
     }
 
-    /**
-     * @Route("articles/désabonnement/{postId}", name="unsubscribe_posts", options={"expose"=true})
-     */
+    #[Route('articles/désabonnement/{postId}', name: 'unsubscribe_posts', options: ['expose' => true])]
     public function unSubscribeToPosts(
         $postId,
         Request $request,

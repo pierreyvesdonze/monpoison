@@ -23,9 +23,8 @@ class UserController extends AbstractController
     public function __construct(private EntityManagerInterface $em)
     {
     }
-    /**
-     * @Route("/user/compte", name="user_account")
-     */
+
+    #[Route('/user/compte', name:'user_account')]
     public function account(Request $request): Response
     {
         $user = $this->getUser();
@@ -65,9 +64,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/user/profile", name="user_board")
-     */
+    #[Route('/user/profile', name:'user_board')]
     public function board(UserStatsService $userStatsService): Response
     {
         $user = $this->getUser();
@@ -131,9 +128,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/alcool/avantages/inconvenients", name="alcool_arguments")
-     */
+    #[Route('/alcool/avantages/inconvenients', name:'alcool_arguments')]
     public function alcoolArguments(
         ArgumentUserRepository $arguRepo
     ): Response {
@@ -146,9 +141,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/alcool/avantages/inconvenients/ajouter", name="alcool_arguments_add")
-     */
+    #[Route('/alcool/avantages/invonvenients/ajouter', name:'alcool_arguments_add')]
     public function addArgument(Request $request)
     {
         $form = $this->createForm(ArgumentType::class);
@@ -172,23 +165,19 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/alcool/avantages/inconvenients/retirer/{id}", name="alcool_arguments_remove")
-     */
+    #[Route('alcool/avantages/inconvenients/retirer/{id}', name:'alcool_arguments_remove')]
     public function removeArgument(ArgumentUser $argument)
     {
         if ($this->getUser() == $argument->getUser()) {
             $this->em->remove($argument);
             $this->em->flush();
 
-            $this->addFlash('success', 'Retiré !');
+            $this->addFlash('success', 'Avantage retiré !');
         }
         return $this->redirectToRoute('alcool_arguments');
     }
 
-    /**
-     * @Route("/objectifs", name="goals")
-     */
+    #[Route('/objectifs', name:'goals')]
     public function goals(GoalRepository $goalRepository)
     {
         $goals = $goalRepository->findByUser($this->getUser());
@@ -198,9 +187,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/ajouter/objectif", name="add_goal")
-     */
+    #[Route('/ajouter/objectif', name:'add_goal')]
     public function addGoal(Request $request)
     {
         $form = $this->createForm(GoalType::class);
@@ -224,9 +211,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/supprimer/objectif/{id}", name="remove_goal")
-     */
+    #[Route("/supprimer/objectif/{id}", name:"remove_goal")]
     public function removeGoal(Goal $goal)
     {
         if ($this->getUser() === $goal->getUser()) {
@@ -237,9 +222,7 @@ class UserController extends AbstractController
         return $this->redirectToRoute('goals');
     }
 
-    /**
-     * @Route("/changer/validation/objectif/{goalId}", name="set-achievement", options={"expose"=true}, methods="POST")
-     */
+    #[Route('/changer/validation/objectif/{goalId}', name: 'set-achievement', options: ['expose' => true], methods: ['POST'])]
     public function setAchievement($goalId, GoalRepository $goalRepository)
     {
         $goal = $goalRepository->findOneById($goalId);
