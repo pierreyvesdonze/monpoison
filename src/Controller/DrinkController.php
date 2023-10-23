@@ -24,9 +24,7 @@ class DrinkController extends AbstractController
     ) {
     }
 
-    /**
-     * @Route("/consommations/voir", name="drink_calendar")
-     */
+    #[Route('/consommations/voir', name: 'drink_calendar')]
     public function getCalendar(
         SoberRepository $soberRepository,
         UserStatsService $userStatsService
@@ -58,9 +56,7 @@ class DrinkController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/consommation/ajouter/une/conso", name="drink_add_one_more")
-     */
+    #[Route('/consommation/ajouter/une/conso', name: 'drink_add_one_more')]
     public function addOneMoreDrink()
     {
         $user = $this->getUser();
@@ -85,9 +81,7 @@ class DrinkController extends AbstractController
         return $this->redirectToRoute('drink_calendar');
     }
 
-    /**
-     * @Route("/consommation/ajouter", name="drink_add")
-     */
+    #[Route('consommation/ajouter', name:'drink_add')]
     public function addDrink(
         Request $request,
         SoberService $soberService
@@ -151,9 +145,7 @@ class DrinkController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/consommation/editer/{id}", name="drink_update")
-     */
+    #[Route('/consommation/editer/{id}', name: 'drink_update')]
     public function drinkUpdate(
         Drink $drink,
         Request $request,
@@ -197,9 +189,7 @@ class DrinkController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/consommation/supprimer/{id}", name="drink_delete")
-     */
+    #[Route('/consommation/supprimer/{id}', name: 'drink_delete')]
     public function drinkDelete(Drink $drink)
     {
         $this->entityManager->remove($drink);

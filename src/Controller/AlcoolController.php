@@ -17,9 +17,7 @@ class AlcoolController extends AbstractController
     ) {
     }
 
-    /**
-     * @Route("/alcool/test/addiction", name="alcool_test")
-     */
+    #[Route('/alcool/test/addiction', name: 'alcool_test')]
     public function setScore(Request $request): Response
     {
         $form = $this->createForm(AlcoolTestType::class);
@@ -53,9 +51,7 @@ class AlcoolController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/alcool/test/addiction/resultat/{score}", name="alcool_test_result")
-     */
+    #[Route('/alcool/test/addiction/resultat/{score}', name: 'alcool_test_result')]
     public function getAddictResultScore(int $score)
     {
         /**
@@ -82,17 +78,13 @@ class AlcoolController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("alcool/statistiques", name="alcool_stats")
-     */
+    #[Route('alcool/statistiques', name: 'alcool_stats')]
     public function alcoolStats()
     {
         return $this->render('alcool/stats.html.twig');
     }
 
-    /**
-     * @Route("/alcool/test/alcoolemie", name="ethylotest")
-     */
+    #[Route('/alcool/test/alcoolemie', name: 'ethylotest')]
     public function setEthyloTestScore(Request $request): Response
     {
         $form = $this->createForm(EthylotestType::class);
@@ -120,9 +112,7 @@ class AlcoolController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/alcool/ethylotest/{score}", name="ethylotest_result")
-     */
+    #[Route('/alcool/ethylotest/{score}', name: 'ethylotest_result')]
     public function ethylotestResult($score): Response
     {
         return $this->render('alcool/ethylotest.result.html.twig', [

@@ -19,8 +19,6 @@
 
 <div class="container">
     {% for post in posts %}
-    {% if post.isPublished == 1 %}
-
     <div class="container-post">
         <h1 class="post-title" data-title="{{ post.title }}">
             {{ post.title }}
@@ -40,7 +38,7 @@
         <br>
 
         <hr>
-        {% endif %}
+      
     </div>
     {% endif %}
     {% endfor %}

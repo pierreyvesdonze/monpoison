@@ -22,9 +22,7 @@ class RegistrationController extends AbstractController
     ) {
     }
 
-    /**
-     * @Route("/register", name="app_register")
-     */
+    #[Route('/register', name:'app_register')]
     public function register(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasherInterface,
@@ -82,9 +80,7 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/verify/email", name="app_verify_email")
-     */
+    #[Route('/verify/email', name:'app_verify_email')]
     public function verifyUserEmail(Request $request): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -103,9 +99,7 @@ class RegistrationController extends AbstractController
         return $this->redirectToRoute('app_register');
     }
 
-    /**
-     * @Route("/user/delete", name="delete_user")
-     */
+    #[Route('/user/delete', name:'delete_user')]
     public function deleteUser(): Response
     {
         $this->em->remove($this->getUser());

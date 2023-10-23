@@ -16,9 +16,7 @@ class HomeController extends AbstractController
     {
     }
 
-    /**
-     * @Route("/", name="home")
-     */
+    #[Route('/', name:'home')]
     public function index(): Response
     {
         $user = $this->getUser();
@@ -30,17 +28,13 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig');
     }
 
-    /**
-     * @Route("/conditions/générales/utilisation", name="cgu")
-     */
+    #[Route('/conditions/générales/utilisation', name: 'cgu')]
     public function cgu(): Response
     {
         return $this->render('cgu/cgu.html.twig');
     }
 
-    /**
-     * @Route("/contact", name="contact", methods={"GET","POST"})
-     */
+    #[Route('/contact', name: 'contact', methods: ['GET', 'POST'])]
     public function contact(
         Request $request,
         MailService $mailer
@@ -63,9 +57,7 @@ class HomeController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("pourquoi/creer/un/compte", name="why_register")
-     */
+    #[Route('pourquoi/creer/un/compte', name: 'why_register')]
     public function whyRegister()
     {
         return $this->render('home/why.register.html.twig');

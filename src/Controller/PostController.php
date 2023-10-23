@@ -33,10 +33,8 @@ class PostController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/status", name="post_status", methods={"GET","POST"})
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route('/status', name: 'post_status', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function postStatus(PostRepository $postRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -47,11 +45,9 @@ class PostController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/publier/status/{type}/{id}", name="edit_post_status_publish", methods={"GET","POST"})
-     * @Route("/retirer/status/{type}{id}", name="edit_post_status_remove", methods={"GET","POST"})
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route('/publier/status/{type}/{id}', name: 'edit_post_status_publish', methods: ['GET', 'POST'])]
+    #[Route('/retirer/status/{type}{id}', name: 'edit_post_status_remove', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function publishPostStatus(
         Post $post,
         $type,
@@ -81,10 +77,8 @@ class PostController extends AbstractController
         return $this->redirectToRoute('post_status', []);
     }
 
-    /**
-     * @Route("/retirer/status/{id}", name="edit_post_status_remove", methods={"GET","POST"})
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route('/retirer/status/{id}', name: 'edit_post_status_remove', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function removePostStatus(Post $post)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -95,10 +89,8 @@ class PostController extends AbstractController
         return $this->redirectToRoute('post_status', []);
     }
 
-    /**
-     * @Route("/nouveau", name="post_new", methods={"GET","POST"})
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route('/nouveau', name: 'post_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function new(
         Request $request
     ): Response {
@@ -135,10 +127,8 @@ class PostController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/editer", name="post_edit", methods={"GET","POST"})
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route('/{id}/editer', name: 'post_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(
         Request $request,
         Post $post
@@ -167,10 +157,8 @@ class PostController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/supprimer/{id}", name="post_delete",  methods={"GET","POST"})
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route('/supprimer/{id}', name: 'post_delete', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(
         Request $request,
         Post $post
