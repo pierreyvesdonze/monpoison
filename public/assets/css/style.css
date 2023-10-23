@@ -697,8 +697,12 @@ select option {
 /**********************
 SOBER
 **********************/
-.sober-card {
+.sober-card-content {
   overflow-y: scroll !important;
+}
+
+.sober-line {
+  margin: 0 !important;
 }
 
 /*********************

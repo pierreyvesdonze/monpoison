@@ -15,12 +15,25 @@
 <div class="container">
 	<h1>Mon suivi</h1>
 
+	<div class="flex-left-right">
+<div class="left">
 	<a href="{{ path('drink_add') }}" title="Ajouter une consommation" class="custom-btn">Ajouter une consommation</a>
 	<br><br>
 	<a href="{{ path('sober_add') }}" title="Ajouter une sobriete" class="custom-btn">Ajouter une sobriété</a>
 	<br><br>
 	<a href="{{ path('money_add') }}" title="Ajouter une économie" class="custom-btn">Ajouter une économie</a>
-
+</div>
+<br>
+<div class="right">
+	{% if app.user is not null and sobers is not empty %}
+	<h5>
+		{{ lastSoberPeriod }} jour(s) sans alcool
+	</h5>
+	<h6>{{ moneySaved }} € économisé(s)</h6>
+	{% endif %}
+</div>
+		
+	</div>
 	<br>
 	<br>
 
@@ -43,23 +56,21 @@
 
 	<div class="container-start">
 		{% if app.user is not null and sobers is not empty %}
-		<div class="card">
+		<div class="card card-sober">
 			<div class="card-header">
 				<h5>
-					{{ lastSoberPeriod }} jour(s) sans alcool
+					Jour(s) sobre(s)
 				</h5>
-				<h6>{{ moneySaved }} € économisé(s)</h6>
 			</div>
 
-			<div class="card-body sober-card">
+			<div class="card-body sober-card-content">
 				{% for sober in sobers %}
-				<span class="card-subtitle mb-2 text-muted greenScore d-flex justify-content-between">
+				<span class="card-subtitle mb-2 text-muted greenScore d-flex justify-content-between sober-line">
 					{{ sober.date|date('d/m/y') }}
 					<a href="{{ path('sober_remove', {'soberId':sober.id}) }}"
 						onclick="return confirm('Voulez-vous supprimer cette sobriété ?') "
-						class="btn btn-danger btn-settings">&Cross;</a>
+						class="btn">&Cross;</a>
 				</span>
-				<br>
 				{% endfor %}
 			</div>
 		</div>
