@@ -12,7 +12,7 @@ use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DrinkController extends AbstractController
@@ -20,7 +20,7 @@ class DrinkController extends AbstractController
     public function __construct(
         private  EntityManagerInterface $entityManager,
         private DrinkRepository $drinkRepository,
-        private SessionInterface $session
+        private RequestStack $requestStack
     ) {
     }
 
@@ -70,8 +70,8 @@ class DrinkController extends AbstractController
 
         $lastDrink->setQuantity($lastDrinkQuantity += 1);
 
-        if (!false == $this->session->get('lastDrinkCost') || 0 == $this->session->get('lastDrinkCost')) {
-            $lastDrink->setCost($lastDrinkCost += $this->session->get('lastDrinkCost'));
+        if (!false == $this->requestStack->get('lastDrinkCost') || 0 == $this->requestStack->get('lastDrinkCost')) {
+            $lastDrink->setCost($lastDrinkCost += $this->requestStack->get('lastDrinkCost'));
         } else {
             $this->addFlash('danger', 'Votre dernier enregistrement semble dater un peu ou vous avez ajouté plusieurs unités à la fois, veuillez mettre à jour votre consommation manuellement');
 
@@ -132,13 +132,13 @@ class DrinkController extends AbstractController
 
             // If drink quantity = 1, registering in session for +1 option
             if (1 === $drink->getQuantity()) {
-                $this->session->set('lastDrinkCost', $drink->getCost());
+                $this->requestStack->set('lastDrinkCost', $drink->getCost());
                 if (null == $drink->getCost()) {
                     $drink->setCost(0);
-                    $this->session->set('LastDrinkCost', 0);
+                    $this->requestStack->set('LastDrinkCost', 0);
                 }
             } else {
-                $this->session->clear();
+                $request->getSession()->clear();
             }
 
             $this->addFlash('success', 'Nouvelle consommation enregistrée !');
@@ -177,13 +177,13 @@ class DrinkController extends AbstractController
 
             // Update session for +1drink button
             if (1 === $drink->getQuantity()) {
-                $this->session->set('lastDrinkCost', $drink->getCost());
+                $this->requestStack->set('lastDrinkCost', $drink->getCost());
                 if (null == $drink->getCost()) {
                     $drink->setCost(0);
-                    $this->session->set('LastDrinkCost', 0);
+                    $this->requestStack->set('LastDrinkCost', 0);
                 }
             } else {
-                $this->session->clear();
+                $request->getSession()->clear();
             }
 
             $this->entityManager->flush();

@@ -67,14 +67,10 @@ body {
   background: var(--body-bg);
   background-size: cover;
   opacity: 1;
-  -webkit-animation-name: fadeInOpacity;
-          animation-name: fadeInOpacity;
-  -webkit-animation-iteration-count: 1;
-          animation-iteration-count: 1;
-  -webkit-animation-timing-function: ease-in;
-          animation-timing-function: ease-in;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.5s;
 }
 @media (min-width: 300px) and (max-width: 576px) {
   body {
@@ -86,15 +82,6 @@ body {
   body {
     background: var(--body-bg-small);
     background-size: cover;
-  }
-}
-
-@-webkit-keyframes fadeInOpacity {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }
 
@@ -133,13 +120,13 @@ html {
 }
 @media (min-width: 300px) and (max-width: 576px) {
   .alert,
-.alert-success {
+  .alert-success {
     font-size: 1.8em;
   }
 }
 @media (min-width: 576px) and (max-width: 768px) {
   .alert,
-.alert-success {
+  .alert-success {
     font-size: 1.8em;
   }
 }
@@ -216,7 +203,7 @@ BUTTONS
   letter-spacing: 0.15rem;
   transition: all 0.1s;
   position: relative;
-  box-shadow: rgba(0, 0, 0, 0.767) 0 0 7px 1px, inset 0 -5px 20px hsla(0deg, 0%, 0%, 0.4), inset 0 5px 20px hsla(0deg, 0%, 100%, 0.4), -8px 8px 5px hsla(0deg, 0%, 0%, 0.15), 5px 18px 10px hsla(0deg, 0%, 0%, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.767) 0 0 7px 1px, inset 0 -5px 20px hsla(0, 0%, 0%, 0.4), inset 0 5px 20px hsla(0, 0%, 100%, 0.4), -8px 8px 5px hsla(0, 0%, 0%, 0.15), 5px 18px 10px hsla(0, 0%, 0%, 0.2);
   z-index: 1;
 }
 .custom-btn:after,
@@ -484,13 +471,13 @@ CONTAINER
 }
 @media (min-width: 300px) and (max-width: 576px) {
   .container p img,
-.container .flex-left-right .right img {
+  .container .flex-left-right .right img {
     width: 320px !important;
   }
 }
 @media (min-width: 576px) and (max-width: 768px) {
   .container p img,
-.container .flex-left-right .right img {
+  .container .flex-left-right .right img {
     width: 320px !important;
   }
 }
@@ -582,8 +569,7 @@ BIG TEXT ANIM
 .small {
   width: 40px;
   height: 40px;
-  -webkit-animation: glow 2500ms linear infinite 2000ms;
-          animation: glow 2500ms linear infinite 2000ms;
+  animation: glow 2500ms linear infinite 2000ms;
 }
 @media (min-width: 576px) and (max-width: 768px) {
   .small {
@@ -595,12 +581,6 @@ BIG TEXT ANIM
   .small {
     width: 10px;
     height: 10px;
-  }
-}
-
-@-webkit-keyframes glow {
-  40% {
-    text-shadow: 0 0 8px #fff;
   }
 }
 
@@ -748,14 +728,14 @@ MYCHART
 }
 @media (min-width: 300px) and (max-width: 576px) {
   #myChart,
-#myChart2 {
+  #myChart2 {
     width: 300px !important;
     height: 300px !important;
   }
 }
 @media (min-width: 576px) and (max-width: 768px) {
   #myChart,
-#myChart2 {
+  #myChart2 {
     width: 300px !important;
     height: 300px !important;
   }
@@ -873,9 +853,6 @@ POSTS
 .search-post input::-moz-placeholder {
   text-align: center;
 }
-.search-post input:-ms-input-placeholder {
-  text-align: center;
-}
 .search-post input::placeholder {
   text-align: center;
 }
@@ -898,9 +875,10 @@ POSTS
 FOOTER
 *********************/
 footer {
-  clear: both;
-  width: 100%;
-  margin-top: 50px;
+  /* 	position: absolute;
+  	width:100%;
+  	height:120px; */
+  bottom: 0;
   background-color: var(--semi-transparent);
   box-shadow: inset rgba(0, 0, 0, 0.596) 0 0 7px 1px;
   transition: ease-in-out 0.5s;
@@ -1021,8 +999,7 @@ BIG TEXT ANIM
 .small {
   width: 40px;
   height: 40px;
-  -webkit-animation: glow 2500ms linear infinite 2000ms;
-          animation: glow 2500ms linear infinite 2000ms;
+  animation: glow 2500ms linear infinite 2000ms;
 }
 @media (min-width: 576px) and (max-width: 768px) {
   .small {
@@ -1098,34 +1075,22 @@ LOADER ANIM
 .inner.one {
   left: 0%;
   top: 0%;
-  -webkit-animation: rotate-one 1s linear infinite;
-          animation: rotate-one 1s linear infinite;
+  animation: rotate-one 1s linear infinite;
   border-bottom: 3px solid wheat;
 }
 
 .inner.two {
   right: 0%;
   top: 0%;
-  -webkit-animation: rotate-two 1s linear infinite;
-          animation: rotate-two 1s linear infinite;
+  animation: rotate-two 1s linear infinite;
   border-right: 3px solid wheat;
 }
 
 .inner.three {
   right: 0%;
   bottom: 0%;
-  -webkit-animation: rotate-three 1s linear infinite;
-          animation: rotate-three 1s linear infinite;
+  animation: rotate-three 1s linear infinite;
   border-top: 3px solid wheat;
-}
-
-@-webkit-keyframes rotate-one {
-  0% {
-    transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
-  }
-  100% {
-    transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
-  }
 }
 
 @keyframes rotate-one {
@@ -1136,28 +1101,12 @@ LOADER ANIM
     transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
   }
 }
-@-webkit-keyframes rotate-two {
-  0% {
-    transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
-  }
-  100% {
-    transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
-  }
-}
 @keyframes rotate-two {
   0% {
     transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
   }
   100% {
     transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
-  }
-}
-@-webkit-keyframes rotate-three {
-  0% {
-    transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
-  }
-  100% {
-    transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
   }
 }
 @keyframes rotate-three {

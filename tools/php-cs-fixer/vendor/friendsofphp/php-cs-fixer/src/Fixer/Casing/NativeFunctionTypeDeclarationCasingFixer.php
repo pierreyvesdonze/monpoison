@@ -46,7 +46,11 @@ final class NativeFunctionTypeDeclarationCasingFixer extends AbstractFixer
      *
      * @var array<string, true>
      */
-    private $hints;
+    private $hints = [
+        'array' => true,
+        'callable' => true,
+        'self' => true,
+    ];
 
     /**
      * @var FunctionsAnalyzer
@@ -56,12 +60,6 @@ final class NativeFunctionTypeDeclarationCasingFixer extends AbstractFixer
     public function __construct()
     {
         parent::__construct();
-
-        $this->hints = [
-            'array' => true,
-            'callable' => true,
-            'self' => true,
-        ];
 
         $this->hints = array_merge(
             $this->hints,

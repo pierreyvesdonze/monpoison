@@ -44,7 +44,7 @@ class Status
     private $logger;
 
     /** @var bool */
-    private $modeOff;
+    private $modeOff = false;
 
      /** @var float */
     private $time;
@@ -61,7 +61,6 @@ class Status
 
         $this->envAllowXdebug = $envAllowXdebug;
         $this->debug = $debug && defined('STDERR');
-        $this->modeOff = false;
     }
 
     /**

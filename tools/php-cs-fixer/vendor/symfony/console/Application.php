@@ -82,7 +82,7 @@ class Application implements ResetInterface
     private $helperSet;
     private $dispatcher = null;
     private $terminal;
-    private string $defaultCommand;
+    private string $defaultCommand = 'list';
     private bool $singleCommand = false;
     private bool $initialized = false;
     private $signalRegistry;
@@ -93,7 +93,6 @@ class Application implements ResetInterface
         $this->name = $name;
         $this->version = $version;
         $this->terminal = new Terminal();
-        $this->defaultCommand = 'list';
         if (\defined('SIGINT') && SignalRegistry::isSupported()) {
             $this->signalRegistry = new SignalRegistry();
             $this->signalsToDispatchEvent = [\SIGINT, \SIGTERM, \SIGUSR1, \SIGUSR2];

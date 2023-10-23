@@ -8,7 +8,7 @@ use Doctrine\Persistence\ObjectManager as PersistenceObjectManager;
 
 class AlcoolFixtures extends Fixture
 {
-    //php bin/console doctrine:fixtures:load --env=test
+    //php bin/console doctrine:fixtures:load --env=dev
     public function load(PersistenceObjectManager $manager)
     {
         $beer = new Alcool();
