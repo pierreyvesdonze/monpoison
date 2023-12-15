@@ -38,6 +38,9 @@ var app = {
         $('#search-post-btn').on('click', app.searchPost)
         $('.search-post').on('keyup', app.searchPost)
 
+        //Calcul ua
+        $('#calcul-ua-btn').on('click', app.calculUa)
+
         /**
           * *****************************
           * TITLES ANIMATIONS
@@ -163,6 +166,21 @@ var app = {
                 console.log(error);
             });
     },
+
+    /**
+     * Calcul UA
+     */
+    calculUa: function (e) {
+        let qty = $('#calcul-ua-quantity').val();
+        let degree = $('#calcul-ua-degree').val();
+        let result = $('.ua-result');
+
+        if (qty !== '' && degree !== '') {
+            let ua = (qty * degree * 0.8) / 1000;
+
+            result.text(ua.toFixed(1) + ' UA');
+        }
+    }
 }
 
 document.addEventListener('DOMContentLoaded', app.init)

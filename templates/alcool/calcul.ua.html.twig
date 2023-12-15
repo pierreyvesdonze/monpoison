@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block title %}Calcul UA{% endblock %}
+
+{% block body %}
+
+<br><br>
+
+<div class="container">
+    <h1>Calcul d'unités d'alcool</h1>
+    <br>
+    <p>
+        1 UA (unité d'alcool) représente : 
+        <ul>
+            <li>
+                <img src="{{ asset('assets/images/beer.png') }}" alt="bière" class="alcool-png"> 1 bière de 25 cl à 5.5°
+            </li>
+            <li>
+                <img src="{{ asset('assets/images/wine.png') }}" alt="bière" class="alcool-png"> 1 verre de vin de 12 cl à 12°
+            </li>
+            <li>
+                <img src="{{ asset('assets/images/whisky.png') }}" alt="bière" class="alcool-png"> 1 verre d'alcool fort de 3 cl à 40°
+            </li>
+        </ul>
+    </p>
+    <br><br>
+    <h3>Entrez en ml la quantité d'alcool puis le degré d'alcool</h3>
+    <br>
+    <div class="flex-left-right ua-form">
+        <div class="flex-left">
+            <input type="number" id="calcul-ua-quantity" placeholder="ex. 250">
+            <input type="number" id="calcul-ua-degree" placeholder="ex. 8.5">
+            <button class="custom-btn" id="calcul-ua-btn">Calculer</button>
+        </div>
+        <div class="flex-right">
+            <div class="ua-result"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

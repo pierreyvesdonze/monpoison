@@ -673,6 +673,21 @@ input::-webkit-calendar-picker-indicator {
 	filter: invert(1);
 }
 
+.ua-form {
+	justify-content: flex-start !important;
+	.flex-right {
+		display: flex;
+		align-items: center;
+		font-size: 2em;
+	}
+}
+
+#calcul-ua-quantity,
+#calcul-ua-degree {
+	width: 50%;
+	text-align: center;
+}
+
 /**********************
 FORM
 **********************/

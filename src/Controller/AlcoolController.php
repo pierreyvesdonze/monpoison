@@ -119,4 +119,10 @@ class AlcoolController extends AbstractController
             'score' => $score
         ]);
     }
+
+    #[Route('/alcool/test/ua', name: 'calcul_ua')]
+    public function calculUa(): Response
+    {
+        return $this->render('alcool/calcul.ua.html.twig');
+    }
 }
