@@ -98,7 +98,7 @@ html {
 }
 
 .main-section {
-min-height: 100vh;
+	min-height: 100vh;
 }
 
 .hr-white {
@@ -675,17 +675,33 @@ input::-webkit-calendar-picker-indicator {
 
 .ua-form {
 	justify-content: flex-start !important;
+
 	@include xs {
 		width: 50% !important;
+		flex-direction: row !important;
+		justify-content: space-around !important;
 	}
+	
 	@include sm {
 		width: 50% !important;
+		flex-direction: row !important;
+		justify-content: space-around !important;
 	}
-	.f
+
 	.flex-right {
 		display: flex;
 		align-items: center;
 		font-size: 2em;
+		@include xs {
+			display: flex;
+			align-items: center;
+			font-size: 2em;
+		}
+		@include sm {
+			display: flex;
+			align-items: center;
+			font-size: 2em;
+		}
 	}
 }
 
@@ -838,6 +854,7 @@ CARD CONSO
 	border-radius: 0 17px 0 0 !important;
 	background: var(--card-header);
 }
+
 .card-drinks {
 	display: flex !important;
 	justify-content: space-between !important;
@@ -898,7 +915,7 @@ FOOTER
 *********************/
 footer {
 	//width: 100%;
-/* 	position: absolute;
+	/* 	position: absolute;
 	width:100%;
 	height:120px;
 	bottom: 0; */
