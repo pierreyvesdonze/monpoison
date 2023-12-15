@@ -674,14 +674,14 @@ input::-webkit-calendar-picker-indicator {
 }
 @media (min-width: 300px) and (max-width: 576px) {
   .ua-form {
-    width: 50% !important;
+    width: 85% !important;
     flex-direction: row !important;
     justify-content: space-around !important;
   }
 }
 @media (min-width: 576px) and (max-width: 768px) {
   .ua-form {
-    width: 50% !important;
+    width: 85% !important;
     flex-direction: row !important;
     justify-content: space-around !important;
   }

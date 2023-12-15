@@ -677,13 +677,13 @@ input::-webkit-calendar-picker-indicator {
 	justify-content: flex-start !important;
 
 	@include xs {
-		width: 50% !important;
+		width: 85% !important;
 		flex-direction: row !important;
 		justify-content: space-around !important;
 	}
 	
 	@include sm {
-		width: 50% !important;
+		width: 85% !important;
 		flex-direction: row !important;
 		justify-content: space-around !important;
 	}
