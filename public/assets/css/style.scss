@@ -675,6 +675,13 @@ input::-webkit-calendar-picker-indicator {
 
 .ua-form {
 	justify-content: flex-start !important;
+	@include xs {
+		width: 50% !important;
+	}
+	@include sm {
+		width: 50% !important;
+	}
+	.f
 	.flex-right {
 		display: flex;
 		align-items: center;
@@ -684,7 +691,7 @@ input::-webkit-calendar-picker-indicator {
 
 #calcul-ua-quantity,
 #calcul-ua-degree {
-	width: 50%;
+	width: 50% !important;
 	text-align: center;
 }
 

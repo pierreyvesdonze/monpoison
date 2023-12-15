@@ -672,7 +672,17 @@ input::-webkit-calendar-picker-indicator {
 .ua-form {
   justify-content: flex-start !important;
 }
-.ua-form .flex-right {
+@media (min-width: 300px) and (max-width: 576px) {
+  .ua-form {
+    width: 50% !important;
+  }
+}
+@media (min-width: 576px) and (max-width: 768px) {
+  .ua-form {
+    width: 50% !important;
+  }
+}
+.ua-form .f .flex-right {
   display: flex;
   align-items: center;
   font-size: 2em;
@@ -680,7 +690,7 @@ input::-webkit-calendar-picker-indicator {
 
 #calcul-ua-quantity,
 #calcul-ua-degree {
-  width: 50%;
+  width: 50% !important;
   text-align: center;
 }
 
