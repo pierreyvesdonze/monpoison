@@ -59,7 +59,7 @@ class SoberController extends AbstractController
 
             $this->addFlash('success', 'Un jour sobre est un jour noble !');
 
-            return $this->redirectToRoute('drink_calendar');
+            return $this->redirectToRoute('money_add');
         }
 
         return $this->render('sober/add.html.twig', [
