@@ -37,7 +37,7 @@ app.request.attributes.get('_route_params')) %}
         <!-- share Twitter -->
         <div>
             <a class="custom-btn twitter-share-button"
-                href="https://twitter.com/intent/tweet?text={{ post.title }}&url=https://monpoison.fr/public/article/voir/{{ postId  }}&hashtags=craving,7façons,alcool">
+                href="https://twitter.com/intent/tweet?text={{ post.title }}&url=https://monpoison.fr/public/article/voir/{{ postId  }}&hashtags=craving,7façons,alcool" target="_blank">
                 <img src="{{ asset('assets/images/twitter-share-icon.png') }}" alt="Partager sur Twitter"
                     class="social-img"></a>
         </div>
@@ -55,10 +55,6 @@ app.request.attributes.get('_route_params')) %}
     {% if app.user %}
     <a href="{{ path('comment_new', {'id':post.id}) }}" class="custom-btn">Commenter</a>
     {% endif %}
-    <br>
-    <br>
-
-    <a href="{{ path('post_index') }}">Retour à la liste des articles</a>
 
     <br>
     <br>
@@ -77,6 +73,11 @@ app.request.attributes.get('_route_params')) %}
         commentaire.
     </p>
     {% endif %}
+
+    <br>
+    <br>
+
+    <a href="{{ path('post_index') }}">Retour à la liste des articles</a>
 
     <hr>
     <h2>Commentaires</h2>
