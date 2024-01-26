@@ -493,6 +493,31 @@ CONTAINER
   justify-content: flex-start;
 }
 
+@media (min-width: 300px) and (max-width: 576px) {
+  .calendar-btn {
+    align-items: center;
+  }
+}
+@media (min-width: 576px) and (max-width: 768px) {
+  .calendar-btn {
+    align-items: center;
+  }
+}
+@media (min-width: 300px) and (max-width: 576px) {
+  .calendar-btn .left {
+    text-align: center;
+  }
+}
+@media (min-width: 576px) and (max-width: 768px) {
+  .calendar-btn .left {
+    text-align: center;
+  }
+}
+.calendar-btn .right h5,
+.calendar-btn .right h6 {
+  text-align: center;
+}
+
 /**********************
 SOCIAL ICON & DIV ICON
 **********************/

@@ -494,6 +494,27 @@ CONTAINER
 	justify-content: flex-start;
 }
 
+.calendar-btn {
+	@include xs {
+		align-items: center;
+	}
+	@include sm {
+		align-items: center;
+	}
+	.left {
+		@include xs {
+			text-align: center;
+		}
+		@include sm {
+			text-align: center;
+		}
+	}
+	.right h5,
+	.right h6 {
+		text-align: center;
+	}
+}
+
 /**********************
 SOCIAL ICON & DIV ICON
 **********************/
