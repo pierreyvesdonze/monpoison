@@ -110,7 +110,12 @@
 <hr class="hr-white">
 
 <div class="container">
+    {% if app.user %}
+    <h2><a href="{{ path('drink_calendar') }}">Gérez vos consommations</a></h2>
+    {% else %}
     <h2><a href="{{ path('app_register') }}">Gérez vos consommations</a></h2>
+    {% endif %}
+        
 </div>
 
 {# pwa installer btn #}
