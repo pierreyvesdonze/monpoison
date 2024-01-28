@@ -29,10 +29,10 @@ class DrinkController extends AbstractController
         SoberRepository $soberRepository,
         UserStatsService $userStatsService
     ) {
-        $user      = $this->getUser();
-        $drinks    = $this->drinkRepository->findByUser($user);
-        $lastDrink = $this->drinkRepository->findLastDrink($user);
-        $sobers    = $soberRepository->findByUser($user);
+        $user            = $this->getUser();
+        $drinks          = $this->drinkRepository->findByUser($user);
+        $lastDrink       = $this->drinkRepository->findLastDrink($user);
+        $sobers          = $soberRepository->findByUser($user);
         $lastSoberPeriod = $userStatsService->getLastSoberPeriod($user);
 
         $totalMoneySaved = 0;
@@ -41,7 +41,6 @@ class DrinkController extends AbstractController
         }
 
         if ($lastDrink) {
-
             if ($lastDrink->getDate() < new DateTime('today')) {
                 $lastDrink = false;
             }
